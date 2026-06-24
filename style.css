@@ -1,0 +1,516 @@
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  background: #050816;
+  overscroll-behavior: none;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(180deg, #050816, #080b12);
+  color: white;
+  overflow-x: hidden;
+  overscroll-behavior: none;
+}
+
+.screen {
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 8px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.hero-card,
+.panel {
+  background: linear-gradient(145deg, #111827, #060913);
+  border: 1px solid #2bff8844;
+  border-radius: 20px;
+  box-shadow: 0 0 14px #00ff8822;
+  padding: 14px;
+  margin: 12px auto;
+  width: 100%;
+}
+
+.hero-card {
+  margin-top: 70px;
+  text-align: center;
+}
+
+.eyebrow {
+  color: #2bff88;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 11px;
+  font-weight: bold;
+  margin: 0 0 8px;
+}
+
+h1 {
+  font-size: 34px;
+  line-height: 1.05;
+}
+
+h2 {
+  margin: 8px 0;
+}
+
+.subtitle,
+.hint {
+  color: #b9c2d0;
+}
+
+.hint {
+  font-size: 12px;
+}
+
+button,
+select {
+  font: inherit;
+  border: none;
+  border-radius: 14px;
+}
+
+button {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+select {
+  width: 100%;
+  padding: 8px;
+  background: #0e1625;
+  color: white;
+  border: 1px solid #2bff8844;
+}
+
+.primary-btn {
+  padding: 16px 28px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #2bff88, #00c8ff);
+  color: #04110a;
+  font-size: 18px;
+}
+
+.slot-machine {
+  width: 140px;
+  height: 140px;
+  margin: 22px auto;
+  border-radius: 28px;
+  background: #050816;
+  border: 2px solid #2bff88;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slot-number {
+  width: 105px;
+  height: 105px;
+  border-radius: 22px;
+  background: linear-gradient(90deg, #2bff88, #00c8ff);
+  color: #04110a;
+  font-size: 58px;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slot-number.spinning {
+  animation: slotSpin 0.12s linear infinite;
+}
+
+@keyframes slotSpin {
+  from { transform: translateY(-8px) scale(0.96); }
+  to { transform: translateY(8px) scale(1.04); }
+}
+
+.draft-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  height: 25vh;
+  overflow: hidden;
+  margin: -8px -8px 8px;
+  padding: 7px 10px;
+  background: #050816;
+  border-bottom: 1px solid #2bff8844;
+}
+
+.topbar-row {
+  display: grid;
+  grid-template-columns: 1fr 100px;
+  gap: 8px;
+  align-items: start;
+}
+
+.draft-topbar h2 {
+  font-size: 18px;
+  margin: 2px 0;
+}
+
+#pickInfo {
+  color: #2bff88;
+  font-weight: bold;
+  font-size: 13px;
+  margin: 2px 0;
+}
+
+#turnCounter {
+  margin-top: 4px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+}
+
+.counter-pill {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #101827;
+  border: 1px solid #ffffff22;
+  border-radius: 999px;
+  padding: 4px 5px;
+}
+
+.counter-label {
+  color: #b9c2d0;
+  font-size: 8px;
+  font-weight: bold;
+}
+
+.counter-number {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: linear-gradient(90deg, #2bff88, #00c8ff);
+  color: #04110a;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 13px;
+}
+
+.speed-box {
+  background: #101827;
+  border: 1px solid #ffffff22;
+  border-radius: 12px;
+  padding: 5px;
+}
+
+.speed-box label {
+  display: block;
+  color: #b9c2d0;
+  font-size: 9px;
+  margin-bottom: 3px;
+}
+
+.speed-box select {
+  padding: 6px;
+  font-size: 12px;
+}
+
+.last-pick {
+  margin-top: 5px;
+  padding: 6px 8px;
+  border-radius: 12px;
+  background: #101827;
+  border: 1px solid #00c8ff55;
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.draft-order {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding: 6px 45%;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+.draft-order::-webkit-scrollbar,
+.chip-row::-webkit-scrollbar {
+  display: none;
+}
+
+.order-chip {
+  flex: 0 0 auto;
+  padding: 5px 8px;
+  border-radius: 999px;
+  background: #111827;
+  color: white;
+  border: 1px solid #ffffff22;
+  font-size: 10px;
+  white-space: nowrap;
+}
+
+.order-chip.active {
+  background: linear-gradient(90deg, #2bff88, #00c8ff);
+  color: #04110a;
+  transform: scale(1.05);
+}
+
+.tab-panel {
+  margin-top: 8px;
+  padding: 8px;
+}
+
+.main-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 7px;
+}
+
+.main-tab {
+  padding: 10px 6px;
+  border-radius: 14px;
+  background: #111827;
+  color: white;
+  border: 1px solid #ffffff22;
+  font-size: 12px;
+}
+
+.main-tab.active {
+  background: linear-gradient(90deg, #2bff88, #00c8ff);
+  color: #04110a;
+}
+
+.chip-row {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 8px 0;
+  scrollbar-width: none;
+}
+
+.chip {
+  flex: 0 0 auto;
+  padding: 8px 11px;
+  border-radius: 999px;
+  background: #111827;
+  color: white;
+  border: 1px solid #ffffff22;
+  font-size: 13px;
+}
+
+.chip.active {
+  background: linear-gradient(90deg, #2bff88, #00c8ff);
+  color: #04110a;
+}
+
+.formation-grid {
+  display: grid;
+  gap: 12px;
+}
+
+.formation-grid button {
+  padding: 18px;
+  background: #121a2a;
+  color: white;
+  border: 1px solid #2bff8844;
+  font-size: 20px;
+}
+
+.section-header {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+
+.pitch-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.pitch {
+  width: 100%;
+  max-width: 360px;
+  min-height: 500px;
+  padding: 14px;
+  border-radius: 24px;
+  border: 2px solid #ffffff66;
+  background:
+    linear-gradient(90deg, transparent 49%, #ffffff22 50%, transparent 51%),
+    linear-gradient(180deg, #0f7a3a, #064d27);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.line {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+}
+
+.slot {
+  width: 72px;
+  min-height: 76px;
+  background: rgba(0, 0, 0, 0.48);
+  border: 1px solid #ffffff55;
+  border-radius: 16px;
+  padding: 7px;
+  text-align: center;
+  font-size: 11px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.slot.drag-over {
+  border-color: #2bff88;
+  box-shadow: 0 0 14px #2bff88aa;
+}
+
+.slot-position {
+  font-weight: bold;
+  color: white;
+  margin-bottom: 5px;
+}
+
+.slot-player {
+  color: #2bff88;
+  font-size: 11px;
+  line-height: 1.15;
+  cursor: grab;
+}
+
+.slot-empty {
+  color: #b9c2d0;
+  font-size: 11px;
+}
+
+.selected-player {
+  outline: 2px solid #00c8ff;
+  box-shadow: 0 0 14px #00c8ffaa;
+}
+
+.bench {
+  margin-top: 12px;
+  padding: 12px;
+  border-radius: 18px;
+  background: #07111f;
+  border: 1px solid #ffffff22;
+}
+
+.bench-title {
+  color: #2bff88;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.bench-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+
+.bench-player {
+  padding: 9px;
+  border-radius: 12px;
+  background: #101827;
+  border: 1px solid #ffffff22;
+  font-size: 13px;
+  cursor: grab;
+}
+
+.player-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.player,
+.team-card,
+.ai-team-card {
+  border-radius: 18px;
+  background: linear-gradient(145deg, #121a2a, #080b12);
+  border: 1px solid #ffffff18;
+  padding: 14px;
+}
+
+.position-badge {
+  display: inline-block;
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: #2bff8820;
+  color: #2bff88;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.overall {
+  float: right;
+  font-size: 22px;
+  color: #00c8ff;
+  font-weight: bold;
+}
+
+.player-title {
+  margin-top: 12px;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.player-meta {
+  color: #b9c2d0;
+  margin: 6px 0;
+  font-size: 14px;
+}
+
+.draft-btn {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  background: linear-gradient(90deg, #2bff88, #00c8ff);
+  color: #04110a;
+}
+
+.ai-teams-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.ai-team-card {
+  min-height: 230px;
+  max-height: 230px;
+  overflow-y: auto;
+}
+
+.ai-team-card h3 {
+  margin: 0 0 8px;
+  color: #2bff88;
+  font-size: 15px;
+}
+
+.ai-roster {
+  display: grid;
+  gap: 5px;
+}
+
+.roster-row {
+  padding: 7px;
+  border-radius: 10px;
+  background: #0e1625;
+  color: #d8dee9;
+  font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
