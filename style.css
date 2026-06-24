@@ -623,3 +623,28 @@ select {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+#turnCounter {
+  width: 100% !important;
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 5px !important;
+}
+
+.counter-pill {
+  min-width: 0 !important;
+  width: 100% !important;
+  display: grid !important;
+  grid-template-columns: 1fr 22px !important;
+  align-items: center !important;
+  padding: 4px 5px !important;
+}
+
+.counter-label {
+  min-width: 0 !important;
+  overflow: hidden !important;
+}
+
+.counter-number {
+  justify-self: end !important;
+}
