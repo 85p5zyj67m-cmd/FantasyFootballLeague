@@ -100,6 +100,7 @@ export function renderDraftHeader(currentPick, totalTeams, totalRounds, teams, d
     <div class="counter-pill"><span class="counter-label">NEXT</span><span class="counter-number">${distances.next}</span></div>
     <div class="counter-pill"><span class="counter-label">2ND</span><span class="counter-number">${distances.second}</span></div>
     <div class="counter-pill"><span class="counter-label">3RD</span><span class="counter-number">${distances.third}</span></div>
+    <div class="counter-pill"><span class="counter-label">4TH</span><span class="counter-number">${distances.fourth}</span></div>
   `;
 
   const ticker = document.getElementById("draftOrderTicker");
