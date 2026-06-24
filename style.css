@@ -30,13 +30,13 @@ body {
 
 .hero-card,
 .panel {
+  width: 100%;
+  margin: 12px auto;
+  padding: 14px;
+  border-radius: 20px;
   background: linear-gradient(145deg, #111827, #060913);
   border: 1px solid #2bff8844;
-  border-radius: 20px;
   box-shadow: 0 0 14px #00ff8822;
-  padding: 14px;
-  margin: 12px auto;
-  width: 100%;
 }
 
 .hero-card {
@@ -99,6 +99,8 @@ select {
   font-size: 18px;
 }
 
+/* Lottery */
+
 .slot-machine {
   width: 140px;
   height: 140px;
@@ -129,9 +131,16 @@ select {
 }
 
 @keyframes slotSpin {
-  from { transform: translateY(-8px) scale(0.96); }
-  to { transform: translateY(8px) scale(1.04); }
+  from {
+    transform: translateY(-8px) scale(0.96);
+  }
+
+  to {
+    transform: translateY(8px) scale(1.04);
+  }
 }
+
+/* Draft Topbar */
 
 .draft-topbar {
   position: sticky;
@@ -164,42 +173,6 @@ select {
   margin: 2px 0;
 }
 
-#turnCounter {
-  margin-top: 4px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 4px;
-}
-
-.counter-pill {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: #101827;
-  border: 1px solid #ffffff22;
-  border-radius: 999px;
-  padding: 4px 5px;
-}
-
-.counter-label {
-  color: #b9c2d0;
-  font-size: 8px;
-  font-weight: bold;
-}
-
-.counter-number {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background: linear-gradient(90deg, #2bff88, #00c8ff);
-  color: #04110a;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 900;
-  font-size: 13px;
-}
-
 .speed-box {
   background: #101827;
   border: 1px solid #ffffff22;
@@ -218,6 +191,51 @@ select {
   padding: 6px;
   font-size: 12px;
 }
+
+/* Pick Counters */
+
+#turnCounter {
+  width: 100%;
+  margin-top: 4px;
+  display: flex !important;
+  gap: 4px !important;
+}
+
+.counter-pill {
+  flex: 1 1 0 !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between !important;
+  background: #101827;
+  border: 1px solid #ffffff22;
+  border-radius: 999px;
+  padding: 4px 5px !important;
+}
+
+.counter-label {
+  color: #b9c2d0;
+  font-size: 7px !important;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.counter-number {
+  width: 22px !important;
+  height: 22px !important;
+  min-width: 22px !important;
+  border-radius: 50%;
+  background: linear-gradient(90deg, #2bff88, #00c8ff);
+  color: #04110a;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 12px !important;
+}
+
+/* Last Pick + Draft Order */
 
 .last-pick {
   margin-top: 5px;
@@ -262,6 +280,8 @@ select {
   transform: scale(1.05);
 }
 
+/* Main Tabs */
+
 .tab-panel {
   margin-top: 8px;
   padding: 8px;
@@ -287,6 +307,8 @@ select {
   color: #04110a;
 }
 
+/* Position Filter */
+
 .chip-row {
   display: flex;
   gap: 8px;
@@ -310,6 +332,8 @@ select {
   color: #04110a;
 }
 
+/* Formation Select */
+
 .formation-grid {
   display: grid;
   gap: 12px;
@@ -328,6 +352,8 @@ select {
   grid-template-columns: 1fr;
   gap: 8px;
 }
+
+/* Pitch */
 
 .pitch-wrapper {
   width: 100%;
@@ -401,6 +427,8 @@ select {
   box-shadow: 0 0 14px #00c8ffaa;
 }
 
+/* Bench */
+
 .bench {
   margin-top: 12px;
   padding: 12px;
@@ -429,6 +457,8 @@ select {
   font-size: 13px;
   cursor: grab;
 }
+
+/* Player Cards */
 
 .player-grid {
   display: grid;
@@ -482,6 +512,8 @@ select {
   color: #04110a;
 }
 
+/* AI Teams */
+
 .ai-teams-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -492,9 +524,15 @@ select {
   min-height: 230px;
   max-height: 230px;
   overflow-y: auto;
+  padding-top: 0;
 }
 
 .ai-team-card h3 {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: linear-gradient(145deg, #121a2a, #080b12);
+  padding: 10px 0 8px;
   margin: 0 0 8px;
   color: #2bff88;
   font-size: 15px;
@@ -515,19 +553,7 @@ select {
   text-overflow: ellipsis;
 }
 
-#turnCounter {
-  grid-template-columns: repeat(4, 1fr);
-}
-
-.counter-label {
-  font-size: 7px;
-}
-
-.counter-number {
-  width: 22px;
-  height: 22px;
-  font-size: 12px;
-}
+/* Tactics Screen */
 
 #tacticsScreen .hero-card {
   margin: 20px auto;
@@ -553,38 +579,23 @@ select {
   margin-top: 18px;
 }
 
-.ai-team-card {
-  padding-top: 0;
-}
+/* Larger screens */
 
-.ai-team-card h3 {
-  position: sticky;
-  top: 0;
-  z-index: 5;
-  background: linear-gradient(145deg, #121a2a, #080b12);
-  padding: 10px 0 8px;
-  margin: 0 0 8px;
-}
+@media (min-width: 700px) {
+  .player-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 
-#turnCounter {
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 6px;
-}
+  .formation-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 
-.counter-pill {
-  width: 100%;
-  min-width: 0;
-  justify-content: space-between;
-  padding: 4px 6px;
-}
+  .section-header {
+    grid-template-columns: 1fr 220px;
+    align-items: center;
+  }
 
-.counter-label {
-  font-size: 7px;
-  white-space: nowrap;
-}
-
-.counter-number {
-  flex: 0 0 22px;
+  .bench-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
