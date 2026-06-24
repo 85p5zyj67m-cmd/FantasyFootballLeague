@@ -1,64 +1,72 @@
-const STYLE_TARGETS = {
+const STYLE_PLANS = {
   Balanced: {
-    GK: 2,
-    DEF: 5,
-    MID: 5,
-    ATT: 4,
-    priority: ["MID", "ATT", "DEF", "GK"]
+    early: ["ATT", "MID", "DEF"],
+    mid: ["MID", "DEF", "ATT"],
+    late: ["GK", "DEF", "MID", "ATT"]
   },
 
   Attacking: {
-    GK: 1,
-    DEF: 4,
-    MID: 5,
-    ATT: 6,
-    priority: ["ATT", "ATT", "MID", "DEF", "GK"]
+    early: ["ATT", "ATT", "MID"],
+    mid: ["ATT", "MID", "DEF"],
+    late: ["GK", "DEF", "MID", "ATT"]
   },
 
   "Midfield Control": {
-    GK: 1,
-    DEF: 4,
-    MID: 7,
-    ATT: 4,
-    priority: ["MID", "MID", "ATT", "DEF", "GK"]
+    early: ["MID", "MID", "ATT"],
+    mid: ["MID", "DEF", "ATT"],
+    late: ["GK", "DEF", "ATT", "MID"]
   },
 
   "Defensive Wall": {
-    GK: 2,
-    DEF: 7,
-    MID: 4,
-    ATT: 3,
-    priority: ["DEF", "GK", "MID", "ATT"]
+    early: ["DEF", "DEF", "MID"],
+    mid: ["DEF", "GK", "MID"],
+    late: ["ATT", "MID", "DEF", "GK"]
   },
 
   "Star Hunter": {
-    GK: 1,
-    DEF: 5,
-    MID: 5,
-    ATT: 5,
-    priority: ["BEST"]
+    early: ["BEST"],
+    mid: ["BEST"],
+    late: ["BEST"]
   },
 
   "Goalkeeper Early": {
-    GK: 2,
-    DEF: 5,
-    MID: 5,
-    ATT: 4,
-    priority: ["GK", "ATT", "MID", "DEF"]
+    early: ["GK", "ATT", "MID"],
+    mid: ["DEF", "MID", "ATT"],
+    late: ["DEF", "MID", "ATT", "GK"]
   }
+};
+
+const MAX_BY_POSITION = {
+  GK: 2,
+  DEF: 6,
+  MID: 6,
+  ATT: 5
 };
 
 export function chooseAIPlayer(team, availablePlayers) {
   if (!availablePlayers.length) return null;
 
-  const style = STYLE_TARGETS[team.playStyle] || STYLE_TARGETS.Balanced;
+  const pickNumber = team.players.length + 1;
+  const phase = getDraftPhase(pickNumber);
+  const style = STYLE_PLANS[team.playStyle] || STYLE_PLANS.Balanced;
+  const plan = style[phase];
 
-  if (style.priority.includes("BEST")) {
-    return getBestAvailable(availablePlayers);
+  if (plan.includes("BEST")) {
+    return chooseBestWithRosterLimit(team, availablePlayers);
   }
 
-  const neededPosition = choosePositionByStyle(team, style);
-  let candidates = availablePlayers.filter(player => player.position === neededPosition);
+  const wantedPosition = choosePlannedPosition(team, plan);
+
+  let candidates = availablePlayers.filter(player =>
+    player.position === wantedPosition &&
+    canStillUsePosition(team, player.position)
+  );
+
+  if (candidates.length === 0) {
+    candidates = availablePlayers.filter(player =>
+      canStillUsePosition(team, player.position)
+    );
+  }
 
   if (candidates.length === 0) {
     candidates = availablePlayers;
@@ -66,33 +74,49 @@ export function chooseAIPlayer(team, availablePlayers) {
 
   candidates.sort((a, b) => b.overall - a.overall);
 
-  const topCandidates = candidates.slice(0, 4);
-  return weightedRandom(topCandidates);
+  return weightedRandom(candidates.slice(0, 5));
 }
 
-function choosePositionByStyle(team, style) {
+function getDraftPhase(pickNumber) {
+  if (pickNumber <= 5) return "early";
+  if (pickNumber <= 11) return "mid";
+  return "late";
+}
+
+function choosePlannedPosition(team, plan) {
   const counts = countPositions(team);
 
-  const needed = style.priority
-    .map(position => ({
-      position,
-      missing: style[position] - counts[position]
-    }))
-    .filter(item => item.missing > 0);
+  const usablePlan = plan.filter(position =>
+    canStillUsePosition(team, position)
+  );
 
-  if (needed.length === 0) {
-    return getLowestCountPosition(counts);
-  }
+  const finalPlan = usablePlan.length > 0 ? usablePlan : plan;
 
   const weighted = [];
 
-  needed.forEach(item => {
-    for (let i = 0; i < item.missing; i++) {
-      weighted.push(item.position);
+  finalPlan.forEach((position, index) => {
+    const baseWeight = finalPlan.length - index;
+    const needBonus = Math.max(0, 3 - counts[position]);
+
+    for (let i = 0; i < baseWeight + needBonus; i++) {
+      weighted.push(position);
     }
   });
 
   return weighted[Math.floor(Math.random() * weighted.length)];
+}
+
+function chooseBestWithRosterLimit(team, availablePlayers) {
+  const candidates = availablePlayers
+    .filter(player => canStillUsePosition(team, player.position))
+    .sort((a, b) => b.overall - a.overall);
+
+  return candidates[0] || availablePlayers.sort((a, b) => b.overall - a.overall)[0];
+}
+
+function canStillUsePosition(team, position) {
+  const counts = countPositions(team);
+  return counts[position] < MAX_BY_POSITION[position];
 }
 
 function countPositions(team) {
@@ -110,25 +134,16 @@ function countPositions(team) {
   return counts;
 }
 
-function getLowestCountPosition(counts) {
-  return Object.keys(counts).sort((a, b) => counts[a] - counts[b])[0];
-}
-
-function getBestAvailable(players) {
-  return [...players].sort((a, b) => b.overall - a.overall)[0];
-}
-
 function weightedRandom(players) {
-  if (players.length === 1) return players[0];
+  if (players.length <= 1) return players[0];
 
-  const weights = [50, 25, 15, 10];
-  const availableWeights = weights.slice(0, players.length);
-  const total = availableWeights.reduce((sum, weight) => sum + weight, 0);
+  const weights = [45, 25, 15, 10, 5];
+  const total = weights.slice(0, players.length).reduce((sum, weight) => sum + weight, 0);
 
   let random = Math.random() * total;
 
   for (let i = 0; i < players.length; i++) {
-    random -= availableWeights[i];
+    random -= weights[i];
 
     if (random <= 0) {
       return players[i];
