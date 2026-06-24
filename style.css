@@ -194,11 +194,35 @@ select {
 
 /* Pick Counters */
 
-#turnCounter {
+.topbar-row > div:first-child {
   width: 100%;
+  min-width: 0;
+}
+
+#turnCounter {
+  width: calc(100vw - 132px);
+  max-width: 620px;
   margin-top: 4px;
-  display: flex !important;
-  gap: 4px !important;
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 5px !important;
+}
+
+.counter-pill {
+  width: 100% !important;
+  min-width: 0 !important;
+  padding: 4px 5px !important;
+}
+
+.counter-label {
+  font-size: 7px !important;
+}
+
+.counter-number {
+  width: 22px !important;
+  height: 22px !important;
+  min-width: 22px !important;
+  font-size: 12px !important;
 }
 
 .counter-pill {
