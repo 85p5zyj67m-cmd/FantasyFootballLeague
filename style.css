@@ -514,3 +514,54 @@ select {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+#turnCounter {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.counter-label {
+  font-size: 7px;
+}
+
+.counter-number {
+  width: 22px;
+  height: 22px;
+  font-size: 12px;
+}
+
+#tacticsScreen .hero-card {
+  margin: 20px auto;
+  text-align: center;
+}
+
+#tacticsScreen label {
+  display: block;
+  text-align: left;
+  margin: 14px auto 6px;
+  max-width: 360px;
+  color: #b9c2d0;
+  font-weight: bold;
+}
+
+#tacticsScreen select {
+  display: block;
+  max-width: 360px;
+  margin: 0 auto 14px;
+}
+
+#tacticsLineup {
+  margin-top: 18px;
+}
+
+.ai-team-card {
+  padding-top: 0;
+}
+
+.ai-team-card h3 {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: linear-gradient(145deg, #121a2a, #080b12);
+  padding: 10px 0 8px;
+  margin: 0 0 8px;
+}
