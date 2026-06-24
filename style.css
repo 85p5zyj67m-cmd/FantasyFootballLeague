@@ -648,3 +648,34 @@ select {
 .counter-number {
   justify-self: end !important;
 }
+
+#turnCounter {
+  width: 100% !important;
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 6px !important;
+  margin-top: 6px !important;
+}
+
+.counter-pill {
+  width: 100% !important;
+  min-width: 0 !important;
+  display: grid !important;
+  grid-template-columns: 1fr 22px !important;
+  align-items: center !important;
+  gap: 4px !important;
+  padding: 4px 6px !important;
+}
+
+.counter-label {
+  font-size: 7px !important;
+  overflow: hidden !important;
+  white-space: nowrap !important;
+}
+
+.counter-number {
+  justify-self: end !important;
+  width: 22px !important;
+  height: 22px !important;
+  min-width: 22px !important;
+}
