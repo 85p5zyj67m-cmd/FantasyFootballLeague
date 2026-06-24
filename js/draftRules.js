@@ -1,12 +1,23 @@
 import { GAME_CONFIG } from "./config.js";
 
+const AI_STYLES = [
+  "Balanced",
+  "Attacking",
+  "Midfield Control",
+  "Defensive Wall",
+  "Star Hunter",
+  "Goalkeeper Early"
+];
+
 export function createTeams() {
   return [...Array(GAME_CONFIG.totalTeams)].map((_, i) => ({
     name: i === GAME_CONFIG.userTeamIndex ? "Your Team" : "AI Team " + i,
     players: [],
     formationId: "4-3-3",
     lineup: {},
-    playStyle: "Balanced"
+    playStyle: i === GAME_CONFIG.userTeamIndex
+      ? "Balanced"
+      : AI_STYLES[(i - 1) % AI_STYLES.length]
   }));
 }
 
@@ -39,9 +50,7 @@ export function getNextUserPickDistances(currentPick, draftOrder) {
   const result = [];
 
   for (let i = 0; i <= GAME_CONFIG.totalTeams * 8; i++) {
-    const team = getTeamOnClock(currentPick + i, draftOrder);
-
-    if (team === GAME_CONFIG.userTeamIndex) {
+    if (getTeamOnClock(currentPick + i, draftOrder) === GAME_CONFIG.userTeamIndex) {
       result.push(i);
       if (result.length === 4) break;
     }
