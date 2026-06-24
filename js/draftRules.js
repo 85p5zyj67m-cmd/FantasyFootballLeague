@@ -38,19 +38,20 @@ export function getUserDraftPosition(draftOrder) {
 export function getNextUserPickDistances(currentPick, draftOrder) {
   const result = [];
 
-  for (let i = 0; i <= GAME_CONFIG.totalTeams * 6; i++) {
+  for (let i = 0; i <= GAME_CONFIG.totalTeams * 8; i++) {
     const team = getTeamOnClock(currentPick + i, draftOrder);
 
     if (team === GAME_CONFIG.userTeamIndex) {
       result.push(i);
-      if (result.length === 3) break;
+      if (result.length === 4) break;
     }
   }
 
   return {
     next: result[0] ?? "-",
     second: result[1] ?? "-",
-    third: result[2] ?? "-"
+    third: result[2] ?? "-",
+    fourth: result[3] ?? "-"
   };
 }
 
@@ -66,20 +67,43 @@ export function selectDraftPool(players) {
 function addUniqueIds(players) {
   return players.map((p, index) => ({
     ...p,
-    id: `${p.name}-${p.year}-${p.club}-${index}`
+    id: `${p.name}-${p.year}-${p.club}-${index}`,
+    duplicateKey: normalizeName(p.name)
   }));
 }
 
+function normalizeName(name) {
+  return name.toLowerCase().trim();
+}
+
+function hideDuplicatePlayerVersions(players) {
+  const seen = new Set();
+  const result = [];
+
+  shuffle(players).forEach(player => {
+    const key = player.duplicateKey || normalizeName(player.name);
+
+    if (!seen.has(key)) {
+      seen.add(key);
+      result.push(player);
+    }
+  });
+
+  return result;
+}
+
 export function getVisiblePlayers(availablePlayers, activePosition) {
+  const uniquePlayers = hideDuplicatePlayerVersions(availablePlayers);
+
   if (activePosition !== "ALL") {
-    return availablePlayers
+    return uniquePlayers
       .filter(p => p.position === activePosition)
       .sort((a, b) => b.overall - a.overall)
       .slice(0, GAME_CONFIG.visiblePlayersPerPosition);
   }
 
   return ["ATT", "MID", "DEF", "GK"].flatMap(pos =>
-    availablePlayers
+    uniquePlayers
       .filter(p => p.position === pos)
       .sort((a, b) => b.overall - a.overall)
       .slice(0, GAME_CONFIG.visiblePlayersPerPosition)
