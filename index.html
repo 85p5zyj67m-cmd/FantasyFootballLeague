@@ -40,24 +40,23 @@
     <section id="draftScreen" class="screen hidden">
       <div class="draft-topbar">
         <div class="topbar-row">
-  <div>
-    <p class="eyebrow">Live Snake Draft</p>
-    <h2 id="roundInfo"></h2>
-    <p id="pickInfo"></p>
-  </div>
+          <div>
+            <p class="eyebrow">Live Snake Draft</p>
+            <h2 id="roundInfo"></h2>
+            <p id="pickInfo"></p>
+          </div>
 
-  <div class="speed-box">
-    <label for="aiSpeedSelect">AI Speed</label>
-    <select id="aiSpeedSelect">
-      <option value="normal">Normal</option>
-      <option value="fast">Fast</option>
-      <option value="instant">Instant</option>
-    </select>
-  </div>
-</div>
+          <div class="speed-box">
+            <label for="aiSpeedSelect">AI Speed</label>
+            <select id="aiSpeedSelect">
+              <option value="normal">Normal</option>
+              <option value="fast">Fast</option>
+              <option value="instant">Instant</option>
+            </select>
+          </div>
+        </div>
 
-<div id="turnCounter"></div>
-
+        <div id="turnCounter"></div>
         <div id="lastPick" class="last-pick">Waiting...</div>
         <div id="draftOrderTicker" class="draft-order"></div>
       </div>
@@ -104,7 +103,18 @@
           <option value="Defensive Block">Defensive Block</option>
         </select>
 
+        <button id="startSeasonBtn" class="primary-btn">Start Season</button>
+
         <div id="tacticsLineup"></div>
+      </div>
+    </section>
+
+    <section id="seasonScreen" class="screen hidden">
+      <div class="hero-card">
+        <p class="eyebrow">Season Complete</p>
+        <h1 id="seasonChampionTitle"></h1>
+        <div id="seasonResults"></div>
+        <button id="newSeasonBtn" class="primary-btn">New Season</button>
       </div>
     </section>
   </main>
