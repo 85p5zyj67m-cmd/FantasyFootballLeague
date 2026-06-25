@@ -679,3 +679,42 @@ select {
   height: 22px !important;
   min-width: 22px !important;
 }
+
+.season-card {
+  margin: 14px 0;
+  padding: 12px;
+  border-radius: 16px;
+  background: #101827;
+  border: 1px solid #ffffff22;
+  text-align: left;
+}
+
+.season-card h3 {
+  color: #2bff88;
+  margin-top: 0;
+}
+
+.season-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+  padding: 8px;
+  border-radius: 10px;
+  background: #0e1625;
+  margin: 6px 0;
+  font-size: 13px;
+}
+
+.season-row.qualified {
+  border: 1px solid #2bff88;
+}
+
+#seasonResults h2 {
+  margin-top: 24px;
+  color: #2bff88;
+}
+
+#newSeasonBtn,
+#startSeasonBtn {
+  margin-top: 18px;
+}
