@@ -13,7 +13,14 @@ import {
 let selectedPlayerId = null;
 
 export function showScreen(screenId) {
-  ["startScreen", "lotteryScreen", "formationScreen", "draftScreen", "tacticsScreen"].forEach(id => {
+  [
+    "startScreen",
+    "lotteryScreen",
+    "formationScreen",
+    "draftScreen",
+    "tacticsScreen",
+    "seasonScreen"
+  ].forEach(id => {
     document.getElementById(id).classList.add("hidden");
   });
 
