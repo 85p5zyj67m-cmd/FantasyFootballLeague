@@ -29,6 +29,7 @@ import {
   renderMainViewTabs,
   renderAITeamsPanel
 } from "./ui.js";
+import { simulateSeason } from "./seasonEngine.js";
 
 let allPlayers = [];
 let availablePlayers = [];
@@ -49,6 +50,19 @@ const aiSpeedTimes = {
 window.addEventListener("DOMContentLoaded", () => {
   document.getElementById("startDraftBtn").addEventListener("click", startGame);
   document.getElementById("continueToFormationBtn").addEventListener("click", showFormationSelection);
+
+  const startSeasonBtn = document.getElementById("startSeasonBtn");
+  const newSeasonBtn = document.getElementById("newSeasonBtn");
+
+  if (startSeasonBtn) {
+    startSeasonBtn.addEventListener("click", startSeason);
+  }
+
+  if (newSeasonBtn) {
+    newSeasonBtn.addEventListener("click", () => {
+      window.location.href = window.location.pathname + "?v=" + Date.now();
+    });
+  }
 });
 
 function getAiDelay() {
@@ -225,4 +239,80 @@ function renderTacticsLineup() {
     movePlayer(userTeam, playerId, targetSlot);
     renderTacticsLineup();
   });
+}
+
+function startSeason() {
+  const userTeam = teams[GAME_CONFIG.userTeamIndex];
+  const playStyleSelect = document.getElementById("playStyleSelect");
+
+  if (playStyleSelect) {
+    userTeam.playStyle = playStyleSelect.value;
+  }
+
+  const season = simulateSeason(teams);
+
+  showScreen("seasonScreen");
+  renderSeasonResults(season);
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function renderSeasonResults(season) {
+  document.getElementById("seasonChampionTitle").textContent =
+    `${season.champion.name} wins the FFL Championship`;
+
+  const box = document.getElementById("seasonResults");
+
+  box.innerHTML = `
+    <h2>Group Stage</h2>
+    ${season.groupResults.map(group => `
+      <div class="season-card">
+        <h3>${group.name}</h3>
+        ${group.standings.map((row, index) => `
+          <div class="season-row ${index < 2 ? "qualified" : ""}">
+            <strong>${index + 1}. ${row.team.name}</strong>
+            <span>${row.points} pts · ${row.goalsFor}:${row.goalsAgainst}</span>
+          </div>
+        `).join("")}
+      </div>
+    `).join("")}
+
+    <h2>Power Ranking</h2>
+    <div class="season-card">
+      ${season.powerRanking.map((row, index) => `
+        <div class="season-row">
+          <strong>${index + 1}. ${row.team.name}</strong>
+          <span>${row.points} pts</span>
+        </div>
+      `).join("")}
+    </div>
+
+    <h2>Quarterfinals</h2>
+    ${renderTies(season.playoffs.quarterfinals)}
+
+    <h2>Semifinals</h2>
+    ${renderTies(season.playoffs.semifinals)}
+
+    <h2>Final</h2>
+    <div class="season-card">
+      <div class="season-row qualified">
+        <strong>${season.playoffs.final.teamA.name}</strong>
+        <span>${season.playoffs.final.match.homeGoals} - ${season.playoffs.final.match.awayGoals}</span>
+        <strong>${season.playoffs.final.teamB.name}</strong>
+      </div>
+      <p>Winner: <strong>${season.playoffs.final.winner.name}</strong></p>
+    </div>
+  `;
+}
+
+function renderTies(ties) {
+  return ties.map(tie => `
+    <div class="season-card">
+      <div class="season-row">
+        <strong>${tie.teamA.name}</strong>
+        <span>${tie.teamAGoals} - ${tie.teamBGoals}</span>
+        <strong>${tie.teamB.name}</strong>
+      </div>
+      <p>Winner: <strong>${tie.winner.name}</strong></p>
+    </div>
+  `).join("");
 }
