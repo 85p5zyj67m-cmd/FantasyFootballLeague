@@ -107,9 +107,7 @@ function chooseOneVersionPerPlayer(players) {
     groups[key].push(player);
   });
 
-  return Object.values(groups).map(versions => {
-    return weightedVersionChoice(versions);
-  });
+  return Object.values(groups).map(versions => weightedVersionChoice(versions));
 }
 
 function weightedVersionChoice(versions) {
@@ -161,30 +159,33 @@ function getTier(overall) {
 }
 
 export function getVisiblePlayers(availablePlayers, activePosition) {
+  cleanVisibleBoard(availablePlayers);
   refillVisibleBoard(availablePlayers);
 
   if (activePosition !== "ALL") {
     return [...visibleBoard[activePosition]].sort((a, b) => b.overall - a.overall);
   }
 
-  return ["ATT", "MID", "DEF", "GK"].flatMap(position => {
-    return [...visibleBoard[position]].sort((a, b) => b.overall - a.overall);
+  return ["ATT", "MID", "DEF", "GK"].flatMap(position =>
+    [...visibleBoard[position]].sort((a, b) => b.overall - a.overall)
+  );
+}
+
+function cleanVisibleBoard(availablePlayers) {
+  const availableIds = new Set(availablePlayers.map(player => player.id));
+
+  ["ATT", "MID", "DEF", "GK"].forEach(position => {
+    visibleBoard[position] = visibleBoard[position].filter(player =>
+      availableIds.has(player.id)
+    );
   });
 }
 
 function refillVisibleBoard(availablePlayers) {
-  const availableIds = new Set(availablePlayers.map(player => player.id));
-
   ["ATT", "MID", "DEF", "GK"].forEach(position => {
-    visibleBoard[position] = visibleBoard[position].filter(player => {
-      return availableIds.has(player.id);
-    });
-
     while (visibleBoard[position].length < VISIBLE_LIMITS[position]) {
       const nextPlayer = drawNextVisiblePlayer(availablePlayers, position);
-
       if (!nextPlayer) break;
-
       visibleBoard[position].push(nextPlayer);
     }
   });
@@ -195,17 +196,10 @@ function drawNextVisiblePlayer(availablePlayers, position) {
     Object.values(visibleBoard).flat().map(player => player.id)
   );
 
-  const alreadyVisibleNames = new Set(
-    Object.values(visibleBoard).flat().map(player => player.duplicateKey)
+  const candidates = availablePlayers.filter(player =>
+    player.position === position &&
+    !alreadyVisibleIds.has(player.id)
   );
-
-  const candidates = availablePlayers.filter(player => {
-    return (
-      player.position === position &&
-      !alreadyVisibleIds.has(player.id) &&
-      !alreadyVisibleNames.has(player.duplicateKey)
-    );
-  });
 
   if (!candidates.length) return null;
 
@@ -217,10 +211,10 @@ function drawNextVisiblePlayer(availablePlayers, position) {
 
   const roll = Math.random();
 
-  if (roll < 0.05 && goat.length) return randomItem(goat);
-  if (roll < 0.20 && worldClass.length) return randomItem(worldClass);
-  if (roll < 0.55 && elite.length) return randomItem(elite);
-  if (roll < 0.88 && good.length) return randomItem(good);
+  if (roll < 0.04 && goat.length) return randomItem(goat);
+  if (roll < 0.18 && worldClass.length) return randomItem(worldClass);
+  if (roll < 0.50 && elite.length) return randomItem(elite);
+  if (roll < 0.85 && good.length) return randomItem(good);
   if (role.length) return randomItem(role);
 
   return randomItem(candidates);
@@ -232,7 +226,17 @@ export function draftPlayer(team, player, availablePlayers) {
 
   team.players.push(player);
 
+  removePlayerFromVisibleBoard(player);
+
   return availablePlayers.filter(p => p.id !== player.id);
+}
+
+function removePlayerFromVisibleBoard(player) {
+  if (!player || !player.position) return;
+
+  visibleBoard[player.position] = visibleBoard[player.position].filter(
+    visiblePlayer => visiblePlayer.id !== player.id
+  );
 }
 
 export function isDraftComplete(currentPick, availablePlayers) {
