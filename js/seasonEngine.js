@@ -1,17 +1,66 @@
-export function simulateSeason(teams) {
+export function createSeason(teams) {
   const conferences = createConferences(teams);
-  const groupResults = simulateGroupStage(conferences);
-  const playoffTeams = getPlayoffTeams(groupResults);
-  const powerRanking = createPowerRanking(playoffTeams);
-  const playoffs = simulatePlayoffs(powerRanking);
+  const schedule = createGroupSchedule(conferences);
 
   return {
+    phase: "GROUP_FIRST_HALF",
     conferences,
-    groupResults,
-    powerRanking,
-    playoffs,
-    champion: playoffs.final.winner
+    schedule,
+    playedMatches: [],
+    standings: createInitialStandings(conferences),
+    playoffSeeds: [],
+    playoffRounds: [],
+    champion: null
   };
+}
+
+export function simulateNextPhase(season) {
+  if (season.phase === "GROUP_FIRST_HALF") {
+    const firstHalf = season.schedule.slice(0, season.schedule.length / 2);
+    simulateMatches(firstHalf, season);
+    season.phase = "GROUP_SECOND_HALF";
+    return;
+  }
+
+  if (season.phase === "GROUP_SECOND_HALF") {
+    const secondHalf = season.schedule.slice(season.schedule.length / 2);
+    simulateMatches(secondHalf, season);
+    season.playoffSeeds = createPowerRanking(season);
+    season.phase = "ROUND_OF_16";
+    return;
+  }
+
+  if (season.phase === "ROUND_OF_16") {
+    const pairs = createPairs(season.playoffSeeds);
+    season.playoffRounds.push(simulateTwoLegRound("Round of 16", pairs));
+    season.phase = "QUARTERFINALS";
+    return;
+  }
+
+  if (season.phase === "QUARTERFINALS") {
+    const previous = getLastWinners(season);
+    season.playoffRounds.push(simulateTwoLegRound("Quarterfinals", createPairs(previous)));
+    season.phase = "SEMIFINALS";
+    return;
+  }
+
+  if (season.phase === "SEMIFINALS") {
+    const previous = getLastWinners(season);
+    season.playoffRounds.push(simulateTwoLegRound("Semifinals", createPairs(previous)));
+    season.phase = "FINAL";
+    return;
+  }
+
+  if (season.phase === "FINAL") {
+    const previous = getLastWinners(season);
+    const final = simulateSingleFinal(previous[0], previous[1]);
+    season.playoffRounds.push({
+      name: "Final",
+      ties: [final]
+    });
+    season.champion = final.winner;
+    season.phase = "COMPLETE";
+  }
 }
 
 function createConferences(teams) {
@@ -24,9 +73,39 @@ function createConferences(teams) {
   }));
 }
 
-function simulateGroupStage(conferences) {
-  return conferences.map(conference => {
-    const standings = conference.teams.map(team => ({
+function createGroupSchedule(conferences) {
+  const matches = [];
+
+  conferences.forEach(conference => {
+    const teams = conference.teams;
+
+    for (let i = 0; i < teams.length; i++) {
+      for (let j = i + 1; j < teams.length; j++) {
+        matches.push({
+          phase: "Group Stage",
+          conference: conference.name,
+          home: teams[i],
+          away: teams[j]
+        });
+
+        matches.push({
+          phase: "Group Stage",
+          conference: conference.name,
+          home: teams[j],
+          away: teams[i]
+        });
+      }
+    }
+  });
+
+  return matches;
+}
+
+function createInitialStandings(conferences) {
+  const standings = {};
+
+  conferences.forEach(conference => {
+    standings[conference.name] = conference.teams.map(team => ({
       team,
       played: 0,
       wins: 0,
@@ -36,30 +115,29 @@ function simulateGroupStage(conferences) {
       goalsAgainst: 0,
       points: 0
     }));
+  });
 
-    for (let i = 0; i < conference.teams.length; i++) {
-      for (let j = i + 1; j < conference.teams.length; j++) {
-        playGroupMatch(conference.teams[i], conference.teams[j], standings);
-        playGroupMatch(conference.teams[j], conference.teams[i], standings);
-      }
-    }
+  return standings;
+}
 
-    standings.sort((a, b) =>
-      b.points - a.points ||
-      (b.goalsFor - b.goalsAgainst) - (a.goalsFor - a.goalsAgainst) ||
-      b.goalsFor - a.goalsFor
-    );
+function simulateMatches(matches, season) {
+  matches.forEach(match => {
+    const result = simulateMatch(match.home, match.away);
 
-    return {
-      name: conference.name,
-      standings
-    };
+    season.playedMatches.push({
+      ...match,
+      ...result
+    });
+
+    updateStandings(season.standings[match.conference], match.home, match.away, result);
+  });
+
+  Object.keys(season.standings).forEach(name => {
+    season.standings[name].sort(sortStandings);
   });
 }
 
-function playGroupMatch(home, away, standings) {
-  const result = simulateMatch(home, away);
-
+function updateStandings(standings, home, away, result) {
   const homeRow = standings.find(row => row.team === home);
   const awayRow = standings.find(row => row.team === away);
 
@@ -68,7 +146,6 @@ function playGroupMatch(home, away, standings) {
 
   homeRow.goalsFor += result.homeGoals;
   homeRow.goalsAgainst += result.awayGoals;
-
   awayRow.goalsFor += result.awayGoals;
   awayRow.goalsAgainst += result.homeGoals;
 
@@ -76,7 +153,7 @@ function playGroupMatch(home, away, standings) {
     homeRow.wins++;
     awayRow.losses++;
     homeRow.points += 3;
-  } else if (result.homeGoals < result.awayGoals) {
+  } else if (result.awayGoals > result.homeGoals) {
     awayRow.wins++;
     homeRow.losses++;
     awayRow.points += 3;
@@ -88,39 +165,28 @@ function playGroupMatch(home, away, standings) {
   }
 }
 
-function getPlayoffTeams(groupResults) {
-  return groupResults.flatMap(group => group.standings.slice(0, 2));
+function createPowerRanking(season) {
+  return Object.values(season.standings)
+    .flatMap(group => group.slice(0, 4))
+    .sort(sortStandings)
+    .map(row => row.team)
+    .slice(0, 16);
 }
 
-function createPowerRanking(playoffTeams) {
-  return playoffTeams.sort((a, b) =>
-    b.points - a.points ||
-    (b.goalsFor - b.goalsAgainst) - (a.goalsFor - a.goalsAgainst) ||
-    getTeamPower(b.team) - getTeamPower(a.team)
-  );
+function createPairs(seeds) {
+  const pairs = [];
+
+  for (let i = 0; i < seeds.length / 2; i++) {
+    pairs.push([seeds[i], seeds[seeds.length - 1 - i]]);
+  }
+
+  return pairs;
 }
 
-function simulatePlayoffs(powerRanking) {
-  const seeds = powerRanking.map(row => row.team);
-
-  const quarterfinals = [
-    simulateTwoLegTie(seeds[0], seeds[7]),
-    simulateTwoLegTie(seeds[1], seeds[6]),
-    simulateTwoLegTie(seeds[2], seeds[5]),
-    simulateTwoLegTie(seeds[3], seeds[4])
-  ];
-
-  const semifinals = [
-    simulateTwoLegTie(quarterfinals[0].winner, quarterfinals[3].winner),
-    simulateTwoLegTie(quarterfinals[1].winner, quarterfinals[2].winner)
-  ];
-
-  const final = simulateFinal(semifinals[0].winner, semifinals[1].winner);
-
+function simulateTwoLegRound(name, pairs) {
   return {
-    quarterfinals,
-    semifinals,
-    final
+    name,
+    ties: pairs.map(([teamA, teamB]) => simulateTwoLegTie(teamA, teamB))
   };
 }
 
@@ -131,15 +197,10 @@ function simulateTwoLegTie(teamA, teamB) {
   const teamAGoals = leg1.homeGoals + leg2.awayGoals;
   const teamBGoals = leg1.awayGoals + leg2.homeGoals;
 
-  let winner;
-
-  if (teamAGoals > teamBGoals) {
-    winner = teamA;
-  } else if (teamBGoals > teamAGoals) {
-    winner = teamB;
-  } else {
-    winner = getTeamPower(teamA) >= getTeamPower(teamB) ? teamA : teamB;
-  }
+  const winner =
+    teamAGoals > teamBGoals ? teamA :
+    teamBGoals > teamAGoals ? teamB :
+    getTeamPower(teamA) >= getTeamPower(teamB) ? teamA : teamB;
 
   return {
     teamA,
@@ -152,13 +213,11 @@ function simulateTwoLegTie(teamA, teamB) {
   };
 }
 
-function simulateFinal(teamA, teamB) {
-  let match = simulateMatch(teamA, teamB);
+function simulateSingleFinal(teamA, teamB) {
+  const match = simulateMatch(teamA, teamB);
 
   if (match.homeGoals === match.awayGoals) {
-    const stronger = getTeamPower(teamA) >= getTeamPower(teamB) ? teamA : teamB;
-
-    if (stronger === teamA) {
+    if (getTeamPower(teamA) >= getTeamPower(teamB)) {
       match.homeGoals++;
     } else {
       match.awayGoals++;
@@ -173,50 +232,46 @@ function simulateFinal(teamA, teamB) {
   };
 }
 
-export function simulateMatch(home, away) {
+function getLastWinners(season) {
+  return season.playoffRounds[season.playoffRounds.length - 1].ties.map(tie => tie.winner);
+}
+
+function simulateMatch(home, away) {
   const homePower = getTeamPower(home) + 2;
   const awayPower = getTeamPower(away);
 
-  const homeExpected = Math.max(0.2, homePower / 45);
-  const awayExpected = Math.max(0.2, awayPower / 48);
-
-  const homeGoals = generateGoals(homeExpected);
-  const awayGoals = generateGoals(awayExpected);
-
   return {
-    home,
-    away,
-    homeGoals,
-    awayGoals
+    homeGoals: generateGoals(homePower / 42),
+    awayGoals: generateGoals(awayPower / 46)
   };
 }
 
 function generateGoals(expected) {
   let goals = 0;
 
-  for (let i = 0; i < 6; i++) {
-    if (Math.random() < expected / 6) {
-      goals++;
-    }
+  for (let i = 0; i < 7; i++) {
+    if (Math.random() < expected / 7) goals++;
   }
 
   return goals;
 }
 
 function getTeamPower(team) {
-  if (!team.players || team.players.length === 0) return 60;
-
-  const sorted = [...team.players].sort((a, b) => b.overall - a.overall);
-  const starters = sorted.slice(0, 11);
-  const bench = sorted.slice(11, 16);
+  const players = [...team.players].sort((a, b) => b.overall - a.overall);
+  const starters = players.slice(0, 11);
+  const bench = players.slice(11, 16);
 
   const starterAvg = average(starters.map(p => p.overall));
   const benchAvg = average(bench.map(p => p.overall));
 
-  const chemistryBonus = getChemistryBonus(team);
-  const tacticBonus = getTacticBonus(team);
+  const tacticBonus =
+    team.playStyle === "Possession" ? 2 :
+    team.playStyle === "Counter Attack" ? 1.8 :
+    team.playStyle === "High Press" ? 1.6 :
+    team.playStyle === "Defensive Block" ? 1.5 :
+    1;
 
-  return starterAvg * 0.82 + benchAvg * 0.08 + chemistryBonus + tacticBonus;
+  return starterAvg * 0.85 + benchAvg * 0.08 + tacticBonus;
 }
 
 function average(numbers) {
@@ -224,28 +279,8 @@ function average(numbers) {
   return numbers.reduce((sum, n) => sum + n, 0) / numbers.length;
 }
 
-function getChemistryBonus(team) {
-  const clubs = {};
-  const nations = {};
-
-  team.players.forEach(player => {
-    clubs[player.club] = (clubs[player.club] || 0) + 1;
-    nations[player.nationality] = (nations[player.nationality] || 0) + 1;
-  });
-
-  const bestClubStack = Math.max(...Object.values(clubs));
-  const bestNationStack = Math.max(...Object.values(nations));
-
-  return Math.min(4, bestClubStack * 0.5) + Math.min(3, bestNationStack * 0.4);
-}
-
-function getTacticBonus(team) {
-  const style = team.playStyle || "Balanced";
-
-  if (style === "Possession") return 2;
-  if (style === "Counter Attack") return 1.8;
-  if (style === "High Press") return 1.5;
-  if (style === "Defensive Block") return 1.4;
-
-  return 1;
+function sortStandings(a, b) {
+  return b.points - a.points ||
+    (b.goalsFor - b.goalsAgainst) - (a.goalsFor - a.goalsAgainst) ||
+    b.goalsFor - a.goalsFor;
 }
