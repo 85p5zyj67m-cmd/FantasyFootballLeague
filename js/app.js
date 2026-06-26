@@ -29,7 +29,7 @@ import {
   renderMainViewTabs,
   renderAITeamsPanel
 } from "./ui.js";
-import { simulateSeason } from "./seasonEngine.js";
+import { createSeason, simulateNextPhase } from "./seasonEngine.js";
 
 let allPlayers = [];
 let availablePlayers = [];
@@ -40,6 +40,7 @@ let activePosition = "ALL";
 let activeMainView = "Player List";
 let isPicking = false;
 let aiTimer = null;
+let currentSeason = null;
 
 const aiSpeedTimes = {
   normal: 650,
@@ -52,10 +53,15 @@ window.addEventListener("DOMContentLoaded", () => {
   document.getElementById("continueToFormationBtn").addEventListener("click", showFormationSelection);
 
   const startSeasonBtn = document.getElementById("startSeasonBtn");
+  const continueSeasonBtn = document.getElementById("continueSeasonBtn");
   const newSeasonBtn = document.getElementById("newSeasonBtn");
 
   if (startSeasonBtn) {
     startSeasonBtn.addEventListener("click", startSeason);
+  }
+
+  if (continueSeasonBtn) {
+    continueSeasonBtn.addEventListener("click", continueSeason);
   }
 
   if (newSeasonBtn) {
@@ -79,10 +85,12 @@ async function startGame() {
   teams = createTeams();
   availablePlayers = selectDraftPool(allPlayers);
   draftOrder = createDraftOrder();
+
   currentPick = 0;
   activePosition = "ALL";
   activeMainView = "Player List";
   isPicking = false;
+  currentSeason = null;
 
   teams.forEach((team, index) => {
     if (index !== GAME_CONFIG.userTeamIndex) {
@@ -242,77 +250,134 @@ function renderTacticsLineup() {
 }
 
 function startSeason() {
+  saveUserTactics();
+
+  currentSeason = createSeason(teams);
+
+  showScreen("seasonScreen");
+  continueSeason();
+}
+
+function continueSeason() {
+  if (!currentSeason) return;
+
+  saveUserTactics();
+
+  simulateNextPhase(currentSeason);
+  renderSeasonResults(currentSeason);
+
+  const continueBtn = document.getElementById("continueSeasonBtn");
+  const newSeasonBtn = document.getElementById("newSeasonBtn");
+
+  if (currentSeason.phase === "COMPLETE") {
+    continueBtn.classList.add("hidden");
+    newSeasonBtn.classList.remove("hidden");
+  } else {
+    continueBtn.classList.remove("hidden");
+    newSeasonBtn.classList.add("hidden");
+    continueBtn.textContent = "Continue Season";
+  }
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function saveUserTactics() {
   const userTeam = teams[GAME_CONFIG.userTeamIndex];
   const playStyleSelect = document.getElementById("playStyleSelect");
 
   if (playStyleSelect) {
     userTeam.playStyle = playStyleSelect.value;
   }
-
-  const season = simulateSeason(teams);
-
-  showScreen("seasonScreen");
-  renderSeasonResults(season);
-  window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
 function renderSeasonResults(season) {
-  document.getElementById("seasonChampionTitle").textContent =
-    `${season.champion.name} wins the FFL Championship`;
+  document.getElementById("seasonPhaseTitle").textContent = getPhaseTitle(season.phase);
 
   const box = document.getElementById("seasonResults");
 
   box.innerHTML = `
-    <h2>Group Stage</h2>
-    ${season.groupResults.map(group => `
-      <div class="season-card">
-        <h3>${group.name}</h3>
-        ${group.standings.map((row, index) => `
-          <div class="season-row ${index < 2 ? "qualified" : ""}">
-            <strong>${index + 1}. ${row.team.name}</strong>
-            <span>${row.points} pts · ${row.goalsFor}:${row.goalsAgainst}</span>
-          </div>
-        `).join("")}
-      </div>
-    `).join("")}
+    <h2>Latest Matches</h2>
+    ${renderLatestMatches(season)}
 
-    <h2>Power Ranking</h2>
-    <div class="season-card">
-      ${season.powerRanking.map((row, index) => `
-        <div class="season-row">
-          <strong>${index + 1}. ${row.team.name}</strong>
-          <span>${row.points} pts</span>
-        </div>
-      `).join("")}
-    </div>
+    <h2>Standings</h2>
+    ${renderStandings(season)}
 
-    <h2>Quarterfinals</h2>
-    ${renderTies(season.playoffs.quarterfinals)}
-
-    <h2>Semifinals</h2>
-    ${renderTies(season.playoffs.semifinals)}
-
-    <h2>Final</h2>
-    <div class="season-card">
-      <div class="season-row qualified">
-        <strong>${season.playoffs.final.teamA.name}</strong>
-        <span>${season.playoffs.final.match.homeGoals} - ${season.playoffs.final.match.awayGoals}</span>
-        <strong>${season.playoffs.final.teamB.name}</strong>
-      </div>
-      <p>Winner: <strong>${season.playoffs.final.winner.name}</strong></p>
-    </div>
+    <h2>Playoffs</h2>
+    ${renderPlayoffs(season)}
   `;
 }
 
-function renderTies(ties) {
-  return ties.map(tie => `
+function getPhaseTitle(phase) {
+  if (phase === "GROUP_SECOND_HALF") return "Group Stage: First Half Complete";
+  if (phase === "ROUND_OF_16") return "Group Stage Complete";
+  if (phase === "QUARTERFINALS") return "Round of 16 Complete";
+  if (phase === "SEMIFINALS") return "Quarterfinals Complete";
+  if (phase === "FINAL") return "Semifinals Complete";
+  if (phase === "COMPLETE") return "Champion Crowned";
+  return "Season Mode";
+}
+
+function renderLatestMatches(season) {
+  const latest = season.playedMatches.slice(-20);
+
+  if (!latest.length && !season.playoffRounds.length) {
+    return `<div class="season-card">No matches played yet.</div>`;
+  }
+
+  const groupMatches = latest.map(match => `
+    <div class="season-row">
+      <strong>${match.home.name}</strong>
+      <span>${match.homeGoals} - ${match.awayGoals}</span>
+      <strong>${match.away.name}</strong>
+    </div>
+  `).join("");
+
+  return `<div class="season-card">${groupMatches}</div>`;
+}
+
+function renderStandings(season) {
+  return Object.keys(season.standings).map(groupName => `
     <div class="season-card">
-      <div class="season-row">
-        <strong>${tie.teamA.name}</strong>
-        <span>${tie.teamAGoals} - ${tie.teamBGoals}</span>
-        <strong>${tie.teamB.name}</strong>
-      </div>
-      <p>Winner: <strong>${tie.winner.name}</strong></p>
+      <h3>${groupName}</h3>
+      ${season.standings[groupName].map((row, index) => `
+        <div class="season-row ${index < 4 ? "qualified" : ""}">
+          <strong>${index + 1}. ${row.team.name}</strong>
+          <span>${row.points} pts · ${row.goalsFor}:${row.goalsAgainst}</span>
+        </div>
+      `).join("")}
+    </div>
+  `).join("");
+}
+
+function renderPlayoffs(season) {
+  if (!season.playoffRounds.length) {
+    return `<div class="season-card">Playoffs have not started yet.</div>`;
+  }
+
+  return season.playoffRounds.map(round => `
+    <div class="season-card">
+      <h3>${round.name}</h3>
+      ${round.ties.map(tie => {
+        if (round.name === "Final") {
+          return `
+            <div class="season-row qualified">
+              <strong>${tie.teamA.name}</strong>
+              <span>${tie.match.homeGoals} - ${tie.match.awayGoals}</span>
+              <strong>${tie.teamB.name}</strong>
+            </div>
+            <p>Winner: <strong>${tie.winner.name}</strong></p>
+          `;
+        }
+
+        return `
+          <div class="season-row">
+            <strong>${tie.teamA.name}</strong>
+            <span>${tie.teamAGoals} - ${tie.teamBGoals}</span>
+            <strong>${tie.teamB.name}</strong>
+          </div>
+          <p>Winner: <strong>${tie.winner.name}</strong></p>
+        `;
+      }).join("")}
     </div>
   `).join("");
 }
