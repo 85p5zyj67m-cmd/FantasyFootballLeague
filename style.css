@@ -4,20 +4,32 @@
 }
 
 html {
-  background: #050816;
+  background: #06110b;
   overscroll-behavior: none;
 }
 
 :root {
   --page-padding: clamp(10px, 3vw, 24px);
   --panel-padding: clamp(14px, 3vw, 22px);
-  --card-radius: 16px;
+  --card-radius: 8px;
+  --grass: #0f6b3b;
+  --grass-dark: #06351f;
+  --ink: #07110d;
+  --panel: #101813;
+  --panel-strong: #17231b;
+  --line: #ffffff24;
+  --accent: #65e58d;
+  --accent-2: #f7c95f;
+  --cool: #70d7ff;
+  --muted: #b9c7be;
 }
 
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: linear-gradient(180deg, #050816, #080b12);
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px) 0 0 / 84px 84px,
+    linear-gradient(180deg, #06110b 0%, #0e1b13 48%, #070c0a 100%);
   color: white;
   overflow-x: hidden;
   overscroll-behavior: none;
@@ -41,9 +53,9 @@ body {
   margin: 12px auto;
   padding: var(--panel-padding);
   border-radius: var(--card-radius);
-  background: linear-gradient(145deg, #111827, #060913);
-  border: 1px solid #2bff8844;
-  box-shadow: 0 0 14px #00ff8822;
+  background: linear-gradient(145deg, var(--panel), #09100c);
+  border: 1px solid #ffffff1f;
+  box-shadow: 0 18px 38px #0000003d;
 }
 
 .hero-card {
@@ -53,7 +65,7 @@ body {
 }
 
 .eyebrow {
-  color: #2bff88;
+  color: var(--accent-2);
   text-transform: uppercase;
   letter-spacing: 3px;
   font-size: 11px;
@@ -74,7 +86,7 @@ h2 {
 
 .subtitle,
 .hint {
-  color: #b9c2d0;
+  color: var(--muted);
 }
 
 .hint {
@@ -97,9 +109,9 @@ select {
   width: 100%;
   min-height: 42px;
   padding: 8px 10px;
-  background: #0e1625;
+  background: #0d1711;
   color: white;
-  border: 1px solid #2bff8844;
+  border: 1px solid #ffffff24;
 }
 
 .primary-btn {
@@ -107,9 +119,10 @@ select {
   min-height: 50px;
   padding: 16px 28px;
   border-radius: 999px;
-  background: linear-gradient(90deg, #2bff88, #00c8ff);
-  color: #04110a;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  color: #06110b;
   font-size: clamp(16px, 4vw, 18px);
+  box-shadow: 0 12px 24px #00000033;
 }
 
 /* Lottery */
@@ -681,18 +694,296 @@ select {
   }
 }
 
-.season-card {
-  margin: 14px 0;
+@media (min-width: 980px) {
+  .season-shell {
+    grid-template-columns: minmax(310px, 380px) minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .season-command {
+    top: 14px;
+  }
+
+  #liveMatchCard {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+  }
+
+  #mySchedule {
+    grid-column: 1;
+  }
+
+  #seasonResults {
+    grid-column: 1 / -1;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+  }
+
+  #seasonResults > h2,
+  #seasonResults > .season-compass {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Season Mode */
+
+#divisionScreen,
+#seasonScreen,
+#titleScreen {
+  max-width: 1180px;
+}
+
+.season-hero,
+.title-hero {
+  max-width: 980px;
+}
+
+.compass-grid {
+  display: grid;
+  grid-template-areas:
+    ". north ."
+    "west center east"
+    ". south .";
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(8px, 2vw, 14px);
+  margin: 22px 0;
+}
+
+.division-card,
+.mini-division,
+.season-card,
+.live-match-card,
+.schedule-card,
+.next-match-card,
+.title-match-card {
+  border-radius: 8px;
+  background:
+    linear-gradient(180deg, #18241c, #0d1510);
+  border: 1px solid var(--line);
+  box-shadow: inset 0 1px 0 #ffffff14;
+}
+
+.division-card {
+  min-height: 210px;
+  padding: clamp(12px, 2vw, 18px);
+  text-align: left;
+}
+
+.division-card h2 {
+  margin: 6px 0 12px;
+}
+
+.division-card.compass-north {
+  grid-area: north;
+}
+
+.division-card.compass-west {
+  grid-area: west;
+}
+
+.division-card.compass-east {
+  grid-area: east;
+}
+
+.division-card.compass-south {
+  grid-area: south;
+}
+
+.division-direction {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 42px;
+  height: 28px;
+  padding: 0 10px;
+  border-radius: 999px;
+  background: #f7c95f1f;
+  color: var(--accent-2);
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.division-team-list {
+  display: grid;
+  gap: 8px;
+}
+
+.division-team {
+  padding: 9px 10px;
+  border-radius: 8px;
+  background: #0a130e;
+  color: #edf7ef;
+  border: 1px solid #ffffff14;
+  overflow-wrap: anywhere;
+}
+
+.own-team,
+.division-card.user-division,
+.mini-division.user-division,
+.season-row.user-row {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px #65e58d33;
+}
+
+.division-team.own-team {
+  background: #163d25;
+  color: white;
+  font-weight: 900;
+}
+
+.season-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 14px;
+  padding: var(--page-padding);
+}
+
+.season-command {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  padding: clamp(14px, 3vw, 22px);
+  border-radius: 8px;
+  background:
+    linear-gradient(90deg, #102719, #111914 58%, #2a2414);
+  border: 1px solid #ffffff24;
+  box-shadow: 0 16px 36px #00000045;
+}
+
+.season-command h1 {
+  max-width: 760px;
+}
+
+.season-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.season-actions .primary-btn {
+  width: auto;
+  min-width: min(100%, 230px);
+}
+
+.next-match-card {
+  margin-top: 14px;
+  padding: 14px;
+}
+
+.next-match-card p {
+  margin: 6px 0 0;
+  color: var(--muted);
+}
+
+.versus-line {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 48px minmax(0, 1fr);
+  gap: 10px;
+  align-items: stretch;
+}
+
+.team-strength {
+  min-width: 0;
+  display: grid;
+  gap: 4px;
   padding: 12px;
-  border-radius: 12px;
-  background: #101827;
-  border: 1px solid #ffffff22;
+  border-radius: 8px;
+  background: #07110d;
+  border: 1px solid #ffffff18;
+}
+
+.team-strength strong,
+.team-strength span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.team-strength span {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.versus-marker {
+  align-self: center;
+  justify-self: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--accent-2);
+  color: #10110b;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.season-section,
+#seasonResults {
+  display: grid;
+  gap: 10px;
+}
+
+.schedule-card {
+  display: grid;
+  gap: 8px;
+  padding: 10px;
+}
+
+.schedule-row {
+  display: grid;
+  grid-template-columns: minmax(92px, 0.8fr) minmax(0, 1.5fr) minmax(76px, auto);
+  gap: 10px;
+  align-items: center;
+  padding: 10px;
+  border-radius: 8px;
+  background: #09130d;
+  border: 1px solid #ffffff12;
+  font-size: 13px;
+}
+
+.schedule-row > * {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.schedule-row > span:first-child {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.schedule-row > span:last-child {
+  justify-self: end;
+  font-weight: 900;
+}
+
+.schedule-row.next {
+  border-color: var(--cool);
+}
+
+.schedule-row.win > span:last-child {
+  color: var(--accent);
+}
+
+.schedule-row.loss > span:last-child {
+  color: #ff8b7c;
+}
+
+.schedule-row.draw > span:last-child {
+  color: var(--accent-2);
+}
+
+.season-card {
+  margin: 0 0 12px;
+  padding: 12px;
   text-align: left;
 }
 
 .season-card h3 {
-  color: #2bff88;
-  margin-top: 0;
+  color: var(--accent-2);
+  margin: 0 0 8px;
 }
 
 .season-row {
@@ -701,8 +992,8 @@ select {
   gap: 8px;
   align-items: center;
   padding: 8px;
-  border-radius: 10px;
-  background: #0e1625;
+  border-radius: 8px;
+  background: #09130d;
   margin: 6px 0;
   font-size: 13px;
 }
@@ -722,12 +1013,13 @@ select {
 }
 
 .season-row.qualified {
-  border: 1px solid #2bff88;
+  border: 1px solid #65e58d80;
 }
 
-#seasonResults h2 {
-  margin-top: 24px;
-  color: #2bff88;
+#seasonResults h2,
+.season-section h2 {
+  margin: 16px 0 0;
+  color: var(--accent);
 }
 
 #newSeasonBtn,
@@ -735,12 +1027,31 @@ select {
   margin-top: 18px;
 }
 
+.season-compass {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.mini-division {
+  display: grid;
+  gap: 5px;
+  padding: 10px;
+}
+
+.mini-division strong {
+  color: var(--accent-2);
+}
+
+.mini-division span {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
 .live-match-card {
-  margin: 16px 0;
-  padding: 14px;
-  border-radius: 12px;
-  background: #101827;
-  border: 1px solid #2bff8844;
+  padding: clamp(14px, 2vw, 18px);
   text-align: left;
 }
 
@@ -750,38 +1061,123 @@ select {
   overflow-wrap: anywhere;
 }
 
+.match-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin: 12px 0;
+}
+
+.stat-pill {
+  display: grid;
+  gap: 4px;
+  padding: 10px;
+  border-radius: 8px;
+  background: #07110d;
+  border: 1px solid #ffffff18;
+  text-align: center;
+}
+
+.stat-pill span {
+  color: var(--muted);
+  font-size: 11px;
+  text-transform: uppercase;
+}
+
+.stat-pill strong {
+  color: white;
+  overflow-wrap: anywhere;
+}
+
 .live-events {
   display: grid;
   gap: 8px;
   margin-top: 12px;
-  max-height: 280px;
+  max-height: 320px;
   overflow-y: auto;
 }
 
 .live-event {
   padding: 9px;
-  border-radius: 12px;
-  background: #0e1625;
-  color: #d8dee9;
+  border-radius: 8px;
+  background: #09130d;
+  color: #dce8de;
+  border: 1px solid #ffffff12;
   font-size: 13px;
   overflow-wrap: anywhere;
 }
 
 .live-event.goal {
-  border: 1px solid #2bff88;
-  color: #2bff88;
+  border-color: var(--accent);
+  color: var(--accent);
   font-weight: bold;
+  background: #0d2416;
 }
 
-.live-event.chance {
-  border: 1px solid #00c8ff66;
+.live-event.chance,
+.live-event.save {
+  border-color: #70d7ff66;
 }
 
 .live-event.info {
-  color: #b9c2d0;
+  color: var(--muted);
+}
+
+.title-hero {
+  border-color: var(--accent-2);
+  background:
+    linear-gradient(135deg, #17381f 0%, #111914 56%, #3f2e12 100%);
+}
+
+.title-match-card {
+  max-width: 580px;
+  margin: 18px auto 0;
+  padding: 16px;
 }
 
 @media (max-width: 520px) {
+  .hero-card {
+    margin-top: 18px;
+  }
+
+  .season-command {
+    position: static;
+  }
+
+  .season-command h1 {
+    font-size: clamp(30px, 12vw, 42px);
+  }
+
+  .compass-grid {
+    grid-template-areas:
+      "north"
+      "west"
+      "east"
+      "south";
+    grid-template-columns: 1fr;
+  }
+
+  .division-card {
+    min-height: auto;
+  }
+
+  .versus-line,
+  .match-stats,
+  .season-compass,
+  .schedule-row {
+    grid-template-columns: 1fr;
+  }
+
+  .versus-marker {
+    width: 100%;
+    height: 30px;
+    border-radius: 8px;
+  }
+
+  .schedule-row > span:last-child {
+    justify-self: start;
+  }
+
   .draft-topbar {
     gap: 5px;
     padding-bottom: 8px;
