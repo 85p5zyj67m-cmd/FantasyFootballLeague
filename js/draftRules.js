@@ -166,9 +166,9 @@ export function getVisiblePlayers(availablePlayers, activePosition) {
     return [...visibleBoard[activePosition]].sort((a, b) => b.overall - a.overall);
   }
 
-  return ["ATT", "MID", "DEF", "GK"].flatMap(position =>
-    [...visibleBoard[position]].sort((a, b) => b.overall - a.overall)
-  );
+  return Object.values(visibleBoard)
+    .flat()
+    .sort((a, b) => b.overall - a.overall);
 }
 
 function cleanVisibleBoard(availablePlayers) {
