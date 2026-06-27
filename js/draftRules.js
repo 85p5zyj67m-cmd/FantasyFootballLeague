@@ -22,13 +22,25 @@ const POOL_TIER_WEIGHTS = {
   ROLE_PLAYER: 0.15
 };
 
+const AI_STYLES = [
+  "Balanced",
+  "Attacking",
+  "Midfield Control",
+  "Defensive Wall",
+  "Star Hunter",
+  "Goalkeeper Early"
+];
+
 export function createTeams() {
   return [...Array(GAME_CONFIG.totalTeams)].map((_, i) => ({
     name: i === GAME_CONFIG.userTeamIndex ? "Your Team" : "AI Team " + i,
     players: [],
     formationId: "4-3-3",
     lineup: {},
-    playStyle: "Balanced"
+    playStyle:
+      i === GAME_CONFIG.userTeamIndex
+        ? "Balanced"
+        : AI_STYLES[(i - 1) % AI_STYLES.length]
   }));
 }
 
@@ -103,7 +115,11 @@ function chooseOneVersionPerPlayer(players) {
 
   players.forEach(player => {
     const key = normalizeName(player.name);
-    if (!groups[key]) groups[key] = [];
+
+    if (!groups[key]) {
+      groups[key] = [];
+    }
+
     groups[key].push(player);
   });
 
@@ -162,12 +178,19 @@ export function getVisiblePlayers(availablePlayers, activePosition) {
   cleanVisibleBoard(availablePlayers);
   refillVisibleBoard(availablePlayers);
 
-  if (activePosition !== "ALL") {
-    return [...visibleBoard[activePosition]].sort((a, b) => b.overall - a.overall);
+  const allVisiblePlayers = [
+    ...visibleBoard.ATT,
+    ...visibleBoard.MID,
+    ...visibleBoard.DEF,
+    ...visibleBoard.GK
+  ];
+
+  if (activePosition === "ALL") {
+    return allVisiblePlayers.sort((a, b) => b.overall - a.overall);
   }
 
-  return Object.values(visibleBoard)
-    .flat()
+  return allVisiblePlayers
+    .filter(player => player.position === activePosition)
     .sort((a, b) => b.overall - a.overall);
 }
 
@@ -185,7 +208,9 @@ function refillVisibleBoard(availablePlayers) {
   ["ATT", "MID", "DEF", "GK"].forEach(position => {
     while (visibleBoard[position].length < VISIBLE_LIMITS[position]) {
       const nextPlayer = drawNextVisiblePlayer(availablePlayers, position);
+
       if (!nextPlayer) break;
+
       visibleBoard[position].push(nextPlayer);
     }
   });
@@ -193,7 +218,9 @@ function refillVisibleBoard(availablePlayers) {
 
 function drawNextVisiblePlayer(availablePlayers, position) {
   const alreadyVisibleIds = new Set(
-    Object.values(visibleBoard).flat().map(player => player.id)
+    Object.values(visibleBoard)
+      .flat()
+      .map(player => player.id)
   );
 
   const candidates = availablePlayers.filter(player =>
@@ -225,7 +252,6 @@ export function draftPlayer(team, player, availablePlayers) {
   if (team.players.some(p => p.id === player.id)) return availablePlayers;
 
   team.players.push(player);
-
   removePlayerFromVisibleBoard(player);
 
   return availablePlayers.filter(p => p.id !== player.id);
@@ -240,7 +266,10 @@ function removePlayerFromVisibleBoard(player) {
 }
 
 export function isDraftComplete(currentPick, availablePlayers) {
-  return currentPick >= GAME_CONFIG.totalTeams * GAME_CONFIG.totalRounds || availablePlayers.length === 0;
+  return (
+    currentPick >= GAME_CONFIG.totalTeams * GAME_CONFIG.totalRounds ||
+    availablePlayers.length === 0
+  );
 }
 
 function resetVisibleBoard() {
