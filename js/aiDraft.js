@@ -1,3 +1,5 @@
+import { getVisiblePlayers } from "./draftRules.js";
+
 const STYLE_PLANS = {
   Balanced: {
     early: ["ATT", "MID", "DEF"],
@@ -46,30 +48,39 @@ const MAX_BY_POSITION = {
 export function chooseAIPlayer(team, availablePlayers) {
   if (!availablePlayers.length) return null;
 
+  // IMPORTANT:
+  // AI now drafts ONLY from the visible shared board.
+  // This makes the Player List update live after every AI pick.
+  const visiblePlayers = getVisiblePlayers(availablePlayers, "ALL");
+
+  if (!visiblePlayers.length) {
+    return chooseBestWithRosterLimit(team, availablePlayers);
+  }
+
   const pickNumber = team.players.length + 1;
   const phase = getDraftPhase(pickNumber);
   const style = STYLE_PLANS[team.playStyle] || STYLE_PLANS.Balanced;
   const plan = style[phase];
 
   if (plan.includes("BEST")) {
-    return chooseBestWithRosterLimit(team, availablePlayers);
+    return chooseBestWithRosterLimit(team, visiblePlayers);
   }
 
   const wantedPosition = choosePlannedPosition(team, plan);
 
-  let candidates = availablePlayers.filter(player =>
+  let candidates = visiblePlayers.filter(player =>
     player.position === wantedPosition &&
     canStillUsePosition(team, player.position)
   );
 
   if (candidates.length === 0) {
-    candidates = availablePlayers.filter(player =>
+    candidates = visiblePlayers.filter(player =>
       canStillUsePosition(team, player.position)
     );
   }
 
   if (candidates.length === 0) {
-    candidates = availablePlayers;
+    candidates = visiblePlayers;
   }
 
   candidates.sort((a, b) => b.overall - a.overall);
@@ -106,12 +117,12 @@ function choosePlannedPosition(team, plan) {
   return weighted[Math.floor(Math.random() * weighted.length)];
 }
 
-function chooseBestWithRosterLimit(team, availablePlayers) {
-  const candidates = availablePlayers
+function chooseBestWithRosterLimit(team, players) {
+  const candidates = players
     .filter(player => canStillUsePosition(team, player.position))
     .sort((a, b) => b.overall - a.overall);
 
-  return candidates[0] || availablePlayers.sort((a, b) => b.overall - a.overall)[0];
+  return candidates[0] || [...players].sort((a, b) => b.overall - a.overall)[0];
 }
 
 function canStillUsePosition(team, position) {
