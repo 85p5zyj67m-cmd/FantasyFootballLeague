@@ -1,0 +1,79 @@
+/* Redesigned Draft Player Cards */
+
+.redesigned-player-card {
+  min-height: 220px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border: 1px solid #ffffff28;
+  background:
+    radial-gradient(circle at top right, #65e58d22, transparent 38%),
+    linear-gradient(145deg, #122018, #07100b);
+}
+
+.player-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.redesigned-player-card .position-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 48px;
+  padding: 7px 10px;
+  border-radius: 999px;
+  background: #65e58d;
+  color: #06110b;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+.redesigned-player-card .overall {
+  min-width: 54px;
+  text-align: right;
+  color: #f7c95f;
+  font-size: 34px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.redesigned-player-card .player-title {
+  margin-top: 4px;
+  color: #ffffff;
+  font-size: 22px;
+  font-weight: 900;
+  line-height: 1.12;
+}
+
+.redesigned-player-card .player-meta,
+.redesigned-player-card .player-nationality {
+  color: #b9c7be;
+  font-size: 14px;
+}
+
+.redesigned-player-card .club-year {
+  color: #f0f5ef;
+  font-weight: 700;
+}
+
+.redesigned-player-card .player-nationality {
+  margin-bottom: 8px;
+}
+
+.redesigned-player-card .draft-btn {
+  width: 100%;
+  margin-top: auto;
+  padding: 12px 14px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #65e58d, #f7c95f);
+  color: #06110b;
+  font-weight: 900;
+}
+
+.redesigned-player-card .draft-btn:active {
+  transform: scale(0.98);
+}
