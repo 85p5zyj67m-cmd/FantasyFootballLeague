@@ -19,7 +19,9 @@ export function showScreen(screenId) {
     "formationScreen",
     "draftScreen",
     "tacticsScreen",
-    "seasonScreen"
+    "divisionScreen",
+    "seasonScreen",
+    "titleScreen"
   ].forEach(id => {
     document.getElementById(id).classList.add("hidden");
   });
