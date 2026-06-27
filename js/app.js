@@ -414,7 +414,7 @@ function renderRecentResults(season) {
   return `
     <div class="season-card">
       ${recent.map(match => `
-        <div class="season-row">
+        <div class="season-row match-row">
           <strong>${match.home.name}</strong>
           <span>${match.homeGoals} - ${match.awayGoals}</span>
           <strong>${match.away.name}</strong>
