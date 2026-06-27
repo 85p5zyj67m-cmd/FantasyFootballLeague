@@ -1,11 +1,15 @@
 import { GAME_CONFIG } from "./config.js";
 
+const POSITIONS = ["ATT", "MID", "DEF", "GK"];
+
 let visibleBoard = {
   ATT: [],
   MID: [],
   DEF: [],
   GK: []
 };
+
+let visibleBoardIds = new Set();
 
 const VISIBLE_LIMITS = {
   ATT: 10,
@@ -32,7 +36,7 @@ const AI_STYLES = [
 ];
 
 export function createTeams() {
-  return [...Array(GAME_CONFIG.totalTeams)].map((_, i) => ({
+  return Array.from({ length: GAME_CONFIG.totalTeams }, (_, i) => ({
     name: i === GAME_CONFIG.userTeamIndex ? "Your Team" : "AI Team " + i,
     players: [],
     formationId: "4-3-3",
@@ -45,7 +49,7 @@ export function createTeams() {
 }
 
 export function createDraftOrder() {
-  return shuffle([...Array(GAME_CONFIG.totalTeams).keys()]);
+  return shuffle(Array.from({ length: GAME_CONFIG.totalTeams }, (_, i) => i));
 }
 
 export function getRound(currentPick) {
@@ -197,15 +201,19 @@ export function getVisiblePlayers(availablePlayers, activePosition) {
 function cleanVisibleBoard(availablePlayers) {
   const availableIds = new Set(availablePlayers.map(player => player.id));
 
-  ["ATT", "MID", "DEF", "GK"].forEach(position => {
+  visibleBoardIds = new Set();
+
+  POSITIONS.forEach(position => {
     visibleBoard[position] = visibleBoard[position].filter(player =>
       availableIds.has(player.id)
     );
+
+    visibleBoard[position].forEach(player => visibleBoardIds.add(player.id));
   });
 }
 
 function refillVisibleBoard(availablePlayers) {
-  ["ATT", "MID", "DEF", "GK"].forEach(position => {
+  POSITIONS.forEach(position => {
     while (visibleBoard[position].length < VISIBLE_LIMITS[position]) {
       const nextPlayer = drawNextVisiblePlayer(availablePlayers, position);
 
@@ -217,15 +225,9 @@ function refillVisibleBoard(availablePlayers) {
 }
 
 function drawNextVisiblePlayer(availablePlayers, position) {
-  const alreadyVisibleIds = new Set(
-    Object.values(visibleBoard)
-      .flat()
-      .map(player => player.id)
-  );
-
   const candidates = availablePlayers.filter(player =>
     player.position === position &&
-    !alreadyVisibleIds.has(player.id)
+    !visibleBoardIds.has(player.id)
   );
 
   if (!candidates.length) return null;
@@ -263,6 +265,7 @@ function removePlayerFromVisibleBoard(player) {
   visibleBoard[player.position] = visibleBoard[player.position].filter(
     visiblePlayer => visiblePlayer.id !== player.id
   );
+  visibleBoardIds.delete(player.id);
 }
 
 export function isDraftComplete(currentPick, availablePlayers) {
@@ -279,6 +282,7 @@ function resetVisibleBoard() {
     DEF: [],
     GK: []
   };
+  visibleBoardIds = new Set();
 }
 
 function weightedPick(items, weights) {
@@ -305,5 +309,12 @@ function normalizeName(name) {
 }
 
 export function shuffle(array) {
-  return [...array].sort(() => Math.random() - 0.5);
+  const shuffled = [...array];
+
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+
+  return shuffled;
 }

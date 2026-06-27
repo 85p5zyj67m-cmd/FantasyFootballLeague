@@ -717,7 +717,7 @@ select {
   grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
 }
 
-.season-row.match-row strong:last-child {
+.season-row.match-row > :last-child {
   text-align: right;
 }
 
@@ -856,7 +856,7 @@ select {
     grid-template-columns: 1fr;
   }
 
-  .season-row.match-row strong:last-child {
+  .season-row.match-row > :last-child {
     text-align: left;
   }
 

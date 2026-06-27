@@ -6,7 +6,7 @@ import {
   getNextUserPickDistances
 } from "./draftRules.js";
 import {
-  getPlayerForSlot,
+  getPlayersBySlot,
   getBenchPlayers
 } from "./lineup.js";
 
@@ -50,28 +50,31 @@ export function renderLotteryResult(position) {
 
 export function renderFormationOptions(onSelect) {
   const box = document.getElementById("formationOptions");
-  box.innerHTML = "";
+  const fragment = document.createDocumentFragment();
 
   FORMATIONS.forEach(f => {
     const btn = document.createElement("button");
     btn.textContent = f.name;
     btn.onclick = () => onSelect(f.id);
-    box.appendChild(btn);
+    fragment.appendChild(btn);
   });
+
+  box.replaceChildren(fragment);
 }
 
 export function renderMainViewTabs(activeView, onChange) {
   const box = document.getElementById("mainViewTabs");
-  box.innerHTML = "";
+  const fragment = document.createDocumentFragment();
 
   ["Player List", "My Team", "AI Teams"].forEach(view => {
     const btn = document.createElement("button");
     btn.className = "main-tab" + (activeView === view ? " active" : "");
     btn.textContent = view;
     btn.onclick = () => onChange(view);
-    box.appendChild(btn);
+    fragment.appendChild(btn);
   });
 
+  box.replaceChildren(fragment);
   document.getElementById("playerListView").classList.toggle("hidden", activeView !== "Player List");
   document.getElementById("myTeamView").classList.toggle("hidden", activeView !== "My Team");
   document.getElementById("aiTeamsView").classList.toggle("hidden", activeView !== "AI Teams");
@@ -79,16 +82,22 @@ export function renderMainViewTabs(activeView, onChange) {
 
 export function renderFormationSelect(elementId, selectedId, onChange) {
   const select = document.getElementById(elementId);
-  select.innerHTML = "";
 
-  FORMATIONS.forEach(f => {
-    const option = document.createElement("option");
-    option.value = f.id;
-    option.textContent = f.name;
-    option.selected = f.id === selectedId;
-    select.appendChild(option);
-  });
+  if (select.dataset.ready !== "true") {
+    const fragment = document.createDocumentFragment();
 
+    FORMATIONS.forEach(f => {
+      const option = document.createElement("option");
+      option.value = f.id;
+      option.textContent = f.name;
+      fragment.appendChild(option);
+    });
+
+    select.replaceChildren(fragment);
+    select.dataset.ready = "true";
+  }
+
+  select.value = selectedId;
   select.onchange = () => onChange(select.value);
 }
 
@@ -103,15 +112,18 @@ export function renderDraftHeader(currentPick, totalTeams, totalRounds, teams, d
   document.getElementById("roundInfo").textContent = `R${round}/${totalRounds} · P${pick}`;
   document.getElementById("pickInfo").textContent = `${teams[teamIndex].name} on clock`;
 
-  document.getElementById("turnCounter").innerHTML = `
-    <div class="counter-pill"><span class="counter-label">NEXT</span><span class="counter-number">${distances.next}</span></div>
-    <div class="counter-pill"><span class="counter-label">2ND</span><span class="counter-number">${distances.second}</span></div>
-    <div class="counter-pill"><span class="counter-label">3RD</span><span class="counter-number">${distances.third}</span></div>
-    <div class="counter-pill"><span class="counter-label">4TH</span><span class="counter-number">${distances.fourth}</span></div>
-  `;
+  const counterFragment = document.createDocumentFragment();
+  counterFragment.append(
+    createCounterPill("NEXT", distances.next),
+    createCounterPill("2ND", distances.second),
+    createCounterPill("3RD", distances.third),
+    createCounterPill("4TH", distances.fourth)
+  );
+  document.getElementById("turnCounter").replaceChildren(counterFragment);
 
   const ticker = document.getElementById("draftOrderTicker");
-  ticker.innerHTML = "";
+  const tickerFragment = document.createDocumentFragment();
+  let activeChip = null;
 
   order.forEach((idx, i) => {
     const chip = document.createElement("div");
@@ -119,21 +131,38 @@ export function renderDraftHeader(currentPick, totalTeams, totalRounds, teams, d
     chip.textContent = teams[idx].name;
 
     if (i === pickInRound) {
-      chip.id = "activeDraftChip";
+      activeChip = chip;
     }
 
-    ticker.appendChild(chip);
+    tickerFragment.appendChild(chip);
   });
 
+  ticker.replaceChildren(tickerFragment);
+
   requestAnimationFrame(() => {
-    const active = document.getElementById("activeDraftChip");
-    if (!active) return;
+    if (!activeChip) return;
 
     ticker.scrollTo({
-      left: active.offsetLeft - ticker.clientWidth / 2 + active.clientWidth / 2,
+      left: activeChip.offsetLeft - ticker.clientWidth / 2 + activeChip.clientWidth / 2,
       behavior: "smooth"
     });
   });
+}
+
+function createCounterPill(labelText, numberText) {
+  const pill = document.createElement("div");
+  pill.className = "counter-pill";
+
+  const label = document.createElement("span");
+  label.className = "counter-label";
+  label.textContent = labelText;
+
+  const number = document.createElement("span");
+  number.className = "counter-number";
+  number.textContent = numberText;
+
+  pill.append(label, number);
+  return pill;
 }
 
 export function renderLastPick(teamName, player) {
@@ -144,55 +173,61 @@ export function renderLastPick(teamName, player) {
     return;
   }
 
-  box.innerHTML = `<strong>${teamName}</strong>: ${player.overall} · ${player.name} (${player.year}) · ${player.position}`;
+  const team = document.createElement("strong");
+  team.textContent = teamName;
+
+  box.replaceChildren(
+    team,
+    document.createTextNode(`: ${player.overall} · ${player.name} (${player.year}) · ${player.position}`)
+  );
 }
 
 export function renderPositionTabs(activePosition, onChange) {
   const tabs = document.getElementById("draftPositionTabs");
-  tabs.innerHTML = "";
+  const fragment = document.createDocumentFragment();
 
   ["ALL", "ATT", "MID", "DEF", "GK"].forEach(pos => {
     const btn = document.createElement("button");
     btn.className = "chip" + (activePosition === pos ? " active" : "");
     btn.textContent = pos;
     btn.onclick = () => onChange(pos);
-    tabs.appendChild(btn);
+    fragment.appendChild(btn);
   });
+
+  tabs.replaceChildren(fragment);
 }
 
 export function renderAvailablePlayers(availablePlayers, activePosition, onDraftPlayer) {
   const box = document.getElementById("playerList");
-  box.innerHTML = "";
+  const fragment = document.createDocumentFragment();
 
   getVisiblePlayers(availablePlayers, activePosition).forEach(player => {
-    const card = document.createElement("div");
-    card.className = "player";
-
-    card.innerHTML = `
-      <span class="position-badge">${player.position}</span>
-      <span class="overall">${player.overall}</span>
-      <div class="player-title">${player.overall} · ${player.name} (${player.year}) · ${player.position}</div>
-      <div class="player-meta">${player.club}</div>
-      <button class="draft-btn">Draft Player</button>
-    `;
-
-    card.querySelector("button").onclick = () => onDraftPlayer(player);
-    box.appendChild(card);
+    fragment.appendChild(createPlayerCard(player, onDraftPlayer));
   });
+
+  box.replaceChildren(fragment);
 }
 
 export function renderLineup(elementId, team, onMovePlayer) {
   const box = document.getElementById(elementId);
   const formation = getFormationById(team.formationId);
+  const playersBySlot = getPlayersBySlot(team);
 
-  box.innerHTML = `
-    <div class="pitch-wrapper">
-      <div class="pitch" id="${elementId}-pitch"></div>
-    </div>
-    <div class="bench" id="${elementId}-bench"></div>
-  `;
+  const pitchWrapper = document.createElement("div");
+  pitchWrapper.className = "pitch-wrapper";
 
-  const pitch = document.getElementById(`${elementId}-pitch`);
+  const pitch = document.createElement("div");
+  pitch.className = "pitch";
+  pitch.id = `${elementId}-pitch`;
+  pitchWrapper.appendChild(pitch);
+
+  const bench = document.createElement("div");
+  bench.className = "bench";
+  bench.id = `${elementId}-bench`;
+
+  box.replaceChildren(pitchWrapper, bench);
+
+  const pitchFragment = document.createDocumentFragment();
 
   formation.lines.forEach((line, lineIndex) => {
     const row = document.createElement("div");
@@ -200,19 +235,19 @@ export function renderLineup(elementId, team, onMovePlayer) {
 
     line.forEach((position, slotIndex) => {
       const slotKey = `${lineIndex}-${slotIndex}`;
-      const player = getPlayerForSlot(team, slotKey);
+      const player = playersBySlot.get(slotKey);
 
       const slot = document.createElement("div");
       slot.className = "slot";
 
-      slot.innerHTML = `
-        <div class="slot-position">${position}</div>
-        ${
-          player
-            ? `<div class="slot-player" draggable="true" data-player-id="${player.id}" data-slot-key="${slotKey}">${player.overall}<br>${player.name}</div>`
-            : `<div class="slot-empty">Empty</div>`
-        }
-      `;
+      const positionLabel = document.createElement("div");
+      positionLabel.className = "slot-position";
+      positionLabel.textContent = position;
+
+      slot.append(
+        positionLabel,
+        player ? createSlotPlayer(player, slotKey) : createEmptySlot()
+      );
 
       slot.onclick = () => {
         if (selectedPlayerId) {
@@ -225,31 +260,93 @@ export function renderLineup(elementId, team, onMovePlayer) {
       row.appendChild(slot);
     });
 
-    pitch.appendChild(row);
+    pitchFragment.appendChild(row);
   });
 
+  pitch.replaceChildren(pitchFragment);
   renderBench(`${elementId}-bench`, team, onMovePlayer);
-  addDragAndTapEvents(onMovePlayer);
+  addDragAndTapEvents(box, onMovePlayer);
+}
+
+function createSlotPlayer(player, slotKey) {
+  const slotPlayer = document.createElement("div");
+  slotPlayer.className = "slot-player";
+  slotPlayer.draggable = true;
+  slotPlayer.dataset.playerId = player.id;
+  slotPlayer.dataset.slotKey = slotKey;
+  slotPlayer.append(
+    document.createTextNode(player.overall),
+    document.createElement("br"),
+    document.createTextNode(player.name)
+  );
+  return slotPlayer;
+}
+
+function createEmptySlot() {
+  const empty = document.createElement("div");
+  empty.className = "slot-empty";
+  empty.textContent = "Empty";
+  return empty;
+}
+
+function createPlayerCard(player, onDraftPlayer) {
+  const card = document.createElement("div");
+  card.className = "player";
+
+  const badge = document.createElement("span");
+  badge.className = "position-badge";
+  badge.textContent = player.position;
+
+  const overall = document.createElement("span");
+  overall.className = "overall";
+  overall.textContent = player.overall;
+
+  const title = document.createElement("div");
+  title.className = "player-title";
+  title.textContent = `${player.overall} · ${player.name} (${player.year}) · ${player.position}`;
+
+  const meta = document.createElement("div");
+  meta.className = "player-meta";
+  meta.textContent = player.club;
+
+  const button = document.createElement("button");
+  button.className = "draft-btn";
+  button.textContent = "Draft Player";
+  button.onclick = () => onDraftPlayer(player);
+
+  card.append(badge, overall, title, meta, button);
+  return card;
 }
 
 function renderBench(elementId, team, onMovePlayer) {
   const bench = document.getElementById(elementId);
   const benchPlayers = getBenchPlayers(team);
 
-  bench.innerHTML = `
-    <div class="bench-title">Bench</div>
-    <div class="bench-list">
-      ${
-        benchPlayers.length === 0
-          ? `<div class="roster-row">No bench players</div>`
-          : benchPlayers.map(player => `
-            <div class="bench-player" draggable="true" data-player-id="${player.id}" data-slot-key="BENCH">
-              ${player.overall} · ${player.name} (${player.year}) · ${player.position}
-            </div>
-          `).join("")
-      }
-    </div>
-  `;
+  const title = document.createElement("div");
+  title.className = "bench-title";
+  title.textContent = "Bench";
+
+  const list = document.createElement("div");
+  list.className = "bench-list";
+
+  if (benchPlayers.length === 0) {
+    const row = document.createElement("div");
+    row.className = "roster-row";
+    row.textContent = "No bench players";
+    list.appendChild(row);
+  } else {
+    benchPlayers.forEach(player => {
+      const row = document.createElement("div");
+      row.className = "bench-player";
+      row.draggable = true;
+      row.dataset.playerId = player.id;
+      row.dataset.slotKey = "BENCH";
+      row.textContent = `${player.overall} · ${player.name} (${player.year}) · ${player.position}`;
+      list.appendChild(row);
+    });
+  }
+
+  bench.replaceChildren(title, list);
 
   bench.ondragover = e => e.preventDefault();
 
@@ -260,8 +357,8 @@ function renderBench(elementId, team, onMovePlayer) {
   };
 }
 
-function addDragAndTapEvents(onMovePlayer) {
-  document.querySelectorAll("[draggable='true']").forEach(item => {
+function addDragAndTapEvents(container, onMovePlayer) {
+  container.querySelectorAll("[draggable='true']").forEach(item => {
     item.ondragstart = e => {
       e.dataTransfer.setData("text/plain", item.dataset.playerId);
     };
@@ -309,33 +406,44 @@ function addDropEvents(slot, slotKey, onMovePlayer) {
 
 export function renderAITeamsPanel(teams, userIndex, draftOrder) {
   const box = document.getElementById("aiTeamsPanel");
-  box.innerHTML = "";
-
   const grid = document.createElement("div");
   grid.className = "ai-teams-grid";
+  const fragment = document.createDocumentFragment();
 
   draftOrder.forEach(teamIndex => {
     if (teamIndex === userIndex) return;
-    grid.appendChild(createCompactTeamCard(teams[teamIndex]));
+    fragment.appendChild(createCompactTeamCard(teams[teamIndex]));
   });
 
-  box.appendChild(grid);
+  grid.appendChild(fragment);
+  box.replaceChildren(grid);
 }
 
 function createCompactTeamCard(team) {
   const card = document.createElement("div");
   card.className = "ai-team-card";
 
-  card.innerHTML = `
-    <h3>${team.name}</h3>
-    <div class="ai-roster">
-      ${
-        team.players.map(p =>
-          `<div class="roster-row">${p.overall} · ${p.name} (${p.year}) · ${p.position}</div>`
-        ).join("") || `<div class="roster-row">No picks yet</div>`
-      }
-    </div>
-  `;
+  const title = document.createElement("h3");
+  title.textContent = team.name;
+
+  const roster = document.createElement("div");
+  roster.className = "ai-roster";
+
+  if (team.players.length === 0) {
+    const row = document.createElement("div");
+    row.className = "roster-row";
+    row.textContent = "No picks yet";
+    roster.appendChild(row);
+  } else {
+    team.players.forEach(player => {
+      const row = document.createElement("div");
+      row.className = "roster-row";
+      row.textContent = `${player.overall} · ${player.name} (${player.year}) · ${player.position}`;
+      roster.appendChild(row);
+    });
+  }
+
+  card.append(title, roster);
 
   return card;
 }

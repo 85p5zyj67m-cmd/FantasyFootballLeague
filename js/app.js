@@ -159,24 +159,35 @@ function renderDraftLayout() {
     renderDraftLayout();
   });
 
-  renderFormationSelect("formationSelectDraft", userTeam.formationId, formationId => {
-    userTeam.formationId = formationId;
-    resetLineup(userTeam);
-    renderDraftLayout();
-  });
+  renderActiveDraftView(userTeam);
+}
 
-  renderLineup("lineupPitch", userTeam, (playerId, targetSlot) => {
-    movePlayer(userTeam, playerId, targetSlot);
-    renderDraftLayout();
-  });
+function renderActiveDraftView(userTeam) {
+  if (activeMainView === "Player List") {
+    renderPositionTabs(activePosition, position => {
+      activePosition = position;
+      activeMainView = "Player List";
+      renderDraftLayout();
+    });
 
-  renderPositionTabs(activePosition, position => {
-    activePosition = position;
-    activeMainView = "Player List";
-    renderDraftLayout();
-  });
+    renderAvailablePlayers(availablePlayers, activePosition, handleUserPick);
+    return;
+  }
 
-  renderAvailablePlayers(availablePlayers, activePosition, handleUserPick);
+  if (activeMainView === "My Team") {
+    renderFormationSelect("formationSelectDraft", userTeam.formationId, formationId => {
+      userTeam.formationId = formationId;
+      resetLineup(userTeam);
+      renderDraftLayout();
+    });
+
+    renderLineup("lineupPitch", userTeam, (playerId, targetSlot) => {
+      movePlayer(userTeam, playerId, targetSlot);
+      renderDraftLayout();
+    });
+    return;
+  }
+
   renderAITeamsPanel(teams, GAME_CONFIG.userTeamIndex, draftOrder);
 }
 
@@ -188,8 +199,6 @@ function runNextPick() {
     return;
   }
 
-  renderDraftLayout();
-
   const teamIndex = getTeamOnClock(currentPick, draftOrder);
   const team = teams[teamIndex];
 
@@ -200,6 +209,8 @@ function runNextPick() {
     window.scrollTo({ top: 0, behavior: "smooth" });
     return;
   }
+
+  renderDraftLayout();
 
   aiTimer = setTimeout(() => {
     const player = chooseAIPlayer(team, availablePlayers);
@@ -215,7 +226,6 @@ function runNextPick() {
     renderLastPick(team.name, player);
     currentPick++;
 
-    renderDraftLayout();
     runNextPick();
   }, getAiDelay());
 }
@@ -346,31 +356,37 @@ function renderLiveMatch(season) {
   if (!box) return;
 
   if (!season.currentMatch) {
-    box.innerHTML = `
-      <div class="live-match-card">
-        <h2>Ready</h2>
-        <p>Press simulate to play the next match live.</p>
-      </div>
-    `;
+    const card = document.createElement("div");
+    card.className = "live-match-card";
+
+    const title = document.createElement("h2");
+    title.textContent = "Ready";
+
+    const text = document.createElement("p");
+    text.textContent = "Press simulate to play the next match live.";
+
+    card.append(title, text);
+    box.replaceChildren(card);
     return;
   }
 
   const match = season.currentMatch;
+  const card = document.createElement("div");
+  card.className = "live-match-card";
 
-  box.innerHTML = `
-    <div class="live-match-card">
-      <p class="eyebrow">${match.round}${match.leg ? " · " + match.leg : ""}</p>
-      <h2>${match.home.name} ${match.homeGoals} - ${match.awayGoals} ${match.away.name}</h2>
+  const eyebrow = document.createElement("p");
+  eyebrow.className = "eyebrow";
+  eyebrow.textContent = match.round + (match.leg ? " · " + match.leg : "");
 
-      <div class="live-events">
-        ${match.events.map(event => `
-          <div class="live-event ${event.type.toLowerCase()}">
-            ${event.text}
-          </div>
-        `).join("")}
-      </div>
-    </div>
-  `;
+  const title = document.createElement("h2");
+  title.textContent = `${match.home.name} ${match.homeGoals} - ${match.awayGoals} ${match.away.name}`;
+
+  const events = document.createElement("div");
+  events.className = "live-events";
+  match.events.forEach(event => events.appendChild(createLiveEvent(event)));
+
+  card.append(eyebrow, title, events);
+  box.replaceChildren(card);
 }
 
 function renderSeasonTables(season) {
@@ -378,50 +394,51 @@ function renderSeasonTables(season) {
 
   if (!box) return;
 
-  box.innerHTML = `
-    <h2>Standings</h2>
-    ${renderStandings(season)}
-
-    <h2>Recent Results</h2>
-    ${renderRecentResults(season)}
-
-    <h2>Playoff Progress</h2>
-    ${renderPlayoffProgress(season)}
-  `;
+  box.replaceChildren(
+    createSeasonHeading("Standings"),
+    ...renderStandings(season),
+    createSeasonHeading("Recent Results"),
+    renderRecentResults(season),
+    createSeasonHeading("Playoff Progress"),
+    renderPlayoffProgress(season)
+  );
 }
 
 function renderStandings(season) {
-  return Object.keys(season.standings).map(groupName => `
-    <div class="season-card">
-      <h3>${groupName}</h3>
-      ${season.standings[groupName].map((row, index) => `
-        <div class="season-row ${index < 4 ? "qualified" : ""}">
-          <strong>${index + 1}. ${row.team.name}</strong>
-          <span>${row.points} pts · ${row.goalsFor}:${row.goalsAgainst}</span>
-        </div>
-      `).join("")}
-    </div>
-  `).join("");
+  return Object.keys(season.standings).map(groupName => {
+    const card = createSeasonCard(groupName);
+
+    season.standings[groupName].forEach((row, index) => {
+      card.appendChild(createSeasonRow({
+        left: `${index + 1}. ${row.team.name}`,
+        right: `${row.points} pts · ${row.goalsFor}:${row.goalsAgainst}`,
+        className: index < 4 ? "qualified" : ""
+      }));
+    });
+
+    return card;
+  });
 }
 
 function renderRecentResults(season) {
   const recent = season.matchHistory.slice(-8);
 
   if (!recent.length) {
-    return `<div class="season-card">No matches played yet.</div>`;
+    return createSeasonCard(null, "No matches played yet.");
   }
 
-  return `
-    <div class="season-card">
-      ${recent.map(match => `
-        <div class="season-row match-row">
-          <strong>${match.home.name}</strong>
-          <span>${match.homeGoals} - ${match.awayGoals}</span>
-          <strong>${match.away.name}</strong>
-        </div>
-      `).join("")}
-    </div>
-  `;
+  const card = createSeasonCard();
+
+  recent.forEach(match => {
+    card.appendChild(createSeasonRow({
+      left: match.home.name,
+      center: `${match.homeGoals} - ${match.awayGoals}`,
+      right: match.away.name,
+      className: "match-row"
+    }));
+  });
+
+  return card;
 }
 
 function renderPlayoffProgress(season) {
@@ -430,19 +447,70 @@ function renderPlayoffProgress(season) {
   );
 
   if (!playoffMatches.length) {
-    return `<div class="season-card">Playoffs have not started yet.</div>`;
+    return createSeasonCard(null, "Playoffs have not started yet.");
   }
 
-  return `
-    <div class="season-card">
-      ${playoffMatches.map(match => `
-        <div class="season-row">
-          <strong>${match.round} · ${match.leg}</strong>
-          <span>${match.home.name} ${match.homeGoals} - ${match.awayGoals} ${match.away.name}</span>
-        </div>
-      `).join("")}
-    </div>
-  `;
+  const card = createSeasonCard();
+
+  playoffMatches.forEach(match => {
+    card.appendChild(createSeasonRow({
+      left: `${match.round} · ${match.leg}`,
+      right: `${match.home.name} ${match.homeGoals} - ${match.awayGoals} ${match.away.name}`
+    }));
+  });
+
+  return card;
+}
+
+function createLiveEvent(event) {
+  const row = document.createElement("div");
+  row.className = `live-event ${event.type.toLowerCase()}`;
+  row.textContent = event.text;
+  return row;
+}
+
+function createSeasonHeading(text) {
+  const heading = document.createElement("h2");
+  heading.textContent = text;
+  return heading;
+}
+
+function createSeasonCard(titleText = null, emptyText = null) {
+  const card = document.createElement("div");
+  card.className = "season-card";
+
+  if (titleText) {
+    const title = document.createElement("h3");
+    title.textContent = titleText;
+    card.appendChild(title);
+  }
+
+  if (emptyText) {
+    card.textContent = emptyText;
+  }
+
+  return card;
+}
+
+function createSeasonRow({ left, center = null, right, className = "" }) {
+  const row = document.createElement("div");
+  row.className = className ? `season-row ${className}` : "season-row";
+
+  const leftNode = document.createElement("strong");
+  leftNode.textContent = left;
+  row.appendChild(leftNode);
+
+  if (center !== null) {
+    const centerNode = document.createElement("span");
+    centerNode.textContent = center;
+    row.appendChild(centerNode);
+  }
+
+  const rightNode = document.createElement("span");
+  rightNode.textContent = right;
+  row.appendChild(rightNode);
+
+  return row;
 }
 
 function updateSeasonButtons(season) {
