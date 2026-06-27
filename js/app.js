@@ -29,7 +29,11 @@ import {
   renderMainViewTabs,
   renderAITeamsPanel
 } from "./ui.js";
-import { createSeason, simulateNextMatch, continueAfterTactics } from "./seasonEngine.js";
+import {
+  createSeason,
+  simulateNextMatch,
+  continueAfterTactics
+} from "./seasonEngine.js";
 
 let allPlayers = [];
 let availablePlayers = [];
@@ -49,19 +53,31 @@ const aiSpeedTimes = {
 };
 
 window.addEventListener("DOMContentLoaded", () => {
-  document.getElementById("startDraftBtn").addEventListener("click", startGame);
-  document.getElementById("continueToFormationBtn").addEventListener("click", showFormationSelection);
-
+  const startDraftBtn = document.getElementById("startDraftBtn");
+  const continueToFormationBtn = document.getElementById("continueToFormationBtn");
   const startSeasonBtn = document.getElementById("startSeasonBtn");
-  const continueSeasonBtn = document.getElementById("continueSeasonBtn");
+  const simulateMatchBtn = document.getElementById("simulateMatchBtn");
+  const continueAfterTacticsBtn = document.getElementById("continueAfterTacticsBtn");
   const newSeasonBtn = document.getElementById("newSeasonBtn");
+
+  if (startDraftBtn) {
+    startDraftBtn.addEventListener("click", startGame);
+  }
+
+  if (continueToFormationBtn) {
+    continueToFormationBtn.addEventListener("click", showFormationSelection);
+  }
 
   if (startSeasonBtn) {
     startSeasonBtn.addEventListener("click", startSeason);
   }
 
-  if (continueSeasonBtn) {
-    continueSeasonBtn.addEventListener("click", continueSeason);
+  if (simulateMatchBtn) {
+    simulateMatchBtn.addEventListener("click", simulateOneSeasonMatch);
+  }
+
+  if (continueAfterTacticsBtn) {
+    continueAfterTacticsBtn.addEventListener("click", handleContinueAfterTactics);
   }
 
   if (newSeasonBtn) {
@@ -73,13 +89,21 @@ window.addEventListener("DOMContentLoaded", () => {
 
 function getAiDelay() {
   const select = document.getElementById("aiSpeedSelect");
+
+  if (!select) {
+    return aiSpeedTimes.normal;
+  }
+
   return aiSpeedTimes[select.value] ?? aiSpeedTimes.normal;
 }
 
 async function startGame() {
   const btn = document.getElementById("startDraftBtn");
-  btn.disabled = true;
-  btn.textContent = "Loading...";
+
+  if (btn) {
+    btn.disabled = true;
+    btn.textContent = "Loading...";
+  }
 
   allPlayers = await loadPlayersFromCSV("players.csv");
   teams = createTeams();
@@ -198,6 +222,7 @@ function runNextPick() {
 
 function handleUserPick(player) {
   if (isPicking) return;
+
   isPicking = true;
 
   const userTeam = teams[GAME_CONFIG.userTeamIndex];
@@ -233,9 +258,13 @@ function finishDraft() {
     renderTacticsLineup();
   });
 
-  document.getElementById("playStyleSelect").onchange = e => {
-    userTeam.playStyle = e.target.value;
-  };
+  const playStyleSelect = document.getElementById("playStyleSelect");
+
+  if (playStyleSelect) {
+    playStyleSelect.onchange = e => {
+      userTeam.playStyle = e.target.value;
+    };
+  }
 
   renderTacticsLineup();
 }
@@ -252,31 +281,29 @@ function renderTacticsLineup() {
 function startSeason() {
   saveUserTactics();
 
-  currentSeason = createSeason(teams);
+  currentSeason = createSeason(teams, GAME_CONFIG.userTeamIndex);
 
   showScreen("seasonScreen");
-  continueSeason();
+  renderSeasonResults(currentSeason);
+  window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-function continueSeason() {
+function simulateOneSeasonMatch() {
   if (!currentSeason) return;
 
   saveUserTactics();
-
-  simulateNextPhase(currentSeason);
+  simulateNextMatch(currentSeason);
   renderSeasonResults(currentSeason);
 
-  const continueBtn = document.getElementById("continueSeasonBtn");
-  const newSeasonBtn = document.getElementById("newSeasonBtn");
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
 
-  if (currentSeason.phase === "COMPLETE") {
-    continueBtn.classList.add("hidden");
-    newSeasonBtn.classList.remove("hidden");
-  } else {
-    continueBtn.classList.remove("hidden");
-    newSeasonBtn.classList.add("hidden");
-    continueBtn.textContent = "Continue Season";
-  }
+function handleContinueAfterTactics() {
+  if (!currentSeason) return;
+
+  saveUserTactics();
+  continueAfterTactics(currentSeason);
+  renderSeasonResults(currentSeason);
 
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
@@ -291,48 +318,76 @@ function saveUserTactics() {
 }
 
 function renderSeasonResults(season) {
-  document.getElementById("seasonPhaseTitle").textContent = getPhaseTitle(season.phase);
+  const title = document.getElementById("seasonPhaseTitle");
 
-  const box = document.getElementById("seasonResults");
+  if (title) {
+    title.textContent = getPhaseTitle(season);
+  }
 
-  box.innerHTML = `
-    <h2>Latest Matches</h2>
-    ${renderLatestMatches(season)}
-
-    <h2>Standings</h2>
-    ${renderStandings(season)}
-
-    <h2>Playoffs</h2>
-    ${renderPlayoffs(season)}
-  `;
+  renderLiveMatch(season);
+  renderSeasonTables(season);
+  updateSeasonButtons(season);
 }
 
-function getPhaseTitle(phase) {
-  if (phase === "GROUP_SECOND_HALF") return "Group Stage: First Half Complete";
-  if (phase === "ROUND_OF_16") return "Group Stage Complete";
-  if (phase === "QUARTERFINALS") return "Round of 16 Complete";
-  if (phase === "SEMIFINALS") return "Quarterfinals Complete";
-  if (phase === "FINAL") return "Semifinals Complete";
-  if (phase === "COMPLETE") return "Champion Crowned";
+function getPhaseTitle(season) {
+  if (season.phase === "GROUP_FIRST_HALF") return "Group Stage: First Half";
+  if (season.phase === "GROUP_SECOND_HALF") return "Group Stage: Second Half";
+  if (season.phase === "ROUND_OF_16") return "Round of 16";
+  if (season.phase === "QUARTERFINALS") return "Quarterfinals";
+  if (season.phase === "SEMIFINALS") return "Semifinals";
+  if (season.phase === "FINAL") return "Final";
+  if (season.phase === "COMPLETE") return `${season.champion.name} are Champions`;
   return "Season Mode";
 }
 
-function renderLatestMatches(season) {
-  const latest = season.playedMatches.slice(-20);
+function renderLiveMatch(season) {
+  const box = document.getElementById("liveMatchCard");
 
-  if (!latest.length && !season.playoffRounds.length) {
-    return `<div class="season-card">No matches played yet.</div>`;
+  if (!box) return;
+
+  if (!season.currentMatch) {
+    box.innerHTML = `
+      <div class="live-match-card">
+        <h2>Ready</h2>
+        <p>Press simulate to play the next match live.</p>
+      </div>
+    `;
+    return;
   }
 
-  const groupMatches = latest.map(match => `
-    <div class="season-row">
-      <strong>${match.home.name}</strong>
-      <span>${match.homeGoals} - ${match.awayGoals}</span>
-      <strong>${match.away.name}</strong>
-    </div>
-  `).join("");
+  const match = season.currentMatch;
 
-  return `<div class="season-card">${groupMatches}</div>`;
+  box.innerHTML = `
+    <div class="live-match-card">
+      <p class="eyebrow">${match.round}${match.leg ? " · " + match.leg : ""}</p>
+      <h2>${match.home.name} ${match.homeGoals} - ${match.awayGoals} ${match.away.name}</h2>
+
+      <div class="live-events">
+        ${match.events.map(event => `
+          <div class="live-event ${event.type.toLowerCase()}">
+            ${event.text}
+          </div>
+        `).join("")}
+      </div>
+    </div>
+  `;
+}
+
+function renderSeasonTables(season) {
+  const box = document.getElementById("seasonResults");
+
+  if (!box) return;
+
+  box.innerHTML = `
+    <h2>Standings</h2>
+    ${renderStandings(season)}
+
+    <h2>Recent Results</h2>
+    ${renderRecentResults(season)}
+
+    <h2>Playoff Progress</h2>
+    ${renderPlayoffProgress(season)}
+  `;
 }
 
 function renderStandings(season) {
@@ -349,35 +404,67 @@ function renderStandings(season) {
   `).join("");
 }
 
-function renderPlayoffs(season) {
-  if (!season.playoffRounds.length) {
+function renderRecentResults(season) {
+  const recent = season.matchHistory.slice(-8);
+
+  if (!recent.length) {
+    return `<div class="season-card">No matches played yet.</div>`;
+  }
+
+  return `
+    <div class="season-card">
+      ${recent.map(match => `
+        <div class="season-row">
+          <strong>${match.home.name}</strong>
+          <span>${match.homeGoals} - ${match.awayGoals}</span>
+          <strong>${match.away.name}</strong>
+        </div>
+      `).join("")}
+    </div>
+  `;
+}
+
+function renderPlayoffProgress(season) {
+  const playoffMatches = season.matchHistory.filter(match =>
+    match.type === "PLAYOFF" || match.type === "FINAL"
+  );
+
+  if (!playoffMatches.length) {
     return `<div class="season-card">Playoffs have not started yet.</div>`;
   }
 
-  return season.playoffRounds.map(round => `
+  return `
     <div class="season-card">
-      <h3>${round.name}</h3>
-      ${round.ties.map(tie => {
-        if (round.name === "Final") {
-          return `
-            <div class="season-row qualified">
-              <strong>${tie.teamA.name}</strong>
-              <span>${tie.match.homeGoals} - ${tie.match.awayGoals}</span>
-              <strong>${tie.teamB.name}</strong>
-            </div>
-            <p>Winner: <strong>${tie.winner.name}</strong></p>
-          `;
-        }
-
-        return `
-          <div class="season-row">
-            <strong>${tie.teamA.name}</strong>
-            <span>${tie.teamAGoals} - ${tie.teamBGoals}</span>
-            <strong>${tie.teamB.name}</strong>
-          </div>
-          <p>Winner: <strong>${tie.winner.name}</strong></p>
-        `;
-      }).join("")}
+      ${playoffMatches.map(match => `
+        <div class="season-row">
+          <strong>${match.round} · ${match.leg}</strong>
+          <span>${match.home.name} ${match.homeGoals} - ${match.awayGoals} ${match.away.name}</span>
+        </div>
+      `).join("")}
     </div>
-  `).join("");
+  `;
+}
+
+function updateSeasonButtons(season) {
+  const simulateBtn = document.getElementById("simulateMatchBtn");
+  const tacticsBtn = document.getElementById("continueAfterTacticsBtn");
+  const newSeasonBtn = document.getElementById("newSeasonBtn");
+
+  if (simulateBtn) {
+    simulateBtn.classList.toggle(
+      "hidden",
+      season.waitingForTactics || season.phase === "COMPLETE"
+    );
+  }
+
+  if (tacticsBtn) {
+    tacticsBtn.classList.toggle(
+      "hidden",
+      !season.waitingForTactics || season.phase === "COMPLETE"
+    );
+  }
+
+  if (newSeasonBtn) {
+    newSeasonBtn.classList.toggle("hidden", season.phase !== "COMPLETE");
+  }
 }
