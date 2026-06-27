@@ -29,7 +29,7 @@ import {
   renderMainViewTabs,
   renderAITeamsPanel
 } from "./ui.js";
-import { createSeason, simulateNextPhase } from "./seasonEngine.js";
+import { createSeason, simulateNextMatch, continueAfterTactics } from "./seasonEngine.js";
 
 let allPlayers = [];
 let availablePlayers = [];
