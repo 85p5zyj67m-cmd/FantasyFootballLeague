@@ -8,6 +8,12 @@ html {
   overscroll-behavior: none;
 }
 
+:root {
+  --page-padding: clamp(10px, 3vw, 24px);
+  --panel-padding: clamp(14px, 3vw, 22px);
+  --card-radius: 16px;
+}
+
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -15,13 +21,14 @@ body {
   color: white;
   overflow-x: hidden;
   overscroll-behavior: none;
+  line-height: 1.4;
 }
 
 .screen {
   width: 100%;
   max-width: 760px;
   margin: 0 auto;
-  padding: 8px;
+  padding: var(--page-padding);
 }
 
 .hidden {
@@ -32,15 +39,16 @@ body {
 .panel {
   width: 100%;
   margin: 12px auto;
-  padding: 14px;
-  border-radius: 20px;
+  padding: var(--panel-padding);
+  border-radius: var(--card-radius);
   background: linear-gradient(145deg, #111827, #060913);
   border: 1px solid #2bff8844;
   box-shadow: 0 0 14px #00ff8822;
 }
 
 .hero-card {
-  margin-top: 70px;
+  max-width: 640px;
+  margin-top: clamp(28px, 10vh, 70px);
   text-align: center;
 }
 
@@ -54,12 +62,14 @@ body {
 }
 
 h1 {
-  font-size: 34px;
-  line-height: 1.05;
+  margin: 0 0 12px;
+  font-size: clamp(32px, 8vw, 56px);
+  line-height: 1.02;
 }
 
 h2 {
   margin: 8px 0;
+  font-size: clamp(20px, 4vw, 28px);
 }
 
 .subtitle,
@@ -75,7 +85,7 @@ button,
 select {
   font: inherit;
   border: none;
-  border-radius: 14px;
+  border-radius: 12px;
 }
 
 button {
@@ -85,18 +95,21 @@ button {
 
 select {
   width: 100%;
-  padding: 8px;
+  min-height: 42px;
+  padding: 8px 10px;
   background: #0e1625;
   color: white;
   border: 1px solid #2bff8844;
 }
 
 .primary-btn {
+  width: min(100%, 320px);
+  min-height: 50px;
   padding: 16px 28px;
   border-radius: 999px;
   background: linear-gradient(90deg, #2bff88, #00c8ff);
   color: #04110a;
-  font-size: 18px;
+  font-size: clamp(16px, 4vw, 18px);
 }
 
 /* Lottery */
@@ -146,49 +159,51 @@ select {
   position: sticky;
   top: 0;
   z-index: 50;
-  height: 25vh;
-  overflow: hidden;
-  margin: -8px -8px 8px;
-  padding: 7px 10px;
+  display: grid;
+  gap: 8px;
+  margin: calc(var(--page-padding) * -1) calc(var(--page-padding) * -1) 10px;
+  padding: calc(8px + env(safe-area-inset-top)) var(--page-padding) 10px;
   background: #050816;
   border-bottom: 1px solid #2bff8844;
+  box-shadow: 0 12px 28px #00000055;
 }
 
 .topbar-row {
   display: grid;
-  grid-template-columns: 1fr 100px;
-  gap: 8px;
+  grid-template-columns: minmax(0, 1fr) minmax(96px, 140px);
+  gap: 10px;
   align-items: start;
 }
 
 .draft-topbar h2 {
-  font-size: 18px;
+  font-size: clamp(18px, 4vw, 24px);
   margin: 2px 0;
 }
 
 #pickInfo {
   color: #2bff88;
   font-weight: bold;
-  font-size: 13px;
+  font-size: clamp(13px, 3vw, 15px);
   margin: 2px 0;
 }
 
 .speed-box {
   background: #101827;
   border: 1px solid #ffffff22;
-  border-radius: 12px;
-  padding: 5px;
+  border-radius: 10px;
+  padding: 6px;
 }
 
 .speed-box label {
   display: block;
   color: #b9c2d0;
-  font-size: 9px;
+  font-size: 10px;
   margin-bottom: 3px;
 }
 
 .speed-box select {
-  padding: 6px;
+  min-height: 34px;
+  padding: 6px 8px;
   font-size: 12px;
 }
 
@@ -200,55 +215,39 @@ select {
 }
 
 #turnCounter {
-  width: calc(100vw - 132px);
-  max-width: 620px;
-  margin-top: 4px;
-  display: grid !important;
-  grid-template-columns: repeat(4, 1fr) !important;
-  gap: 5px !important;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 6px;
 }
 
 .counter-pill {
-  width: 100% !important;
-  min-width: 0 !important;
-  padding: 4px 5px !important;
-}
-
-.counter-label {
-  font-size: 7px !important;
-}
-
-.counter-number {
-  width: 22px !important;
-  height: 22px !important;
-  min-width: 22px !important;
-  font-size: 12px !important;
-}
-
-.counter-pill {
-  flex: 1 1 0 !important;
-  min-width: 0 !important;
-  max-width: none !important;
-  display: flex;
+  min-width: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) clamp(24px, 6vw, 30px);
+  gap: 4px;
   align-items: center;
-  justify-content: space-between !important;
+  min-height: 34px;
   background: #101827;
   border: 1px solid #ffffff22;
   border-radius: 999px;
-  padding: 4px 5px !important;
+  padding: 4px 6px;
 }
 
 .counter-label {
   color: #b9c2d0;
-  font-size: 7px !important;
+  min-width: 0;
+  overflow: hidden;
+  font-size: clamp(8px, 2vw, 10px);
   font-weight: bold;
   white-space: nowrap;
 }
 
 .counter-number {
-  width: 22px !important;
-  height: 22px !important;
-  min-width: 22px !important;
+  justify-self: end;
+  width: clamp(24px, 6vw, 30px);
+  height: clamp(24px, 6vw, 30px);
+  min-width: 24px;
   border-radius: 50%;
   background: linear-gradient(90deg, #2bff88, #00c8ff);
   color: #04110a;
@@ -256,28 +255,28 @@ select {
   align-items: center;
   justify-content: center;
   font-weight: 900;
-  font-size: 12px !important;
+  font-size: clamp(12px, 3vw, 14px);
 }
 
 /* Last Pick + Draft Order */
 
 .last-pick {
-  margin-top: 5px;
-  padding: 6px 8px;
-  border-radius: 12px;
+  padding: 7px 9px;
+  border-radius: 10px;
   background: #101827;
   border: 1px solid #00c8ff55;
-  font-size: 12px;
-  white-space: nowrap;
+  font-size: clamp(12px, 2.8vw, 14px);
+  line-height: 1.3;
   overflow: hidden;
-  text-overflow: ellipsis;
+  overflow-wrap: anywhere;
 }
 
 .draft-order {
   display: flex;
   gap: 6px;
   overflow-x: auto;
-  padding: 6px 45%;
+  padding: 4px calc(50% - 42px) 6px;
+  scroll-padding-inline: 50%;
   scroll-behavior: smooth;
   scrollbar-width: none;
 }
@@ -289,12 +288,12 @@ select {
 
 .order-chip {
   flex: 0 0 auto;
-  padding: 5px 8px;
+  padding: 6px 9px;
   border-radius: 999px;
   background: #111827;
   color: white;
   border: 1px solid #ffffff22;
-  font-size: 10px;
+  font-size: clamp(10px, 2.4vw, 12px);
   white-space: nowrap;
 }
 
@@ -307,7 +306,7 @@ select {
 /* Main Tabs */
 
 .tab-panel {
-  margin-top: 8px;
+  margin-top: 10px;
   padding: 8px;
 }
 
@@ -318,12 +317,13 @@ select {
 }
 
 .main-tab {
+  min-height: 42px;
   padding: 10px 6px;
-  border-radius: 14px;
+  border-radius: 10px;
   background: #111827;
   color: white;
   border: 1px solid #ffffff22;
-  font-size: 12px;
+  font-size: clamp(12px, 2.8vw, 14px);
 }
 
 .main-tab.active {
@@ -360,15 +360,17 @@ select {
 
 .formation-grid {
   display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   gap: 12px;
 }
 
 .formation-grid button {
-  padding: 18px;
+  min-height: 56px;
+  padding: 14px;
   background: #121a2a;
   color: white;
   border: 1px solid #2bff8844;
-  font-size: 20px;
+  font-size: clamp(18px, 5vw, 20px);
 }
 
 .section-header {
@@ -383,15 +385,16 @@ select {
   width: 100%;
   display: flex;
   justify-content: center;
-  overflow: hidden;
+  overflow-x: auto;
+  padding-bottom: 2px;
 }
 
 .pitch {
   width: 100%;
-  max-width: 360px;
-  min-height: 500px;
-  padding: 14px;
-  border-radius: 24px;
+  max-width: 460px;
+  min-height: clamp(430px, 62vh, 540px);
+  padding: clamp(10px, 3vw, 18px);
+  border-radius: 16px;
   border: 2px solid #ffffff66;
   background:
     linear-gradient(90deg, transparent 49%, #ffffff22 50%, transparent 51%),
@@ -405,22 +408,23 @@ select {
 .line {
   display: flex;
   justify-content: center;
-  gap: 6px;
+  gap: clamp(4px, 1.5vw, 10px);
   width: 100%;
 }
 
 .slot {
-  width: 72px;
-  min-height: 76px;
+  width: clamp(48px, 14vw, 82px);
+  min-height: clamp(64px, 16vw, 88px);
   background: rgba(0, 0, 0, 0.48);
   border: 1px solid #ffffff55;
-  border-radius: 16px;
-  padding: 7px;
+  border-radius: 12px;
+  padding: clamp(5px, 1.5vw, 8px);
   text-align: center;
-  font-size: 11px;
+  font-size: clamp(10px, 2.4vw, 12px);
   display: flex;
   flex-direction: column;
   justify-content: center;
+  overflow: hidden;
 }
 
 .slot.drag-over {
@@ -436,14 +440,15 @@ select {
 
 .slot-player {
   color: #2bff88;
-  font-size: 11px;
+  font-size: clamp(9px, 2.3vw, 12px);
   line-height: 1.15;
   cursor: grab;
+  overflow-wrap: anywhere;
 }
 
 .slot-empty {
   color: #b9c2d0;
-  font-size: 11px;
+  font-size: clamp(10px, 2.4vw, 12px);
 }
 
 .selected-player {
@@ -456,7 +461,7 @@ select {
 .bench {
   margin-top: 12px;
   padding: 12px;
-  border-radius: 18px;
+  border-radius: 12px;
   background: #07111f;
   border: 1px solid #ffffff22;
 }
@@ -475,25 +480,27 @@ select {
 
 .bench-player {
   padding: 9px;
-  border-radius: 12px;
+  border-radius: 10px;
   background: #101827;
   border: 1px solid #ffffff22;
   font-size: 13px;
   cursor: grab;
+  overflow-wrap: anywhere;
 }
 
 /* Player Cards */
 
 .player-grid {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr));
   gap: 12px;
 }
 
 .player,
 .team-card,
 .ai-team-card {
-  border-radius: 18px;
+  min-width: 0;
+  border-radius: 12px;
   background: linear-gradient(145deg, #121a2a, #080b12);
   border: 1px solid #ffffff18;
   padding: 14px;
@@ -520,6 +527,7 @@ select {
   margin-top: 12px;
   font-weight: bold;
   font-size: 16px;
+  overflow-wrap: anywhere;
 }
 
 .player-meta {
@@ -530,6 +538,7 @@ select {
 
 .draft-btn {
   width: 100%;
+  min-height: 44px;
   padding: 12px;
   margin-top: 10px;
   background: linear-gradient(90deg, #2bff88, #00c8ff);
@@ -540,13 +549,13 @@ select {
 
 .ai-teams-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 10px;
 }
 
 .ai-team-card {
-  min-height: 230px;
-  max-height: 230px;
+  min-height: 220px;
+  max-height: 260px;
   overflow-y: auto;
   padding-top: 0;
 }
@@ -575,12 +584,14 @@ select {
   font-size: 12px;
   overflow: hidden;
   text-overflow: ellipsis;
+  overflow-wrap: anywhere;
 }
 
 /* Tactics Screen */
 
 #tacticsScreen .hero-card {
   margin: 20px auto;
+  max-width: 980px;
   text-align: center;
 }
 
@@ -605,15 +616,7 @@ select {
 
 /* Larger screens */
 
-@media (min-width: 700px) {
-  .player-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .formation-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
+@media (min-width: 620px) {
   .section-header {
     grid-template-columns: 1fr 220px;
     align-items: center;
@@ -622,68 +625,66 @@ select {
   .bench-list {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  .ai-teams-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
-#turnCounter {
-  width: 100% !important;
-  display: grid !important;
-  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
-  gap: 5px !important;
-}
+@media (min-width: 900px) {
+  #draftScreen {
+    max-width: 1180px;
+  }
 
-.counter-pill {
-  min-width: 0 !important;
-  width: 100% !important;
-  display: grid !important;
-  grid-template-columns: 1fr 22px !important;
-  align-items: center !important;
-  padding: 4px 5px !important;
-}
+  .draft-topbar {
+    grid-template-columns: minmax(340px, 0.85fr) minmax(420px, 1.15fr);
+    column-gap: 16px;
+    row-gap: 8px;
+  }
 
-.counter-label {
-  min-width: 0 !important;
-  overflow: hidden !important;
-}
+  .topbar-row,
+  .last-pick {
+    grid-column: 1;
+  }
 
-.counter-number {
-  justify-self: end !important;
-}
+  #turnCounter,
+  .draft-order {
+    grid-column: 2;
+  }
 
-#turnCounter {
-  width: 100% !important;
-  display: grid !important;
-  grid-template-columns: repeat(4, 1fr) !important;
-  gap: 6px !important;
-  margin-top: 6px !important;
-}
+  #turnCounter {
+    align-self: center;
+  }
 
-.counter-pill {
-  width: 100% !important;
-  min-width: 0 !important;
-  display: grid !important;
-  grid-template-columns: 1fr 22px !important;
-  align-items: center !important;
-  gap: 4px !important;
-  padding: 4px 6px !important;
-}
+  .draft-order {
+    padding: 4px 16px 6px;
+    scroll-padding-inline: 16px;
+  }
 
-.counter-label {
-  font-size: 7px !important;
-  overflow: hidden !important;
-  white-space: nowrap !important;
-}
+  #lineupPitch,
+  #tacticsLineup {
+    display: grid;
+    grid-template-columns: minmax(390px, 460px) minmax(280px, 1fr);
+    gap: 16px;
+    align-items: start;
+  }
 
-.counter-number {
-  justify-self: end !important;
-  width: 22px !important;
-  height: 22px !important;
-  min-width: 22px !important;
+  #lineupPitch .bench,
+  #tacticsLineup .bench {
+    margin-top: 0;
+    max-height: 560px;
+    overflow-y: auto;
+  }
+
+  .ai-teams-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
 }
 
 .season-card {
   margin: 14px 0;
   padding: 12px;
-  border-radius: 16px;
+  border-radius: 12px;
   background: #101827;
   border: 1px solid #ffffff22;
   text-align: left;
@@ -696,13 +697,28 @@ select {
 
 .season-row {
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: minmax(0, 1fr) auto;
   gap: 8px;
+  align-items: center;
   padding: 8px;
   border-radius: 10px;
   background: #0e1625;
   margin: 6px 0;
   font-size: 13px;
+}
+
+.season-row strong,
+.season-row span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.season-row.match-row {
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+}
+
+.season-row.match-row strong:last-child {
+  text-align: right;
 }
 
 .season-row.qualified {
@@ -722,7 +738,7 @@ select {
 .live-match-card {
   margin: 16px 0;
   padding: 14px;
-  border-radius: 18px;
+  border-radius: 12px;
   background: #101827;
   border: 1px solid #2bff8844;
   text-align: left;
@@ -731,6 +747,7 @@ select {
 .live-match-card h2 {
   color: #ffffff;
   text-align: center;
+  overflow-wrap: anywhere;
 }
 
 .live-events {
@@ -747,6 +764,7 @@ select {
   background: #0e1625;
   color: #d8dee9;
   font-size: 13px;
+  overflow-wrap: anywhere;
 }
 
 .live-event.goal {
@@ -761,4 +779,89 @@ select {
 
 .live-event.info {
   color: #b9c2d0;
+}
+
+@media (max-width: 520px) {
+  .draft-topbar {
+    gap: 5px;
+    padding-bottom: 8px;
+  }
+
+  .draft-topbar .eyebrow {
+    margin-bottom: 2px;
+    font-size: 9px;
+    letter-spacing: 2px;
+  }
+
+  .draft-topbar h2 {
+    font-size: 18px;
+    margin: 0;
+  }
+
+  #pickInfo {
+    font-size: 12px;
+    margin: 0;
+  }
+
+  .speed-box {
+    padding: 4px;
+  }
+
+  .speed-box label {
+    font-size: 9px;
+  }
+
+  .speed-box select {
+    min-height: 30px;
+    padding: 4px 6px;
+    font-size: 11px;
+  }
+
+  #turnCounter {
+    gap: 4px;
+  }
+
+  .counter-pill {
+    grid-template-columns: minmax(0, 1fr) 22px;
+    min-height: 30px;
+    padding: 3px 5px;
+  }
+
+  .counter-label {
+    font-size: 8px;
+  }
+
+  .counter-number {
+    width: 22px;
+    height: 22px;
+    min-width: 22px;
+    font-size: 11px;
+  }
+
+  .last-pick {
+    padding: 5px 8px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .draft-order {
+    display: none;
+  }
+
+  .tab-panel {
+    margin-top: 8px;
+  }
+
+  .season-row.match-row {
+    grid-template-columns: 1fr;
+  }
+
+  .season-row.match-row strong:last-child {
+    text-align: left;
+  }
+
+  .season-row.match-row span {
+    color: #2bff88;
+    font-weight: bold;
+  }
 }
