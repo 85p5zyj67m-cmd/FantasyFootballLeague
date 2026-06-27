@@ -106,7 +106,7 @@ function advancePhase(season) {
 
 function createConferences(teams) {
   const names = ["North", "West", "East", "South"];
-  const shuffled = [...teams].sort(() => Math.random() - 0.5);
+  const shuffled = shuffle(teams);
 
   return names.map((name, index) => ({
     name,
@@ -139,7 +139,7 @@ function createGroupSchedule(conferences) {
     }
   });
 
-  const shuffled = matches.sort(() => Math.random() - 0.5);
+  const shuffled = shuffle(matches);
   const middle = Math.ceil(shuffled.length / 2);
 
   return {
@@ -371,6 +371,17 @@ function getBalanceBonus(team) {
 function average(numbers) {
   if (!numbers.length) return 60;
   return numbers.reduce((sum, n) => sum + n, 0) / numbers.length;
+}
+
+function shuffle(items) {
+  const shuffled = [...items];
+
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+
+  return shuffled;
 }
 
 function sortStandings(a, b) {
