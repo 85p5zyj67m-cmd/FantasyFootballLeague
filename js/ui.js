@@ -293,7 +293,10 @@ function createEmptySlot() {
 
 function createPlayerCard(player, onDraftPlayer) {
   const card = document.createElement("div");
-  card.className = "player";
+  card.className = "player redesigned-player-card";
+
+  const cardTop = document.createElement("div");
+  cardTop.className = "player-card-top";
 
   const badge = document.createElement("span");
   badge.className = "position-badge";
@@ -303,20 +306,26 @@ function createPlayerCard(player, onDraftPlayer) {
   overall.className = "overall";
   overall.textContent = player.overall;
 
-  const title = document.createElement("div");
-  title.className = "player-title";
-  title.textContent = `${player.overall} · ${player.name} (${player.year}) · ${player.position}`;
+  cardTop.append(badge, overall);
 
-  const meta = document.createElement("div");
-  meta.className = "player-meta";
-  meta.textContent = player.club;
+  const name = document.createElement("div");
+  name.className = "player-title";
+  name.textContent = player.name;
+
+  const clubYear = document.createElement("div");
+  clubYear.className = "player-meta club-year";
+  clubYear.textContent = `${player.club} · ${player.year}`;
+
+  const nationality = document.createElement("div");
+  nationality.className = "player-nationality";
+  nationality.textContent = player.nationality;
 
   const button = document.createElement("button");
   button.className = "draft-btn";
   button.textContent = "Draft Player";
   button.onclick = () => onDraftPlayer(player);
 
-  card.append(badge, overall, title, meta, button);
+  card.append(cardTop, name, clubYear, nationality, button);
   return card;
 }
 
