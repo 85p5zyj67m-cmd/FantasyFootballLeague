@@ -1,3 +1,5 @@
+import { getPositionGroupFromPosition } from "./playerUtils.js";
+
 export async function loadPlayersFromCSV(filePath) {
   const response = await fetch(filePath);
 
@@ -21,13 +23,24 @@ function parsePlayerRow(row) {
     return null;
   }
 
+  const detailedPosition = columns[4].trim();
+  const traits = [columns[6], columns[7], columns[8]]
+    .map(value => String(value || "").trim())
+    .filter(Boolean);
+
   return {
     name: columns[0].trim(),
     year: Number(columns[1]),
     club: columns[2].trim(),
     nationality: columns[3].trim(),
-    position: columns[4].trim(),
-    overall: Number(columns[5])
+    position: getPositionGroupFromPosition(detailedPosition),
+    positionGroup: getPositionGroupFromPosition(detailedPosition),
+    detailedPosition,
+    overall: Number(columns[5]),
+    firstTrait: traits[0] || "",
+    secondTrait: traits[1] || "",
+    thirdTrait: traits[2] || "",
+    traits
   };
 }
 
