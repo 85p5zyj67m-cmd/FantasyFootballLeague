@@ -18,6 +18,7 @@ import {
   getSlotsFromFormation,
   movePlayer
 } from "../../lineup.js";
+import { formatTraits, getDisplayPosition } from "../../playerUtils.js";
 import { appState, userTeam } from "../linearState.js";
 import { goTo } from "../linearRouter.js";
 import { clearApp, playerCard } from "../pageUtils.js";
@@ -343,14 +344,20 @@ function createSlot(team, slot, player) {
   box.className = "linear-slot";
   box.dataset.slot = slot.key;
   box.dataset.position = slot.position;
+
   const position = document.createElement("strong");
-  position.textContent = slot.position;
+  position.textContent = player ? getDisplayPosition(player) : slot.position;
+
   const name = document.createElement("span");
   name.textContent = player ? player.name : "Empty";
+
   const overall = document.createElement("small");
   overall.textContent = player ? String(player.overall) : "";
+
   box.append(position, name, overall);
+
   if (player) {
+    box.appendChild(createTraitLine(player));
     box.draggable = true;
     box.dataset.playerId = player.id;
     box.addEventListener("dragstart", event => event.dataTransfer.setData("text/plain", player.id));
@@ -365,6 +372,7 @@ function createSlot(team, slot, player) {
   } else {
     box.addEventListener("click", () => moveSelectedPlayer(team, slot.key));
   }
+
   box.addEventListener("dragover", event => event.preventDefault());
   box.addEventListener("drop", event => {
     event.preventDefault();
@@ -387,7 +395,11 @@ function createBench(team) {
   getBenchPlayers(team).forEach(player => {
     const item = document.createElement("div");
     item.className = "linear-bench-player";
-    item.textContent = `${player.position} - ${player.name} - ${player.overall}`;
+
+    const main = document.createElement("span");
+    main.textContent = `${getDisplayPosition(player)} - ${player.name} - ${player.overall}`;
+    item.append(main, createTraitLine(player));
+
     item.draggable = true;
     item.dataset.playerId = player.id;
     item.addEventListener("dragstart", event => event.dataTransfer.setData("text/plain", player.id));
@@ -407,6 +419,13 @@ function createBench(team) {
   });
   bench.appendChild(players);
   return bench;
+}
+
+function createTraitLine(player) {
+  const traitLine = document.createElement("small");
+  traitLine.className = "linear-player-traitline";
+  traitLine.textContent = formatTraits(player);
+  return traitLine;
 }
 
 function moveSelectedPlayer(team, slotKey) {
@@ -434,7 +453,7 @@ function renderAiTeamsView() {
     list.className = "linear-ai-list";
     team.players.slice().sort((a, b) => b.overall - a.overall).forEach(player => {
       const row = document.createElement("p");
-      row.textContent = `${player.overall} - ${player.name} - ${player.position}`;
+      row.textContent = `${player.overall} - ${player.name} - ${getDisplayPosition(player)}`;
       list.appendChild(row);
     });
     card.appendChild(list);
@@ -479,7 +498,7 @@ function pickPlayer(team, player) {
     pickInRound,
     teamName: team.name,
     playerName: player.name,
-    position: player.position,
+    position: getDisplayPosition(player),
     overall: player.overall
   });
   appState.currentPick += 1;
