@@ -1,641 +1,1935 @@
-Name,Year,Club,Nationality,Position,Overall
-Lionel Messi,2012,Barcelona,Argentina,ATT,99
-Pele,1970,Santos,Brazil,ATT,99
-Cristiano Ronaldo,2014,Real Madrid,Portugal,ATT,98
-Diego Maradona,1987,Napoli,Argentina,ATT,98
-Lionel Messi,2010,Barcelona,Argentina,ATT,98
-Pele,1968,Santos,Brazil,ATT,98
-Ronaldo Nazario,1997,Barcelona,Brazil,ATT,98
-Alfredo Di Stefano,1957,Real Madrid,Argentina,ATT,97
-Cristiano Ronaldo,2012,Real Madrid,Portugal,ATT,97
-Diego Maradona,1985,Napoli,Argentina,ATT,97
-Gerd Mueller,1972,Bayern Munich,Germany,ATT,97
-Johan Cruyff,1972,Ajax,Netherlands,ATT,97
-Ronaldo Nazario,1995,Barcelona,Brazil,ATT,97
-Alfredo Di Stefano,1955,Real Madrid,Argentina,ATT,96
-Eusebio,1966,Benfica,Portugal,ATT,96
-Ferenc Puskas,1960,Real Madrid,Hungary,ATT,96
-Gerd Mueller,1970,Bayern Munich,Germany,ATT,96
-Johan Cruyff,1970,Ajax,Netherlands,ATT,96
-Mane Garrincha,1962,Botafogo,Brazil,ATT,96
-Marco van Basten,1989,AC Milan,Netherlands,ATT,96
-Ronaldinho,2005,Barcelona,Brazil,ATT,96
-Thierry Henry,2004,Arsenal,France,ATT,96
-Eusebio,1964,Benfica,Portugal,ATT,95
-Ferenc Puskas,1958,Real Madrid,Hungary,ATT,95
-George Best,1968,Manchester United,Northern Ireland,ATT,95
-Mane Garrincha,1960,Botafogo,Brazil,ATT,95
-Marco van Basten,1987,AC Milan,Netherlands,ATT,95
-Robert Lewandowski,2020,Bayern Munich,Poland,ATT,95
-Romario,1994,Barcelona,Brazil,ATT,95
-Ronaldinho,2003,Barcelona,Brazil,ATT,95
-Thierry Henry,2002,Arsenal,France,ATT,95
-Zico,1981,Flamengo,Brazil,ATT,95
-Andriy Shevchenko,2004,AC Milan,Ukraine,ATT,94
-Erling Haaland,2023,Manchester City,Norway,ATT,94
-George Best,1966,Manchester United,Northern Ireland,ATT,94
-Jairzinho,1970,Botafogo,Brazil,ATT,94
-Kaka,2007,AC Milan,Brazil,ATT,94
-Karim Benzema,2022,Real Madrid,France,ATT,94
-Karl-Heinz Rummenigge,1981,Bayern Munich,Germany,ATT,94
-Kylian Mbappe,2022,Paris Saint-Germain,France,ATT,94
-Lev Yashin,1963,Dynamo Moscow,Soviet Union,ATT,94
-Luis Figo,2001,Real Madrid,Portugal,ATT,94
-Luis Suarez,2016,Barcelona,Uruguay,ATT,94
-Neymar,2015,Barcelona,Brazil,ATT,94
-Rivaldo,1999,Barcelona,Brazil,ATT,94
-Robert Lewandowski,2018,Bayern Munich,Poland,ATT,94
-Roberto Baggio,1993,Juventus,Italy,ATT,94
-Romario,1992,Barcelona,Brazil,ATT,94
-Zico,1979,Flamengo,Brazil,ATT,94
-Alessandro Del Piero,1998,Juventus,Italy,ATT,93
-Andriy Shevchenko,2002,AC Milan,Ukraine,ATT,93
-Arjen Robben,2014,Bayern Munich,Netherlands,ATT,93
-Erling Haaland,2021,Manchester City,Norway,ATT,93
-Francesco Totti,2001,Roma,Italy,ATT,93
-Gabriel Batistuta,1998,Fiorentina,Argentina,ATT,93
-Hristo Stoichkov,1994,Barcelona,Bulgaria,ATT,93
-Jairzinho,1968,Botafogo,Brazil,ATT,93
-Just Fontaine,1958,Reims,France,ATT,93
-Kaka,2005,AC Milan,Brazil,ATT,93
-Karim Benzema,2020,Real Madrid,France,ATT,93
-Karl-Heinz Rummenigge,1979,Bayern Munich,Germany,ATT,93
-Kylian Mbappe,2020,Paris Saint-Germain,France,ATT,93
-Lev Yashin,1961,Dynamo Moscow,Soviet Union,ATT,93
-Luis Figo,1999,Real Madrid,Portugal,ATT,93
-Luis Suarez,2014,Barcelona,Uruguay,ATT,93
-Mohamed Salah,2018,Liverpool,Egypt,ATT,93
-Neymar,2013,Barcelona,Brazil,ATT,93
-Raul,2001,Real Madrid,Spain,ATT,93
-Raul Gonzalez,2001,Real Madrid,Spain,ATT,93
-Rivaldo,1997,Barcelona,Brazil,ATT,93
-Roberto Baggio,1991,Juventus,Italy,ATT,93
-Ruud Gullit,1988,AC Milan,Netherlands,ATT,93
-Samuel Eto'o,2006,Barcelona,Cameroon,ATT,93
-Uwe Seeler,1960,Hamburger SV,Germany,ATT,93
-Zlatan Ibrahimovic,2012,AC Milan,Sweden,ATT,93
-Alan Shearer,1996,Newcastle United,England,ATT,92
-Alessandro Del Piero,1996,Juventus,Italy,ATT,92
-Arjen Robben,2012,Bayern Munich,Netherlands,ATT,92
-Dennis Bergkamp,1998,Arsenal,Netherlands,ATT,92
-Francesco Totti,1999,Roma,Italy,ATT,92
-Franck Ribery,2013,Bayern Munich,France,ATT,92
-Gabriel Batistuta,1996,Fiorentina,Argentina,ATT,92
-George Weah,1995,AC Milan,Liberia,ATT,92
-Hristo Stoichkov,1992,Barcelona,Bulgaria,ATT,92
-Hugo Sanchez,1988,Real Madrid,Mexico,ATT,92
-Just Fontaine,1956,Reims,France,ATT,92
-Mohamed Salah,2016,Liverpool,Egypt,ATT,92
-Raul,1999,Real Madrid,Spain,ATT,92
-Raul Gonzalez,1999,Real Madrid,Spain,ATT,92
-Ruud Gullit,1986,AC Milan,Netherlands,ATT,92
-Samuel Eto'o,2004,Barcelona,Cameroon,ATT,92
-Sergio Aguero,2012,Manchester City,Argentina,ATT,92
-Uwe Seeler,1958,Hamburger SV,Germany,ATT,92
-Wayne Rooney,2010,Manchester United,England,ATT,92
-Zlatan Ibrahimovic,2010,AC Milan,Sweden,ATT,92
-Alan Shearer,1994,Newcastle United,England,ATT,91
-Antoine Griezmann,2016,Atletico Madrid,France,ATT,91
-David Villa,2009,Valencia,Spain,ATT,91
-Dennis Bergkamp,1996,Arsenal,Netherlands,ATT,91
-Didier Drogba,2010,Chelsea,Ivory Coast,ATT,91
-Dragan Dzajic,1968,Red Star Belgrade,Serbia,ATT,91
-Eric Cantona,1994,Manchester United,France,ATT,91
-Fernando Torres,2008,Liverpool,Spain,ATT,91
-Franck Ribery,2011,Bayern Munich,France,ATT,91
-George Weah,1993,AC Milan,Liberia,ATT,91
-Harry Kane,2018,Tottenham Hotspur,England,ATT,91
-Hugo Sanchez,1986,Real Madrid,Mexico,ATT,91
-Jean-Pierre Papin,1991,Marseille,France,ATT,91
-Juan Roman Riquelme,2007,Boca Juniors,Argentina,ATT,91
-Paolo Rossi,1982,Juventus,Italy,ATT,91
-Radamel Falcao,2012,Atletico Madrid,Colombia,ATT,91
-Ruud van Nistelrooy,2003,Manchester United,Netherlands,ATT,91
-Sadio Mane,2019,Liverpool,Senegal,ATT,91
-Sergio Aguero,2010,Manchester City,Argentina,ATT,91
-Socrates,1982,Corinthians,Brazil,ATT,91
-Wayne Rooney,2008,Manchester United,England,ATT,91
-Abedi Pele,1991,Marseille,Ghana,ATT,90
-Adriano,2005,Inter Milan,Brazil,ATT,90
-Antoine Griezmann,2014,Atletico Madrid,France,ATT,90
-Christian Vieri,1999,Inter Milan,Italy,ATT,90
-David Villa,2007,Valencia,Spain,ATT,90
-Davor Suker,1998,Real Madrid,Croatia,ATT,90
-Didier Drogba,2008,Chelsea,Ivory Coast,ATT,90
-Diego Forlan,2010,Atletico Madrid,Uruguay,ATT,90
-Edinson Cavani,2013,Napoli,Uruguay,ATT,90
-Emilio Butragueno,1987,Real Madrid,Spain,ATT,90
-Eric Cantona,1992,Manchester United,France,ATT,90
-Fernando Torres,2006,Liverpool,Spain,ATT,90
-Gonzalo Higuain,2016,Napoli,Argentina,ATT,90
-Harry Kane,2016,Tottenham Hotspur,England,ATT,90
-Hernan Crespo,1999,Parma,Argentina,ATT,90
-Jean-Pierre Papin,1989,Marseille,France,ATT,90
-Juan Roman Riquelme,2005,Boca Juniors,Argentina,ATT,90
-Marco Reus,2013,Borussia Dortmund,Germany,ATT,90
-Michael Owen,2001,Liverpool,England,ATT,90
-Miroslav Klose,2006,Werder Bremen,Germany,ATT,90
-Paolo Rossi,1980,Juventus,Italy,ATT,90
-Robin van Persie,2013,Manchester United,Netherlands,ATT,90
-Ruud van Nistelrooy,2001,Manchester United,Netherlands,ATT,90
-Sadio Mane,2017,Liverpool,Senegal,ATT,90
-Socrates,1980,Corinthians,Brazil,ATT,90
-Son Heung-min,2022,Tottenham Hotspur,South Korea,ATT,90
-Thomas Mueller,2014,Bayern Munich,Germany,ATT,90
-Alexis Sanchez,2016,Arsenal,Chile,ATT,89
-Angel Di Maria,2014,Real Madrid,Argentina,ATT,89
-Carlos Tevez,2011,Manchester City,Argentina,ATT,89
-David Silva,2017,Manchester City,Spain,ATT,89
-Dejan Savicevic,1994,AC Milan,Montenegro,ATT,89
-Ivan Zamorano,1995,Real Madrid,Chile,ATT,89
-James Rodriguez,2014,Real Madrid,Colombia,ATT,89
-Lautaro Martinez,2024,Inter Milan,Argentina,ATT,89
-Paulo Dybala,2017,Juventus,Argentina,ATT,89
-Pierre-Emerick Aubameyang,2017,Borussia Dortmund,Gabon,ATT,89
-Rudi Voeller,1987,Werder Bremen,Germany,ATT,89
-Antonio Di Natale,2010,Udinese,Italy,ATT,88
-Carlos Valderrama,1990,Montpellier,Colombia,ATT,88
-Cha Bum-kun,1986,Bayer Leverkusen,South Korea,ATT,88
-Filippo Inzaghi,2007,AC Milan,Italy,ATT,88
-Gianfranco Zola,1997,Chelsea,Italy,ATT,88
-Giovanni Elber,2003,Bayern Munich,Brazil,ATT,88
-Ian Wright,1997,Arsenal,England,ATT,88
-Jadon Sancho,2020,Borussia Dortmund,England,ATT,88
-Marcelo Salas,1999,Lazio,Chile,ATT,88
-Mario Gomez,2011,Bayern Munich,Germany,ATT,88
-Patrick Kluivert,1995,Ajax,Netherlands,ATT,88
-Roger Milla,1990,Monaco,Cameroon,ATT,88
-Roy Keane,1999,Manchester United,Ireland,ATT,88
-Roy Makaay,2003,Deportivo La Coruna,Netherlands,ATT,88
-Darko Pancev,1991,Red Star Belgrade,North Macedonia,ATT,87
-Dimitar Berbatov,2010,Manchester United,Bulgaria,ATT,87
-Jamie Vardy,2016,Leicester City,England,ATT,87
-Luca Toni,2006,Fiorentina,Italy,ATT,87
-Marek Hamsik,2013,Napoli,Slovakia,ATT,87
-Robbie Fowler,1996,Liverpool,England,ATT,87
-Alexandre Lacazette,2017,Lyon,France,ATT,86
-Andy Cole,1999,Manchester United,England,ATT,86
-Claudio Pizarro,2010,Werder Bremen,Peru,ATT,86
-David Ginola,1996,Newcastle United,France,ATT,86
-Hidetoshi Nakata,2001,Roma,Japan,ATT,86
-Memphis Depay,2018,Lyon,Netherlands,ATT,86
-Nani,2011,Manchester United,Portugal,ATT,86
-Nicolas Anelka,1999,Arsenal,France,ATT,86
-Rafael Marquez,2006,Barcelona,Mexico,ATT,86
-Robinho,2004,Santos,Brazil,ATT,86
-Santi Cazorla,2013,Arsenal,Spain,ATT,86
-Les Ferdinand,1996,Newcastle United,England,ATT,85
-Lukas Podolski,2006,Cologne,Germany,ATT,85
-Serhiy Rebrov,1999,Dynamo Kyiv,Ukraine,ATT,85
-Ali Daei,1999,Bayern Munich,Iran,ATT,84
-Andriy Yarmolenko,2015,Dynamo Kyiv,Ukraine,ATT,84
-Clint Dempsey,2012,Fulham,United States,ATT,84
-Dirk Kuyt,2007,Liverpool,Netherlands,ATT,84
-Florent Malouda,2010,Chelsea,France,ATT,84
-Javier Hernandez,2011,Manchester United,Mexico,ATT,84
-Landon Donovan,2010,LA Galaxy,United States,ATT,84
-Olivier Giroud,2015,Arsenal,France,ATT,84
-Pedro,2011,Barcelona,Spain,ATT,84
-Teddy Sheringham,1999,Manchester United,England,ATT,84
-Timo Werner,2020,RB Leipzig,Germany,ATT,84
-Salomon Kalou,2010,Chelsea,Ivory Coast,ATT,80
-Zinedine Zidane,2002,Real Madrid,France,MID,97
-Andres Iniesta,2012,Barcelona,Spain,MID,96
-Michel Platini,1984,Juventus,France,MID,96
-Xavi,2010,Barcelona,Spain,MID,96
-Zinedine Zidane,2000,Real Madrid,France,MID,96
-Andres Iniesta,2010,Barcelona,Spain,MID,95
-Lothar Matthaeus,1990,Inter Milan,Germany,MID,95
-Luka Modric,2018,Real Madrid,Croatia,MID,95
-Michel Platini,1982,Juventus,France,MID,95
-Xavi,2008,Barcelona,Spain,MID,95
-Andrea Pirlo,2006,AC Milan,Italy,MID,94
-Kevin De Bruyne,2020,Manchester City,Belgium,MID,94
-Lothar Matthaeus,1988,Inter Milan,Germany,MID,94
-Luka Modric,2016,Real Madrid,Croatia,MID,94
-Michael Laudrup,1993,Barcelona,Denmark,MID,94
-Rivelino,1970,Corinthians,Brazil,MID,94
-Andrea Pirlo,2004,AC Milan,Italy,MID,93
-Eden Hazard,2019,Chelsea,Belgium,MID,93
-Falcao,1983,Roma,Brazil,MID,93
-Kevin De Bruyne,2018,Manchester City,Belgium,MID,93
-Michael Laudrup,1991,Barcelona,Denmark,MID,93
-Patrick Vieira,2004,Arsenal,France,MID,93
-Rivelino,1968,Corinthians,Brazil,MID,93
-Steven Gerrard,2005,Liverpool,England,MID,93
-Toni Kroos,2016,Real Madrid,Germany,MID,93
-Eden Hazard,2017,Chelsea,Belgium,MID,92
-Falcao,1981,Roma,Brazil,MID,92
-Frank Lampard,2005,Chelsea,England,MID,92
-Frank Rijkaard,1989,AC Milan,Netherlands,MID,92
-Johan Neeskens,1973,Ajax,Netherlands,MID,92
-Patrick Vieira,2002,Arsenal,France,MID,92
-Paul Scholes,2003,Manchester United,England,MID,92
-Pavel Nedved,2003,Juventus,Czech Republic,MID,92
-Steven Gerrard,2003,Liverpool,England,MID,92
-Toni Kroos,2014,Real Madrid,Germany,MID,92
-Bastian Schweinsteiger,2013,Bayern Munich,Germany,MID,91
-Clarence Seedorf,2007,AC Milan,Netherlands,MID,91
-David Beckham,1999,Manchester United,England,MID,91
-David Silva,2012,Manchester City,Spain,MID,91
-Fernando Redondo,2000,Real Madrid,Argentina,MID,91
-Frank Lampard,2003,Chelsea,England,MID,91
-Frank Rijkaard,1987,AC Milan,Netherlands,MID,91
-Gerson,1970,Sao Paulo,Brazil,MID,91
-Gheorghe Hagi,2000,Galatasaray,Romania,MID,91
-Johan Neeskens,1971,Ajax,Netherlands,MID,91
-Michael Ballack,2002,Bayer Leverkusen,Germany,MID,91
-N'Golo Kante,2017,Chelsea,France,MID,91
-Obdulio Varela,1950,Penarol,Uruguay,MID,91
-Paul Scholes,2001,Manchester United,England,MID,91
-Pavel Nedved,2001,Juventus,Czech Republic,MID,91
-Philipp Lahm,2014,Bayern Munich,Germany,MID,91
-Roy Keane,1999,Manchester United,Ireland,MID,91
-Ryan Giggs,1999,Manchester United,Wales,MID,91
-Sergio Busquets,2011,Barcelona,Spain,MID,91
-Wesley Sneijder,2010,Inter Milan,Netherlands,MID,91
-Yaya Toure,2014,Manchester City,Ivory Coast,MID,91
-Bastian Schweinsteiger,2011,Bayern Munich,Germany,MID,90
-Casemiro,2017,Real Madrid,Brazil,MID,90
-Cesc Fabregas,2010,Arsenal,Spain,MID,90
-Clarence Seedorf,2005,AC Milan,Netherlands,MID,90
-Claude Makelele,2005,Chelsea,France,MID,90
-David Beckham,1997,Manchester United,England,MID,90
-David Silva,2010,Manchester City,Spain,MID,90
-Edgar Davids,1998,Juventus,Netherlands,MID,90
-Enzo Francescoli,1986,River Plate,Uruguay,MID,90
-Fernando Redondo,1998,Real Madrid,Argentina,MID,90
-Gerson,1968,Sao Paulo,Brazil,MID,90
-Gheorghe Hagi,1998,Galatasaray,Romania,MID,90
-Joshua Kimmich,2020,Bayern Munich,Germany,MID,90
-Juninho Pernambucano,2006,Lyon,Brazil,MID,90
-Mesut Ozil,2012,Real Madrid,Germany,MID,90
-Michael Ballack,2000,Bayer Leverkusen,Germany,MID,90
-N'Golo Kante,2015,Chelsea,France,MID,90
-Obdulio Varela,1948,Penarol,Uruguay,MID,90
-Philipp Lahm,2012,Bayern Munich,Germany,MID,90
-Roy Keane,1997,Manchester United,Ireland,MID,90
-Rui Costa,1998,Fiorentina,Portugal,MID,90
-Ryan Giggs,1997,Manchester United,Wales,MID,90
-Sergio Busquets,2009,Barcelona,Spain,MID,90
-Wesley Sneijder,2008,Inter Milan,Netherlands,MID,90
-Yaya Toure,2012,Manchester City,Ivory Coast,MID,90
-Angel Di Maria,2016,Paris Saint-Germain,Argentina,MID,89
-Bernardo Silva,2019,Manchester City,Portugal,MID,89
-Casemiro,2015,Real Madrid,Brazil,MID,89
-Cesc Fabregas,2008,Arsenal,Spain,MID,89
-Claude Makelele,2003,Chelsea,France,MID,89
-Deco,2006,Barcelona,Portugal,MID,89
-Dunga,1994,Fiorentina,Brazil,MID,89
-Edgar Davids,1996,Juventus,Netherlands,MID,89
-Enzo Francescoli,1984,River Plate,Uruguay,MID,89
-Florian Wirtz,2024,Bayer Leverkusen,Germany,MID,89
-Ilkay Gundogan,2023,Manchester City,Germany,MID,89
-Jari Litmanen,1995,Ajax,Finland,MID,89
-Jay-Jay Okocha,2004,Bolton Wanderers,Nigeria,MID,89
-Joshua Kimmich,2018,Bayern Munich,Germany,MID,89
-Juan Sebastian Veron,2000,Lazio,Argentina,MID,89
-Juninho Pernambucano,2004,Lyon,Brazil,MID,89
-Marco Verratti,2015,Paris Saint-Germain,Italy,MID,89
-Martin Odegaard,2023,Arsenal,Norway,MID,89
-Mesut Ozil,2010,Real Madrid,Germany,MID,89
-Michael Essien,2007,Chelsea,Ghana,MID,89
-Paul Pogba,2015,Juventus,France,MID,89
-Rui Costa,1996,Fiorentina,Portugal,MID,89
-Angel Di Maria,2014,Paris Saint-Germain,Argentina,MID,88
-Arturo Vidal,2015,Juventus,Chile,MID,88
-Bernardo Silva,2017,Manchester City,Portugal,MID,88
-Brian Laudrup,1996,Rangers,Denmark,MID,88
-Bruno Fernandes,2021,Manchester United,Portugal,MID,88
-Christian Eriksen,2017,Tottenham Hotspur,Denmark,MID,88
-Declan Rice,2024,Arsenal,England,MID,88
-Deco,2004,Barcelona,Portugal,MID,88
-Diego Simeone,1996,Atletico Madrid,Argentina,MID,88
-Dunga,1992,Fiorentina,Brazil,MID,88
-Esteban Cambiasso,2010,Inter Milan,Argentina,MID,88
-Florian Wirtz,2022,Bayer Leverkusen,Germany,MID,88
-Ilkay Gundogan,2021,Manchester City,Germany,MID,88
-Ivan Rakitic,2015,Barcelona,Croatia,MID,88
-Jari Litmanen,1993,Ajax,Finland,MID,88
-Javier Mascherano,2008,Liverpool,Argentina,MID,88
-Jay-Jay Okocha,2002,Bolton Wanderers,Nigeria,MID,88
-Juan Mata,2013,Chelsea,Spain,MID,88
-Juan Sebastian Veron,1998,Lazio,Argentina,MID,88
-Marco Verratti,2013,Paris Saint-Germain,Italy,MID,88
-Martin Odegaard,2021,Arsenal,Norway,MID,88
-Michael Essien,2005,Chelsea,Ghana,MID,88
-Paul Pogba,2013,Juventus,France,MID,88
-Preben Elkjaer,1985,Verona,Denmark,MID,88
-Rai,1995,Paris Saint-Germain,Brazil,MID,88
-Riyad Mahrez,2016,Leicester City,Algeria,MID,88
-Robert Prosinecki,1991,Red Star Belgrade,Croatia,MID,88
-Zvonimir Boban,1995,AC Milan,Croatia,MID,88
-Arturo Vidal,2013,Juventus,Chile,MID,87
-Brian Laudrup,1994,Rangers,Denmark,MID,87
-Bruno Fernandes,2019,Manchester United,Portugal,MID,87
-Christian Eriksen,2015,Tottenham Hotspur,Denmark,MID,87
-Declan Rice,2022,Arsenal,England,MID,87
-Diego Simeone,1994,Atletico Madrid,Argentina,MID,87
-Dimitri Payet,2016,West Ham United,France,MID,87
-Esteban Cambiasso,2008,Inter Milan,Argentina,MID,87
-Fernandinho,2019,Manchester City,Brazil,MID,87
-Ivan Rakitic,2013,Barcelona,Croatia,MID,87
-Javier Mascherano,2006,Liverpool,Argentina,MID,87
-Juan Mata,2011,Chelsea,Spain,MID,87
-Preben Elkjaer,1983,Verona,Denmark,MID,87
-Rai,1993,Paris Saint-Germain,Brazil,MID,87
-Riyad Mahrez,2014,Leicester City,Algeria,MID,87
-Robert Prosinecki,1989,Red Star Belgrade,Croatia,MID,87
-Siniša Mihajlovic,1999,Lazio,Serbia,MID,87
-Zvonimir Boban,1993,AC Milan,Croatia,MID,87
-Blaise Matuidi,2016,Paris Saint-Germain,France,MID,86
-Cuauhtemoc Blanco,1998,Club America,Mexico,MID,86
-Dejan Stankovic,2010,Inter Milan,Serbia,MID,86
-Dimitri Payet,2014,West Ham United,France,MID,86
-Fabinho,2020,Liverpool,Brazil,MID,86
-Fernandinho,2017,Manchester City,Brazil,MID,86
-Gheorghe Popescu,1997,Barcelona,Romania,MID,86
-Gilberto Silva,2004,Arsenal,Brazil,MID,86
-Hulk,2011,Porto,Brazil,MID,86
-Kai Havertz,2020,Bayer Leverkusen,Germany,MID,86
-Leonardo,1997,AC Milan,Brazil,MID,86
-Nuri Sahin,2011,Borussia Dortmund,Turkey,MID,86
-Sami Hyypia,2005,Liverpool,Finland,MID,86
-Shinji Kagawa,2012,Borussia Dortmund,Japan,MID,86
-Siniša Mihajlovic,1997,Lazio,Serbia,MID,86
-Thiago Motta,2014,Paris Saint-Germain,Italy,MID,86
-Tomas Rosicky,2002,Borussia Dortmund,Czech Republic,MID,86
-Ze Roberto,2007,Bayern Munich,Brazil,MID,86
-Dejan Stankovic,2008,Inter Milan,Serbia,MID,85
-Gheorghe Popescu,1995,Barcelona,Romania,MID,85
-Joao Moutinho,2017,Monaco,Portugal,MID,85
-Jordan Henderson,2020,Liverpool,England,MID,85
-Keisuke Honda,2010,CSKA Moscow,Japan,MID,85
-Leonardo,1995,AC Milan,Brazil,MID,85
-Park Ji-sung,2009,Manchester United,South Korea,MID,85
-Tomas Rosicky,2000,Borussia Dortmund,Czech Republic,MID,85
-Willian,2018,Chelsea,Brazil,MID,85
-Andres Guardado,2015,PSV Eindhoven,Mexico,MID,84
-Aurelien Tchouameni,2021,Monaco,France,MID,84
-Georginio Wijnaldum,2019,Liverpool,Netherlands,MID,84
-Julian Brandt,2019,Bayer Leverkusen,Germany,MID,84
-Karel Poborsky,1997,Manchester United,Czech Republic,MID,84
-Matias Fernandez,2006,Villarreal,Chile,MID,84
-Oscar,2014,Chelsea,Brazil,MID,84
-Ruben Neves,2019,Wolves,Portugal,MID,84
-Seydou Keita,2011,Barcelona,Mali,MID,84
-Ali Karimi,2005,Bayern Munich,Iran,MID,83
-Sebastian Kehl,2012,Borussia Dortmund,Germany,MID,83
-Seydou Doumbia,2012,CSKA Moscow,Ivory Coast,MID,83
-Yasuhito Endo,2008,Gamba Osaka,Japan,MID,83
-Claudio Reyna,2000,Rangers,United States,MID,82
-Eduardo Camavinga,2020,Rennes,France,MID,82
-Emre Can,2021,Borussia Dortmund,Germany,MID,82
-James Milner,2019,Liverpool,England,MID,82
-Mason Mount,2021,Chelsea,England,MID,82
-Niko Kovac,2003,Bayern Munich,Croatia,MID,82
-Sulley Muntari,2010,Inter Milan,Ghana,MID,82
-Tomas Soucek,2021,West Ham United,Czech Republic,MID,82
-Michael Bradley,2013,Roma,United States,MID,80
-Youssouf Fofana,2023,Monaco,France,MID,80
-Sunil Chhetri,2018,Bengaluru,India,MID,78
-Franz Beckenbauer,1974,Bayern Munich,Germany,DEF,98
-Franz Beckenbauer,1972,Bayern Munich,Germany,DEF,97
-Paolo Maldini,1994,AC Milan,Italy,DEF,97
-Franco Baresi,1989,AC Milan,Italy,DEF,96
-Paolo Maldini,1992,AC Milan,Italy,DEF,96
-Franco Baresi,1987,AC Milan,Italy,DEF,95
-Alessandro Nesta,2004,AC Milan,Italy,DEF,94
-Carlos Alberto,1970,Santos,Brazil,DEF,94
-Daniel Passarella,1978,River Plate,Argentina,DEF,94
-Djalma Santos,1962,Palmeiras,Brazil,DEF,94
-Fabio Cannavaro,2006,Juventus,Italy,DEF,94
-Gaetano Scirea,1982,Juventus,Italy,DEF,94
-Giacinto Facchetti,1965,Inter Milan,Italy,DEF,94
-Nilton Santos,1958,Botafogo,Brazil,DEF,94
-Sergio Ramos,2017,Real Madrid,Spain,DEF,94
-Alessandro Nesta,2002,AC Milan,Italy,DEF,93
-Carles Puyol,2009,Barcelona,Spain,DEF,93
-Carlos Alberto,1968,Santos,Brazil,DEF,93
-Daniel Passarella,1976,River Plate,Argentina,DEF,93
-Djalma Santos,1960,Palmeiras,Brazil,DEF,93
-Fabio Cannavaro,2004,Juventus,Italy,DEF,93
-Gaetano Scirea,1980,Juventus,Italy,DEF,93
-Giacinto Facchetti,1963,Inter Milan,Italy,DEF,93
-Jose Nasazzi,1930,Nacional,Uruguay,DEF,93
-Nilton Santos,1956,Botafogo,Brazil,DEF,93
-Philipp Lahm,2013,Bayern Munich,Germany,DEF,93
-Roberto Carlos,2002,Real Madrid,Brazil,DEF,93
-Sergio Ramos,2015,Real Madrid,Spain,DEF,93
-Virgil van Dijk,2019,Liverpool,Netherlands,DEF,93
-Cafu,2005,AC Milan,Brazil,DEF,92
-Carles Puyol,2007,Barcelona,Spain,DEF,92
-Dani Alves,2011,Barcelona,Brazil,DEF,92
-Javier Zanetti,2010,Inter Milan,Argentina,DEF,92
-John Terry,2005,Chelsea,England,DEF,92
-Jose Nasazzi,1928,Nacional,Uruguay,DEF,92
-Lilian Thuram,1998,Parma,France,DEF,92
-Matthias Sammer,1996,Borussia Dortmund,Germany,DEF,92
-Philipp Lahm,2011,Bayern Munich,Germany,DEF,92
-Roberto Carlos,2000,Real Madrid,Brazil,DEF,92
-Ruud Krol,1974,Ajax,Netherlands,DEF,92
-Virgil van Dijk,2017,Liverpool,Netherlands,DEF,92
-Cafu,2003,AC Milan,Brazil,DEF,91
-Claudio Gentile,1982,Juventus,Italy,DEF,91
-Dani Alves,2009,Barcelona,Brazil,DEF,91
-Giorgio Chiellini,2016,Juventus,Italy,DEF,91
-Javier Zanetti,2008,Inter Milan,Argentina,DEF,91
-John Terry,2003,Chelsea,England,DEF,91
-Lilian Thuram,1996,Parma,France,DEF,91
-Marcel Desailly,1994,AC Milan,France,DEF,91
-Marcelo,2017,Real Madrid,Brazil,DEF,91
-Matthias Sammer,1994,Borussia Dortmund,Germany,DEF,91
-Nemanja Vidic,2009,Manchester United,Serbia,DEF,91
-Rio Ferdinand,2008,Manchester United,England,DEF,91
-Ronald Koeman,1992,Barcelona,Netherlands,DEF,91
-Ruud Krol,1972,Ajax,Netherlands,DEF,91
-Thiago Silva,2013,Paris Saint-Germain,Brazil,DEF,91
-Andreas Brehme,1990,Inter Milan,Germany,DEF,90
-Ashley Cole,2010,Chelsea,England,DEF,90
-Claudio Gentile,1980,Juventus,Italy,DEF,90
-Fernando Hierro,1998,Real Madrid,Spain,DEF,90
-Gerard Pique,2011,Barcelona,Spain,DEF,90
-Giorgio Chiellini,2014,Juventus,Italy,DEF,90
-Giuseppe Bergomi,1989,Inter Milan,Italy,DEF,90
-Hector Chumpitaz,1970,Universitario,Peru,DEF,90
-Jaap Stam,1999,Manchester United,Netherlands,DEF,90
-Juergen Kohler,1997,Borussia Dortmund,Germany,DEF,90
-Leonardo Bonucci,2017,Juventus,Italy,DEF,90
-Maicon,2010,Inter Milan,Brazil,DEF,90
-Marcel Desailly,1992,AC Milan,France,DEF,90
-Marcelo,2015,Real Madrid,Brazil,DEF,90
-Nemanja Vidic,2007,Manchester United,Serbia,DEF,90
-Rio Ferdinand,2006,Manchester United,England,DEF,90
-Ronald Koeman,1990,Barcelona,Netherlands,DEF,90
-Thiago Silva,2011,Paris Saint-Germain,Brazil,DEF,90
-Vincent Kompany,2012,Manchester City,Belgium,DEF,90
-Andreas Brehme,1988,Inter Milan,Germany,DEF,89
-Ashley Cole,2008,Chelsea,England,DEF,89
-Diego Godin,2014,Atletico Madrid,Uruguay,DEF,89
-Fernando Hierro,1996,Real Madrid,Spain,DEF,89
-Gerard Pique,2009,Barcelona,Spain,DEF,89
-Giuseppe Bergomi,1987,Inter Milan,Italy,DEF,89
-Hector Chumpitaz,1968,Universitario,Peru,DEF,89
-Jaap Stam,1997,Manchester United,Netherlands,DEF,89
-Juergen Kohler,1995,Borussia Dortmund,Germany,DEF,89
-Kalidou Koulibaly,2019,Napoli,Senegal,DEF,89
-Laurent Blanc,1999,Marseille,France,DEF,89
-Leonardo Bonucci,2015,Juventus,Italy,DEF,89
-Lucio,2002,Bayern Munich,Brazil,DEF,89
-Maicon,2008,Inter Milan,Brazil,DEF,89
-Marquinhos,2020,Paris Saint-Germain,Brazil,DEF,89
-Mats Hummels,2013,Borussia Dortmund,Germany,DEF,89
-Pepe,2014,Real Madrid,Portugal,DEF,89
-Raphael Varane,2018,Real Madrid,France,DEF,89
-Ricardo Carvalho,2006,Chelsea,Portugal,DEF,89
-Roberto Ayala,2004,Valencia,Argentina,DEF,89
-Ruben Dias,2021,Manchester City,Portugal,DEF,89
-Sol Campbell,2004,Arsenal,England,DEF,89
-Tony Adams,1998,Arsenal,England,DEF,89
-Vincent Kompany,2010,Manchester City,Belgium,DEF,89
-Aldair,1994,Roma,Brazil,DEF,88
-Andrea Barzagli,2015,Juventus,Italy,DEF,88
-Andrew Robertson,2020,Liverpool,Scotland,DEF,88
-Bixente Lizarazu,2001,Bayern Munich,France,DEF,88
-David Alaba,2014,Bayern Munich,Austria,DEF,88
-Diego Godin,2012,Atletico Madrid,Uruguay,DEF,88
-Hans-Peter Briegel,1985,Verona,Germany,DEF,88
-Jerome Boateng,2016,Bayern Munich,Germany,DEF,88
-Joao Cancelo,2021,Manchester City,Portugal,DEF,88
-Jordi Alba,2015,Barcelona,Spain,DEF,88
-Jose Antonio Camacho,1982,Real Madrid,Spain,DEF,88
-Kalidou Koulibaly,2017,Napoli,Senegal,DEF,88
-Laurent Blanc,1997,Marseille,France,DEF,88
-Lucio,2000,Bayern Munich,Brazil,DEF,88
-Manuel Amoros,1984,Monaco,France,DEF,88
-Marquinhos,2018,Paris Saint-Germain,Brazil,DEF,88
-Mats Hummels,2011,Borussia Dortmund,Germany,DEF,88
-Patrice Evra,2009,Manchester United,France,DEF,88
-Pepe,2012,Real Madrid,Portugal,DEF,88
-Rafael Marquez,2006,Barcelona,Mexico,DEF,88
-Raphael Varane,2016,Real Madrid,France,DEF,88
-Roberto Ayala,2002,Valencia,Argentina,DEF,88
-Ruben Dias,2019,Manchester City,Portugal,DEF,88
-Sergio Busquets,2011,Barcelona,Spain,DEF,88
-Sol Campbell,2002,Arsenal,England,DEF,88
-Tony Adams,1996,Arsenal,England,DEF,88
-Trent Alexander-Arnold,2020,Liverpool,England,DEF,88
-Walter Samuel,2010,Inter Milan,Argentina,DEF,88
-Bixente Lizarazu,1999,Bayern Munich,France,DEF,87
-Dani Carvajal,2017,Real Madrid,Spain,DEF,87
-Hans-Peter Briegel,1983,Verona,Germany,DEF,87
-Ivan Cordoba,2003,Inter Milan,Colombia,DEF,87
-Jerome Boateng,2014,Bayern Munich,Germany,DEF,87
-Manuel Amoros,1982,Monaco,France,DEF,87
-Migueli,1978,Barcelona,Spain,DEF,87
-Milan Skriniar,2021,Inter Milan,Slovakia,DEF,87
-Ricardo Carvalho,2002,Chelsea,Portugal,DEF,87
-Sami Hyypia,2005,Liverpool,Finland,DEF,87
-Theo Hernandez,2022,AC Milan,France,DEF,87
-William Saliba,2024,Arsenal,France,DEF,87
-Aymeric Laporte,2019,Manchester City,Spain,DEF,86
-Branislav Ivanovic,2012,Chelsea,Serbia,DEF,86
-Diego Simeone,1996,Atletico Madrid,Argentina,DEF,86
-Eder Militao,2022,Real Madrid,Brazil,DEF,86
-Fernando Couto,2000,Lazio,Portugal,DEF,86
-Gary Neville,1999,Manchester United,England,DEF,86
-Jamie Carragher,2005,Liverpool,England,DEF,86
-Jan Vertonghen,2016,Tottenham Hotspur,Belgium,DEF,86
-Juan,2004,Bayer Leverkusen,Brazil,DEF,86
-Kolo Toure,2004,Arsenal,Ivory Coast,DEF,86
-Kyle Walker,2019,Manchester City,England,DEF,86
-Laurent Koscielny,2016,Arsenal,France,DEF,86
-Mehdi Benatia,2014,Roma,Morocco,DEF,86
-Miguel Angel Nadal,1992,Barcelona,Spain,DEF,86
-Ricardo Carvalho,2011,Real Madrid,Portugal,DEF,86
-Stefan Effenberg,2001,Bayern Munich,Germany,DEF,86
-Stefan de Vrij,2021,Inter Milan,Netherlands,DEF,86
-Toby Alderweireld,2017,Tottenham Hotspur,Belgium,DEF,86
-Willy Sagnol,2006,Bayern Munich,France,DEF,86
-Cesar Azpilicueta,2017,Chelsea,Spain,DEF,85
-Christian Chivu,2010,Inter Milan,Romania,DEF,85
-John Stones,2021,Manchester City,England,DEF,85
-Juanfran,2016,Atletico Madrid,Spain,DEF,85
-Kostas Manolas,2018,Roma,Greece,DEF,85
-Ledley King,2007,Tottenham Hotspur,England,DEF,85
-Nicolas Otamendi,2018,Manchester City,Argentina,DEF,85
-Pablo Zabaleta,2012,Manchester City,Argentina,DEF,85
-Bacary Sagna,2012,Arsenal,France,DEF,84
-Daniel Agger,2009,Liverpool,Denmark,DEF,84
-David Luiz,2013,Chelsea,Brazil,DEF,84
-Gary Cahill,2015,Chelsea,England,DEF,84
-Hugo Ibarra,2003,Boca Juniors,Argentina,DEF,84
-Joel Matip,2019,Liverpool,Cameroon,DEF,84
-Jules Kounde,2021,Sevilla,France,DEF,84
-Lauren,2004,Arsenal,Cameroon,DEF,84
-Lisandro Martinez,2023,Manchester United,Argentina,DEF,84
-Mario Yepes,2006,Paris Saint-Germain,Colombia,DEF,84
-Per Mertesacker,2014,Arsenal,Germany,DEF,84
-Thomas Vermaelen,2010,Arsenal,Belgium,DEF,84
-Alex,2010,Chelsea,Brazil,DEF,83
-Luke Shaw,2021,Manchester United,England,DEF,83
-Martin Skrtel,2012,Liverpool,Slovakia,DEF,83
-Maxwell,2015,Paris Saint-Germain,Brazil,DEF,83
-Nathan Ake,2023,Manchester City,Netherlands,DEF,83
-Alessandro Florenzi,2017,Roma,Italy,DEF,82
-Domenico Criscito,2012,Zenit,Italy,DEF,82
-Glen Johnson,2010,Liverpool,England,DEF,82
-Harry Maguire,2019,Leicester City,England,DEF,82
-Hector Bellerin,2016,Arsenal,Spain,DEF,82
-Joe Gomez,2020,Liverpool,England,DEF,82
-Kieran Tierney,2020,Arsenal,Scotland,DEF,82
-Marcos Alonso,2017,Chelsea,Spain,DEF,82
-Nacho Monreal,2017,Arsenal,Spain,DEF,82
-Oleksandr Zinchenko,2021,Manchester City,Ukraine,DEF,82
-Sergio Reguilon,2020,Sevilla,Spain,DEF,82
-Steve Finnan,2006,Liverpool,Ireland,DEF,82
-Dejan Lovren,2018,Liverpool,Croatia,DEF,81
-Emmanuel Eboue,2006,Arsenal,Ivory Coast,DEF,80
-John O'Shea,2009,Manchester United,Ireland,DEF,80
-Paulo Ferreira,2005,Chelsea,Portugal,DEF,80
-Wes Brown,2008,Manchester United,England,DEF,80
-Lev Yashin,1963,Dynamo Moscow,Soviet Union,GK,97
-Gianluigi Buffon,2006,Juventus,Italy,GK,96
-Manuel Neuer,2014,Bayern Munich,Germany,GK,96
-Iker Casillas,2010,Real Madrid,Spain,GK,94
-Oliver Kahn,2001,Bayern Munich,Germany,GK,94
-Dino Zoff,1982,Juventus,Italy,GK,93
-Peter Schmeichel,1999,Manchester United,Denmark,GK,93
-Alisson Becker,2019,Liverpool,Brazil,GK,92
-Edwin van der Sar,2008,Manchester United,Netherlands,GK,92
-Gordon Banks,1970,Stoke City,England,GK,92
-Petr Cech,2005,Chelsea,Czech Republic,GK,92
-Sepp Maier,1974,Bayern Munich,Germany,GK,92
-Thibaut Courtois,2022,Real Madrid,Belgium,GK,92
-Jan Oblak,2016,Atletico Madrid,Slovenia,GK,91
-Julio Cesar,2010,Inter Milan,Brazil,GK,91
-Ubaldo Fillol,1978,River Plate,Argentina,GK,91
-Claudio Taffarel,1994,Parma,Brazil,GK,90
-David de Gea,2018,Manchester United,Spain,GK,90
-Dida,2005,AC Milan,Brazil,GK,90
-Ederson,2021,Manchester City,Brazil,GK,90
-Jose Luis Chilavert,1995,Velez Sarsfield,Paraguay,GK,90
-Michel Preud'homme,1988,Mechelen,Belgium,GK,90
-Walter Zenga,1990,Inter Milan,Italy,GK,90
-Keylor Navas,2017,Real Madrid,Costa Rica,GK,89
-Angelo Peruzzi,1997,Juventus,Italy,GK,88
-Fabien Barthez,1998,Monaco,France,GK,88
-Francesco Toldo,2000,Inter Milan,Italy,GK,88
-Hugo Lloris,2018,Tottenham Hotspur,France,GK,88
-Rene Higuita,1990,Atletico Nacional,Colombia,GK,88
-Samir Handanovic,2015,Inter Milan,Slovenia,GK,88
-Victor Valdes,2009,Barcelona,Spain,GK,88
-Andreas Koepke,1996,Marseille,Germany,GK,87
-Bodo Illgner,1998,Real Madrid,Germany,GK,87
-Claudio Bravo,2015,Barcelona,Chile,GK,87
-Jens Lehmann,2004,Arsenal,Germany,GK,87
-Santiago Canizares,2001,Valencia,Spain,GK,87
-Gregor Kobel,2023,Borussia Dortmund,Switzerland,GK,86
-Pepe Reina,2007,Liverpool,Spain,GK,86
-Sergio Goycochea,1990,Racing Club,Argentina,GK,86
-Luca Marchegiani,2000,Lazio,Italy,GK,85
+Name,Year,Club,Nationality,Position,Overall,First Trait,Second Trait,Third Trait
+Lionel Messi,2012,Barcelona,Argentina,"RW, CAM, ST",99,Inside Forward,Creative Genius,False 9
+Pele,1970,Santos,Brazil,"CAM, ST",99,Creative Genius,False 9,
+Cristiano Ronaldo,2014,Real Madrid,Portugal,"LW, ST, RW",98,Inside Forward,Clinical Finisher,Speedster
+Ronaldo Nazario,1997,Barcelona,Brazil,ST,98,Clinical Finisher,,
+Diego Maradona,1987,Napoli,Argentina,"CAM, ST",98,Creative Genius,False 9,
+Franz Beckenbauer,1974,Bayern Munich,Germany,"CB, CDM",98,Sweeper,Regista,
+Zinedine Zidane,2002,Real Madrid,France,"CAM, CM, LM",97,Creative Genius,Connector,Wide Creator
+Paolo Maldini,1994,AC Milan,Italy,"LB, CB",97,Defensive Fullback,Stopper,
+Lothar Matthaus,1990,Inter Milan,Germany,"CM, CDM, CAM",97,Box-to-Box,Regista,Long Shot Specialist
+Gerd Mueller,1972,Bayern Munich,Germany,ST,97,Poacher,,
+Gerd Muller,1972,Bayern Munich,Germany,ST,97,Poacher,,
+Johan Cruyff,1972,Ajax,Netherlands,"CAM, ST, RW",97,Creative Genius,False 9,Inside Forward
+Lev Yashin,1963,Dynamo Moscow,Soviet Union,GK,97,Penalty Specialist,,
+Garrincha,1962,Botafogo,Brazil,"RW, RM",97,Wide Creator,Cross Specialist,
+Alfredo Di Stefano,1957,Real Madrid,Argentina,"ST, CAM, CM",97,False 9,Creative Genius,Connector
+Jude Bellingham,2024,Real Madrid,England,"CAM, CM",96,Advanced Playmaker,Box-to-Box,
+Vinicius Junior,2024,Real Madrid,Brazil,"LW, RW",96,Speedster,Wide Creator,
+Rodri,2023,Manchester City,Spain,"CDM, CM",96,Anchor,Deep Playmaker,
+Manuel Neuer,2014,Bayern Munich,Germany,GK,96,Distribution Keeper,,
+Andres Iniesta,2012,Barcelona,Spain,"CM, CAM, LW",96,Connector,Creative Genius,Wide Creator
+Xavi,2010,Barcelona,Spain,CM,96,Tempo Controller,,
+Gianluigi Buffon,2006,Juventus,Italy,GK,96,Commanding Keeper,,
+Ronaldinho,2005,Barcelona,Brazil,"LW, CAM",96,Wide Creator,Creative Genius,
+Thierry Henry,2004,Arsenal,France,"ST, LW",96,Clinical Finisher,Inside Forward,
+Franco Baresi,1989,AC Milan,Italy,CB,96,Sweeper,Ball Playing Defender,
+Marco van Basten,1989,AC Milan,Netherlands,ST,96,Clinical Finisher,,
+Michel Platini,1984,Juventus,France,"CAM, CM",96,Set Piece Specialist,Connector,
+Bobby Charlton,1966,Manchester United,England,"CAM, CM",96,Long Shot Specialist,Connector,
+Eusebio,1966,Benfica,Portugal,ST,96,Clinical Finisher,,
+Mane Garrincha,1962,Botafogo,Brazil,RW,96,Wide Creator,,
+Ferenc Puskas,1960,Real Madrid,Hungary,"ST, LW",96,Clinical Finisher,Inside Forward,
+Didi,1958,Botafogo,Brazil,"CM, CAM",96,Connector,Creative Genius,
+Robert Lewandowski,2020,Bayern Munich,Poland,ST,95,Clinical Finisher,,
+Luka Modric,2018,Real Madrid,Croatia,"CM, CAM",95,Tempo Controller,Creative Genius,
+Lionel Messi,2009,Barcelona,Argentina,"RW, CAM, ST",95,Inside Forward,Creative Genius,False 9
+Romario,1994,Barcelona,Brazil,ST,95,Poacher,,
+Lothar Matthaeus,1990,Inter Milan,Germany,"CM, CDM, CB",95,Deep Playmaker,Destroyer,Ball Playing Defender
+Zico,1981,Flamengo,Brazil,CAM,95,Creative Genius,,
+Mario Kempes,1978,Valencia,Argentina,"ST, CAM",95,False 9,Creative Genius,
+Gianni Rivera,1969,AC Milan,Italy,"CAM, CM",95,Creative Genius,Connector,
+George Best,1968,Manchester United,Northern Ireland,"RW, LW",95,Wide Creator,Speedster,
+Pele,1967,Santos,Brazil,"CAM, ST",95,Creative Genius,False 9,
+Bobby Moore,1966,West Ham United,England,CB,95,Sweeper,Ball Playing Defender,
+Erling Haaland,2023,Manchester City,Norway,ST,94,Poacher,,
+Karim Benzema,2022,Real Madrid,France,ST,94,False 9,,
+Kylian Mbappe,2022,Paris Saint-Germain,France,"ST, LW, RW",94,Clinical Finisher,Speedster,Inside Forward
+Kevin De Bruyne,2020,Manchester City,Belgium,"CAM, CM, RM",94,Creative Genius,Connector,Wide Creator
+Sergio Ramos,2017,Real Madrid,Spain,"CB, RB",94,Aerial Monster,Crossing Fullback,
+Luis Suarez,2016,Barcelona,Uruguay,ST,94,Pressing Forward,,
+Neymar,2015,Barcelona,Brazil,"LW, CAM",94,Inside Forward,Creative Genius,
+Cristiano Ronaldo,2011,Real Madrid,Portugal,"LW, ST, RW",94,Inside Forward,Clinical Finisher,Speedster
+Iker Casillas,2010,Real Madrid,Spain,GK,94,Shot Stopper,,
+Kaka,2007,AC Milan,Brazil,CAM,94,Creative Genius,,
+Andrea Pirlo,2006,AC Milan,Italy,"CM, CDM",94,Deep Playmaker,Regista,
+Fabio Cannavaro,2006,Juventus,Italy,CB,94,Stopper,Aerial Monster,
+Alessandro Nesta,2004,AC Milan,Italy,CB,94,Ball Playing Defender,Stopper,
+Andriy Shevchenko,2004,AC Milan,Ukraine,ST,94,Clinical Finisher,,
+Luis Figo,2001,Real Madrid,Portugal,"RW, RM, LW",94,Cross Specialist,Wide Creator,Speedster
+Oliver Kahn,2001,Bayern Munich,Germany,GK,94,Commanding Keeper,,
+Rivaldo,1999,Barcelona,Brazil,"CAM, LW",94,Creative Genius,Inside Forward,
+Ronaldo Nazario,1994,PSV Eindhoven,Brazil,ST,94,Clinical Finisher,,
+Michael Laudrup,1993,Barcelona,Denmark,"CAM, CM",94,Creative Genius,Connector,
+Roberto Baggio,1993,Juventus,Italy,"CAM, ST",94,Creative Genius,False 9,
+Diego Maradona,1984,Napoli,Argentina,"CAM, ST",94,Creative Genius,False 9,
+Gaetano Scirea,1982,Juventus,Italy,CB,94,Sweeper,Ball Playing Defender,
+Karl-Heinz Rummenigge,1981,Bayern Munich,Germany,"ST, RW",94,Clinical Finisher,Inside Forward,
+Daniel Passarella,1978,River Plate,Argentina,CB,94,Stopper,Aerial Monster,
+Teofilo Cubillas,1978,Porto,Peru,"CAM, ST",94,Creative Genius,False 9,
+Paul Breitner,1974,Bayern Munich,Germany,"LB, CM",94,Inverted Fullback,Tempo Controller,
+Gunter Netzer,1972,Borussia Monchengladbach,Germany,"CAM, CM",94,Creative Genius,Connector,
+Franz Beckenbauer,1971,Bayern Munich,Germany,"CB, CDM",94,Sweeper,Regista,
+Carlos Alberto,1970,Santos,Brazil,"RB, CB",94,Crossing Fullback,Stopper,
+Jairzinho,1970,Botafogo,Brazil,"RW, ST",94,Inside Forward,Clinical Finisher,
+Rivelino,1970,Corinthians,Brazil,"CAM, CM, LW",94,Creative Genius,Connector,Wide Creator
+Tostao,1970,Cruzeiro,Brazil,"ST, CAM",94,False 9,Creative Genius,
+Giacinto Facchetti,1965,Inter Milan,Italy,"LB, LM",94,Overlapping Runner,Cross Specialist,
+Sandro Mazzola,1964,Inter Milan,Italy,"CAM, ST",94,Creative Genius,False 9,
+Djalma Santos,1962,Palmeiras,Brazil,RB,94,Crossing Fullback,Overlapping Runner,
+Omar Sivori,1961,Juventus,Argentina,"ST, CAM",94,False 9,Creative Genius,
+Nilton Santos,1958,Botafogo,Brazil,LB,94,Crossing Fullback,Overlapping Runner,
+Raymond Kopa,1958,Real Madrid,France,"CAM, RW",94,Creative Genius,Wide Creator,
+Zizinho,1950,Flamengo,Brazil,"CAM, RW",94,Creative Genius,Wide Creator,
+Leonidas,1938,Flamengo,Brazil,ST,94,Clinical Finisher,,
+Lamine Yamal,2026,Barcelona,Spain,"RW, RM, CAM",93,Inside Forward,Cross Specialist,Creative Genius
+Cole Palmer,2025,Chelsea,England,"CAM, RW",93,Advanced Playmaker,Wide Creator,
+Federico Valverde,2024,Real Madrid,Uruguay,"CM, RM, CDM",93,Box-to-Box,Wide Creator,Regista
+Phil Foden,2024,Manchester City,England,"CAM, RW, LW",93,Creative Genius,Wide Creator,Speedster
+Eden Hazard,2019,Chelsea,Belgium,"LW, CAM",93,Inside Forward,Creative Genius,
+Virgil van Dijk,2019,Liverpool,Netherlands,CB,93,Aerial Monster,Stopper,
+Mohamed Salah,2018,Liverpool,Egypt,"RW, ST",93,Inside Forward,Clinical Finisher,
+Toni Kroos,2016,Real Madrid,Germany,"CM, CDM",93,Tempo Controller,Regista,
+Arjen Robben,2014,Bayern Munich,Netherlands,"RW, RM, LW",93,Inside Forward,Speedster,Wide Creator
+Philipp Lahm,2013,Bayern Munich,Germany,"RB, LB, CDM",93,Inverted Fullback,Crossing Fullback,Anchor
+Zlatan Ibrahimovic,2012,Paris Saint-Germain,Sweden,ST,93,Target Man,,
+Carles Puyol,2009,Barcelona,Spain,"CB, RB",93,Stopper,Crossing Fullback,
+Samuel Eto'o,2006,Barcelona,Cameroon,"ST, RW",93,Clinical Finisher,Inside Forward,
+Steven Gerrard,2005,Liverpool,England,"CM, CAM, CDM",93,Box-to-Box,Long Shot Specialist,Regista
+Patrick Vieira,2004,Arsenal,France,"CM, CDM",93,Box-to-Box,Destroyer,
+Roberto Carlos,2002,Real Madrid,Brazil,"LB, LM",93,Overlapping Runner,Cross Specialist,
+Francesco Totti,2001,Roma,Italy,"CAM, ST",93,Creative Genius,False 9,
+Raul,2001,Real Madrid,Spain,"ST, CAM",93,Clinical Finisher,Creative Genius,
+Raul Gonzalez,2001,Real Madrid,Spain,"ST, CAM",93,False 9,Creative Genius,
+Peter Schmeichel,1999,Manchester United,Denmark,GK,93,Commanding Keeper,,
+Zinedine Zidane,1999,Real Madrid,France,"CAM, CM, LM",93,Creative Genius,Connector,Wide Creator
+Alessandro Del Piero,1998,Juventus,Italy,"ST, CAM",93,False 9,Creative Genius,
+Gabriel Batistuta,1998,Fiorentina,Argentina,ST,93,Clinical Finisher,,
+Hristo Stoichkov,1994,Barcelona,Bulgaria,"LW, ST",93,Inside Forward,Clinical Finisher,
+Paolo Maldini,1991,AC Milan,Italy,"LB, CB",93,Defensive Fullback,Stopper,
+Ruud Gullit,1988,AC Milan,Netherlands,"CM, CAM, ST",93,Connector,Creative Genius,False 9
+Falcao,1983,Roma,Brazil,"CM, CDM",93,Deep Playmaker,Regista,
+Dino Zoff,1982,Juventus,Italy,GK,93,Commanding Keeper,,
+Gerd Mueller,1969,Bayern Munich,Germany,ST,93,Poacher,,
+Johan Cruyff,1969,Ajax,Netherlands,"CAM, ST, RW",93,Creative Genius,False 9,Inside Forward
+Lev Yashin,1960,Dynamo Moscow,Soviet Union,GK,93,Penalty Specialist,,
+Uwe Seeler,1960,Hamburger SV,Germany,ST,93,Clinical Finisher,,
+Just Fontaine,1958,Reims,France,ST,93,Clinical Finisher,,
+Alfredo Di Stefano,1954,Real Madrid,Argentina,"ST, CAM, CM",93,False 9,Creative Genius,Connector
+Jose Nasazzi,1930,Nacional,Uruguay,CB,93,Stopper,Aerial Monster,
+Khvicha Kvaratskhelia,2025,Paris Saint-Germain,Georgia,"LW, LM, RW",92,Wide Creator,Cross Specialist,Speedster
+Thibaut Courtois,2022,Real Madrid,Belgium,GK,92,Shot Stopper,,
+Frenkie de Jong,2021,Barcelona,Netherlands,"CM, CDM",92,Connector,Regista,
+Alisson Becker,2019,Liverpool,Brazil,GK,92,Distribution Keeper,,
+Franck Ribery,2013,Bayern Munich,France,"LW, LM",92,Wide Creator,Cross Specialist,
+Sergio Aguero,2012,Manchester City,Argentina,ST,92,Clinical Finisher,,
+Dani Alves,2011,Barcelona,Brazil,"RB, RM",92,Crossing Fullback,Cross Specialist,
+Manuel Neuer,2011,Schalke 04,Germany,GK,92,Distribution Keeper,,
+Javier Zanetti,2010,Inter Milan,Argentina,"RB, LB, CM",92,Defensive Fullback,Crossing Fullback,Tempo Controller
+Wayne Rooney,2010,Manchester United,England,"ST, CAM",92,False 9,Creative Genius,
+Andres Iniesta,2009,Barcelona,Spain,"CM, CAM, LW",92,Connector,Creative Genius,Wide Creator
+Edwin van der Sar,2008,Manchester United,Netherlands,GK,92,Commanding Keeper,,
+Xavi,2007,Barcelona,Spain,CM,92,Tempo Controller,,
+Cafu,2005,AC Milan,Brazil,RB,92,Overlapping Runner,Crossing Fullback,
+Frank Lampard,2005,Chelsea,England,"CM, CAM",92,Box-to-Box,Long Shot Specialist,
+John Terry,2005,Chelsea,England,CB,92,Stopper,Aerial Monster,
+Petr Cech,2005,Chelsea,Czech Republic,GK,92,Commanding Keeper,,
+Gianluigi Buffon,2003,Juventus,Italy,GK,92,Commanding Keeper,,
+Paul Scholes,2003,Manchester United,England,"CM, CAM",92,Connector,Long Shot Specialist,
+Pavel Nedved,2003,Juventus,Czech Republic,"LM, CAM, CM",92,Wide Creator,Creative Genius,Connector
+Ronaldinho,2002,Paris Saint-Germain,Brazil,"LW, CAM",92,Wide Creator,Creative Genius,
+Henrik Larsson,2001,Celtic,Sweden,ST,92,Clinical Finisher,,
+Thierry Henry,2001,Arsenal,France,"ST, LW",92,Clinical Finisher,Inside Forward,
+Dennis Bergkamp,1998,Arsenal,Netherlands,"ST, CAM",92,False 9,Creative Genius,
+Lilian Thuram,1998,Parma,France,"RB, CB",92,Defensive Fullback,Stopper,
+Alan Shearer,1996,Newcastle United,England,ST,92,Clinical Finisher,,
+Matthias Sammer,1996,Borussia Dortmund,Germany,"CB, CDM",92,Sweeper,Destroyer,
+George Weah,1995,AC Milan,Liberia,ST,92,Clinical Finisher,,
+Jurgen Klinsmann,1995,Bayern Munich,Germany,ST,92,Clinical Finisher,,
+Frank Rijkaard,1989,AC Milan,Netherlands,"CDM, CB, CM",92,Destroyer,Ball Playing Defender,Deep Playmaker
+Hugo Sanchez,1988,Real Madrid,Mexico,ST,92,Clinical Finisher,,
+Franco Baresi,1986,AC Milan,Italy,CB,92,Sweeper,Ball Playing Defender,
+Marco van Basten,1986,AC Milan,Netherlands,ST,92,Clinical Finisher,,
+Michel Platini,1981,Juventus,France,"CAM, CM",92,Set Piece Specialist,Connector,
+Ruud Krol,1974,Ajax,Netherlands,"LB, CB",92,Crossing Fullback,Stopper,
+Sepp Maier,1974,Bayern Munich,Germany,GK,92,Commanding Keeper,,
+Johan Neeskens,1973,Ajax,Netherlands,"CM, CDM",92,Deep Playmaker,Regista,
+Gordon Banks,1970,Stoke City,England,GK,92,Commanding Keeper,,
+Eusebio,1963,Benfica,Portugal,ST,92,Clinical Finisher,,
+Mario Zagallo,1962,Botafogo,Brazil,"LW, LM",92,Wide Creator,Cross Specialist,
+Mane Garrincha,1959,Botafogo,Brazil,RW,92,Wide Creator,,
+Ferenc Puskas,1957,Real Madrid,Hungary,"ST, LW",92,Clinical Finisher,Inside Forward,
+Victor Osimhen,2025,Galatasaray,Nigeria,ST,91,Clinical Finisher,,
+Julian Alvarez,2024,Atletico Madrid,Argentina,"ST, RW, CAM",91,Pressing Forward,Inside Forward,Creative Genius
+Mike Maignan,2022,AC Milan,France,GK,91,Sweeper Keeper,,
+Pedri,2021,Barcelona,Spain,"CM, CAM, LW",91,Connector,Advanced Playmaker,Wide Creator
+Sadio Mane,2019,Liverpool,Senegal,"LW, RW, ST",91,Inside Forward,Speedster,Clinical Finisher
+Harry Kane,2018,Tottenham Hotspur,England,"ST, CAM",91,False 9,Creative Genius,
+Marcelo,2017,Real Madrid,Brazil,"LB, LM",91,Overlapping Runner,Cross Specialist,
+N'Golo Kante,2017,Chelsea,France,"CDM, CM",91,Regista,Deep Playmaker,
+Robert Lewandowski,2017,Bayern Munich,Poland,ST,91,Clinical Finisher,,
+Antoine Griezmann,2016,Atletico Madrid,France,"ST, CAM, RW",91,Pressing Forward,Creative Genius,Inside Forward
+Giorgio Chiellini,2016,Juventus,Italy,CB,91,Stopper,Aerial Monster,
+Jan Oblak,2016,Atletico Madrid,Slovenia,GK,91,Shot Stopper,,
+Luka Modric,2015,Real Madrid,Croatia,"CM, CAM",91,Tempo Controller,Creative Genius,
+Yaya Toure,2014,Manchester City,Ivory Coast,"CM, CDM, CAM",91,Box-to-Box,Regista,Creative Genius
+Bastian Schweinsteiger,2013,Bayern Munich,Germany,"CM, CDM, RM",91,Box-to-Box,Regista,Wide Creator
+Thiago Silva,2013,Paris Saint-Germain,Brazil,CB,91,Stopper,Aerial Monster,
+David Silva,2012,Manchester City,Spain,"CAM, CM, LW",91,Creative Genius,Connector,Wide Creator
+Radamel Falcao,2012,Atletico Madrid,Colombia,ST,91,Clinical Finisher,,
+Sergio Busquets,2011,Barcelona,Spain,CDM,91,Anchor,,
+Didier Drogba,2010,Chelsea,Ivory Coast,ST,91,Target Man,,
+Julio Cesar,2010,Inter Milan,Brazil,GK,91,Sweeper Keeper,,
+Wesley Sneijder,2010,Inter Milan,Netherlands,"CAM, CM",91,Advanced Playmaker,Connector,
+David Villa,2009,Valencia,Spain,"ST, LW",91,Clinical Finisher,Inside Forward,
+Nemanja Vidic,2009,Manchester United,Serbia,CB,91,Stopper,Aerial Monster,
+Fernando Torres,2008,Liverpool,Spain,ST,91,Clinical Finisher,,
+Rio Ferdinand,2008,Manchester United,England,CB,91,Ball Playing Defender,Stopper,
+Clarence Seedorf,2007,AC Milan,Netherlands,"CM, CAM, RM",91,Box-to-Box,Creative Genius,Wide Creator
+Juan Roman Riquelme,2007,Boca Juniors,Argentina,CAM,91,Creative Genius,,
+Lionel Messi,2006,Barcelona,Argentina,"RW, CAM",91,Inside Forward,Creative Genius,
+Ruud van Nistelrooy,2003,Manchester United,Netherlands,ST,91,Clinical Finisher,,
+Michael Ballack,2002,Bayer Leverkusen,Germany,"CM, CAM, CDM",91,Deep Playmaker,Creative Genius,Regista
+Fernando Redondo,2000,Real Madrid,Argentina,"CDM, CM",91,Regista,Deep Playmaker,
+Gheorghe Hagi,2000,Galatasaray,Romania,"CAM, LW",91,Creative Genius,Wide Creator,
+David Beckham,1999,Manchester United,England,"RM, CM, RW",91,Cross Specialist,Tempo Controller,Speedster
+Roy Keane,1999,Manchester United,Ireland,"CM, CDM",91,Box-to-Box,Destroyer,
+Ryan Giggs,1999,Manchester United,Wales,"LM, LW",91,Wide Creator,Speedster,
+Didier Deschamps,1998,Juventus,France,"CDM, CM",91,Regista,Deep Playmaker,
+Eric Cantona,1994,Manchester United,France,"ST, CAM",91,False 9,Creative Genius,
+Marcel Desailly,1994,AC Milan,France,"CB, CDM",91,Stopper,Destroyer,
+Ronald Koeman,1992,Barcelona,Netherlands,"CB, CDM",91,Ball Playing Defender,Destroyer,
+Jean-Pierre Papin,1991,Marseille,France,ST,91,Clinical Finisher,,
+Romario,1991,Barcelona,Brazil,ST,91,Poacher,,
+Rudi Voller,1990,Roma,Germany,ST,91,Clinical Finisher,,
+Lothar Matthaeus,1987,Inter Milan,Germany,"CM, CDM, CB",91,Deep Playmaker,Destroyer,Ball Playing Defender
+Claudio Gentile,1982,Juventus,Italy,"CB, RB",91,Stopper,Crossing Fullback,
+Paolo Rossi,1982,Juventus,Italy,ST,91,Clinical Finisher,,
+Socrates,1982,Corinthians,Brazil,"CAM, CM",91,Creative Genius,Connector,
+Ubaldo Fillol,1978,River Plate,Argentina,GK,91,Commanding Keeper,,
+Zico,1978,Flamengo,Brazil,CAM,91,Creative Genius,,
+Gerson,1970,Sao Paulo,Brazil,"CM, CAM",91,Connector,Creative Genius,
+Dragan Dzajic,1968,Red Star Belgrade,Serbia,LW,91,Wide Creator,,
+George Best,1965,Manchester United,Northern Ireland,"RW, LW",91,Wide Creator,Speedster,
+Pele,1964,Santos,Brazil,"CAM, ST",91,Creative Genius,False 9,
+Obdulio Varela,1950,Penarol,Uruguay,"CDM, CM",91,Regista,Deep Playmaker,
+Alexander Isak,2026,Newcastle United,Sweden,"ST, LW",90,Clinical Finisher,Inside Forward,
+Rafael Leao,2025,AC Milan,Portugal,"LW, LM, ST",90,Inside Forward,Cross Specialist,Clinical Finisher
+Bruno Guimaraes,2024,Newcastle United,Brazil,"CM, CDM",90,Deep Playmaker,Regista,
+Emiliano Martinez,2022,Aston Villa,Argentina,GK,90,Penalty Specialist,,
+Son Heung-min,2022,Tottenham Hotspur,South Korea,"LW, ST, RW",90,Inside Forward,Clinical Finisher,Speedster
+Ederson,2021,Manchester City,Brazil,GK,90,Distribution Keeper,,
+Erling Haaland,2020,Red Bull Salzburg,Norway,ST,90,Poacher,,
+Joshua Kimmich,2020,Bayern Munich,Germany,"RB, CDM, CM",90,Inverted Fullback,Regista,Tempo Controller
+Hakim Ziyech,2019,Ajax,Morocco,"RW, CAM",90,Wide Creator,Creative Genius,
+Karim Benzema,2019,Real Madrid,France,ST,90,False 9,,
+Kylian Mbappe,2019,Paris Saint-Germain,France,"LW, ST, RW",90,Speedster,Clinical Finisher,Inside Forward
+David de Gea,2018,Manchester United,Spain,GK,90,Shot Stopper,,
+Casemiro,2017,Real Madrid,Brazil,CDM,90,Anchor,,
+Kevin De Bruyne,2017,Manchester City,Belgium,"CAM, CM, RM",90,Creative Genius,Connector,Wide Creator
+Leonardo Bonucci,2017,Juventus,Italy,CB,90,Stopper,Aerial Monster,
+Gonzalo Higuain,2016,Napoli,Argentina,ST,90,Clinical Finisher,,
+Sergio Ramos,2014,Real Madrid,Spain,"CB, RB",90,Aerial Monster,Crossing Fullback,
+Thomas Mueller,2014,Bayern Munich,Germany,"CAM, ST, RW",90,Creative Genius,False 9,Inside Forward
+Edinson Cavani,2013,Napoli,Uruguay,ST,90,Clinical Finisher,,
+Luis Suarez,2013,Liverpool,Uruguay,ST,90,Pressing Forward,,
+Marco Reus,2013,Borussia Dortmund,Germany,"CAM, LW, ST",90,Creative Genius,Inside Forward,False 9
+Robin van Persie,2013,Manchester United,Netherlands,"ST, RW",90,Clinical Finisher,Inside Forward,
+Mesut Ozil,2012,Real Madrid,Germany,"CAM, RW",90,Creative Genius,Wide Creator,
+Neymar,2012,Santos,Brazil,"LW, CAM",90,Inside Forward,Creative Genius,
+Vincent Kompany,2012,Manchester City,Belgium,CB,90,Stopper,Aerial Monster,
+Gerard Pique,2011,Barcelona,Spain,CB,90,Ball Playing Defender,Stopper,
+Ashley Cole,2010,Chelsea,England,LB,90,Defensive Fullback,Crossing Fullback,
+Cesc Fabregas,2010,Arsenal,Spain,"CM, CAM, CDM",90,Deep Playmaker,Creative Genius,Regista
+Diego Forlan,2010,Atletico Madrid,Uruguay,ST,90,Clinical Finisher,,
+Maicon,2010,Inter Milan,Brazil,RB,90,Overlapping Runner,Crossing Fullback,
+Cristiano Ronaldo,2008,Manchester United,Portugal,"RW, LW, ST",90,Inside Forward,Speedster,Clinical Finisher
+Iker Casillas,2007,Real Madrid,Spain,GK,90,Shot Stopper,,
+Essam El Hadary,2006,Al Ahly,Egypt,GK,90,Commanding Keeper,,
+Juninho Pernambucano,2006,Lyon,Brazil,"CM, CAM",90,Connector,Set Piece Specialist,
+Miroslav Klose,2006,Werder Bremen,Germany,ST,90,Poacher,,
+Adriano,2005,Inter Milan,Brazil,ST,90,Clinical Finisher,,
+Claude Makelele,2005,Chelsea,France,CDM,90,Anchor,,
+Dida,2005,AC Milan,Brazil,GK,90,Commanding Keeper,,
+Kaka,2004,AC Milan,Brazil,CAM,90,Creative Genius,,
+Andrea Pirlo,2003,AC Milan,Italy,"CM, CDM",90,Deep Playmaker,Regista,
+Fabio Cannavaro,2003,Juventus,Italy,CB,90,Stopper,Aerial Monster,
+Pablo Aimar,2002,Valencia,Argentina,CAM,90,Creative Genius,,
+Alessandro Nesta,2001,AC Milan,Italy,CB,90,Ball Playing Defender,Stopper,
+Andriy Shevchenko,2001,AC Milan,Ukraine,ST,90,Clinical Finisher,,
+Michael Owen,2001,Liverpool,England,ST,90,Clinical Finisher,,
+Christian Vieri,1999,Inter Milan,Italy,ST,90,Target Man,,
+Hernan Crespo,1999,Parma,Argentina,ST,90,Clinical Finisher,,
+Jaap Stam,1999,Manchester United,Netherlands,CB,90,Stopper,Aerial Monster,
+Davor Suker,1998,Real Madrid,Croatia,ST,90,Clinical Finisher,,
+Edgar Davids,1998,Juventus,Netherlands,"CM, CDM",90,Engine,Ball Winner,
+Fernando Hierro,1998,Real Madrid,Spain,"CB, CDM",90,Ball Playing Defender,Destroyer,
+Luis Figo,1998,Real Madrid,Portugal,"RW, RM, LW",90,Cross Specialist,Wide Creator,Speedster
+Oliver Kahn,1998,Bayern Munich,Germany,GK,90,Commanding Keeper,,
+Rui Costa,1998,Fiorentina,Portugal,CAM,90,Creative Genius,,
+Juergen Kohler,1997,Borussia Dortmund,Germany,CB,90,Stopper,Aerial Monster,
+Nwankwo Kanu,1996,Ajax,Nigeria,"ST, CAM",90,False 9,Creative Genius,
+Rivaldo,1996,Barcelona,Brazil,"CAM, LW",90,Creative Genius,Inside Forward,
+Jose Luis Chilavert,1995,Velez Sarsfield,Paraguay,GK,90,Commanding Keeper,,
+Claudio Taffarel,1994,Parma,Brazil,GK,90,Commanding Keeper,,
+Abedi Pele,1991,Marseille,Ghana,"CAM, LW",90,Creative Genius,Wide Creator,
+Ronaldo Nazario,1991,Barcelona,Brazil,ST,90,Clinical Finisher,,
+Andreas Brehme,1990,Inter Milan,Germany,"LB, LM, RB",90,Overlapping Runner,Cross Specialist,Crossing Fullback
+Michael Laudrup,1990,Barcelona,Denmark,"CAM, CM",90,Creative Genius,Connector,
+Roberto Baggio,1990,Juventus,Italy,"CAM, ST",90,Creative Genius,False 9,
+Walter Zenga,1990,Inter Milan,Italy,GK,90,Commanding Keeper,,
+Giuseppe Bergomi,1989,Inter Milan,Italy,"RB, CB",90,Crossing Fullback,Stopper,
+Michel Preud'homme,1988,Mechelen,Belgium,GK,90,Commanding Keeper,,
+Emilio Butragueno,1987,Real Madrid,Spain,ST,90,Clinical Finisher,,
+Enzo Francescoli,1986,River Plate,Uruguay,"CAM, ST",90,Creative Genius,False 9,
+Diego Maradona,1981,Napoli,Argentina,"CAM, ST",90,Creative Genius,False 9,
+Gaetano Scirea,1979,Juventus,Italy,CB,90,Sweeper,Ball Playing Defender,
+Karl-Heinz Rummenigge,1978,Bayern Munich,Germany,"ST, RW",90,Clinical Finisher,Inside Forward,
+Daniel Passarella,1975,River Plate,Argentina,CB,90,Stopper,Aerial Monster,
+Hector Chumpitaz,1970,Universitario,Peru,CB,90,Stopper,Aerial Monster,
+Franz Beckenbauer,1968,Bayern Munich,Germany,"CB, CDM",90,Sweeper,Regista,
+Carlos Alberto,1967,Santos,Brazil,"RB, CB",90,Crossing Fullback,Stopper,
+Jairzinho,1967,Botafogo,Brazil,"RW, ST",90,Inside Forward,Clinical Finisher,
+Rivelino,1967,Corinthians,Brazil,"CAM, CM, LW",90,Creative Genius,Connector,Wide Creator
+Giacinto Facchetti,1962,Inter Milan,Italy,"LB, LM",90,Overlapping Runner,Cross Specialist,
+Djalma Santos,1959,Palmeiras,Brazil,RB,90,Crossing Fullback,Overlapping Runner,
+Nilton Santos,1955,Botafogo,Brazil,LB,90,Crossing Fullback,Overlapping Runner,
+Viktor Gyokeres,2026,Arsenal,Sweden,ST,89,Clinical Finisher,,
+Rodrygo,2025,Real Madrid,Brazil,"RW, LW, ST",89,Inside Forward,Speedster,Clinical Finisher
+Ademola Lookman,2024,Atalanta,Nigeria,"LW, ST, RW",89,Inside Forward,Clinical Finisher,Speedster
+Florian Wirtz,2024,Bayer Leverkusen,Germany,"CAM, LW",89,Advanced Playmaker,Wide Creator,
+Lautaro Martinez,2024,Inter Milan,Argentina,ST,89,Clinical Finisher,,
+Gavi,2023,Barcelona,Spain,"CM, CAM, LM",89,Engine,Advanced Playmaker,Wide Creator
+Ilkay Gundogan,2023,Manchester City,Germany,"CM, CAM",89,Connector,Vision Playmaker,
+Martin Odegaard,2023,Arsenal,Norway,"CAM, CM",89,Advanced Playmaker,Connector,
+Ruben Dias,2021,Manchester City,Portugal,CB,89,Aerial Monster,Stopper,
+Marcus Rashford,2020,Manchester United,England,"LW, ST",89,Inside Forward,Clinical Finisher,
+Marquinhos,2020,Paris Saint-Germain,Brazil,"CB, CDM",89,Ball Playing Defender,Destroyer,
+Bernardo Silva,2019,Manchester City,Portugal,"RW, CAM, CM",89,Wide Creator,Vision Playmaker,Connector
+Kalidou Koulibaly,2019,Napoli,Senegal,CB,89,Aerial Monster,Stopper,
+Raphael Varane,2018,Real Madrid,France,CB,89,Fast Defender,Ball Playing Defender,
+Keylor Navas,2017,Real Madrid,Costa Rica,GK,89,Shot Stopper,,
+Paulo Dybala,2017,Juventus,Argentina,"CAM, ST",89,Creative Genius,False 9,
+Pierre-Emerick Aubameyang,2017,Borussia Dortmund,Gabon,"ST, LW",89,Clinical Finisher,Inside Forward,
+Alexis Sanchez,2016,Arsenal,Chile,"LW, RW, ST",89,Inside Forward,Speedster,Clinical Finisher
+Angel Di Maria,2016,Paris Saint-Germain,Argentina,"RW, LW, RM",89,Wide Creator,Speedster,Cross Specialist
+Eden Hazard,2016,Chelsea,Belgium,"LW, CAM",89,Inside Forward,Vision Playmaker,
+Virgil van Dijk,2016,Southampton,Netherlands,CB,89,Aerial Monster,Stopper,
+Marco Verratti,2015,Paris Saint-Germain,Italy,"CM, CDM",89,Tempo Controller,Regista,
+Mohamed Salah,2015,Roma,Egypt,"RW, ST",89,Inside Forward,Clinical Finisher,
+Paul Pogba,2015,Juventus,France,"CM, CAM",89,Box-to-Box,Vision Playmaker,
+Diego Godin,2014,Atletico Madrid,Uruguay,CB,89,Stopper,Aerial Monster,
+James Rodriguez,2014,Real Madrid,Colombia,"CAM, RW",89,Advanced Playmaker,Wide Creator,
+Pepe,2014,Real Madrid,Portugal,CB,89,Stopper,Aerial Monster,
+Mats Hummels,2013,Borussia Dortmund,Germany,CB,89,Aerial Monster,Stopper,
+Toni Kroos,2013,Bayern Munich,Germany,"CM, CDM",89,Tempo Controller,Regista,
+Arjen Robben,2011,Bayern Munich,Netherlands,"RW, RM, LW",89,Inside Forward,Speedster,Wide Creator
+Carlos Tevez,2011,Manchester City,Argentina,"ST, CAM",89,Pressing Forward,Advanced Playmaker,
+Philipp Lahm,2010,Bayern Munich,Germany,"RB, LB, CDM",89,Inverted Fullback,Crossing Fullback,Anchor
+Zlatan Ibrahimovic,2009,AC Milan,Sweden,ST,89,Target Man,,
+Michael Essien,2007,Chelsea,Ghana,CM,89,Tempo Controller,,
+Carles Puyol,2006,Barcelona,Spain,"CB, RB",89,Stopper,Crossing Fullback,
+Deco,2006,Barcelona,Portugal,"CAM, CM",89,Vision Playmaker,Connector,
+Ricardo Carvalho,2006,Chelsea,Portugal,CB,89,Stopper,Aerial Monster,
+Jay-Jay Okocha,2004,Bolton Wanderers,Nigeria,"CAM, RW",89,Advanced Playmaker,Wide Creator,
+Roberto Ayala,2004,Valencia,Argentina,CB,89,Stopper,Aerial Monster,
+Sol Campbell,2004,Arsenal,England,CB,89,Stopper,Aerial Monster,
+Samuel Eto'o,2003,Barcelona,Cameroon,"ST, RW",89,Clinical Finisher,Inside Forward,
+Lucio,2002,Bayern Munich,Brazil,CB,89,Sweeper,Ball Playing Defender,
+Steven Gerrard,2002,Liverpool,England,"CM, CAM, CDM",89,Box-to-Box,Long Shot Specialist,Regista
+Patrick Vieira,2001,Arsenal,France,"CM, CDM",89,Box-to-Box,Destroyer,
+Juan Sebastian Veron,2000,Lazio,Argentina,"CM, CAM",89,Connector,Vision Playmaker,
+Laurent Blanc,1999,Marseille,France,CB,89,Stopper,Aerial Monster,
+Roberto Carlos,1999,Real Madrid,Brazil,"LB, LM",89,Overlapping Runner,Cross Specialist,
+Francesco Totti,1998,Roma,Italy,"CAM, ST",89,Set Piece Specialist,False 9,
+Raul,1998,Real Madrid,Spain,"ST, CAM",89,Clinical Finisher,Advanced Playmaker,
+Raul Gonzalez,1998,Real Madrid,Spain,"ST, CAM",89,False 9,Long Shot Specialist,
+Tony Adams,1998,Arsenal,England,CB,89,Stopper,Aerial Monster,
+Peter Schmeichel,1996,Manchester United,Denmark,GK,89,Commanding Keeper,,
+Zinedine Zidane,1996,Real Madrid,France,"CAM, CM, LM",89,Set Piece Specialist,Connector,Wide Creator
+Alessandro Del Piero,1995,Juventus,Italy,"ST, CAM",89,False 9,Vision Playmaker,
+Gabriel Batistuta,1995,Fiorentina,Argentina,ST,89,Clinical Finisher,,
+Ivan Zamorano,1995,Real Madrid,Chile,ST,89,Clinical Finisher,,
+Jari Litmanen,1995,Ajax,Finland,CM,89,Tempo Controller,,
+Dejan Savicevic,1994,AC Milan,Montenegro,ST,89,Clinical Finisher,,
+Dunga,1994,Fiorentina,Brazil,"CDM, CM",89,Anchor,Deep Playmaker,
+Hristo Stoichkov,1991,Barcelona,Bulgaria,"LW, ST",89,Inside Forward,Clinical Finisher,
+Paolo Maldini,1988,AC Milan,Italy,"LB, CB",89,Defensive Fullback,Stopper,
+Rudi Voeller,1987,Werder Bremen,Germany,ST,89,Clinical Finisher,,
+Ruud Gullit,1985,AC Milan,Netherlands,"CM, CAM, ST",89,Connector,Vision Playmaker,False 9
+Falcao,1980,Roma,Brazil,"CM, CDM",89,Deep Playmaker,Regista,
+Dino Zoff,1979,Juventus,Italy,GK,89,Commanding Keeper,,
+Gerd Mueller,1966,Bayern Munich,Germany,ST,89,Poacher,,
+Johan Cruyff,1966,Ajax,Netherlands,"CAM, ST, RW",89,Set Piece Specialist,False 9,Inside Forward
+Lev Yashin,1957,Dynamo Moscow,Soviet Union,GK,89,Penalty Specialist,,
+Uwe Seeler,1957,Hamburger SV,Germany,ST,89,Clinical Finisher,,
+Just Fontaine,1955,Reims,France,ST,89,Clinical Finisher,,
+Alfredo Di Stefano,1951,Real Madrid,Argentina,"ST, CAM, CM",89,False 9,Vision Playmaker,Connector
+Jose Nasazzi,1927,Nacional,Uruguay,CB,89,Stopper,Aerial Monster,
+Alessandro Bastoni,2026,Inter Milan,Italy,"CB, LB",88,Stopper,Crossing Fullback,
+Bradley Barcola,2026,Paris Saint-Germain,France,"LW, RW, LM",88,Wide Creator,Speedster,Cross Specialist
+Gabriel Magalhaes,2026,Arsenal,Brazil,CB,88,Stopper,Aerial Monster,
+Michael Olise,2026,Bayern Munich,France,"RW, RM, CAM",88,Wide Creator,Cross Specialist,Long Shot Specialist
+Nico Williams,2025,Athletic Club,Spain,"LW, LM, RW",88,Wide Creator,Cross Specialist,Speedster
+Declan Rice,2024,Arsenal,England,"CDM, CM",88,Press Machine,Deep Playmaker,
+Giorgi Mamardashvili,2024,Valencia,Georgia,GK,88,Sweeper Keeper,,
+Unai Simon,2024,Athletic Bilbao,Spain,GK,88,Sweeper Keeper,,
+Adrien Rabiot,2023,Juventus,France,"CM, CDM",88,Deep Playmaker,Regista,
+Yassine Bounou,2022,Sevilla,Morocco,GK,88,Sweeper Keeper,,
+Bruno Fernandes,2021,Manchester United,Portugal,"CAM, CM",88,Advanced Playmaker,Connector,
+Joao Cancelo,2021,Manchester City,Portugal,"RB, LB, RM",88,Inverted Fullback,Crossing Fullback,Cross Specialist
+Andrew Robertson,2020,Liverpool,Scotland,LB,88,Crossing Fullback,Overlapping Runner,
+Jadon Sancho,2020,Borussia Dortmund,England,"RW, LW",88,Wide Creator,Speedster,
+Trent Alexander-Arnold,2020,Liverpool,England,"RB, RM, CM",88,Crossing Fullback,Cross Specialist,Tempo Controller
+Thibaut Courtois,2019,Real Madrid,Belgium,GK,88,Shot Stopper,,
+Hugo Lloris,2018,Tottenham Hotspur,France,GK,88,Sweeper Keeper,,
+Christian Eriksen,2017,Tottenham Hotspur,Denmark,"CAM, CM",88,Advanced Playmaker,Connector,
+Alisson Becker,2016,Roma,Brazil,GK,88,Distribution Keeper,,
+Jerome Boateng,2016,Bayern Munich,Germany,"CB, RB",88,Stopper,Crossing Fullback,
+Riyad Mahrez,2016,Leicester City,Algeria,"RW, RM",88,Inside Forward,Cross Specialist,
+Andrea Barzagli,2015,Juventus,Italy,CB,88,Stopper,Aerial Monster,
+Arturo Vidal,2015,Juventus,Chile,"CM, CDM",88,Box-to-Box,Destroyer,
+Ivan Rakitic,2015,Barcelona,Croatia,"CM, CAM, CDM",88,Deep Playmaker,Vision Playmaker,Regista
+Jordi Alba,2015,Barcelona,Spain,"LB, LM",88,Overlapping Runner,Cross Specialist,
+Samir Handanovic,2015,Inter Milan,Slovenia,GK,88,Sweeper Keeper,,
+David Alaba,2014,Bayern Munich,Austria,"LB, CB, CM",88,Inverted Fullback,Ball Playing Defender,Tempo Controller
+Juan Mata,2013,Chelsea,Spain,"CAM, RW",88,Advanced Playmaker,Wide Creator,
+Mario Gomez,2011,Bayern Munich,Germany,ST,88,Clinical Finisher,,
+Antonio Di Natale,2010,Udinese,Italy,"ST, LW",88,Clinical Finisher,Inside Forward,
+Esteban Cambiasso,2010,Inter Milan,Argentina,"CDM, CM",88,Regista,Deep Playmaker,
+Franck Ribery,2010,Bayern Munich,France,"LW, LM",88,Wide Creator,Cross Specialist,
+Walter Samuel,2010,Inter Milan,Argentina,CB,88,Stopper,Aerial Monster,
+Patrice Evra,2009,Manchester United,France,LB,88,Crossing Fullback,Overlapping Runner,
+Sergio Aguero,2009,Atletico Madrid,Argentina,ST,88,Clinical Finisher,,
+Victor Valdes,2009,Barcelona,Spain,GK,88,Sweeper Keeper,,
+Dani Alves,2008,Sevilla,Brazil,"RB, RM",88,Crossing Fullback,Cross Specialist,
+Javier Mascherano,2008,Liverpool,Argentina,"CDM, CB",88,Ball Winner,Ball Playing Defender,
+Manuel Neuer,2008,Schalke 04,Germany,GK,88,Distribution Keeper,,
+Filippo Inzaghi,2007,AC Milan,Italy,ST,88,Poacher,,
+Javier Zanetti,2007,Inter Milan,Argentina,"RB, LB, CM",88,Defensive Fullback,Crossing Fullback,Tempo Controller
+Wayne Rooney,2007,Manchester United,England,"ST, CAM",88,False 9,Vision Playmaker,
+Andres Iniesta,2006,Barcelona,Spain,"CM, CAM, LW",88,Connector,Vision Playmaker,Wide Creator
+Rafael Marquez,2006,Barcelona,Mexico,"CB, CDM",88,Ball Playing Defender,Destroyer,
+Edwin van der Sar,2005,Manchester United,Netherlands,GK,88,Commanding Keeper,,
+Xavi,2004,Barcelona,Spain,CM,88,Tempo Controller,,
+Giovanni Elber,2003,Bayern Munich,Brazil,ST,88,Clinical Finisher,,
+Roy Makaay,2003,Deportivo La Coruna,Netherlands,ST,88,Clinical Finisher,,
+Cafu,2002,AC Milan,Brazil,RB,88,Overlapping Runner,Crossing Fullback,
+Frank Lampard,2002,Chelsea,England,"CM, CAM",88,Box-to-Box,Long Shot Specialist,
+John Terry,2002,Chelsea,England,CB,88,Stopper,Aerial Monster,
+Petr Cech,2002,Chelsea,Czech Republic,GK,88,Commanding Keeper,,
+Bixente Lizarazu,2001,Bayern Munich,France,LB,88,Crossing Fullback,Overlapping Runner,
+Francesco Toldo,2000,Inter Milan,Italy,GK,88,Commanding Keeper,,
+Gianluigi Buffon,2000,Parma,Italy,GK,88,Commanding Keeper,,
+Paul Scholes,2000,Manchester United,England,"CM, CAM",88,Connector,Long Shot Specialist,
+Pavel Nedved,2000,Juventus,Czech Republic,"LM, CAM, CM",88,Wide Creator,Vision Playmaker,Connector
+Marcelo Salas,1999,Lazio,Chile,ST,88,Clinical Finisher,,
+Ronaldinho,1999,Barcelona,Brazil,"LW, CAM",88,Wide Creator,Set Piece Specialist,
+Fabien Barthez,1998,Monaco,France,GK,88,Commanding Keeper,,
+Thierry Henry,1998,Arsenal,France,"ST, LW",88,Clinical Finisher,Inside Forward,
+Angelo Peruzzi,1997,Juventus,Italy,GK,88,Commanding Keeper,,
+Gianfranco Zola,1997,Chelsea,Italy,"CAM, ST",88,Set Piece Specialist,False 9,
+Ian Wright,1997,Arsenal,England,ST,88,Clinical Finisher,,
+Brian Laudrup,1996,Rangers,Denmark,"RW, LW, CAM",88,Wide Creator,Speedster,Long Shot Specialist
+Diego Simeone,1996,Atletico Madrid,Argentina,"CDM, CM",88,Regista,Deep Playmaker,
+Sami Al-Jaber,1996,Al Hilal,Saudi Arabia,ST,88,Clinical Finisher,,
+Dennis Bergkamp,1995,Arsenal,Netherlands,"ST, CAM",88,False 9,Set Piece Specialist,
+Lilian Thuram,1995,Parma,France,"RB, CB",88,Defensive Fullback,Stopper,
+Patrick Kluivert,1995,Ajax,Netherlands,ST,88,Clinical Finisher,,
+Rai,1995,Paris Saint-Germain,Brazil,CAM,88,Vision Playmaker,,
+Zvonimir Boban,1995,AC Milan,Croatia,"CM, CAM, RM",88,Connector,Vision Playmaker,Wide Creator
+Aldair,1994,Roma,Brazil,CB,88,Stopper,Aerial Monster,
+Alan Shearer,1993,Newcastle United,England,ST,88,Clinical Finisher,,
+Matthias Sammer,1993,Borussia Dortmund,Germany,"CB, CDM",88,Sweeper,Destroyer,
+George Weah,1992,AC Milan,Liberia,ST,88,Clinical Finisher,,
+Robert Prosinecki,1991,Red Star Belgrade,Croatia,"CAM, CM",88,Vision Playmaker,Connector,
+Carlos Valderrama,1990,Montpellier,Colombia,CAM,88,Set Piece Specialist,,
+Rene Higuita,1990,Atletico Nacional,Colombia,GK,88,Commanding Keeper,,
+Roger Milla,1990,Monaco,Cameroon,ST,88,Clinical Finisher,,
+Cha Bum-kun,1986,Bayer Leverkusen,South Korea,"ST, RW",88,Clinical Finisher,Inside Forward,
+Frank Rijkaard,1986,AC Milan,Netherlands,"CDM, CB, CM",88,Destroyer,Ball Playing Defender,Deep Playmaker
+Hans-Peter Briegel,1985,Verona,Germany,"LB, LM, CB",88,Overlapping Runner,Cross Specialist,Stopper
+Hugo Sanchez,1985,Real Madrid,Mexico,ST,88,Target Man,,
+Preben Elkjaer,1985,Verona,Denmark,ST,88,Target Man,,
+Manuel Amoros,1984,Monaco,France,"RB, LB",88,Crossing Fullback,Overlapping Runner,
+Franco Baresi,1983,AC Milan,Italy,CB,88,Sweeper,Ball Playing Defender,
+Marco van Basten,1983,AC Milan,Netherlands,ST,88,Pressing Forward,,
+Jose Antonio Camacho,1982,Real Madrid,Spain,LB,88,Crossing Fullback,Overlapping Runner,
+Michel Platini,1978,Juventus,France,"CAM, CM",88,Set Piece Specialist,Connector,
+Ruud Krol,1971,Ajax,Netherlands,"LB, CB",88,Crossing Fullback,Stopper,
+Sepp Maier,1971,Bayern Munich,Germany,GK,88,Penalty Specialist,,
+Johan Neeskens,1970,Ajax,Netherlands,"CM, CDM",88,Deep Playmaker,Regista,
+Gordon Banks,1967,Stoke City,England,GK,88,Penalty Specialist,,
+Eusebio,1960,Benfica,Portugal,ST,88,Target Man,,
+Mane Garrincha,1956,Botafogo,Brazil,RW,88,Wide Creator,,
+Ferenc Puskas,1954,Real Madrid,Hungary,"ST, LW",88,Pressing Forward,Inside Forward,
+Alexis Mac Allister,2026,Liverpool,Argentina,"CM, CDM, CAM",87,Deep Playmaker,Regista,Vision Playmaker
+Cristian Romero,2026,Tottenham Hotspur,Argentina,CB,87,Sweeper,Ball Playing Defender,
+Desire Doue,2026,Paris Saint-Germain,France,"CAM, RW, LW",87,Vision Playmaker,Wide Creator,Low Cross Specialist
+Hakan Calhanoglu,2026,Inter Milan,Turkey,"CDM, CM, CAM",87,Regista,Deep Playmaker,Set Piece Specialist
+Moises Caicedo,2026,Chelsea,Ecuador,"CDM, CM, RB",87,Press Machine,Deep Playmaker,Inverted Fullback
+Ronald Araujo,2026,Barcelona,Uruguay,"CB, RB",87,Stopper,Overlapping Runner,
+Alejandro Balde,2024,Barcelona,Spain,"LB, LM",87,Overlapping Runner,Cross Specialist,
+Dominic Solanke,2024,Tottenham Hotspur,England,ST,87,False 9,,
+Teun Koopmeiners,2024,Juventus,Netherlands,"CM, CDM, CAM",87,Deep Playmaker,Regista,Vision Playmaker
+William Saliba,2024,Arsenal,France,CB,87,Aerial Monster,Stopper,
+Giorgian de Arrascaeta,2022,Flamengo,Uruguay,"CAM, LW",87,Advanced Playmaker,Wide Creator,
+Salem Al-Dawsari,2022,Al Hilal,Saudi Arabia,"LW, LM",87,Inside Forward,Cross Specialist,
+Theo Hernandez,2022,AC Milan,France,"LB, LM",87,Pressing Fullback,Cross Specialist,
+Milan Skriniar,2021,Inter Milan,Slovakia,CB,87,Fast Defender,Ball Playing Defender,
+Fernandinho,2019,Manchester City,Brazil,"CDM, CM, CB",87,Anchor,Deep Playmaker,Ball Playing Defender
+Dani Carvajal,2017,Real Madrid,Spain,RB,87,Pressing Fullback,Overlapping Runner,
+Dimitri Payet,2016,West Ham United,France,"CAM, LW",87,Advanced Playmaker,Cross Specialist,
+Jamie Vardy,2016,Leicester City,England,ST,87,Pressing Forward,,
+Sadio Mane,2016,Liverpool,Senegal,"LW, RW, ST",87,Inside Forward,Speedster,Pressing Forward
+Claudio Bravo,2015,Barcelona,Chile,GK,87,Penalty Specialist,,
+Harry Kane,2015,Tottenham Hotspur,England,"ST, CAM",87,False 9,Long Shot Specialist,
+Marcelo,2014,Real Madrid,Brazil,"LB, LM",87,Overlapping Runner,Cross Specialist,
+N'Golo Kante,2014,Chelsea,France,"CDM, CM",87,Regista,Deep Playmaker,
+Robert Lewandowski,2014,Borussia Dortmund,Poland,ST,87,Target Man,,
+Antoine Griezmann,2013,Atletico Madrid,France,"ST, CAM, RW",87,Pressing Forward,Set Piece Specialist,Inside Forward
+Giorgio Chiellini,2013,Juventus,Italy,CB,87,Stopper,Aerial Monster,
+Jan Oblak,2013,Atletico Madrid,Slovenia,GK,87,Shot Stopper,,
+Marek Hamsik,2013,Napoli,Slovakia,"CAM, CM",87,Vision Playmaker,Connector,
+Luka Modric,2012,Tottenham Hotspur,Croatia,"CM, CAM",87,Tempo Controller,Vision Playmaker,
+Yaya Toure,2011,Manchester City,Ivory Coast,"CM, CDM, CAM",87,Box-to-Box,Regista,Vision Playmaker
+Bastian Schweinsteiger,2010,Bayern Munich,Germany,"CM, CDM, RM",87,Box-to-Box,Regista,Wide Creator
+Dimitar Berbatov,2010,Manchester United,Bulgaria,"ST, CAM",87,False 9,Advanced Playmaker,
+Thiago Silva,2010,Paris Saint-Germain,Brazil,CB,87,Stopper,Aerial Monster,
+David Silva,2009,Manchester City,Spain,"CAM, CM, LW",87,Long Shot Specialist,Connector,Wide Creator
+Radamel Falcao,2009,Atletico Madrid,Colombia,ST,87,Pressing Forward,,
+Sergio Busquets,2008,Barcelona,Spain,CDM,87,Anchor,,
+Didier Drogba,2007,Chelsea,Ivory Coast,ST,87,Target Man,,
+Julio Cesar,2007,Inter Milan,Brazil,GK,87,Distribution Keeper,,
+Wesley Sneijder,2007,Inter Milan,Netherlands,"CAM, CM",87,Advanced Playmaker,Connector,
+Younis Mahmoud,2007,Al Gharafa,Iraq,ST,87,Target Man,,
+David Villa,2006,Valencia,Spain,"ST, LW",87,Poacher,Inside Forward,
+Luca Toni,2006,Fiorentina,Italy,ST,87,Target Man,,
+Nemanja Vidic,2006,Manchester United,Serbia,CB,87,Stopper,Aerial Monster,
+Fernando Torres,2005,Liverpool,Spain,ST,87,Poacher,,
+Rio Ferdinand,2005,Manchester United,England,CB,87,Ball Playing Defender,Stopper,
+Sami Hyypia,2005,Liverpool,Finland,CB,87,Ball Playing Defender,Stopper,
+Clarence Seedorf,2004,AC Milan,Netherlands,"CM, CAM, RM",87,Box-to-Box,Vision Playmaker,Speedster
+Jens Lehmann,2004,Arsenal,Germany,GK,87,Shot Stopper,,
+Juan Roman Riquelme,2004,Boca Juniors,Argentina,CAM,87,Long Shot Specialist,,
+Ivan Cordoba,2003,Inter Milan,Colombia,CB,87,Sweeper,Ball Playing Defender,
+Robert Pires,2002,Arsenal,France,"LM, LW, CAM",87,Speedster,Inside Forward,Set Piece Specialist
+Santiago Canizares,2001,Valencia,Spain,GK,87,Distribution Keeper,,
+Ruud van Nistelrooy,2000,Manchester United,Netherlands,ST,87,Target Man,,
+Michael Ballack,1999,Bayer Leverkusen,Germany,"CM, CAM, CDM",87,Deep Playmaker,Vision Playmaker,Regista
+Siniša Mihajlovic,1999,Lazio,Serbia,"CB, LB, CDM",87,Ball Playing Defender,Inverted Fullback,Destroyer
+Bodo Illgner,1998,Real Madrid,Germany,GK,87,Penalty Specialist,,
+Fernando Redondo,1997,Real Madrid,Argentina,"CDM, CM",87,Regista,Deep Playmaker,
+Gheorghe Hagi,1997,Galatasaray,Romania,"CAM, LW",87,Long Shot Specialist,Speedster,
+Andreas Koepke,1996,Marseille,Germany,GK,87,Sweeper Keeper,,
+David Beckham,1996,Manchester United,England,"RM, CM, RW",87,Cross Specialist,Tempo Controller,Speedster
+Robbie Fowler,1996,Liverpool,England,ST,87,False 9,,
+Roy Keane,1996,Manchester United,Ireland,"CM, CDM",87,Box-to-Box,Destroyer,
+Ryan Giggs,1996,Manchester United,Wales,"LM, LW",87,Wide Creator,Speedster,
+Darko Pancev,1991,Red Star Belgrade,North Macedonia,ST,87,Target Man,,
+Eric Cantona,1991,Manchester United,France,"ST, CAM",87,False 9,Vision Playmaker,
+Marcel Desailly,1991,AC Milan,France,"CB, CDM",87,Stopper,Destroyer,
+Ronald Koeman,1989,Barcelona,Netherlands,"CB, CDM",87,Ball Playing Defender,Destroyer,
+Jean-Pierre Papin,1988,Marseille,France,ST,87,Target Man,,
+Romario,1988,Barcelona,Brazil,ST,87,Poacher,,
+Lothar Matthaeus,1984,Inter Milan,Germany,"CM, CDM, CB",87,Deep Playmaker,Destroyer,Ball Playing Defender
+Antonio Cabrini,1982,Juventus,Italy,"LB, LM",87,Overlapping Runner,Cross Specialist,
+Claudio Gentile,1979,Juventus,Italy,"CB, RB",87,Stopper,Pressing Fullback,
+Paolo Rossi,1979,Juventus,Italy,ST,87,Poacher,,
+Socrates,1979,Corinthians,Brazil,"CAM, CM",87,Set Piece Specialist,Connector,
+Migueli,1978,Barcelona,Spain,CB,87,Sweeper,Ball Playing Defender,
+Ubaldo Fillol,1975,River Plate,Argentina,GK,87,Distribution Keeper,,
+Zico,1975,Flamengo,Brazil,CAM,87,Advanced Playmaker,,
+Wim Suurbier,1974,Ajax,Netherlands,RB,87,Overlapping Runner,Crossing Fullback,
+Gerson,1967,Sao Paulo,Brazil,"CM, CAM",87,Connector,Vision Playmaker,
+Dragan Dzajic,1965,Red Star Belgrade,Serbia,LW,87,Wide Creator,,
+George Best,1962,Manchester United,Northern Ireland,"RW, LW",87,Cross Specialist,Inside Forward,
+Obdulio Varela,1947,Penarol,Uruguay,"CDM, CM",87,Regista,Deep Playmaker,
+Alphonso Davies,2026,Bayern Munich,Canada,"LB, LM, LW",86,Pressing Fullback,Speedster,Wide Creator
+Cody Gakpo,2026,Liverpool,Netherlands,"LW, ST, LM",86,Inside Forward,Pressing Forward,Cross Specialist
+Dani Olmo,2026,Barcelona,Spain,"CAM, LW, LM",86,Long Shot Specialist,Low Cross Specialist,Inside Forward
+Dominik Szoboszlai,2026,Liverpool,Hungary,"CAM, CM, RM",86,Vision Playmaker,Connector,Cross Specialist
+Eberechi Eze,2026,Arsenal,England,"CAM, LW, LM",86,Set Piece Specialist,Wide Creator,Cross Specialist
+Enzo Fernandez,2026,Chelsea,Argentina,"CM, CDM, CAM",86,Deep Playmaker,Regista,Vision Playmaker
+Fabian Ruiz,2026,Paris Saint-Germain,Spain,"CM, CDM, CAM",86,Deep Playmaker,Regista,Vision Playmaker
+Federico Dimarco,2026,Inter Milan,Italy,"LB, LM, LW",86,Overlapping Runner,Cross Specialist,Low Cross Specialist
+Gleison Bremer,2026,Juventus,Brazil,CB,86,Sweeper,Ball Playing Defender,
+Jeremy Doku,2026,Manchester City,Belgium,"LW, RW, LM",86,Wide Creator,Inside Forward,Cross Specialist
+Joao Neves,2026,Paris Saint-Germain,Portugal,"CM, CDM",86,Deep Playmaker,Regista,
+Josko Gvardiol,2026,Manchester City,Croatia,"LB, CB",86,Inverted Fullback,Aerial Monster,
+Martin Zubimendi,2026,Arsenal,Spain,"CDM, CM",86,Regista,Deep Playmaker,
+Pau Cubarsi,2026,Barcelona,Spain,CB,86,Stopper,Aerial Monster,
+Ryan Gravenberch,2026,Liverpool,Netherlands,"CM, CDM",86,Deep Playmaker,Regista,
+Sandro Tonali,2026,Newcastle United,Italy,"CM, CDM",86,Deep Playmaker,Regista,
+Serhou Guirassy,2026,Borussia Dortmund,Guinea,ST,86,Poacher,,
+Xavi Simons,2026,RB Leipzig,Netherlands,"CAM, LW, LM",86,Long Shot Specialist,Cross Specialist,Wide Creator
+Bukayo Saka,2024,Arsenal,England,"RW, RM, LW",86,Inside Forward,Cross Specialist,Speedster
+Gregor Kobel,2023,Borussia Dortmund,Switzerland,GK,86,Sweeper Keeper,,
+Achraf Hakimi,2022,Paris Saint-Germain,Morocco,"RB, RM, RW",86,Pressing Fullback,Speedster,Wide Creator
+Eder Militao,2022,Real Madrid,Brazil,"CB, RB",86,Fast Defender,Defensive Fullback,
+Sofyan Amrabat,2022,Fiorentina,Morocco,"CDM, CM",86,Regista,Deep Playmaker,
+Stefan de Vrij,2021,Inter Milan,Netherlands,CB,86,Stopper,Aerial Monster,
+Fabinho,2020,Liverpool,Brazil,"CDM, CB, RB",86,Anchor,Ball Playing Defender,Inverted Fullback
+Kai Havertz,2020,Bayer Leverkusen,Germany,"CAM, ST",86,Advanced Playmaker,False 9,
+Leroy Sane,2020,Bayern Munich,Germany,"LW, RW",86,Speedster,Wide Creator,
+Ousmane Dembele,2020,Barcelona,France,"RW, LW",86,Speedster,Wide Creator,
+Aymeric Laporte,2019,Manchester City,Spain,CB,86,Fast Defender,Ball Playing Defender,
+Kyle Walker,2019,Manchester City,England,"RB, CB",86,Pressing Fullback,Fast Defender,
+Son Heung-min,2019,Tottenham Hotspur,South Korea,"LW, ST, RW",86,Inside Forward,Pressing Forward,Speedster
+Ederson,2018,Manchester City,Brazil,GK,86,Distribution Keeper,,
+Memphis Depay,2018,Lyon,Netherlands,"LW, ST, CAM",86,Inside Forward,False 9,Set Piece Specialist
+Alexandre Lacazette,2017,Lyon,France,ST,86,False 9,,
+Douglas Costa,2017,Juventus,Brazil,"RW, LW",86,Speedster,Cross Specialist,
+Erling Haaland,2017,Molde,Norway,ST,86,Poacher,,
+Joshua Kimmich,2017,Bayern Munich,Germany,"RB, CDM, CM",86,Inverted Fullback,Regista,Tempo Controller
+Lorenzo Insigne,2017,Napoli,Italy,"LW, LM, CAM",86,Cross Specialist,Wide Creator,Long Shot Specialist
+Raheem Sterling,2017,Manchester City,England,"LW, RW, ST",86,Low Cross Specialist,Speedster,Pressing Forward
+Toby Alderweireld,2017,Tottenham Hotspur,Belgium,"CB, RB",86,Fast Defender,Inverted Fullback,
+Blaise Matuidi,2016,Paris Saint-Germain,France,"CM, CDM, LM",86,Engine,Regista,Inside Forward
+Jan Vertonghen,2016,Tottenham Hotspur,Belgium,"CB, LB",86,Aerial Monster,Defensive Fullback,
+Karim Benzema,2016,Real Madrid,France,ST,86,False 9,,
+Kylian Mbappe,2016,Monaco,France,"LW, ST, RW",86,Speedster,Target Man,Inside Forward
+Laurent Koscielny,2016,Arsenal,France,CB,86,Sweeper,Ball Playing Defender,
+David de Gea,2015,Manchester United,Spain,GK,86,Shot Stopper,,
+Casemiro,2014,Real Madrid,Brazil,CDM,86,Anchor,,
+Kevin De Bruyne,2014,Wolfsburg,Belgium,"CAM, CM, RM",86,Set Piece Specialist,Connector,Wide Creator
+Leonardo Bonucci,2014,Juventus,Italy,CB,86,Fast Defender,Ball Playing Defender,
+Mehdi Benatia,2014,Roma,Morocco,CB,86,Ball Playing Defender,Stopper,
+Thiago Motta,2014,Paris Saint-Germain,Italy,"CDM, CM",86,Ball Winner,Deep Playmaker,
+Gonzalo Higuain,2013,Napoli,Argentina,ST,86,Pressing Forward,,
+Santi Cazorla,2013,Arsenal,Spain,"CM, CAM, LW",86,Connector,Vision Playmaker,Low Cross Specialist
+Branislav Ivanovic,2012,Chelsea,Serbia,"RB, CB",86,Crossing Fullback,Fast Defender,
+Samir Nasri,2012,Manchester City,France,"RM, CAM, LM",86,Cross Specialist,Set Piece Specialist,Inside Forward
+Shinji Kagawa,2012,Borussia Dortmund,Japan,CAM,86,Set Piece Specialist,,
+Hulk,2011,Porto,Brazil,"RW, ST",86,Inside Forward,Pressing Forward,
+Nani,2011,Manchester United,Portugal,"LW, RW",86,Wide Creator,Speedster,
+Nuri Sahin,2011,Borussia Dortmund,Turkey,"CM, CDM",86,Deep Playmaker,Press Machine,
+Sergio Ramos,2011,Real Madrid,Spain,"CB, RB",86,Aerial Monster,Crossing Fullback,
+Thomas Mueller,2011,Bayern Munich,Germany,"CAM, ST, RW",86,Set Piece Specialist,False 9,Inside Forward
+Claudio Pizarro,2010,Werder Bremen,Peru,ST,86,False 9,,
+Dejan Stankovic,2010,Inter Milan,Serbia,CM,86,Deep Playmaker,,
+Edinson Cavani,2010,Napoli,Uruguay,ST,86,Target Man,,
+Luis Suarez,2010,Barcelona,Uruguay,ST,86,Pressing Forward,,
+Marco Reus,2010,Borussia Dortmund,Germany,"CAM, LW, ST",86,Long Shot Specialist,Inside Forward,False 9
+Robin van Persie,2010,Manchester United,Netherlands,"ST, RW",86,Pressing Forward,Inside Forward,
+Mesut Ozil,2009,Real Madrid,Germany,"CAM, RW",86,Long Shot Specialist,Wide Creator,
+Neymar,2009,Santos,Brazil,"LW, CAM",86,Inside Forward,Advanced Playmaker,
+Vincent Kompany,2009,Manchester City,Belgium,CB,86,Aerial Monster,Stopper,
+Gerard Pique,2008,Barcelona,Spain,CB,86,Ball Playing Defender,Stopper,
+Ashley Cole,2007,Chelsea,England,LB,86,Defensive Fullback,Crossing Fullback,
+Cesc Fabregas,2007,Arsenal,Spain,"CM, CAM, CDM",86,Deep Playmaker,Vision Playmaker,Ball Winner
+Diego Forlan,2007,Atletico Madrid,Uruguay,ST,86,Target Man,,
+Maicon,2007,Inter Milan,Brazil,RB,86,Overlapping Runner,Crossing Fullback,
+Pepe Reina,2007,Liverpool,Spain,GK,86,Distribution Keeper,,
+Ze Roberto,2007,Bayern Munich,Brazil,"LM, CM, LB",86,Cross Specialist,Tempo Controller,Overlapping Runner
+Gianluca Zambrotta,2006,Barcelona,Italy,"RB, LB, RM",86,Defensive Fullback,Crossing Fullback,Cross Specialist
+Joaquin,2006,Valencia,Spain,"RM, RW",86,Cross Specialist,Speedster,
+Willy Sagnol,2006,Bayern Munich,France,RB,86,Overlapping Runner,Crossing Fullback,
+Jamie Carragher,2005,Liverpool,England,"CB, RB",86,Aerial Monster,Crossing Fullback,
+Gilberto Silva,2004,Arsenal,Brazil,"CDM, CB",86,Anchor,Ball Playing Defender,
+Iker Casillas,2004,Real Madrid,Spain,GK,86,Shot Stopper,,
+Juan,2004,Bayer Leverkusen,Brazil,CB,86,Fast Defender,Ball Playing Defender,
+Kolo Toure,2004,Arsenal,Ivory Coast,"CB, RB",86,Stopper,Inverted Fullback,
+Robinho,2004,Santos,Brazil,"LW, RW, ST",86,Inside Forward,Speedster,Pressing Forward
+Juninho Pernambucano,2003,Lyon,Brazil,"CM, CAM",86,Connector,Set Piece Specialist,
+Miroslav Klose,2003,Werder Bremen,Germany,ST,86,Poacher,,
+Adriano,2002,Inter Milan,Brazil,ST,86,Poacher,,
+Claude Makelele,2002,Chelsea,France,CDM,86,Anchor,,
+Dida,2002,AC Milan,Brazil,GK,86,Penalty Specialist,,
+Tomas Rosicky,2002,Borussia Dortmund,Czech Republic,"CAM, CM, RM",86,Vision Playmaker,Connector,Low Cross Specialist
+Hidetoshi Nakata,2001,Roma,Japan,"CAM, CM",86,Vision Playmaker,Connector,
+Kaka,2001,AC Milan,Brazil,CAM,86,Long Shot Specialist,,
+Stefan Effenberg,2001,Bayern Munich,Germany,"CM, CDM",86,Deep Playmaker,Press Machine,
+Andrea Pirlo,2000,AC Milan,Italy,"CM, CDM",86,Deep Playmaker,Ball Winner,
+Fabio Cannavaro,2000,Juventus,Italy,CB,86,Stopper,Aerial Monster,
+Fernando Couto,2000,Lazio,Portugal,CB,86,Aerial Monster,Stopper,
+Andy Cole,1999,Manchester United,England,ST,86,False 9,,
+Gary Neville,1999,Manchester United,England,RB,86,Defensive Fullback,Crossing Fullback,
+Nicolas Anelka,1999,Arsenal,France,"ST, RW",86,Pressing Forward,Inside Forward,
+Alessandro Nesta,1998,AC Milan,Italy,CB,86,Ball Playing Defender,Stopper,
+Andriy Shevchenko,1998,AC Milan,Ukraine,ST,86,Target Man,,
+Cuauhtemoc Blanco,1998,Club America,Mexico,"CAM, ST",86,Vision Playmaker,False 9,
+Marc Overmars,1998,Arsenal,Netherlands,"LM, LW, RW",86,Speedster,Wide Creator,Cross Specialist
+Michael Owen,1998,Liverpool,England,ST,86,Poacher,,
+Gheorghe Popescu,1997,Barcelona,Romania,"CB, CDM",86,Ball Playing Defender,Destroyer,
+Leonardo,1997,AC Milan,Brazil,"LM, LW, LB",86,Cross Specialist,Wide Creator,Overlapping Runner
+Christian Vieri,1996,Inter Milan,Italy,ST,86,Target Man,,
+David Ginola,1996,Newcastle United,France,"LW, LM",86,Speedster,Low Cross Specialist,
+Hernan Crespo,1996,Parma,Argentina,ST,86,Poacher,,
+Jaap Stam,1996,Manchester United,Netherlands,CB,86,Stopper,Aerial Monster,
+Davor Suker,1995,Real Madrid,Croatia,ST,86,Target Man,,
+Edgar Davids,1995,Juventus,Netherlands,"CM, CDM",86,Engine,Ball Winner,
+Fernando Hierro,1995,Real Madrid,Spain,"CB, CDM",86,Ball Playing Defender,Destroyer,
+Luis Figo,1995,Real Madrid,Portugal,"RW, RM, LW",86,Cross Specialist,Wide Creator,Speedster
+Oliver Kahn,1995,Bayern Munich,Germany,GK,86,Penalty Specialist,,
+Rui Costa,1995,Fiorentina,Portugal,CAM,86,Advanced Playmaker,,
+Bebeto,1994,Deportivo La Coruna,Brazil,"LW, ST",86,Inside Forward,Pressing Forward,
+Juergen Kohler,1994,Borussia Dortmund,Germany,CB,86,Sweeper,Ball Playing Defender,
+Rivaldo,1993,Barcelona,Brazil,"CAM, LW",86,Vision Playmaker,Inside Forward,
+Jose Luis Chilavert,1992,Velez Sarsfield,Paraguay,GK,86,Shot Stopper,,
+Miguel Angel Nadal,1992,Barcelona,Spain,"CB, CDM",86,Ball Playing Defender,Destroyer,
+Claudio Taffarel,1991,Parma,Brazil,GK,86,Shot Stopper,,
+Sergio Goycochea,1990,Racing Club,Argentina,GK,86,Penalty Specialist,,
+Abedi Pele,1988,Marseille,Ghana,"CAM, LW",86,Advanced Playmaker,Speedster,
+Andreas Brehme,1987,Inter Milan,Germany,"LB, LM, RB",86,Overlapping Runner,Cross Specialist,Crossing Fullback
+Michael Laudrup,1987,Barcelona,Denmark,"CAM, CM",86,Long Shot Specialist,Connector,
+Roberto Baggio,1987,Juventus,Italy,"CAM, ST",86,Long Shot Specialist,False 9,
+Walter Zenga,1987,Inter Milan,Italy,GK,86,Distribution Keeper,,
+Giuseppe Bergomi,1986,Inter Milan,Italy,"RB, CB",86,Overlapping Runner,Fast Defender,
+Michel Preud'homme,1985,Mechelen,Belgium,GK,86,Sweeper Keeper,,
+Emilio Butragueno,1984,Real Madrid,Spain,ST,86,Pressing Forward,,
+Enzo Francescoli,1983,River Plate,Uruguay,"CAM, ST",86,Long Shot Specialist,False 9,
+Junior,1982,Flamengo,Brazil,"LB, LM",86,Overlapping Runner,Speedster,
+Gaetano Scirea,1976,Juventus,Italy,CB,86,Sweeper,Ball Playing Defender,
+Karl-Heinz Rummenigge,1975,Bayern Munich,Germany,"ST, RW",86,Pressing Forward,Inside Forward,
+Daniel Passarella,1972,River Plate,Argentina,CB,86,Fast Defender,Ball Playing Defender,
+Hector Chumpitaz,1967,Universitario,Peru,CB,86,Stopper,Aerial Monster,
+Carlos Alberto,1964,Santos,Brazil,"RB, CB",86,Defensive Fullback,Fast Defender,
+Jairzinho,1964,Botafogo,Brazil,"RW, ST",86,Inside Forward,Pressing Forward,
+Rivelino,1964,Corinthians,Brazil,"CAM, CM, LW",86,Vision Playmaker,Connector,Wide Creator
+Giacinto Facchetti,1959,Inter Milan,Italy,"LB, LM",86,Overlapping Runner,Cross Specialist,
+Djalma Santos,1956,Palmeiras,Brazil,RB,86,Defensive Fullback,Crossing Fullback,
+Nilton Santos,1952,Botafogo,Brazil,LB,86,Overlapping Runner,Crossing Fullback,
+Anthony Gordon,2026,Newcastle United,England,"LW, LM, RW",85,Low Cross Specialist,Inside Forward,Speedster
+Bryan Mbeumo,2026,Manchester United,Cameroon,"RW, RM, ST",85,Inside Forward,Cross Specialist,Pressing Forward
+Dejan Kulusevski,2026,Tottenham Hotspur,Sweden,"RW, RM, CAM",85,Low Cross Specialist,Wide Creator,Advanced Playmaker
+Ibrahima Konate,2026,Liverpool,France,CB,85,Fast Defender,Ball Playing Defender,
+Jeremie Frimpong,2026,Liverpool,Netherlands,"RB, RM, RW",85,Overlapping Runner,Cross Specialist,Wide Creator
+Jurrien Timber,2026,Arsenal,Netherlands,"RB, CB, LB",85,Crossing Fullback,Stopper,Overlapping Runner
+Kim Min-jae,2026,Bayern Munich,South Korea,CB,85,Ball Playing Defender,Stopper,
+Matheus Cunha,2026,Manchester United,Brazil,"ST, CAM, LW",85,False 9,Advanced Playmaker,Inside Forward
+Matthijs de Ligt,2026,Manchester United,Netherlands,CB,85,Fast Defender,Ball Playing Defender,
+Omar Marmoush,2026,Manchester City,Egypt,"ST, LW, LM",85,Pressing Forward,Inside Forward,Cross Specialist
+Pedro Porro,2026,Tottenham Hotspur,Spain,"RB, RM",85,Overlapping Runner,Low Cross Specialist,
+Takefusa Kubo,2026,Real Sociedad,Japan,"RW, RM, CAM",85,Cross Specialist,Wide Creator,Long Shot Specialist
+Tijjani Reijnders,2026,Manchester City,Netherlands,"CM, CAM, CDM",85,Deep Playmaker,Vision Playmaker,Destroyer
+Warren Zaire-Emery,2026,Paris Saint-Germain,France,"CM, CDM, RM",85,Deep Playmaker,Anchor,Low Cross Specialist
+Federico Chiesa,2021,Juventus,Italy,"RW, LW, ST",85,Inside Forward,Speedster,Pressing Forward
+Florian Wirtz,2021,Bayer Leverkusen,Germany,"CAM, LW",85,Advanced Playmaker,Cross Specialist,
+John Stones,2021,Manchester City,England,"CB, CDM",85,Ball Playing Defender,Destroyer,
+Lautaro Martinez,2021,Inter Milan,Argentina,ST,85,Target Man,,
+Ilkay Gundogan,2020,Manchester City,Germany,"CM, CAM",85,Connector,Vision Playmaker,
+Jordan Henderson,2020,Liverpool,England,"CM, CDM",85,Engine,Press Machine,
+Kingsley Coman,2020,Bayern Munich,France,"LW, RW",85,Wide Creator,Speedster,
+Martin Odegaard,2020,Arsenal,Norway,"CAM, CM",85,Advanced Playmaker,Connector,
+Juan Cuadrado,2018,Juventus,Colombia,"RB, RM, RW",85,Overlapping Runner,Cross Specialist,Speedster
+Kostas Manolas,2018,Roma,Greece,CB,85,Ball Playing Defender,Stopper,
+Nicolas Otamendi,2018,Manchester City,Argentina,CB,85,Aerial Monster,Stopper,
+Ruben Dias,2018,Manchester City,Portugal,CB,85,Aerial Monster,Stopper,
+Willian,2018,Chelsea,Brazil,"RW, LW, RM",85,Inside Forward,Cross Specialist,Wide Creator
+Cesar Azpilicueta,2017,Chelsea,Spain,"RB, CB, LB",85,Defensive Fullback,Aerial Monster,Crossing Fullback
+Joao Moutinho,2017,Monaco,Portugal,"CM, CAM",85,Connector,Vision Playmaker,
+Marquinhos,2017,Paris Saint-Germain,Brazil,"CB, CDM",85,Ball Playing Defender,Destroyer,
+Bernardo Silva,2016,Manchester City,Portugal,"RW, CAM, CM",85,Wide Creator,Vision Playmaker,Connector
+Juanfran,2016,Atletico Madrid,Spain,"RB, RM",85,Overlapping Runner,Cross Specialist,
+Kalidou Koulibaly,2016,Napoli,Senegal,CB,85,Aerial Monster,Stopper,
+Raphael Varane,2015,Real Madrid,France,CB,85,Fast Defender,Ball Playing Defender,
+Filipe Luis,2014,Chelsea,Brazil,"LB, LM",85,Overlapping Runner,Cross Specialist,
+Keylor Navas,2014,Real Madrid,Costa Rica,GK,85,Shot Stopper,,
+Paulo Dybala,2014,Juventus,Argentina,"CAM, ST",85,Set Piece Specialist,False 9,
+Pierre-Emerick Aubameyang,2014,Borussia Dortmund,Gabon,"ST, LW",85,Pressing Forward,Inside Forward,
+Alexis Sanchez,2013,Arsenal,Chile,"LW, RW, ST",85,Inside Forward,Speedster,Pressing Forward
+Angel Di Maria,2013,Paris Saint-Germain,Argentina,"RW, LW, RM",85,Wide Creator,Speedster,Cross Specialist
+Eden Hazard,2013,Chelsea,Belgium,"LW, CAM",85,Inside Forward,Set Piece Specialist,
+Leighton Baines,2013,Everton,England,"LB, LM",85,Crossing Fullback,Cross Specialist,
+Pedro Rodriguez,2013,Barcelona,Spain,"RW, LW, ST",85,Low Cross Specialist,Speedster,Pressing Forward
+Virgil van Dijk,2013,Liverpool,Netherlands,CB,85,Aerial Monster,Stopper,
+Marco Verratti,2012,Paris Saint-Germain,Italy,"CM, CDM",85,Tempo Controller,Press Machine,
+Mohamed Salah,2012,Liverpool,Egypt,"RW, ST",85,Inside Forward,Pressing Forward,
+Pablo Zabaleta,2012,Manchester City,Argentina,RB,85,Crossing Fullback,Overlapping Runner,
+Paul Pogba,2012,Juventus,France,"CM, CAM",85,Box-to-Box,Vision Playmaker,
+Ali Al-Habsi,2011,Wigan Athletic,Oman,GK,85,Sweeper Keeper,,
+Diego Godin,2011,Atletico Madrid,Uruguay,CB,85,Stopper,Aerial Monster,
+James Rodriguez,2011,Real Madrid,Colombia,"CAM, RW",85,Advanced Playmaker,Inside Forward,
+Pepe,2011,Real Madrid,Portugal,CB,85,Stopper,Aerial Monster,
+Christian Chivu,2010,Inter Milan,Romania,"CB, LB",85,Fast Defender,Defensive Fullback,
+Darijo Srna,2010,Shakhtar Donetsk,Croatia,"RB, RM",85,Overlapping Runner,Cross Specialist,
+Keisuke Honda,2010,CSKA Moscow,Japan,"CAM, RW",85,Vision Playmaker,Wide Creator,
+Mats Hummels,2010,Borussia Dortmund,Germany,CB,85,Aerial Monster,Stopper,
+Toni Kroos,2010,Bayern Munich,Germany,"CM, CDM",85,Tempo Controller,Press Machine,
+Park Ji-sung,2009,Manchester United,South Korea,"LM, RM, CM",85,Low Cross Specialist,Wide Creator,Connector
+Arjen Robben,2008,Bayern Munich,Netherlands,"RW, RM, LW",85,Inside Forward,Speedster,Wide Creator
+Carlos Tevez,2008,Manchester City,Argentina,"ST, CAM",85,Pressing Forward,Advanced Playmaker,
+Ledley King,2007,Tottenham Hotspur,England,CB,85,Fast Defender,Ball Playing Defender,
+Philipp Lahm,2007,Bayern Munich,Germany,"RB, LB, CDM",85,Inverted Fullback,Crossing Fullback,Ball Winner
+Joe Cole,2006,Chelsea,England,"LM, CAM, RW",85,Speedster,Set Piece Specialist,Wide Creator
+Lukas Podolski,2006,Cologne,Germany,"LW, ST",85,Inside Forward,Pressing Forward,
+Simao Sabrosa,2006,Benfica,Portugal,"LW, RW",85,Speedster,Wide Creator,
+Zlatan Ibrahimovic,2006,AC Milan,Sweden,ST,85,Target Man,,
+Vicente,2005,Valencia,Spain,"LM, LW",85,Wide Creator,Inside Forward,
+Michael Essien,2004,Chelsea,Ghana,CM,85,Tempo Controller,,
+Carles Puyol,2003,Barcelona,Spain,"CB, RB",85,Stopper,Crossing Fullback,
+Deco,2003,Barcelona,Portugal,"CAM, CM",85,Vision Playmaker,Connector,
+Ricardo Carvalho,2003,Chelsea,Portugal,CB,85,Sweeper,Ball Playing Defender,
+Sylvain Wiltord,2002,Arsenal,France,"RW, ST",85,Inside Forward,Pressing Forward,
+Jay-Jay Okocha,2001,Bolton Wanderers,Nigeria,"CAM, RW",85,Advanced Playmaker,Speedster,
+Roberto Ayala,2001,Valencia,Argentina,CB,85,Fast Defender,Ball Playing Defender,
+Sol Campbell,2001,Arsenal,England,CB,85,Stopper,Aerial Monster,
+Luca Marchegiani,2000,Lazio,Italy,GK,85,Shot Stopper,,
+Samuel Eto'o,2000,Barcelona,Cameroon,"ST, RW",85,Pressing Forward,Inside Forward,
+Steve McManaman,2000,Real Madrid,England,"RM, RW, CAM",85,Cross Specialist,Speedster,Long Shot Specialist
+Lucio,1999,Bayern Munich,Brazil,CB,85,Sweeper,Ball Playing Defender,
+Serhiy Rebrov,1999,Dynamo Kyiv,Ukraine,ST,85,Pressing Forward,,
+Steven Gerrard,1999,Liverpool,England,"CM, CAM, CDM",85,Box-to-Box,Long Shot Specialist,Press Machine
+Patrick Vieira,1998,Arsenal,France,"CM, CDM",85,Box-to-Box,Destroyer,
+Juan Sebastian Veron,1997,Lazio,Argentina,"CM, CAM",85,Connector,Vision Playmaker,
+Denis Irwin,1996,Manchester United,Ireland,"LB, RB",85,Crossing Fullback,Overlapping Runner,
+Laurent Blanc,1996,Marseille,France,CB,85,Aerial Monster,Stopper,
+Les Ferdinand,1996,Newcastle United,England,ST,85,Poacher,,
+Roberto Carlos,1996,Real Madrid,Brazil,"LB, LM",85,Overlapping Runner,Cross Specialist,
+Francesco Totti,1995,Roma,Italy,"CAM, ST",85,Set Piece Specialist,False 9,
+Raul,1995,Real Madrid,Spain,"ST, CAM",85,Poacher,Advanced Playmaker,
+Raul Gonzalez,1995,Real Madrid,Spain,"ST, CAM",85,False 9,Long Shot Specialist,
+Tony Adams,1995,Arsenal,England,CB,85,Ball Playing Defender,Stopper,
+Peter Schmeichel,1993,Manchester United,Denmark,GK,85,Penalty Specialist,,
+Alessandro Del Piero,1992,Juventus,Italy,"ST, CAM",85,False 9,Vision Playmaker,
+Gabriel Batistuta,1992,Fiorentina,Argentina,ST,85,Poacher,,
+Ivan Zamorano,1992,Real Madrid,Chile,ST,85,Target Man,,
+Jari Litmanen,1992,Ajax,Finland,CM,85,Box-to-Box,,
+Dejan Savicevic,1991,AC Milan,Montenegro,ST,85,Poacher,,
+Dunga,1991,Fiorentina,Brazil,"CDM, CM",85,Anchor,Deep Playmaker,
+Roberto Donadoni,1991,AC Milan,Italy,"RM, RW, CM",85,Cross Specialist,Low Cross Specialist,Deep Playmaker
+Hristo Stoichkov,1988,Barcelona,Bulgaria,"LW, ST",85,Inside Forward,Pressing Forward,
+Paulo Futre,1987,Atletico Madrid,Portugal,"LW, ST",85,Inside Forward,Pressing Forward,
+Pierre Littbarski,1986,1. FC Koeln,Germany,"RW, CAM",85,Inside Forward,Vision Playmaker,
+Rudi Voeller,1984,Werder Bremen,Germany,ST,85,Target Man,,
+Eric Gerets,1982,Standard Liege,Belgium,RB,85,Inverted Fullback,Pressing Fullback,
+Ruud Gullit,1982,AC Milan,Netherlands,"CM, CAM, ST",85,Connector,Vision Playmaker,False 9
+Falcao,1977,Roma,Brazil,"CM, CDM",85,Deep Playmaker,Ball Winner,
+Dino Zoff,1976,Juventus,Italy,GK,85,Sweeper Keeper,,
+Uwe Seeler,1954,Hamburger SV,Germany,ST,85,Poacher,,
+Just Fontaine,1952,Reims,France,ST,85,Pressing Forward,,
+Jose Nasazzi,1924,Nacional,Uruguay,CB,85,Aerial Monster,Stopper,
+Aleksandar Mitrovic,2026,Al Hilal,Serbia,ST,84,Poacher,,
+Alessandro Buongiorno,2026,Napoli,Italy,CB,84,Fast Defender,Ball Playing Defender,
+Alex Baena,2026,Atletico Madrid,Spain,"CAM, LM, CM",84,Vision Playmaker,Speedster,Connector
+Arda Guler,2026,Real Madrid,Turkey,"CAM, RW, RM",84,Advanced Playmaker,Inside Forward,Speedster
+Benjamin Sesko,2026,Manchester United,Slovenia,ST,84,Pressing Forward,,
+Dayot Upamecano,2026,Bayern Munich,France,CB,84,Fast Defender,Ball Playing Defender,
+Edmond Tapsoba,2026,Bayer Leverkusen,Burkina Faso,CB,84,Ball Playing Defender,Stopper,
+Exequiel Palacios,2026,Bayer Leverkusen,Argentina,"CM, CDM",84,Deep Playmaker,Anchor,
+James Maddison,2026,Tottenham Hotspur,England,"CAM, CM, LM",84,Vision Playmaker,Connector,Inside Forward
+Joao Felix,2026,Chelsea,Portugal,"CAM, LW, ST",84,Long Shot Specialist,Inside Forward,False 9
+Joao Pedro,2026,Chelsea,Brazil,"ST, CAM, LW",84,False 9,Set Piece Specialist,Low Cross Specialist
+Jonathan David,2026,Juventus,Canada,"ST, CAM",84,False 9,Set Piece Specialist,
+Jonathan Tah,2026,Bayern Munich,Germany,CB,84,Ball Playing Defender,Stopper,
+Kaoru Mitoma,2026,Brighton & Hove Albion,Japan,"LW, LM",84,Wide Creator,Inside Forward,
+Leandro Trossard,2026,Arsenal,Belgium,"LW, LM, ST",84,Inside Forward,Cross Specialist,Pressing Forward
+Lois Openda,2026,RB Leipzig,Belgium,"ST, LW",84,Pressing Forward,Inside Forward,
+Lucas Paqueta,2026,West Ham United,Brazil,"CAM, CM, LW",84,Vision Playmaker,Connector,Wide Creator
+Marc Cucurella,2026,Chelsea,Spain,"LB, LM, CB",84,Overlapping Runner,Cross Specialist,Stopper
+Marc Guehi,2026,Crystal Palace,England,CB,84,Fast Defender,Ball Playing Defender,
+Micky van de Ven,2026,Tottenham Hotspur,Netherlands,"CB, LB",84,Sweeper,Defensive Fullback,
+Mikel Merino,2026,Arsenal,Spain,"CM, CDM",84,Deep Playmaker,Press Machine,
+Morgan Rogers,2026,Aston Villa,England,"CAM, LW, LM",84,Vision Playmaker,Cross Specialist,Inside Forward
+Nico Schlotterbeck,2026,Borussia Dortmund,Germany,CB,84,Stopper,Aerial Monster,
+Pedro Neto,2026,Chelsea,Portugal,"RW, LW, RM",84,Low Cross Specialist,Speedster,Cross Specialist
+Piero Hincapie,2026,Arsenal,Ecuador,"CB, LB",84,Sweeper,Inverted Fullback,
+Rayan Cherki,2026,Manchester City,France,"CAM, RW, RM",84,Set Piece Specialist,Low Cross Specialist,Cross Specialist
+Riccardo Calafiori,2026,Arsenal,Italy,"LB, CB",84,Defensive Fullback,Fast Defender,
+Savinho,2026,Manchester City,Brazil,"RW, LW, RM",84,Wide Creator,Low Cross Specialist,Cross Specialist
+Victor Boniface,2026,Bayer Leverkusen,Nigeria,ST,84,Pressing Forward,,
+Willian Pacho,2026,Paris Saint-Germain,Ecuador,CB,84,Ball Playing Defender,Stopper,
+Darwin Nunez,2025,Al Hilal,Uruguay,"ST, LW",84,Pressing Forward,Inside Forward,
+Lisandro Martinez,2023,Manchester United,Argentina,"CB, CDM",84,Ball Playing Defender,Destroyer,
+Raphinha,2023,Barcelona,Brazil,"RW, RM",84,Inside Forward,Cross Specialist,
+Reece James,2023,Chelsea,England,"RB, RM, CB",84,Overlapping Runner,Cross Specialist,Aerial Monster
+Ali Al-Bulaihi,2022,Al Hilal,Saudi Arabia,CB,84,Fast Defender,Ball Playing Defender,
+Jack Grealish,2022,Manchester City,England,"LW, LM, CAM",84,Wide Creator,Cross Specialist,Vision Playmaker
+Aurelien Tchouameni,2021,Monaco,France,"CDM, CM",84,Press Machine,Deep Playmaker,
+Declan Rice,2021,Arsenal,England,"CDM, CM",84,Press Machine,Deep Playmaker,
+Jules Kounde,2021,Sevilla,France,"CB, RB",84,Fast Defender,Defensive Fullback,
+Marco Asensio,2020,Real Madrid,Spain,"RW, LW, CAM",84,Wide Creator,Inside Forward,Long Shot Specialist
+Serge Gnabry,2020,Bayern Munich,Germany,"RW, LW, ST",84,Inside Forward,Speedster,Pressing Forward
+Timo Werner,2020,RB Leipzig,Germany,"ST, LW",84,Pressing Forward,Inside Forward,
+Georginio Wijnaldum,2019,Liverpool,Netherlands,"CM, CAM",84,Connector,Vision Playmaker,
+Joel Matip,2019,Liverpool,Cameroon,CB,84,Stopper,Aerial Monster,
+Julian Brandt,2019,Bayer Leverkusen,Germany,"CAM, LW, RW",84,Set Piece Specialist,Wide Creator,Low Cross Specialist
+Ruben Neves,2019,Wolves,Portugal,"CM, CDM",84,Deep Playmaker,Anchor,
+Bruno Fernandes,2018,Manchester United,Portugal,"CAM, CM",84,Advanced Playmaker,Connector,
+Domenico Berardi,2018,Sassuolo,Italy,"RW, RM, ST",84,Inside Forward,Cross Specialist,Pressing Forward
+Joao Cancelo,2018,Manchester City,Portugal,"RB, LB, RM",84,Inverted Fullback,Crossing Fullback,Cross Specialist
+Andrew Robertson,2017,Liverpool,Scotland,LB,84,Pressing Fullback,Overlapping Runner,
+Jadon Sancho,2017,Borussia Dortmund,England,"RW, LW",84,Wide Creator,Speedster,
+Trent Alexander-Arnold,2017,Liverpool,England,"RB, RM, CM",84,Crossing Fullback,Cross Specialist,Engine
+Alex Sandro,2016,Juventus,Brazil,"LB, LM",84,Overlapping Runner,Cross Specialist,
+Thibaut Courtois,2016,Chelsea,Belgium,GK,84,Shot Stopper,,
+Andres Guardado,2015,PSV Eindhoven,Mexico,"LM, CM, LB",84,Cross Specialist,Engine,Overlapping Runner
+Andriy Yarmolenko,2015,Dynamo Kyiv,Ukraine,RW,84,Inside Forward,,
+Carlos Vela,2015,Real Sociedad,Mexico,"RW, ST, LW",84,Inside Forward,Pressing Forward,Speedster
+Gary Cahill,2015,Chelsea,England,CB,84,Aerial Monster,Stopper,
+Hugo Lloris,2015,Tottenham Hotspur,France,GK,84,Sweeper Keeper,,
+Olivier Giroud,2015,Arsenal,France,ST,84,Target Man,,
+Christian Eriksen,2014,Tottenham Hotspur,Denmark,"CAM, CM",84,Advanced Playmaker,Connector,
+Oscar,2014,Chelsea,Brazil,"CAM, CM",84,Vision Playmaker,Connector,
+Per Mertesacker,2014,Arsenal,Germany,CB,84,Fast Defender,Ball Playing Defender,
+Alisson Becker,2013,Liverpool,Brazil,GK,84,Distribution Keeper,,
+David Luiz,2013,Chelsea,Brazil,"CB, CDM",84,Ball Playing Defender,Destroyer,
+Jerome Boateng,2013,Bayern Munich,Germany,"CB, RB",84,Aerial Monster,Overlapping Runner,
+Riyad Mahrez,2013,Leicester City,Algeria,"RW, RM",84,Inside Forward,Cross Specialist,
+Andrea Barzagli,2012,Juventus,Italy,CB,84,Fast Defender,Ball Playing Defender,
+Arda Turan,2012,Atletico Madrid,Turkey,"LM, CAM, RW",84,Low Cross Specialist,Set Piece Specialist,Cross Specialist
+Arturo Vidal,2012,Juventus,Chile,"CM, CDM",84,Box-to-Box,Destroyer,
+Bacary Sagna,2012,Arsenal,France,RB,84,Defensive Fullback,Crossing Fullback,
+Clint Dempsey,2012,Fulham,United States,"CAM, ST, LW",84,Long Shot Specialist,False 9,Inside Forward
+Ivan Rakitic,2012,Barcelona,Croatia,"CM, CAM, CDM",84,Deep Playmaker,Vision Playmaker,Destroyer
+Jordi Alba,2012,Barcelona,Spain,"LB, LM",84,Overlapping Runner,Cross Specialist,
+Samir Handanovic,2012,Inter Milan,Slovenia,GK,84,Sweeper Keeper,,
+David Alaba,2011,Bayern Munich,Austria,"LB, CB, CM",84,Inverted Fullback,Ball Playing Defender,Deep Playmaker
+Javier Hernandez,2011,Manchester United,Mexico,ST,84,False 9,,
+Pedro,2011,Barcelona,Spain,"RW, LW",84,Low Cross Specialist,Speedster,
+Seydou Keita,2011,Barcelona,Mali,"CM, CDM, LM",84,Deep Playmaker,Anchor,Low Cross Specialist
+Florent Malouda,2010,Chelsea,France,"LM, LW",84,Wide Creator,Speedster,
+Jesus Navas,2010,Sevilla,Spain,"RM, RW, RB",84,Cross Specialist,Speedster,Overlapping Runner
+Juan Mata,2010,Chelsea,Spain,"CAM, RW",84,Advanced Playmaker,Speedster,
+Landon Donovan,2010,LA Galaxy,United States,"CAM, RW, ST",84,Set Piece Specialist,Inside Forward,False 9
+Thomas Vermaelen,2010,Arsenal,Belgium,"CB, LB",84,Ball Playing Defender,Inverted Fullback,
+Daniel Agger,2009,Liverpool,Denmark,CB,84,Ball Playing Defender,Stopper,
+Jefferson Farfan,2009,Schalke 04,Peru,"RW, ST",84,Inside Forward,Pressing Forward,
+Mario Gomez,2008,Bayern Munich,Germany,ST,84,Target Man,,
+Ricardo Quaresma,2008,Porto,Portugal,"RW, LW",84,Low Cross Specialist,Inside Forward,
+Antonio Di Natale,2007,Udinese,Italy,"ST, LW",84,Pressing Forward,Inside Forward,
+Dirk Kuyt,2007,Liverpool,Netherlands,"RW, ST",84,Inside Forward,Pressing Forward,
+Esteban Cambiasso,2007,Inter Milan,Argentina,"CDM, CM",84,Destroyer,Deep Playmaker,
+Franck Ribery,2007,Bayern Munich,France,"LW, LM",84,Wide Creator,Cross Specialist,
+Jose Antonio Reyes,2007,Arsenal,Spain,"LW, RW, ST",84,Inside Forward,Speedster,Pressing Forward
+Walter Samuel,2007,Inter Milan,Argentina,CB,84,Stopper,Aerial Monster,
+Mario Yepes,2006,Paris Saint-Germain,Colombia,CB,84,Fast Defender,Ball Playing Defender,
+Matias Fernandez,2006,Villarreal,Chile,"CAM, CM",84,Vision Playmaker,Connector,
+Patrice Evra,2006,Manchester United,France,LB,84,Defensive Fullback,Crossing Fullback,
+Sergio Aguero,2006,Atletico Madrid,Argentina,ST,84,Poacher,,
+Shunsuke Nakamura,2006,Celtic,Japan,"RM, CAM",84,Speedster,Set Piece Specialist,
+Victor Valdes,2006,Barcelona,Spain,GK,84,Sweeper Keeper,,
+Damien Duff,2005,Chelsea,Ireland,"LM, LW, RW",84,Speedster,Cross Specialist,Wide Creator
+Dani Alves,2005,Sevilla,Brazil,"RB, RM",84,Crossing Fullback,Cross Specialist,
+Gabriel Heinze,2005,Manchester United,Argentina,"LB, CB",84,Defensive Fullback,Sweeper,
+Hatem Trabelsi,2005,Ajax,Tunisia,RB,84,Overlapping Runner,Crossing Fullback,
+Javier Mascherano,2005,Liverpool,Argentina,"CDM, CB",84,Ball Winner,Ball Playing Defender,
+Filippo Inzaghi,2004,AC Milan,Italy,ST,84,Poacher,,
+Javier Zanetti,2004,Inter Milan,Argentina,"RB, LB, CM",84,Defensive Fullback,Crossing Fullback,Connector
+Juan Pablo Sorin,2004,Villarreal,Argentina,"LB, LM",84,Overlapping Runner,Cross Specialist,
+Lauren,2004,Arsenal,Cameroon,"RB, RM",84,Overlapping Runner,Cross Specialist,
+Ludovic Giuly,2004,Barcelona,France,"RW, CAM",84,Wide Creator,Vision Playmaker,
+Wayne Rooney,2004,Manchester United,England,"ST, CAM",84,False 9,Vision Playmaker,
+Hugo Ibarra,2003,Boca Juniors,Argentina,RB,84,Pressing Fullback,Overlapping Runner,
+Rafael Marquez,2003,Barcelona,Mexico,"CB, CDM",84,Ball Playing Defender,Destroyer,
+Denilson,2002,Real Betis,Brazil,"LW, LM",84,Inside Forward,Low Cross Specialist,
+Edwin van der Sar,2002,Manchester United,Netherlands,GK,84,Penalty Specialist,,
+Kily Gonzalez,2002,Valencia,Argentina,"LM, LW",84,Cross Specialist,Speedster,
+Michel Salgado,2002,Real Madrid,Spain,RB,84,Crossing Fullback,Overlapping Runner,
+Giovanni Elber,2000,Bayern Munich,Brazil,ST,84,Poacher,,
+Roy Makaay,2000,Deportivo La Coruna,Netherlands,ST,84,Target Man,,
+Ali Daei,1999,Bayern Munich,Iran,ST,84,Target Man,,
+Cafu,1999,AC Milan,Brazil,RB,84,Overlapping Runner,Crossing Fullback,
+Frank Lampard,1999,Chelsea,England,"CM, CAM",84,Box-to-Box,Long Shot Specialist,
+John Terry,1999,Chelsea,England,CB,84,Stopper,Aerial Monster,
+Michael Reiziger,1999,Barcelona,Netherlands,"RB, CB",84,Defensive Fullback,Ball Playing Defender,
+Petr Cech,1999,Chelsea,Czech Republic,GK,84,Penalty Specialist,,
+Teddy Sheringham,1999,Manchester United,England,"ST, CAM",84,False 9,Long Shot Specialist,
+Bixente Lizarazu,1998,Bayern Munich,France,LB,84,Crossing Fullback,Overlapping Runner,
+Christian Panucci,1998,Real Madrid,Italy,"RB, CB",84,Crossing Fullback,Stopper,
+Christian Ziege,1998,AC Milan,Germany,"LB, LM",84,Overlapping Runner,Cross Specialist,
+Leonardo Araujo,1998,AC Milan,Brazil,"LB, LM, CAM",84,Overlapping Runner,Cross Specialist,Set Piece Specialist
+Sergi Barjuan,1998,Barcelona,Spain,"LB, LM",84,Overlapping Runner,Cross Specialist,
+Francesco Toldo,1997,Inter Milan,Italy,GK,84,Distribution Keeper,,
+Karel Poborsky,1997,Manchester United,Czech Republic,"RM, RW",84,Wide Creator,Speedster,
+Paul Scholes,1997,Manchester United,England,"CM, CAM",84,Connector,Long Shot Specialist,
+Pavel Nedved,1997,Juventus,Czech Republic,"LM, CAM, CM",84,Inside Forward,Vision Playmaker,Engine
+Jocelyn Angloma,1996,Valencia,France,"RB, CB",84,Crossing Fullback,Aerial Monster,
+Marcelo Salas,1996,Lazio,Chile,ST,84,Poacher,,
+Fabien Barthez,1995,Monaco,France,GK,84,Distribution Keeper,,
+Angelo Peruzzi,1994,Juventus,Italy,GK,84,Penalty Specialist,,
+Gianfranco Zola,1994,Chelsea,Italy,"CAM, ST",84,Long Shot Specialist,False 9,
+Ian Wright,1994,Arsenal,England,ST,84,False 9,,
+Brian Laudrup,1993,Rangers,Denmark,"RW, LW, CAM",84,Inside Forward,Cross Specialist,Long Shot Specialist
+Diego Simeone,1993,Atletico Madrid,Argentina,"CDM, CM",84,Destroyer,Deep Playmaker,
+Stefan Reuter,1993,Borussia Dortmund,Germany,"RB, CB, CDM",84,Inverted Fullback,Ball Playing Defender,Destroyer
+Claudio Caniggia,1992,Roma,Argentina,"RW, ST",84,Inside Forward,Pressing Forward,
+Dennis Bergkamp,1992,Arsenal,Netherlands,"ST, CAM",84,False 9,Set Piece Specialist,
+Lilian Thuram,1992,Parma,France,"RB, CB",84,Defensive Fullback,Aerial Monster,
+Patrick Kluivert,1992,Ajax,Netherlands,ST,84,Pressing Forward,,
+Rai,1992,Paris Saint-Germain,Brazil,CAM,84,Vision Playmaker,,
+Stuart Pearce,1992,Nottingham Forest,England,"LB, CB",84,Overlapping Runner,Aerial Monster,
+Zvonimir Boban,1992,AC Milan,Croatia,"CM, CAM, RM",84,Engine,Vision Playmaker,Low Cross Specialist
+Aldair,1991,Roma,Brazil,CB,84,Stopper,Aerial Monster,
+Chris Waddle,1991,Marseille,England,"RM, RW, CAM",84,Inside Forward,Speedster,Advanced Playmaker
+Alan Shearer,1990,Newcastle United,England,ST,84,Target Man,,
+Branco,1990,Porto,Brazil,"LB, LM",84,Overlapping Runner,Cross Specialist,
+Matthias Sammer,1990,Borussia Dortmund,Germany,"CB, CDM",84,Sweeper,Destroyer,
+George Weah,1989,AC Milan,Liberia,ST,84,False 9,,
+John Barnes,1988,Liverpool,England,"LM, LW, ST",84,Inside Forward,Speedster,Pressing Forward
+Robert Prosinecki,1988,Red Star Belgrade,Croatia,"CAM, CM",84,Vision Playmaker,Engine,
+Carlos Valderrama,1987,Montpellier,Colombia,CAM,84,Set Piece Specialist,,
+Rene Higuita,1987,Atletico Nacional,Colombia,GK,84,Distribution Keeper,,
+Roger Milla,1987,Monaco,Cameroon,ST,84,False 9,,
+Cha Bum-kun,1983,Bayer Leverkusen,South Korea,"ST, RW",84,Pressing Forward,Inside Forward,
+Frank Rijkaard,1983,AC Milan,Netherlands,"CDM, CB, CM",84,Destroyer,Ball Playing Defender,Deep Playmaker
+Hans-Peter Briegel,1982,Verona,Germany,"LB, LM, CB",84,Overlapping Runner,Cross Specialist,Ball Playing Defender
+Hugo Sanchez,1982,Real Madrid,Mexico,ST,84,Target Man,,
+Preben Elkjaer,1982,Verona,Denmark,ST,84,Poacher,,
+Manuel Amoros,1981,Monaco,France,"RB, LB",84,Pressing Fullback,Overlapping Runner,
+Phil Neal,1980,Liverpool,England,RB,84,Defensive Fullback,Crossing Fullback,
+Jose Antonio Camacho,1979,Real Madrid,Spain,LB,84,Inverted Fullback,Pressing Fullback,
+Ruud Krol,1968,Ajax,Netherlands,"LB, CB",84,Crossing Fullback,Fast Defender,
+Sepp Maier,1968,Bayern Munich,Germany,GK,84,Penalty Specialist,,
+Johan Neeskens,1967,Ajax,Netherlands,"CM, CDM",84,Deep Playmaker,Press Machine,
+Gordon Banks,1964,Stoke City,England,GK,84,Shot Stopper,,
+Alejandro Garnacho,2026,Manchester United,Argentina,"LW, LM, RW",83,Inside Forward,Low Cross Specialist,Speedster
+Antonio Silva,2026,Benfica,Portugal,CB,83,Aerial Monster,Stopper,
+Brennan Johnson,2026,Tottenham Hotspur,Wales,"RW, RM, ST",83,Inside Forward,Cross Specialist,Pressing Forward
+Castello Lukeba,2026,RB Leipzig,France,CB,83,Aerial Monster,Stopper,
+Conor Gallagher,2026,Atletico Madrid,England,"CM, CAM, RM",83,Engine,Vision Playmaker,Low Cross Specialist
+Denzel Dumfries,2026,Inter Milan,Netherlands,"RB, RM",83,Overlapping Runner,Cross Specialist,
+Destiny Udogie,2026,Tottenham Hotspur,Italy,"LB, LM",83,Overlapping Runner,Cross Specialist,
+Douglas Luiz,2026,Juventus,Brazil,"CM, CDM",83,Deep Playmaker,Destroyer,
+Ederson Silva,2026,Atalanta,Brazil,"CM, CDM",83,Deep Playmaker,Destroyer,
+Francisco Trincao,2026,Sporting CP,Portugal,"RW, RM, LW",83,Cross Specialist,Wide Creator,Low Cross Specialist
+Giovanni Di Lorenzo,2026,Napoli,Italy,"RB, RM, CB",83,Overlapping Runner,Cross Specialist,Aerial Monster
+Hugo Ekitike,2026,Liverpool,France,ST,83,False 9,,
+Inigo Martinez,2026,Barcelona,Spain,CB,83,Fast Defender,Ball Playing Defender,
+Jarrad Branthwaite,2026,Everton,England,CB,83,Stopper,Aerial Monster,
+Karim Adeyemi,2026,Borussia Dortmund,Germany,"LW, ST, LM",83,Inside Forward,Pressing Forward,Cross Specialist
+Kenan Yildiz,2026,Juventus,Turkey,"LW, CAM, LM",83,Speedster,Set Piece Specialist,Inside Forward
+Levi Colwill,2026,Chelsea,England,"CB, LB",83,Ball Playing Defender,Defensive Fullback,
+Manuel Ugarte,2026,Manchester United,Uruguay,"CDM, CM",83,Press Machine,Deep Playmaker,
+Mason Greenwood,2026,Marseille,England,"RW, RM, ST",83,Inside Forward,Cross Specialist,Pressing Forward
+Noni Madueke,2026,Arsenal,England,"RW, RM, LW",83,Cross Specialist,Inside Forward,Wide Creator
+Orkun Kokcu,2026,Benfica,Turkey,"CM, CAM, CDM",83,Deep Playmaker,Vision Playmaker,Press Machine
+Samuele Retegui,2026,Atalanta,Italy,ST,83,Poacher,,
+Santiago Gimenez,2026,AC Milan,Mexico,ST,83,Target Man,,
+Ferran Torres,2023,Barcelona,Spain,"RW, LW, ST",83,Inside Forward,Speedster,Pressing Forward
+Nathan Ake,2023,Manchester City,Netherlands,"CB, LB",83,Sweeper,Inverted Fullback,
+Benjamin Pavard,2022,Bayern Munich,France,"RB, CB",83,Overlapping Runner,Stopper,
+Christian Pulisic,2021,Chelsea,United States,"RW, LW, CAM",83,Inside Forward,Low Cross Specialist,Vision Playmaker
+Ferland Mendy,2021,Real Madrid,France,"LB, LM",83,Pressing Fullback,Cross Specialist,
+Luke Shaw,2021,Manchester United,England,"LB, CB",83,Pressing Fullback,Fast Defender,
+William Saliba,2021,Marseille,France,CB,83,Aerial Monster,Stopper,
+Alex Telles,2020,Manchester United,Brazil,"LB, LM",83,Overlapping Runner,Cross Specialist,
+Hirving Lozano,2020,Napoli,Mexico,"RW, LW",83,Speedster,Low Cross Specialist,
+Lucas Hernandez,2020,Bayern Munich,France,"LB, CB",83,Pressing Fullback,Sweeper,
+Kieran Trippier,2019,Atletico Madrid,England,"RB, RM",83,Crossing Fullback,Cross Specialist,
+Ricardo Pereira,2019,Leicester City,Portugal,"RB, RM",83,Overlapping Runner,Cross Specialist,
+Theo Hernandez,2019,AC Milan,France,"LB, LM",83,Pressing Fullback,Cross Specialist,
+Milan Skriniar,2018,Inter Milan,Slovakia,CB,83,Fast Defender,Ball Playing Defender,
+Serge Aurier,2018,Tottenham Hotspur,Ivory Coast,"RB, RM",83,Overlapping Runner,Cross Specialist,
+Danilo,2016,Real Madrid,Brazil,"RB, LB, CB",83,Crossing Fullback,Defensive Fullback,Fast Defender
+Fernandinho,2016,Manchester City,Brazil,"CDM, CM, CB",83,Anchor,Deep Playmaker,Ball Playing Defender
+Xherdan Shaqiri,2016,Stoke City,Switzerland,"RW, CAM, RM",83,Speedster,Long Shot Specialist,Cross Specialist
+Maxwell,2015,Paris Saint-Germain,Brazil,"LB, LM",83,Overlapping Runner,Cross Specialist,
+Dani Carvajal,2014,Real Madrid,Spain,RB,83,Pressing Fullback,Overlapping Runner,
+Dimitri Payet,2013,West Ham United,France,"CAM, LW",83,Advanced Playmaker,Cross Specialist,
+Gervinho,2013,Roma,Ivory Coast,"LW, RW, ST",83,Inside Forward,Speedster,Pressing Forward
+Jamie Vardy,2013,Leicester City,England,ST,83,Pressing Forward,,
+Sadio Mane,2013,Liverpool,Senegal,"LW, RW, ST",83,Inside Forward,Speedster,Pressing Forward
+Claudio Bravo,2012,Barcelona,Chile,GK,83,Penalty Specialist,,
+Harry Kane,2012,Tottenham Hotspur,England,"ST, CAM",83,False 9,Advanced Playmaker,
+Martin Skrtel,2012,Liverpool,Slovakia,CB,83,Sweeper,Ball Playing Defender,
+Sebastian Kehl,2012,Borussia Dortmund,Germany,"CDM, CM",83,Ball Winner,Deep Playmaker,
+Seydou Doumbia,2012,CSKA Moscow,Ivory Coast,ST,83,Pressing Forward,,
+Antonio Valencia,2011,Manchester United,Ecuador,"RM, RW, RB",83,Cross Specialist,Speedster,Overlapping Runner
+Ibrahim Afellay,2011,Barcelona,Netherlands,"RW, CAM, CM",83,Wide Creator,Vision Playmaker,Engine
+Jakub Blaszczykowski,2011,Borussia Dortmund,Poland,"RM, RW, RB",83,Cross Specialist,Speedster,Overlapping Runner
+Marcelo,2011,Real Madrid,Brazil,"LB, LM",83,Overlapping Runner,Cross Specialist,
+N'Golo Kante,2011,Chelsea,France,"CDM, CM",83,Ball Winner,Deep Playmaker,
+Alex,2010,Chelsea,Brazil,CB,83,Fast Defender,Ball Playing Defender,
+Antoine Griezmann,2010,Atletico Madrid,France,"ST, CAM, RW",83,Pressing Forward,Set Piece Specialist,Inside Forward
+Giorgio Chiellini,2010,Juventus,Italy,CB,83,Stopper,Aerial Monster,
+Jan Oblak,2010,Atletico Madrid,Slovenia,GK,83,Shot Stopper,,
+Marek Hamsik,2010,Napoli,Slovakia,"CAM, CM",83,Vision Playmaker,Engine,
+Milos Krasic,2010,Juventus,Serbia,"RM, RW",83,Low Cross Specialist,Wide Creator,
+Yuri Zhirkov,2009,Chelsea,Russia,"LM, LW, LB",83,Cross Specialist,Speedster,Overlapping Runner
+Yasuhito Endo,2008,Gamba Osaka,Japan,"CM, CDM",83,Deep Playmaker,Anchor,
+Yaya Toure,2008,Manchester City,Ivory Coast,"CM, CDM, CAM",83,Box-to-Box,Destroyer,Vision Playmaker
+Bastian Schweinsteiger,2007,Bayern Munich,Germany,"CM, CDM, RM",83,Box-to-Box,Ball Winner,Wide Creator
+Dimitar Berbatov,2007,Manchester United,Bulgaria,"ST, CAM",83,False 9,Advanced Playmaker,
+Thiago Silva,2007,Paris Saint-Germain,Brazil,CB,83,Stopper,Aerial Monster,
+David Silva,2006,Manchester City,Spain,"CAM, CM, LW",83,Long Shot Specialist,Engine,Wide Creator
+Juliano Belletti,2006,Barcelona,Brazil,RB,83,Overlapping Runner,Crossing Fullback,
+Miguel Monteiro,2006,Valencia,Portugal,RB,83,Pressing Fullback,Overlapping Runner,
+Radamel Falcao,2006,Atletico Madrid,Colombia,ST,83,Pressing Forward,,
+Ali Karimi,2005,Bayern Munich,Iran,"CAM, LW",83,Vision Playmaker,Wide Creator,
+Sergio Busquets,2005,Barcelona,Spain,CDM,83,Anchor,,
+Sylvinho,2005,Barcelona,Brazil,"LB, LM",83,Overlapping Runner,Cross Specialist,
+Didier Drogba,2004,Chelsea,Ivory Coast,ST,83,Target Man,,
+Julio Cesar,2004,Inter Milan,Brazil,GK,83,Distribution Keeper,,
+Wesley Sneijder,2004,Inter Milan,Netherlands,"CAM, CM",83,Advanced Playmaker,Engine,
+David Villa,2003,Valencia,Spain,"ST, LW",83,Poacher,Inside Forward,
+Luca Toni,2003,Fiorentina,Italy,ST,83,Target Man,,
+Nemanja Vidic,2003,Manchester United,Serbia,CB,83,Stopper,Aerial Monster,
+Fernando Torres,2002,Liverpool,Spain,ST,83,Poacher,,
+Rio Ferdinand,2002,Manchester United,England,CB,83,Ball Playing Defender,Stopper,
+Sami Hyypia,2002,Liverpool,Finland,CB,83,Ball Playing Defender,Stopper,
+Clarence Seedorf,2001,AC Milan,Netherlands,"CM, CAM, RM",83,Box-to-Box,Vision Playmaker,Speedster
+Jens Lehmann,2001,Arsenal,Germany,GK,83,Shot Stopper,,
+Juan Roman Riquelme,2001,Boca Juniors,Argentina,CAM,83,Long Shot Specialist,,
+Ivan Cordoba,2000,Inter Milan,Colombia,CB,83,Sweeper,Ball Playing Defender,
+Juninho Paulista,1999,Middlesbrough,Brazil,"RM, CAM, RW",83,Speedster,Set Piece Specialist,Wide Creator
+Ariel Ortega,1998,Valencia,Argentina,"RW, CAM, ST",83,Inside Forward,Long Shot Specialist,False 9
+Graeme Le Saux,1998,Chelsea,England,"LB, LM",83,Overlapping Runner,Cross Specialist,
+Robert Pires,1998,Marseille,France,"LM, LW, CAM",83,Speedster,Inside Forward,Set Piece Specialist
+Santiago Canizares,1998,Valencia,Spain,GK,83,Distribution Keeper,,
+Ruud van Nistelrooy,1997,Manchester United,Netherlands,ST,83,Target Man,,
+Michael Ballack,1996,Bayer Leverkusen,Germany,"CM, CAM, CDM",83,Deep Playmaker,Vision Playmaker,Destroyer
+Siniša Mihajlovic,1996,Lazio,Serbia,"CB, LB, CDM",83,Ball Playing Defender,Inverted Fullback,Destroyer
+Andrei Kanchelskis,1995,Everton,Russia,"RM, RW",83,Inside Forward,Speedster,
+Bodo Illgner,1995,Real Madrid,Germany,GK,83,Sweeper Keeper,,
+Fernando Redondo,1994,Real Madrid,Argentina,"CDM, CM",83,Anchor,Deep Playmaker,
+Gheorghe Hagi,1994,Galatasaray,Romania,"CAM, LW",83,Advanced Playmaker,Speedster,
+Andreas Koepke,1993,Marseille,Germany,GK,83,Sweeper Keeper,,
+David Beckham,1993,Manchester United,England,"RM, CM, RW",83,Cross Specialist,Tempo Controller,Speedster
+Lee Dixon,1993,Arsenal,England,RB,83,Inverted Fullback,Pressing Fullback,
+Robbie Fowler,1993,Liverpool,England,ST,83,False 9,,
+Roy Keane,1993,Manchester United,Ireland,"CM, CDM",83,Box-to-Box,Destroyer,
+Ryan Giggs,1993,Manchester United,Wales,"LM, LW",83,Wide Creator,Speedster,
+Darko Pancev,1988,Red Star Belgrade,North Macedonia,ST,83,Target Man,,
+Eric Cantona,1988,Manchester United,France,"ST, CAM",83,False 9,Vision Playmaker,
+Marcel Desailly,1988,AC Milan,France,"CB, CDM",83,Stopper,Destroyer,
+Steve Nicol,1987,Liverpool,Scotland,"RB, CB, CM",83,Inverted Fullback,Ball Playing Defender,Engine
+Ronald Koeman,1986,Barcelona,Netherlands,"CB, CDM",83,Ball Playing Defender,Destroyer,
+Jean-Pierre Papin,1985,Marseille,France,ST,83,Target Man,,
+Viv Anderson,1982,Nottingham Forest,England,RB,83,Pressing Fullback,Overlapping Runner,
+Antonio Cabrini,1978,Juventus,Italy,"LB, LM",83,Overlapping Runner,Cross Specialist,
+Claudio Gentile,1976,Juventus,Italy,"CB, RB",83,Stopper,Pressing Fullback,
+Paolo Rossi,1976,Juventus,Italy,ST,83,Poacher,,
+Socrates,1976,Corinthians,Brazil,"CAM, CM",83,Long Shot Specialist,Engine,
+Migueli,1975,Barcelona,Spain,CB,83,Sweeper,Ball Playing Defender,
+Ubaldo Fillol,1972,River Plate,Argentina,GK,83,Distribution Keeper,,
+Wim Suurbier,1970,Ajax,Netherlands,RB,83,Overlapping Runner,Crossing Fullback,
+Gerson,1964,Sao Paulo,Brazil,"CM, CAM",83,Engine,Vision Playmaker,
+Dragan Dzajic,1962,Red Star Belgrade,Serbia,LW,83,Wide Creator,,
+Obdulio Varela,1944,Penarol,Uruguay,"CDM, CM",83,Press Machine,Deep Playmaker,
+Adam Wharton,2026,Crystal Palace,England,"CM, CDM",82,Engine,Destroyer,
+Aleix Garcia,2026,Bayer Leverkusen,Spain,"CM, CDM",82,Engine,Anchor,
+Amad Diallo,2026,Manchester United,Ivory Coast,"RW, RM, CAM",82,Cross Specialist,Wide Creator,Long Shot Specialist
+Andrea Cambiaso,2026,Juventus,Italy,"LB, RB, LM",82,Overlapping Runner,Crossing Fullback,Cross Specialist
+Antoine Semenyo,2026,Bournemouth,Ghana,"RW, LW, ST",82,Inside Forward,Speedster,Pressing Forward
+Brais Mendez,2026,Real Sociedad,Spain,"CAM, CM, RM",82,Vision Playmaker,Engine,Speedster
+Carlos Baleba,2026,Brighton & Hove Albion,Cameroon,"CM, CDM",82,Engine,Destroyer,
+Chris Wood,2026,Nottingham Forest,New Zealand,ST,82,Poacher,,
+Curtis Jones,2026,Liverpool,England,"CM, CAM, LM",82,Engine,Vision Playmaker,Wide Creator
+Daniel Munoz,2026,Crystal Palace,Colombia,"RB, RM",82,Overlapping Runner,Cross Specialist,
+Fermin Lopez,2026,Barcelona,Spain,"CAM, CM, RM",82,Vision Playmaker,Engine,Wide Creator
+Francesco Acerbi,2026,Inter Milan,Italy,CB,82,Aerial Monster,Stopper,
+Francisco Conceicao,2026,Juventus,Portugal,"RW, RM, LW",82,Cross Specialist,Inside Forward,Speedster
+Giorgio Scalvini,2026,Atalanta,Italy,"CB, CDM",82,Ball Playing Defender,Destroyer,
+Jamie Gittens,2026,Chelsea,England,"LW, LM, RW",82,Low Cross Specialist,Cross Specialist,Speedster
+Jean-Philippe Mateta,2026,Crystal Palace,France,ST,82,Target Man,,
+Johan Bakayoko,2026,RB Leipzig,Belgium,"RW, RM, LW",82,Inside Forward,Cross Specialist,Speedster
+Khephren Thuram,2026,Juventus,France,"CM, CDM",82,Engine,Ball Winner,
+Kobbie Mainoo,2026,Manchester United,England,"CM, CDM, CAM",82,Tempo Controller,Destroyer,Vision Playmaker
+Leny Yoro,2026,Manchester United,France,CB,82,Aerial Monster,Stopper,
+Maghnes Akliouche,2026,Monaco,France,"CAM, RW, RM",82,Vision Playmaker,Low Cross Specialist,Wide Creator
+Malo Gusto,2026,Chelsea,France,"RB, RM",82,Overlapping Runner,Cross Specialist,
+Manu Kone,2026,Roma,France,"CM, CDM",82,Engine,Ball Winner,
+Matteo Politano,2026,Napoli,Italy,"RW, RM, LW",82,Wide Creator,Cross Specialist,Speedster
+Maxence Lacroix,2026,Crystal Palace,France,CB,82,Stopper,Aerial Monster,
+Milos Kerkez,2026,Liverpool,Hungary,"LB, LM",82,Overlapping Runner,Cross Specialist,
+Nicolas Jackson,2026,Chelsea,Senegal,"ST, LW",82,Pressing Forward,Inside Forward,
+Rasmus Hojlund,2026,Manchester United,Denmark,ST,82,Pressing Forward,,
+Riccardo Orsolini,2026,Bologna,Italy,"RW, RM",82,Speedster,Wide Creator,
+Robert Andrich,2026,Bayer Leverkusen,Germany,"CDM, CM",82,Ball Winner,Tempo Controller,
+Waldemar Anton,2026,Borussia Dortmund,Germany,"CB, RB",82,Stopper,Pressing Fullback,
+Yoane Wissa,2026,Brentford,DR Congo,"ST, LW",82,Pressing Forward,Inside Forward,
+Yves Bissouma,2026,Tottenham Hotspur,Mali,"CDM, CM",82,Ball Winner,Engine,
+Nuno Mendes,2024,Paris Saint-Germain,Portugal,"LB, LM",82,Overlapping Runner,Cross Specialist,
+Alejandro Grimaldo,2023,Bayer Leverkusen,Spain,"LB, LM",82,Overlapping Runner,Cross Specialist,
+Noussair Mazraoui,2022,Bayern Munich,Morocco,"RB, LB",82,Crossing Fullback,Overlapping Runner,
+Emre Can,2021,Borussia Dortmund,Germany,"CDM, CM, CB",82,Press Machine,Tempo Controller,Ball Playing Defender
+Mason Mount,2021,Chelsea,England,"CAM, CM, LW",82,Vision Playmaker,Engine,Low Cross Specialist
+Oleksandr Zinchenko,2021,Manchester City,Ukraine,"LB, CM",82,Inverted Fullback,Engine,
+Tomas Soucek,2021,West Ham United,Czech Republic,"CM, CDM",82,Tempo Controller,Ball Winner,
+Bukayo Saka,2020,Arsenal,England,"RW, RM, LW",82,Inside Forward,Cross Specialist,Speedster
+Eduardo Camavinga,2020,Rennes,France,"CM, CDM, LB",82,Tempo Controller,Press Machine,Inverted Fullback
+Gregor Kobel,2020,Borussia Dortmund,Switzerland,GK,82,Sweeper Keeper,,
+Joe Gomez,2020,Liverpool,England,"CB, RB",82,Aerial Monster,Overlapping Runner,
+Kieran Tierney,2020,Arsenal,Scotland,"LB, CB",82,Defensive Fullback,Aerial Monster,
+Nelson Semedo,2020,Barcelona,Portugal,RB,82,Overlapping Runner,Crossing Fullback,
+Sergio Reguilon,2020,Sevilla,Spain,LB,82,Crossing Fullback,Overlapping Runner,
+Eder Militao,2019,Real Madrid,Brazil,"CB, RB",82,Fast Defender,Defensive Fullback,
+Harry Maguire,2019,Leicester City,England,CB,82,Aerial Monster,Stopper,
+James Milner,2019,Liverpool,England,"CM, RM, LB",82,Box-to-Box,Cross Specialist,Overlapping Runner
+Lucas Vazquez,2019,Real Madrid,Spain,"RW, RM, RB",82,Speedster,Cross Specialist,Overlapping Runner
+Nicolas Tagliafico,2019,Ajax,Argentina,"LB, CB",82,Inverted Fullback,Fast Defender,
+Sergi Roberto,2019,Barcelona,Spain,"RB, CM, RM",82,Overlapping Runner,Engine,Cross Specialist
+Achraf Hakimi,2018,Borussia Dortmund,Morocco,"RB, RM, RW",82,Pressing Fullback,Speedster,Wide Creator
+Stefan de Vrij,2018,Inter Milan,Netherlands,CB,82,Stopper,Aerial Monster,
+Thomas Meunier,2018,Paris Saint-Germain,Belgium,"RB, RM",82,Overlapping Runner,Cross Specialist,
+Alessandro Florenzi,2017,Roma,Italy,"RB, RM, CM",82,Overlapping Runner,Cross Specialist,Tempo Controller
+Benjamin Mendy,2017,Manchester City,France,"LB, LM",82,Overlapping Runner,Cross Specialist,
+Fabinho,2017,Liverpool,Brazil,"CDM, CB, RB",82,Anchor,Ball Playing Defender,Inverted Fullback
+Kai Havertz,2017,Bayer Leverkusen,Germany,"CAM, ST",82,Advanced Playmaker,False 9,
+Marcos Alonso,2017,Chelsea,Spain,"LB, LM",82,Overlapping Runner,Cross Specialist,
+Nacho Monreal,2017,Arsenal,Spain,"LB, CB",82,Defensive Fullback,Aerial Monster,
+Aymeric Laporte,2016,Manchester City,Spain,CB,82,Fast Defender,Ball Playing Defender,
+Hector Bellerin,2016,Arsenal,Spain,RB,82,Inverted Fullback,Pressing Fullback,
+Kyle Walker,2016,Manchester City,England,"RB, CB",82,Pressing Fullback,Fast Defender,
+Leroy Sane,2016,Manchester City,Germany,"LW, RW",82,Speedster,Wide Creator,
+Mario Fernandes,2016,CSKA Moscow,Russia,"RB, CB",82,Pressing Fullback,Aerial Monster,
+Ousmane Dembele,2016,Borussia Dortmund,France,"RW, LW",82,Speedster,Wide Creator,
+Son Heung-min,2016,Tottenham Hotspur,South Korea,"LW, ST, RW",82,Inside Forward,Pressing Forward,Speedster
+Yacine Brahimi,2016,Porto,Algeria,"LW, CAM",82,Inside Forward,Advanced Playmaker,
+Ederson,2015,Benfica,Brazil,GK,82,Distribution Keeper,,
+Memphis Depay,2015,Lyon,Netherlands,"LW, ST, CAM",82,Inside Forward,False 9,Set Piece Specialist
+Sofiane Feghouli,2015,Valencia,Algeria,"RW, RM",82,Cross Specialist,Inside Forward,
+Alexandre Lacazette,2014,Lyon,France,ST,82,False 9,,
+Joshua Kimmich,2014,Bayern Munich,Germany,"RB, CDM, CM",82,Inverted Fullback,Ball Winner,Tempo Controller
+Marcel Schmelzer,2014,Borussia Dortmund,Germany,LB,82,Defensive Fullback,Crossing Fullback,
+Toby Alderweireld,2014,Tottenham Hotspur,Belgium,"CB, RB",82,Fast Defender,Inverted Fullback,
+Blaise Matuidi,2013,Paris Saint-Germain,France,"CM, CDM, LM",82,Engine,Press Machine,Inside Forward
+Douglas Costa,2013,Shakhtar Donetsk,Brazil,"RW, LW",82,Speedster,Cross Specialist,
+Gregory van der Wiel,2013,Paris Saint-Germain,Netherlands,RB,82,Defensive Fullback,Crossing Fullback,
+Jan Vertonghen,2013,Tottenham Hotspur,Belgium,"CB, LB",82,Aerial Monster,Defensive Fullback,
+Laurent Koscielny,2013,Arsenal,France,CB,82,Sweeper,Ball Playing Defender,
+Lorenzo Insigne,2013,Napoli,Italy,"LW, LM, CAM",82,Cross Specialist,Wide Creator,Set Piece Specialist
+Mauricio Isla,2013,Juventus,Chile,"RB, RM, CM",82,Overlapping Runner,Cross Specialist,Engine
+Rafinha,2013,Bayern Munich,Brazil,RB,82,Inverted Fullback,Pressing Fullback,
+Raheem Sterling,2013,Liverpool,England,"LW, RW, ST",82,Low Cross Specialist,Speedster,Pressing Forward
+David de Gea,2012,Manchester United,Spain,GK,82,Shot Stopper,,
+Domenico Criscito,2012,Zenit,Italy,"LB, CB",82,Defensive Fullback,Sweeper,
+Hatem Ben Arfa,2012,Newcastle United,France,"RW, CAM, LW",82,Inside Forward,Set Piece Specialist,Low Cross Specialist
+Theo Walcott,2012,Arsenal,England,"RW, ST",82,Speedster,Pressing Forward,
+Casemiro,2011,Real Madrid,Brazil,CDM,82,Anchor,,
+Gokhan Gonul,2011,Fenerbahce,Turkey,RB,82,Pressing Fullback,Overlapping Runner,
+Leonardo Bonucci,2011,Juventus,Italy,CB,82,Fast Defender,Ball Playing Defender,
+Mehdi Benatia,2011,Roma,Morocco,CB,82,Ball Playing Defender,Sweeper,
+Thiago Motta,2011,Paris Saint-Germain,Italy,"CDM, CM",82,Ball Winner,Box-to-Box,
+Carlos Salcido,2010,Fulham,Mexico,"LB, CB",82,Crossing Fullback,Aerial Monster,
+Glen Johnson,2010,Liverpool,England,RB,82,Inverted Fullback,Pressing Fullback,
+Gonzalo Higuain,2010,Napoli,Argentina,ST,82,Poacher,,
+Santi Cazorla,2010,Arsenal,Spain,"CM, CAM, LW",82,Box-to-Box,Vision Playmaker,Low Cross Specialist
+Sulley Muntari,2010,Inter Milan,Ghana,"CM, LM, CDM",82,Tempo Controller,Speedster,Press Machine
+Branislav Ivanovic,2009,Chelsea,Serbia,"RB, CB",82,Crossing Fullback,Fast Defender,
+Shinji Kagawa,2009,Borussia Dortmund,Japan,CAM,82,Set Piece Specialist,,
+Taye Taiwo,2009,Marseille,Nigeria,"LB, LM",82,Overlapping Runner,Cross Specialist,
+Hulk,2008,Porto,Brazil,"RW, ST",82,Inside Forward,Pressing Forward,
+Nani,2008,Manchester United,Portugal,"LW, RW",82,Wide Creator,Speedster,
+Nuri Sahin,2008,Borussia Dortmund,Turkey,"CM, CDM",82,Box-to-Box,Anchor,
+Samir Nasri,2008,Arsenal,France,"RM, CAM, LM",82,Cross Specialist,Set Piece Specialist,Inside Forward
+Thomas Mueller,2008,Bayern Munich,Germany,"CAM, ST, RW",82,Set Piece Specialist,False 9,Inside Forward
+Claudio Pizarro,2007,Werder Bremen,Peru,ST,82,False 9,,
+Dejan Stankovic,2007,Inter Milan,Serbia,CM,82,Engine,,
+Edinson Cavani,2007,Napoli,Uruguay,ST,82,Poacher,,
+Marco Reus,2007,Borussia Dortmund,Germany,"CAM, LW, ST",82,Long Shot Specialist,Inside Forward,False 9
+Massimo Oddo,2007,AC Milan,Italy,RB,82,Overlapping Runner,Crossing Fullback,
+Robin van Persie,2007,Manchester United,Netherlands,"ST, RW",82,Pressing Forward,Inside Forward,
+Aleksandr Kerzhakov,2006,Sevilla,Russia,"RW, ST",82,Inside Forward,Pressing Forward,
+Mesut Ozil,2006,Real Madrid,Germany,"CAM, RW",82,Advanced Playmaker,Wide Creator,
+Sidney Govou,2006,Lyon,France,"RW, RM, ST",82,Inside Forward,Cross Specialist,Pressing Forward
+Steve Finnan,2006,Liverpool,Ireland,RB,82,Defensive Fullback,Crossing Fullback,
+Vincent Kompany,2006,Manchester City,Belgium,CB,82,Aerial Monster,Sweeper,
+Gerard Pique,2005,Barcelona,Spain,CB,82,Ball Playing Defender,Sweeper,
+Luis Garcia,2005,Liverpool,Spain,"RW, CAM, ST",82,Inside Forward,Long Shot Specialist,Target Man
+Shaun Wright-Phillips,2005,Chelsea,England,"RM, RW",82,Cross Specialist,Low Cross Specialist,
+Ashley Cole,2004,Chelsea,England,LB,82,Defensive Fullback,Crossing Fullback,
+Cesc Fabregas,2004,Arsenal,Spain,"CM, CAM, CDM",82,Tempo Controller,Vision Playmaker,Ball Winner
+Diego Forlan,2004,Atletico Madrid,Uruguay,ST,82,Target Man,,
+Maicon,2004,Inter Milan,Brazil,RB,82,Overlapping Runner,Crossing Fullback,
+Pepe Reina,2004,Liverpool,Spain,GK,82,Distribution Keeper,,
+Ze Roberto,2004,Bayern Munich,Brazil,"LM, CM, LB",82,Cross Specialist,Tempo Controller,Overlapping Runner
+Dmitri Alenichev,2003,Porto,Russia,"RM, CAM, CM",82,Inside Forward,Advanced Playmaker,Box-to-Box
+Mehdi Mahdavikia,2003,Hamburger SV,Iran,"RM, RW, RB",82,Cross Specialist,Inside Forward,Overlapping Runner
+Niko Kovac,2003,Bayern Munich,Croatia,"CDM, CM",82,Press Machine,Engine,
+Willy Sagnol,2003,Bayern Munich,France,RB,82,Overlapping Runner,Crossing Fullback,
+Freddie Ljungberg,2002,Arsenal,Sweden,"RM, RW, CAM",82,Cross Specialist,Inside Forward,Set Piece Specialist
+Jamie Carragher,2002,Liverpool,England,"CB, RB",82,Aerial Monster,Crossing Fullback,
+Joaquin,2002,Real Betis,Spain,"RM, RW",82,Cross Specialist,Speedster,
+Nolberto Solano,2002,Newcastle United,Peru,"RM, CM",82,Cross Specialist,Tempo Controller,
+Amedeo Carboni,2001,Valencia,Italy,LB,82,Crossing Fullback,Overlapping Runner,
+Boudewijn Zenden,2001,Chelsea,Netherlands,"LM, LW, LB",82,Cross Specialist,Low Cross Specialist,Overlapping Runner
+Celestine Babayaro,2001,Chelsea,Nigeria,"LB, LM",82,Overlapping Runner,Cross Specialist,
+Gilberto Silva,2001,Arsenal,Brazil,"CDM, CB",82,Anchor,Ball Playing Defender,
+Juan,2001,Bayer Leverkusen,Brazil,CB,82,Fast Defender,Ball Playing Defender,
+Kolo Toure,2001,Arsenal,Ivory Coast,"CB, RB",82,Sweeper,Inverted Fullback,
+Robinho,2001,Santos,Brazil,"LW, RW, ST",82,Inside Forward,Speedster,Pressing Forward
+Claudio Reyna,2000,Rangers,United States,"CM, CDM",82,Box-to-Box,Ball Winner,
+Jorg Heinrich,2000,Fiorentina,Germany,"LB, LM",82,Overlapping Runner,Cross Specialist,
+Juninho Pernambucano,2000,Lyon,Brazil,"CM, CAM",82,Engine,Set Piece Specialist,
+Miroslav Klose,2000,Werder Bremen,Germany,ST,82,Poacher,,
+Adriano,1999,Inter Milan,Brazil,ST,82,Poacher,,
+Claude Makelele,1999,Chelsea,France,CDM,82,Anchor,,
+Dida,1999,AC Milan,Brazil,GK,82,Penalty Specialist,,
+Elvir Baljic,1999,Real Madrid,Bosnia and Herzegovina,"LW, ST",82,Inside Forward,Pressing Forward,
+Gianluca Zambrotta,1999,Juventus,Italy,"RB, LB, RM",82,Defensive Fullback,Crossing Fullback,Cross Specialist
+Tomas Rosicky,1999,Borussia Dortmund,Czech Republic,"CAM, CM, RM",82,Long Shot Specialist,Box-to-Box,Low Cross Specialist
+Hidetoshi Nakata,1998,Roma,Japan,"CAM, CM",82,Advanced Playmaker,Engine,
+Stefan Effenberg,1998,Bayern Munich,Germany,"CM, CDM",82,Tempo Controller,Press Machine,
+Fernando Couto,1997,Lazio,Portugal,CB,82,Aerial Monster,Sweeper,
+Finidi George,1997,Real Betis,Nigeria,"RM, RW",82,Low Cross Specialist,Inside Forward,
+Andy Cole,1996,Manchester United,England,ST,82,Target Man,,
+Gary Neville,1996,Manchester United,England,RB,82,Defensive Fullback,Crossing Fullback,
+Nicolas Anelka,1996,Arsenal,France,"ST, RW",82,Pressing Forward,Inside Forward,
+Cuauhtemoc Blanco,1995,Club America,Mexico,"CAM, ST",82,Long Shot Specialist,Poacher,
+Marc Overmars,1995,Ajax,Netherlands,"LM, LW, RW",82,Speedster,Wide Creator,Cross Specialist
+Michael Owen,1995,Liverpool,England,ST,82,Poacher,,
+Gheorghe Popescu,1994,Barcelona,Romania,"CB, CDM",82,Ball Playing Defender,Ball Winner,
+Leonardo,1994,AC Milan,Brazil,"LM, LW, LB",82,Cross Specialist,Wide Creator,Overlapping Runner
+Christian Vieri,1993,Inter Milan,Italy,ST,82,Target Man,,
+David Ginola,1993,Newcastle United,France,"LW, LM",82,Speedster,Low Cross Specialist,
+Hernan Crespo,1993,Parma,Argentina,ST,82,Poacher,,
+Jaap Stam,1993,Manchester United,Netherlands,CB,82,Sweeper,Aerial Monster,
+Nigel Winterburn,1993,Arsenal,England,LB,82,Defensive Fullback,Crossing Fullback,
+Davor Suker,1992,Real Madrid,Croatia,ST,82,Target Man,,
+Edgar Davids,1992,Juventus,Netherlands,"CM, CDM",82,Engine,Ball Winner,
+Fernando Hierro,1992,Real Madrid,Spain,"CB, CDM",82,Ball Playing Defender,Press Machine,
+Rui Costa,1992,Fiorentina,Portugal,CAM,82,Advanced Playmaker,,
+Juergen Kohler,1991,Borussia Dortmund,Germany,CB,82,Sweeper,Ball Playing Defender,
+Jose Luis Chilavert,1989,Velez Sarsfield,Paraguay,GK,82,Shot Stopper,,
+Kalusha Bwalya,1989,PSV Eindhoven,Zambia,"LW, CAM",82,Wide Creator,Advanced Playmaker,
+Miguel Angel Nadal,1989,Barcelona,Spain,"CB, CDM",82,Ball Playing Defender,Press Machine,
+Bebeto,1988,Vasco da Gama,Brazil,"LW, ST",82,Inside Forward,Pressing Forward,
+Claudio Taffarel,1988,Parma,Brazil,GK,82,Shot Stopper,,
+Sergio Goycochea,1987,Racing Club,Argentina,GK,82,Penalty Specialist,,
+Abedi Pele,1985,Marseille,Ghana,"CAM, LW",82,Advanced Playmaker,Speedster,
+Andreas Brehme,1984,Inter Milan,Germany,"LB, LM, RB",82,Overlapping Runner,Cross Specialist,Crossing Fullback
+Walter Zenga,1984,Inter Milan,Italy,GK,82,Distribution Keeper,,
+Giuseppe Bergomi,1983,Inter Milan,Italy,"RB, CB",82,Overlapping Runner,Fast Defender,
+Lakhdar Belloumi,1982,GC Mascara,Algeria,"RW, CAM",82,Inside Forward,Set Piece Specialist,
+Michel Preud'homme,1982,Mechelen,Belgium,GK,82,Sweeper Keeper,,
+Emilio Butragueno,1981,Real Madrid,Spain,ST,82,Pressing Forward,,
+Enzo Francescoli,1980,River Plate,Uruguay,"CAM, ST",82,Long Shot Specialist,Target Man,
+Junior,1978,Flamengo,Brazil,"LB, LM",82,Overlapping Runner,Speedster,
+Hector Chumpitaz,1964,Universitario,Peru,CB,82,Sweeper,Aerial Monster,
+Alan Varela,2026,Porto,Argentina,"CDM, CM",81,Anchor,Box-to-Box,
+Dan Ndoye,2026,Nottingham Forest,Switzerland,"RW, RM, LW",81,Speedster,Inside Forward,Low Cross Specialist
+Eliesse Ben Seghir,2026,Monaco,Morocco,"LW, CAM, LM",81,Wide Creator,Set Piece Specialist,Cross Specialist
+Igor Paixao,2026,Feyenoord,Brazil,"LW, LM, RW",81,Wide Creator,Speedster,Inside Forward
+Joao Gomes,2026,Wolverhampton Wanderers,Brazil,"CDM, CM",81,Ball Winner,Tempo Controller,
+Joshua Zirkzee,2026,Manchester United,Netherlands,"ST, CAM",81,Poacher,Long Shot Specialist,
+Lovro Majer,2026,Wolfsburg,Croatia,"CAM, CM, RM",81,Long Shot Specialist,Box-to-Box,Inside Forward
+Lucas Beraldo,2026,Paris Saint-Germain,Brazil,"CB, LB",81,Ball Playing Defender,Inverted Fullback,
+Marc Casado,2026,Barcelona,Spain,"CDM, CM",81,Press Machine,Engine,
+Mathias Olivera,2026,Napoli,Uruguay,"LB, CB",81,Overlapping Runner,Aerial Monster,
+Mats Wieffer,2026,Brighton & Hove Albion,Netherlands,"CDM, CM",81,Press Machine,Tempo Controller,
+Maximilian Beier,2026,Borussia Dortmund,Germany,"ST, LW, LM",81,Pressing Forward,Inside Forward,Cross Specialist
+Niclas Fuellkrug,2026,West Ham United,Germany,ST,81,Target Man,,
+Nico Paz,2026,Como,Argentina,"CAM, CM, RW",81,Advanced Playmaker,Box-to-Box,Speedster
+Pablo Barrios,2026,Atletico Madrid,Spain,"CM, CDM",81,Engine,Ball Winner,
+Pape Matar Sarr,2026,Tottenham Hotspur,Senegal,"CM, CDM, RM",81,Tempo Controller,Ball Winner,Wide Creator
+Raoul Bellanova,2026,Atalanta,Italy,"RB, RM",81,Overlapping Runner,Cross Specialist,
+Richard Rios,2026,Benfica,Colombia,"CM, CDM",81,Box-to-Box,Ball Winner,
+Rico Lewis,2026,Manchester City,England,"RB, CM, CDM",81,Inverted Fullback,Engine,Press Machine
+Samu Aghehowa,2026,Porto,Spain,ST,81,Pressing Forward,,
+Samuel Chukwueze,2026,AC Milan,Nigeria,"RW, RM, LW",81,Inside Forward,Speedster,Cross Specialist
+Tyrick Mitchell,2026,Crystal Palace,England,"LB, LM",81,Overlapping Runner,Cross Specialist,
+Yeremy Pino,2026,Villarreal,Spain,"RW, RM, LW",81,Inside Forward,Low Cross Specialist,Speedster
+Dejan Lovren,2018,Liverpool,Croatia,CB,81,Aerial Monster,Sweeper,
+John Stones,2018,Manchester City,England,"CB, CDM",81,Ball Playing Defender,Press Machine,
+Jonas Hector,2018,1. FC Koeln,Germany,"LB, LM, CM",81,Overlapping Runner,Cross Specialist,Tempo Controller
+Lautaro Martinez,2018,Inter Milan,Argentina,ST,81,Target Man,,
+Federico Chiesa,2017,Fiorentina,Italy,"RW, LW, ST",81,Inside Forward,Speedster,Pressing Forward
+Ilkay Gundogan,2017,Manchester City,Germany,"CM, CAM",81,Box-to-Box,Long Shot Specialist,
+Jordan Henderson,2017,Liverpool,England,"CM, CDM",81,Engine,Ball Winner,
+Martin Odegaard,2017,Arsenal,Norway,"CAM, CM",81,Advanced Playmaker,Tempo Controller,
+Mattia De Sciglio,2017,Juventus,Italy,"RB, LB",81,Overlapping Runner,Defensive Fullback,
+Kingsley Coman,2016,Bayern Munich,France,"LW, RW",81,Wide Creator,Speedster,
+Kostas Manolas,2015,Roma,Greece,CB,81,Ball Playing Defender,Sweeper,
+Marcos Rojo,2015,Manchester United,Argentina,"LB, CB",81,Inverted Fullback,Sweeper,
+Nicolas Otamendi,2015,Manchester City,Argentina,CB,81,Aerial Monster,Fast Defender,
+Ruben Dias,2015,Manchester City,Portugal,CB,81,Aerial Monster,Sweeper,
+Willian,2015,Chelsea,Brazil,"RW, LW, RM",81,Inside Forward,Cross Specialist,Wide Creator
+Cesar Azpilicueta,2014,Chelsea,Spain,"RB, CB, LB",81,Defensive Fullback,Aerial Monster,Crossing Fullback
+Joao Moutinho,2014,Monaco,Portugal,"CM, CAM",81,Box-to-Box,Long Shot Specialist,
+Juan Cuadrado,2014,Fiorentina,Colombia,"RB, RM, RW",81,Overlapping Runner,Cross Specialist,Speedster
+Marquinhos,2014,Paris Saint-Germain,Brazil,"CB, CDM",81,Ball Playing Defender,Press Machine,
+Bernardo Silva,2013,Manchester City,Portugal,"RW, CAM, CM",81,Wide Creator,Set Piece Specialist,Engine
+Juanfran,2013,Atletico Madrid,Spain,"RB, RM",81,Overlapping Runner,Cross Specialist,
+Kalidou Koulibaly,2013,Napoli,Senegal,CB,81,Aerial Monster,Fast Defender,
+Raphael Varane,2012,Real Madrid,France,CB,81,Fast Defender,Ball Playing Defender,
+Alvaro Arbeloa,2011,Real Madrid,Spain,"RB, LB, CB",81,Overlapping Runner,Crossing Fullback,Ball Playing Defender
+Keylor Navas,2011,Real Madrid,Costa Rica,GK,81,Shot Stopper,,
+Paulo Dybala,2011,Juventus,Argentina,"CAM, ST",81,Advanced Playmaker,Poacher,
+Pierre-Emerick Aubameyang,2011,Borussia Dortmund,Gabon,"ST, LW",81,Pressing Forward,Inside Forward,
+Vedran Corluka,2011,Tottenham Hotspur,Croatia,"RB, CB",81,Defensive Fullback,Aerial Monster,
+Alexis Sanchez,2010,Arsenal,Chile,"LW, RW, ST",81,Inside Forward,Speedster,Pressing Forward
+Angel Di Maria,2010,Paris Saint-Germain,Argentina,"RW, LW, RM",81,Wide Creator,Speedster,Cross Specialist
+Filipe Luis,2010,Atletico Madrid,Brazil,"LB, LM",81,Overlapping Runner,Cross Specialist,
+Kader Keita,2009,Lyon,Ivory Coast,"RW, LW",81,Low Cross Specialist,Wide Creator,
+Leighton Baines,2009,Everton,England,"LB, LM",81,Crossing Fullback,Cross Specialist,
+Marco Verratti,2009,Paris Saint-Germain,Italy,"CM, CDM",81,Tempo Controller,Ball Winner,
+Pablo Zabaleta,2009,Manchester City,Argentina,RB,81,Crossing Fullback,Overlapping Runner,
+Paul Pogba,2009,Juventus,France,"CM, CAM",81,Box-to-Box,Long Shot Specialist,
+Pedro Rodriguez,2009,Barcelona,Spain,"RW, LW, ST",81,Low Cross Specialist,Speedster,Pressing Forward
+Diego Godin,2008,Atletico Madrid,Uruguay,CB,81,Sweeper,Aerial Monster,
+James Rodriguez,2008,Real Madrid,Colombia,"CAM, RW",81,Advanced Playmaker,Inside Forward,
+Pepe,2008,Real Madrid,Portugal,CB,81,Sweeper,Aerial Monster,
+Christian Chivu,2007,Inter Milan,Romania,"CB, LB",81,Fast Defender,Defensive Fullback,
+Keisuke Honda,2007,CSKA Moscow,Japan,"CAM, RW",81,Set Piece Specialist,Wide Creator,
+Mats Hummels,2007,Borussia Dortmund,Germany,CB,81,Aerial Monster,Sweeper,
+Asier Del Horno,2006,Chelsea,Spain,LB,81,Pressing Fullback,Crossing Fullback,
+Darijo Srna,2006,Shakhtar Donetsk,Croatia,"RB, RM",81,Pressing Fullback,Cross Specialist,
+Fabio Grosso,2006,Inter Milan,Italy,"LB, LM",81,Pressing Fullback,Cross Specialist,
+Park Ji-sung,2006,Manchester United,South Korea,"LM, RM, CM",81,Low Cross Specialist,Wide Creator,Engine
+Carlos Tevez,2005,Manchester City,Argentina,"ST, CAM",81,Pressing Forward,Advanced Playmaker,
+Jerome Rothen,2004,Paris Saint-Germain,France,"LM, LW",81,Cross Specialist,Inside Forward,
+Ledley King,2004,Tottenham Hotspur,England,CB,81,Fast Defender,Ball Playing Defender,
+Lukas Podolski,2003,Cologne,Germany,"LW, ST",81,Inside Forward,Pressing Forward,
+Mario Melchiot,2003,Chelsea,Netherlands,"RB, CB",81,Defensive Fullback,Sweeper,
+Joe Cole,2002,West Ham United,England,"LM, CAM, RW",81,Speedster,Set Piece Specialist,Wide Creator
+Simao Sabrosa,2002,Benfica,Portugal,"LW, RW",81,Speedster,Wide Creator,
+Michael Essien,2001,Chelsea,Ghana,CM,81,Tempo Controller,,
+Vicente,2001,Valencia,Spain,"LM, LW",81,Wide Creator,Inside Forward,
+Deco,2000,Barcelona,Portugal,"CAM, CM",81,Long Shot Specialist,Box-to-Box,
+Gianluca Pessotto,2000,Juventus,Italy,"LB, RB",81,Pressing Fullback,Crossing Fullback,
+Ricardo Carvalho,2000,Chelsea,Portugal,CB,81,Sweeper,Ball Playing Defender,
+Jay-Jay Okocha,1998,Bolton Wanderers,Nigeria,"CAM, RW",81,Advanced Playmaker,Speedster,
+Mustapha Hadji,1998,Deportivo La Coruna,Morocco,"RW, CAM, LW",81,Speedster,Long Shot Specialist,Inside Forward
+Ramon Ramirez,1998,Club America,Mexico,"LB, LM",81,Pressing Fullback,Cross Specialist,
+Roberto Ayala,1998,Valencia,Argentina,CB,81,Fast Defender,Ball Playing Defender,
+Sol Campbell,1998,Arsenal,England,CB,81,Fast Defender,Aerial Monster,
+Sylvain Wiltord,1998,Bordeaux,France,"RW, ST",81,Inside Forward,Poacher,
+Luca Marchegiani,1997,Lazio,Italy,GK,81,Shot Stopper,,
+Lucio,1996,Bayern Munich,Brazil,CB,81,Sweeper,Ball Playing Defender,
+Moreno Torricelli,1996,Juventus,Italy,"RB, LB",81,Defensive Fullback,Crossing Fullback,
+Serhiy Rebrov,1996,Dynamo Kyiv,Ukraine,ST,81,Target Man,,
+Daniel Amokachi,1995,Everton,Nigeria,"RW, ST",81,Inside Forward,Poacher,
+Steve McManaman,1995,Liverpool,England,"RM, RW, CAM",81,Cross Specialist,Speedster,Long Shot Specialist
+Juan Sebastian Veron,1994,Lazio,Argentina,"CM, CAM",81,Engine,Set Piece Specialist,
+Laurent Blanc,1993,Marseille,France,CB,81,Aerial Monster,Fast Defender,
+Les Ferdinand,1993,Newcastle United,England,ST,81,Poacher,,
+Denis Irwin,1992,Manchester United,Ireland,"LB, RB",81,Crossing Fullback,Pressing Fullback,
+Tony Adams,1992,Arsenal,England,CB,81,Sweeper,Fast Defender,
+Ivan Zamorano,1989,Real Madrid,Chile,ST,81,Target Man,,
+Jari Litmanen,1989,Ajax,Finland,CM,81,Box-to-Box,,
+Dejan Savicevic,1988,AC Milan,Montenegro,ST,81,Poacher,,
+Dunga,1988,Fiorentina,Brazil,"CDM, CM",81,Anchor,Tempo Controller,
+Roberto Donadoni,1987,AC Milan,Italy,"RM, RW, CM",81,Cross Specialist,Low Cross Specialist,Engine
+Wlodzimierz Smolarek,1986,Eintracht Frankfurt,Poland,"LW, ST",81,Inside Forward,Target Man,
+Paulo Futre,1984,Porto,Portugal,"LW, ST",81,Inside Forward,Target Man,
+Pierre Littbarski,1982,1. FC Koeln,Germany,"RW, CAM",81,Inside Forward,Set Piece Specialist,
+Rudi Voeller,1981,Werder Bremen,Germany,ST,81,Target Man,,
+Eric Gerets,1978,Standard Liege,Belgium,RB,81,Inverted Fullback,Pressing Fullback,
+Andre Trindade,2026,Wolverhampton Wanderers,Brazil,"CDM, CM",80,Press Machine,Tempo Controller,
+Ansu Fati,2026,Barcelona,Spain,"LW, LM, ST",80,Inside Forward,Cross Specialist,Poacher
+Arnaud Kalimuendo,2026,Rennes,France,"ST, LW",80,Poacher,Inside Forward,
+Benjamin Henrichs,2026,RB Leipzig,Germany,"RB, LB, RM",80,Pressing Fullback,Crossing Fullback,Cross Specialist
+Bilal El Khannouss,2026,Leicester City,Morocco,"CAM, CM, LM",80,Advanced Playmaker,Box-to-Box,Wide Creator
+Conor Bradley,2026,Liverpool,Northern Ireland,"RB, RM",80,Pressing Fullback,Cross Specialist,
+Elye Wahi,2026,Eintracht Frankfurt,France,ST,80,Target Man,,
+Ernest Nuamah,2026,Lyon,Ghana,"RW, RM, LW",80,Inside Forward,Cross Specialist,Speedster
+Estevao Willian,2026,Chelsea,Brazil,"RW, RM, CAM",80,Low Cross Specialist,Inside Forward,Long Shot Specialist
+Evan Ferguson,2026,Brighton & Hove Albion,Ireland,ST,80,Poacher,,
+Harvey Elliott,2026,Liverpool,England,"CAM, RW, RM",80,Set Piece Specialist,Speedster,Cross Specialist
+Javi Guerra,2026,Valencia,Spain,"CM, CDM",80,Engine,Anchor,
+Malick Fofana,2026,Lyon,Belgium,"LW, LM, RW",80,Inside Forward,Cross Specialist,Wide Creator
+Mika Biereth,2026,Monaco,Denmark,ST,80,Poacher,,
+Patrick Dorgu,2026,Manchester United,Denmark,"LB, LM, RW",80,Pressing Fullback,Cross Specialist,Wide Creator
+Ramy Bensebaini,2026,Borussia Dortmund,Algeria,"LB, CB",80,Defensive Fullback,Sweeper,
+Romeo Lavia,2026,Chelsea,Belgium,"CDM, CM",80,Ball Winner,Tempo Controller,
+Sacha Boey,2026,Bayern Munich,France,"RB, RM",80,Pressing Fullback,Cross Specialist,
+Sead Kolasinac,2026,Atalanta,Bosnia and Herzegovina,"CB, LB",80,Aerial Monster,Defensive Fullback,
+Simon Adingra,2026,Sunderland,Ivory Coast,"LW, LM, RW",80,Low Cross Specialist,Cross Specialist,Speedster
+Tyler Adams,2026,Bournemouth,United States,"CDM, CM",80,Press Machine,Box-to-Box,
+Yankuba Minteh,2026,Brighton & Hove Albion,Gambia,"RW, RM, LW",80,Low Cross Specialist,Cross Specialist,Speedster
+Marcus Edwards,2025,Burnley,England,"RW, RM, CAM",80,Low Cross Specialist,Speedster,Advanced Playmaker
+Timothy Weah,2025,Marseille,United States,"RM, RW, RB",80,Cross Specialist,Wide Creator,Inverted Fullback
+Youssouf Fofana,2023,Monaco,France,"CM, CDM",80,Engine,Anchor,
+Diogo Dalot,2022,Manchester United,Portugal,"RB, LB",80,Pressing Fullback,Inverted Fullback,
+Renan Lodi,2022,Atletico Madrid,Brazil,"LB, LM",80,Pressing Fullback,Cross Specialist,
+Alvaro Odriozola,2021,Real Madrid,Spain,"RB, RM",80,Inverted Fullback,Cross Specialist,
+Ben Chilwell,2021,Chelsea,England,"LB, LM",80,Pressing Fullback,Cross Specialist,
+Lisandro Martinez,2020,Manchester United,Argentina,"CB, CDM",80,Fast Defender,Ball Winner,
+Reece James,2020,Chelsea,England,"RB, RM, CB",80,Inverted Fullback,Cross Specialist,Aerial Monster
+Raphinha,2019,Rennes,Brazil,"RW, RM",80,Inside Forward,Cross Specialist,
+Sofiane Boufal,2019,Celta Vigo,Morocco,"LW, CAM",80,Inside Forward,Advanced Playmaker,
+Aurelien Tchouameni,2018,Monaco,France,"CDM, CM",80,Press Machine,Tempo Controller,
+Declan Rice,2018,Arsenal,England,"CDM, CM",80,Press Machine,Box-to-Box,
+Jack Grealish,2018,Aston Villa,England,"LW, LM, CAM",80,Wide Creator,Cross Specialist,Long Shot Specialist
+Jules Kounde,2018,Sevilla,France,"CB, RB",80,Fast Defender,Defensive Fullback,
+Takashi Inui,2018,Eibar,Japan,"LW, LM",80,Low Cross Specialist,Cross Specialist,
+Santiago Arias,2017,PSV Eindhoven,Colombia,"RB, RM",80,Pressing Fullback,Cross Specialist,
+Timo Werner,2017,RB Leipzig,Germany,"ST, LW",80,Target Man,Inside Forward,
+Georginio Wijnaldum,2016,Liverpool,Netherlands,"CM, CAM",80,Engine,Set Piece Specialist,
+Joel Matip,2016,Liverpool,Cameroon,CB,80,Sweeper,Aerial Monster,
+Julian Brandt,2016,Bayer Leverkusen,Germany,"CAM, LW, RW",80,Long Shot Specialist,Wide Creator,Low Cross Specialist
+Marco Asensio,2016,Real Madrid,Spain,"RW, LW, CAM",80,Wide Creator,Inside Forward,Long Shot Specialist
+Ruben Neves,2016,Wolves,Portugal,"CM, CDM",80,Tempo Controller,Anchor,
+Serge Gnabry,2016,Werder Bremen,Germany,"RW, LW, ST",80,Inside Forward,Speedster,Target Man
+Bruno Fernandes,2015,Manchester United,Portugal,"CAM, CM",80,Advanced Playmaker,Box-to-Box,
+Joao Cancelo,2015,Manchester City,Portugal,"RB, LB, RM",80,Inverted Fullback,Crossing Fullback,Cross Specialist
+Mario Gaspar,2015,Villarreal,Spain,RB,80,Pressing Fullback,Crossing Fullback,
+Andrew Robertson,2014,Liverpool,Scotland,LB,80,Pressing Fullback,Inverted Fullback,
+Domenico Berardi,2014,Sassuolo,Italy,"RW, RM, ST",80,Inside Forward,Cross Specialist,Poacher
+Jadon Sancho,2014,Borussia Dortmund,England,"RW, LW",80,Wide Creator,Speedster,
+Seamus Coleman,2014,Everton,Ireland,"RB, RM",80,Inverted Fullback,Cross Specialist,
+Trent Alexander-Arnold,2014,Liverpool,England,"RB, RM, CM",80,Crossing Fullback,Cross Specialist,Engine
+Michael Bradley,2013,Roma,United States,"CM, CDM",80,Tempo Controller,Ball Winner,
+Alex Sandro,2012,Porto,Brazil,"LB, LM",80,Pressing Fullback,Cross Specialist,
+Andres Guardado,2012,PSV Eindhoven,Mexico,"LM, CM, LB",80,Cross Specialist,Engine,Inverted Fullback
+Andriy Yarmolenko,2012,Dynamo Kyiv,Ukraine,RW,80,Inside Forward,,
+Federico Balzaretti,2012,Roma,Italy,LB,80,Crossing Fullback,Pressing Fullback,
+Gary Cahill,2012,Chelsea,England,CB,80,Aerial Monster,Sweeper,
+Hugo Lloris,2012,Tottenham Hotspur,France,GK,80,Sweeper Keeper,,
+Jose Enrique,2012,Liverpool,Spain,LB,80,Crossing Fullback,Inverted Fullback,
+Olivier Giroud,2012,Arsenal,France,ST,80,Target Man,,
+Benoit Assou-Ekotto,2011,Tottenham Hotspur,Cameroon,LB,80,Defensive Fullback,Crossing Fullback,
+Carlos Vela,2011,Real Sociedad,Mexico,"RW, ST, LW",80,Inside Forward,Poacher,Speedster
+Christian Eriksen,2011,Tottenham Hotspur,Denmark,"CAM, CM",80,Advanced Playmaker,Box-to-Box,
+Eljero Elia,2011,Juventus,Netherlands,"LW, RW",80,Wide Creator,Low Cross Specialist,
+Micah Richards,2011,Manchester City,England,"RB, CB",80,Defensive Fullback,Aerial Monster,
+Oscar,2011,Chelsea,Brazil,"CAM, CM",80,Set Piece Specialist,Tempo Controller,
+Per Mertesacker,2011,Arsenal,Germany,CB,80,Fast Defender,Sweeper,
+Aiden McGeady,2010,Spartak Moscow,Ireland,"LW, RW",80,Cross Specialist,Wide Creator,
+David Luiz,2010,Chelsea,Brazil,"CB, CDM",80,Fast Defender,Ball Winner,
+Jerome Boateng,2010,Bayern Munich,Germany,"CB, RB",80,Aerial Monster,Pressing Fullback,
+Riyad Mahrez,2010,Leicester City,Algeria,"RW, RM",80,Inside Forward,Cross Specialist,
+Salomon Kalou,2010,Chelsea,Ivory Coast,"LW, ST",80,Inside Forward,Target Man,
+Aaron Lennon,2009,Tottenham Hotspur,England,"RM, RW",80,Speedster,Wide Creator,
+Albert Riera,2009,Liverpool,Spain,"LM, LW",80,Inside Forward,Speedster,
+Andrea Barzagli,2009,Juventus,Italy,CB,80,Fast Defender,Sweeper,
+Arturo Vidal,2009,Juventus,Chile,"CM, CDM",80,Box-to-Box,Press Machine,
+Bacary Sagna,2009,Arsenal,France,RB,80,Defensive Fullback,Crossing Fullback,
+Clint Dempsey,2009,Fulham,United States,"CAM, ST, LW",80,Long Shot Specialist,Poacher,Inside Forward
+Ivan Rakitic,2009,Barcelona,Croatia,"CM, CAM, CDM",80,Engine,Set Piece Specialist,Anchor
+John O'Shea,2009,Manchester United,Ireland,"CB, RB, LB",80,Fast Defender,Defensive Fullback,Crossing Fullback
+Jordi Alba,2009,Barcelona,Spain,"LB, LM",80,Inverted Fullback,Cross Specialist,
+Marcell Jansen,2009,Hamburger SV,Germany,"LB, LM",80,Pressing Fullback,Cross Specialist,
+Samir Handanovic,2009,Inter Milan,Slovenia,GK,80,Penalty Specialist,,
+Stewart Downing,2009,Aston Villa,England,"LM, LW",80,Inside Forward,Speedster,
+Arda Turan,2008,Galatasaray,Turkey,"LM, CAM, RW",80,Low Cross Specialist,Set Piece Specialist,Cross Specialist
+David Alaba,2008,Bayern Munich,Austria,"LB, CB, CM",80,Inverted Fullback,Sweeper,Tempo Controller
+Javier Hernandez,2008,Manchester United,Mexico,ST,80,Target Man,,
+Pedro,2008,Barcelona,Spain,"RW, LW",80,Low Cross Specialist,Speedster,
+Seydou Keita,2008,Barcelona,Mali,"CM, CDM, LM",80,Box-to-Box,Anchor,Low Cross Specialist
+Wes Brown,2008,Manchester United,England,"CB, RB",80,Sweeper,Pressing Fullback,
+Andreas Hinkel,2007,Sevilla,Germany,RB,80,Inverted Fullback,Crossing Fullback,
+Florent Malouda,2007,Chelsea,France,"LM, LW",80,Wide Creator,Speedster,
+Juan Mata,2007,Chelsea,Spain,"CAM, RW",80,Advanced Playmaker,Speedster,
+Landon Donovan,2007,LA Galaxy,United States,"CAM, RW, ST",80,Set Piece Specialist,Inside Forward,Poacher
+Thomas Vermaelen,2007,Arsenal,Belgium,"CB, LB",80,Fast Defender,Inverted Fullback,
+DaMarcus Beasley,2006,PSV Eindhoven,United States,"LM, LW, LB",80,Cross Specialist,Speedster,Pressing Fullback
+Daniel Agger,2006,Liverpool,Denmark,CB,80,Sweeper,Fast Defender,
+Emmanuel Eboue,2006,Arsenal,Ivory Coast,"RB, RM",80,Pressing Fullback,Cross Specialist,
+Jesus Navas,2006,Sevilla,Spain,"RM, RW, RB",80,Cross Specialist,Speedster,Inverted Fullback
+Steve Cherundolo,2006,Hannover 96,United States,RB,80,Pressing Fullback,Crossing Fullback,
+Clemente Rodriguez,2005,Spartak Moscow,Argentina,LB,80,Inverted Fullback,Pressing Fullback,
+Jefferson Farfan,2005,PSV Eindhoven,Peru,"RW, ST",80,Inside Forward,Target Man,
+Mario Gomez,2005,Bayern Munich,Germany,ST,80,Poacher,,
+Paulo Ferreira,2005,Chelsea,Portugal,RB,80,Crossing Fullback,Inverted Fullback,
+Andy van der Meyde,2004,Inter Milan,Netherlands,"RM, RW",80,Low Cross Specialist,Speedster,
+Antonio Di Natale,2004,Udinese,Italy,"ST, LW",80,Target Man,Low Cross Specialist,
+Dirk Kuyt,2004,Liverpool,Netherlands,"RW, ST",80,Low Cross Specialist,Poacher,
+Esteban Cambiasso,2004,Inter Milan,Argentina,"CDM, CM",80,Ball Winner,Engine,
+Walter Samuel,2004,Inter Milan,Argentina,CB,80,Sweeper,Aerial Monster,
+Jose Antonio Reyes,2003,Sevilla,Spain,"LW, RW, ST",80,Low Cross Specialist,Speedster,Target Man
+Mario Yepes,2003,Paris Saint-Germain,Colombia,CB,80,Fast Defender,Sweeper,
+Matias Fernandez,2003,Villarreal,Chile,"CAM, CM",80,Long Shot Specialist,Tempo Controller,
+Patrice Evra,2003,Manchester United,France,LB,80,Defensive Fullback,Crossing Fullback,
+Ricardo Quaresma,2003,Barcelona,Portugal,"RW, LW",80,Low Cross Specialist,Speedster,
+Victor Valdes,2003,Barcelona,Spain,GK,80,Sweeper Keeper,,
+Javier Mascherano,2002,Liverpool,Argentina,"CDM, CB",80,Ball Winner,Fast Defender,
+Jesper Gronkjaer,2002,Chelsea,Denmark,"RW, RM",80,Low Cross Specialist,Wide Creator,
+Shunsuke Nakamura,2002,Reggina,Japan,"RM, CAM",80,Speedster,Set Piece Specialist,
+Damien Duff,2001,Blackburn Rovers,Ireland,"LM, LW, RW",80,Speedster,Low Cross Specialist,Wide Creator
+Filippo Inzaghi,2001,AC Milan,Italy,ST,80,Poacher,,
+Gabriel Heinze,2001,Paris Saint-Germain,Argentina,"LB, CB",80,Defensive Fullback,Sweeper,
+Hatem Trabelsi,2001,Ajax,Tunisia,RB,80,Pressing Fullback,Crossing Fullback,
+Lauren,2001,Arsenal,Cameroon,"RB, RM",80,Inverted Fullback,Low Cross Specialist,
+Hugo Ibarra,2000,Boca Juniors,Argentina,RB,80,Pressing Fullback,Inverted Fullback,
+Juan Pablo Sorin,2000,Cruzeiro,Argentina,"LB, LM",80,Defensive Fullback,Low Cross Specialist,
+Ludovic Giuly,2000,Monaco,France,"RW, CAM",80,Wide Creator,Advanced Playmaker,
+Rafael Marquez,2000,Barcelona,Mexico,"CB, CDM",80,Fast Defender,Press Machine,
+Kily Gonzalez,1998,Valencia,Argentina,"LM, LW",80,Low Cross Specialist,Speedster,
+Michel Salgado,1998,Celta Vigo,Spain,RB,80,Crossing Fullback,Pressing Fullback,
+Denilson,1997,Sao Paulo,Brazil,"LW, LM",80,Low Cross Specialist,Wide Creator,
+Giovanni Elber,1997,Bayern Munich,Brazil,ST,80,Poacher,,
+Roy Makaay,1997,Deportivo La Coruna,Netherlands,ST,80,Target Man,,
+Ali Daei,1996,Bayern Munich,Iran,ST,80,Target Man,,
+Teddy Sheringham,1996,Manchester United,England,"ST, CAM",80,Poacher,Long Shot Specialist,
+Bixente Lizarazu,1995,Bayern Munich,France,LB,80,Crossing Fullback,Inverted Fullback,
+Michael Reiziger,1995,Ajax,Netherlands,"RB, CB",80,Defensive Fullback,Sweeper,
+Christian Panucci,1994,AC Milan,Italy,"RB, CB",80,Crossing Fullback,Fast Defender,
+Christian Ziege,1994,Bayern Munich,Germany,"LB, LM",80,Pressing Fullback,Low Cross Specialist,
+Florin Raducioiu,1994,AC Milan,Romania,"LW, ST",80,Low Cross Specialist,Target Man,
+Francesco Toldo,1994,Inter Milan,Italy,GK,80,Penalty Specialist,,
+Karel Poborsky,1994,Manchester United,Czech Republic,"RM, RW",80,Wide Creator,Speedster,
+Leonardo Araujo,1994,Sao Paulo,Brazil,"LB, LM, CAM",80,Inverted Fullback,Low Cross Specialist,Set Piece Specialist
+Oleg Salenko,1994,Valencia,Russia,"RW, ST",80,Low Cross Specialist,Poacher,
+Saeed Al-Owairan,1994,Al-Shabab,Saudi Arabia,"RW, CAM",80,Low Cross Specialist,Advanced Playmaker,
+Sergi Barjuan,1994,Barcelona,Spain,"LB, LM",80,Defensive Fullback,Low Cross Specialist,
+Bixente Lizarazu Winger Era,1993,Bordeaux,France,"LM, LW, LB",80,Low Cross Specialist,Wide Creator,Pressing Fullback
+Marcelo Salas,1993,Lazio,Chile,ST,80,Poacher,,
+Fabien Barthez,1992,Monaco,France,GK,80,Penalty Specialist,,
+Angelo Peruzzi,1991,Juventus,Italy,GK,80,Sweeper Keeper,,
+Gianfranco Zola,1991,Chelsea,Italy,"CAM, ST",80,Long Shot Specialist,Target Man,
+Ian Wright,1991,Arsenal,England,ST,80,Target Man,,
+Jocelyn Angloma,1991,Marseille,France,"RB, CB",80,Crossing Fullback,Aerial Monster,
+Brian Laudrup,1990,Rangers,Denmark,"RW, LW, CAM",80,Low Cross Specialist,Speedster,Long Shot Specialist
+Diego Simeone,1990,Atletico Madrid,Argentina,"CDM, CM",80,Press Machine,Box-to-Box,
+Patrick Kluivert,1989,Ajax,Netherlands,ST,80,Poacher,,
+Rai,1989,Paris Saint-Germain,Brazil,CAM,80,Advanced Playmaker,,
+Stefan Reuter,1989,Bayern Munich,Germany,"RB, CB, CDM",80,Inverted Fullback,Sweeper,Anchor
+Zvonimir Boban,1989,AC Milan,Croatia,"CM, CAM, RM",80,Engine,Set Piece Specialist,Low Cross Specialist
+Aldair,1988,Roma,Brazil,CB,80,Fast Defender,Aerial Monster,
+Claudio Caniggia,1988,Atalanta,Argentina,"RW, ST",80,Low Cross Specialist,Target Man,
+Stuart Pearce,1988,Nottingham Forest,England,"LB, CB",80,Defensive Fullback,Aerial Monster,
+Branco,1986,Fluminense,Brazil,"LB, LM",80,Pressing Fullback,Low Cross Specialist,
+Chris Waddle,1986,Tottenham Hotspur,England,"RM, RW, CAM",80,Low Cross Specialist,Speedster,Advanced Playmaker
+Robert Prosinecki,1985,Red Star Belgrade,Croatia,"CAM, CM",80,Long Shot Specialist,Tempo Controller,
+Carlos Valderrama,1984,Montpellier,Colombia,CAM,80,Set Piece Specialist,,
+John Barnes,1984,Watford,England,"LM, LW, ST",80,Low Cross Specialist,Speedster,Poacher
+Rene Higuita,1984,Atletico Nacional,Colombia,GK,80,Distribution Keeper,,
+Roger Milla,1984,Monaco,Cameroon,ST,80,Target Man,,
+Cha Bum-kun,1980,Bayer Leverkusen,South Korea,"ST, RW",80,Poacher,Low Cross Specialist,
+Hans-Peter Briegel,1979,Verona,Germany,"LB, LM, CB",80,Inverted Fullback,Low Cross Specialist,Sweeper
+Preben Elkjaer,1979,Verona,Denmark,ST,80,Target Man,,
+Manuel Amoros,1978,Monaco,France,"RB, LB",80,Pressing Fullback,Defensive Fullback,
+Jose Antonio Camacho,1976,Real Madrid,Spain,LB,80,Inverted Fullback,Pressing Fullback,
+Phil Neal,1976,Liverpool,England,RB,80,Defensive Fullback,Crossing Fullback,
+Abdukodir Khusanov,2026,Manchester City,Uzbekistan,"CB, RB",79,Fast Defender,Inverted Fullback,
+Beñat Prados,2026,Athletic Club,Spain,"CM, CDM",79,Box-to-Box,Ball Winner,
+Facundo Buonanotte,2026,Brighton & Hove Albion,Argentina,"CAM, RW, RM",79,Advanced Playmaker,Low Cross Specialist,Wide Creator
+Franco Mastantuono,2026,Real Madrid,Argentina,"CAM, RW, RM",79,Long Shot Specialist,Low Cross Specialist,Speedster
+Julio Enciso,2026,Brighton & Hove Albion,Paraguay,"CAM, LW, LM",79,Set Piece Specialist,Low Cross Specialist,Wide Creator
+Myles Lewis-Skelly,2026,Arsenal,England,"LB, CM, LM",79,Defensive Fullback,Engine,Low Cross Specialist
+Oscar Bobb,2026,Manchester City,Norway,"RW, RM, CAM",79,Wide Creator,Low Cross Specialist,Set Piece Specialist
+Yunus Musah,2026,AC Milan,United States,"CM, RM, CDM",79,Tempo Controller,Speedster,Anchor
+David Raum,2024,RB Leipzig,Germany,"LB, LM",79,Pressing Fullback,Low Cross Specialist,
+Nathan Ake,2020,Manchester City,Netherlands,"CB, LB",79,Sweeper,Inverted Fullback,
+Ferran Torres,2019,Valencia,Spain,"RW, LW, ST",79,Low Cross Specialist,Speedster,Poacher
+Benjamin Pavard,2018,Stuttgart,France,"RB, CB",79,Defensive Fullback,Fast Defender,
+Elseid Hysaj,2018,Napoli,Albania,"RB, LB",79,Inverted Fullback,Crossing Fullback,
+Luke Shaw,2018,Manchester United,England,"LB, CB",79,Pressing Fullback,Fast Defender,
+Christian Pulisic,2017,Borussia Dortmund,United States,"RW, LW, CAM",79,Low Cross Specialist,Wide Creator,Advanced Playmaker
+Ferland Mendy,2017,Lyon,France,"LB, LM",79,Pressing Fullback,Low Cross Specialist,
+Sebastien Corchia,2017,Sevilla,France,RB,79,Crossing Fullback,Defensive Fullback,
+Alex Telles,2016,Porto,Brazil,"LB, LM",79,Inverted Fullback,Low Cross Specialist,
+Gokhan Tore,2016,Besiktas,Turkey,"RW, LW",79,Low Cross Specialist,Speedster,
+Hirving Lozano,2016,Pachuca,Mexico,"RW, LW",79,Speedster,Low Cross Specialist,
+Kamil Grosicki,2016,Rennes,Poland,"LM, LW, RW",79,Low Cross Specialist,Speedster,Wide Creator
+Lucas Hernandez,2016,Atletico Madrid,France,"LB, CB",79,Pressing Fullback,Sweeper,
+Theo Hernandez,2016,AC Milan,France,"LB, LM",79,Pressing Fullback,Low Cross Specialist,
+Kieran Trippier,2015,Tottenham Hotspur,England,"RB, RM",79,Crossing Fullback,Low Cross Specialist,
+Milan Skriniar,2015,Inter Milan,Slovakia,CB,79,Fast Defender,Sweeper,
+Ricardo Pereira,2015,Nice,Portugal,"RB, RM",79,Defensive Fullback,Low Cross Specialist,
+Jean Beausejour,2014,Wigan Athletic,Chile,"LB, LM",79,Inverted Fullback,Low Cross Specialist,
+Serge Aurier,2014,Toulouse,Ivory Coast,"RB, RM",79,Defensive Fullback,Low Cross Specialist,
+Fernandinho,2013,Manchester City,Brazil,"CDM, CM, CB",79,Anchor,Box-to-Box,Sweeper
+Adam Johnson,2012,Manchester City,England,"RW, LM",79,Low Cross Specialist,Wide Creator,
+Danilo,2012,Porto,Brazil,"RB, LB, CB",79,Crossing Fullback,Defensive Fullback,Fast Defender
+Maxwell,2012,Paris Saint-Germain,Brazil,"LB, LM",79,Inverted Fullback,Low Cross Specialist,
+Xherdan Shaqiri,2012,Bayern Munich,Switzerland,"RW, CAM, RM",79,Speedster,Long Shot Specialist,Low Cross Specialist
+Alan Hutton,2011,Tottenham Hotspur,Scotland,RB,79,Pressing Fullback,Crossing Fullback,
+Dani Carvajal,2011,Real Madrid,Spain,RB,79,Pressing Fullback,Inverted Fullback,
+Dimitri Payet,2010,West Ham United,France,"CAM, LW",79,Advanced Playmaker,Low Cross Specialist,
+Jamie Vardy,2010,Leicester City,England,ST,79,Target Man,,
+Claudio Bravo,2009,Barcelona,Chile,GK,79,Penalty Specialist,,
+Gervinho,2009,Lille,Ivory Coast,"LW, RW, ST",79,Low Cross Specialist,Speedster,Poacher
+Mark Gonzalez,2009,CSKA Moscow,Chile,"LM, LW",79,Speedster,Low Cross Specialist,
+Martin Skrtel,2009,Liverpool,Slovakia,CB,79,Sweeper,Fast Defender,
+Sebastian Kehl,2009,Borussia Dortmund,Germany,"CDM, CM",79,Press Machine,Engine,
+Seydou Doumbia,2009,CSKA Moscow,Ivory Coast,ST,79,Target Man,,
+Fernando Navarro,2008,Sevilla,Spain,"LB, CB",79,Defensive Fullback,Fast Defender,
+Alex,2007,Chelsea,Brazil,CB,79,Fast Defender,Sweeper,
+Ibrahim Afellay,2007,PSV Eindhoven,Netherlands,"RW, CAM, CM",79,Wide Creator,Long Shot Specialist,Tempo Controller
+Jakub Blaszczykowski,2007,Borussia Dortmund,Poland,"RM, RW, RB",79,Low Cross Specialist,Speedster,Inverted Fullback
+Marek Hamsik,2007,Napoli,Slovakia,"CAM, CM",79,Set Piece Specialist,Box-to-Box,
+Milos Krasic,2007,CSKA Moscow,Serbia,"RM, RW",79,Low Cross Specialist,Wide Creator,
+Antonio Valencia,2006,Wigan Athletic,Ecuador,"RM, RW, RB",79,Low Cross Specialist,Speedster,Defensive Fullback
+Lee Chun-soo,2006,Ulsan Hyundai,South Korea,"LW, RW",79,Low Cross Specialist,Wide Creator,
+Yasuhito Endo,2005,Gamba Osaka,Japan,"CM, CDM",79,Engine,Anchor,
+Yuri Zhirkov,2005,CSKA Moscow,Russia,"LM, LW, LB",79,Low Cross Specialist,Speedster,Pressing Fullback
+Dennis Rommedahl,2004,PSV Eindhoven,Denmark,"RM, RW",79,Speedster,Low Cross Specialist,
+Dimitar Berbatov,2004,Manchester United,Bulgaria,"ST, CAM",79,Poacher,Advanced Playmaker,
+Ali Karimi,2002,Bayern Munich,Iran,"CAM, LW",79,Long Shot Specialist,Wide Creator,
+Juliano Belletti,2002,Villarreal,Brazil,RB,79,Inverted Fullback,Crossing Fullback,
+Miguel Monteiro,2002,Benfica,Portugal,RB,79,Pressing Fullback,Defensive Fullback,
+Luca Toni,2000,Fiorentina,Italy,ST,79,Target Man,,
+Sami Hyypia,1999,Liverpool,Finland,CB,79,Sweeper,Fast Defender,
+Sylvinho,1999,Arsenal,Brazil,"LB, LM",79,Inverted Fullback,Low Cross Specialist,
+Jens Lehmann,1998,Arsenal,Germany,GK,79,Shot Stopper,,
+Ivan Cordoba,1997,Inter Milan,Colombia,CB,79,Sweeper,Fast Defender,
+Juninho Paulista,1995,Sao Paulo,Brazil,"RM, CAM, RW",79,Speedster,Set Piece Specialist,Wide Creator
+Santiago Canizares,1995,Valencia,Spain,GK,79,Distribution Keeper,,
+Ariel Ortega,1994,River Plate,Argentina,"RW, CAM, ST",79,Low Cross Specialist,Advanced Playmaker,Poacher
+Graeme Le Saux,1994,Blackburn Rovers,England,"LB, LM",79,Defensive Fullback,Low Cross Specialist,
+Igor Korneev,1994,Barcelona,Russia,"RW, CAM",79,Low Cross Specialist,Long Shot Specialist,
+Siniša Mihajlovic,1993,Lazio,Serbia,"CB, LB, CDM",79,Sweeper,Inverted Fullback,Ball Winner
+Bodo Illgner,1992,Real Madrid,Germany,GK,79,Sweeper Keeper,,
+Andrei Kanchelskis,1991,Manchester United,Russia,"RM, RW",79,Low Cross Specialist,Speedster,
+Andreas Koepke,1990,Marseille,Germany,GK,79,Penalty Specialist,,
+Robbie Fowler,1990,Liverpool,England,ST,79,Target Man,,
+Lee Dixon,1989,Arsenal,England,RB,79,Inverted Fullback,Pressing Fullback,
+Darko Pancev,1985,Red Star Belgrade,North Macedonia,ST,79,Target Man,,
+Steve Nicol,1983,Liverpool,Scotland,"RB, CB, CM",79,Inverted Fullback,Sweeper,Tempo Controller
+Viv Anderson,1978,Nottingham Forest,England,RB,79,Pressing Fullback,Defensive Fullback,
+Migueli,1972,Barcelona,Spain,CB,79,Sweeper,Fast Defender,
+Claudio Echeverri,2026,Manchester City,Argentina,"CAM, RW, RM",78,Set Piece Specialist,Low Cross Specialist,Wide Creator
+Eli Junior Kroupi,2026,Bournemouth,France,"ST, CAM",78,Poacher,Long Shot Specialist,
+Geovany Quenda,2026,Sporting CP,Portugal,"RW, RM, RB",78,Low Cross Specialist,Wide Creator,Defensive Fullback
+Gift Orban,2026,Hoffenheim,Nigeria,ST,78,Poacher,,
+Kendry Paez,2026,Chelsea,Ecuador,"CAM, RW, RM",78,Advanced Playmaker,Low Cross Specialist,Wide Creator
+Lewis Miley,2026,Newcastle United,England,"CM, CDM",78,Box-to-Box,Press Machine,
+Roony Bardghji,2026,Barcelona,Sweden,"RW, RM",78,Low Cross Specialist,Wide Creator,
+Achraf Bencharki,2021,Zamalek,Morocco,"LW, RW",78,Wide Creator,Low Cross Specialist,
+Nuno Mendes,2020,Sporting CP,Portugal,"LB, LM",78,Pressing Fullback,Low Cross Specialist,
+Emre Can,2018,Borussia Dortmund,Germany,"CDM, CM, CB",78,Ball Winner,Engine,Fast Defender
+Javier Manquillo,2018,Newcastle United,Spain,"RB, LB",78,Crossing Fullback,Defensive Fullback,
+Mason Mount,2018,Chelsea,England,"CAM, CM, LW",78,Set Piece Specialist,Tempo Controller,Low Cross Specialist
+Noussair Mazraoui,2018,Ajax,Morocco,"RB, LB",78,Crossing Fullback,Pressing Fullback,
+Oleksandr Zinchenko,2018,Manchester City,Ukraine,"LB, CM",78,Inverted Fullback,Engine,
+Sunil Chhetri,2018,Bengaluru,India,"ST, LW",78,Target Man,Low Cross Specialist,
+Tomas Soucek,2018,West Ham United,Czech Republic,"CM, CDM",78,Box-to-Box,Ball Winner,
+Eduardo Camavinga,2017,Rennes,France,"CM, CDM, LB",78,Tempo Controller,Press Machine,Inverted Fullback
+Gregor Kobel,2017,Borussia Dortmund,Switzerland,GK,78,Sweeper Keeper,,
+Joe Gomez,2017,Liverpool,England,"CB, RB",78,Aerial Monster,Defensive Fullback,
+Kieran Tierney,2017,Arsenal,Scotland,"LB, CB",78,Defensive Fullback,Sweeper,
+Sergio Reguilon,2017,Sevilla,Spain,LB,78,Crossing Fullback,Pressing Fullback,
+Alejandro Grimaldo,2016,Benfica,Spain,"LB, LM",78,Pressing Fullback,Low Cross Specialist,
+Eder Militao,2016,Real Madrid,Brazil,"CB, RB",78,Fast Defender,Defensive Fullback,
+Harry Maguire,2016,Leicester City,England,CB,78,Sweeper,Fast Defender,
+James Milner,2016,Liverpool,England,"CM, RM, LB",78,Box-to-Box,Low Cross Specialist,Inverted Fullback
+Nelson Semedo,2016,Benfica,Portugal,RB,78,Pressing Fullback,Crossing Fullback,
+Lucas Vazquez,2015,Real Madrid,Spain,"RW, RM, RB",78,Speedster,Low Cross Specialist,Inverted Fullback
+Nicolas Tagliafico,2015,Independiente,Argentina,"LB, CB",78,Inverted Fullback,Fast Defender,
+Sergi Roberto,2015,Barcelona,Spain,"RB, CM, RM",78,Defensive Fullback,Engine,Low Cross Specialist
+Stefan de Vrij,2015,Inter Milan,Netherlands,CB,78,Sweeper,Fast Defender,
+Alessandro Florenzi,2014,Roma,Italy,"RB, RM, CM",78,Pressing Fullback,Low Cross Specialist,Tempo Controller
+Fabinho,2014,Liverpool,Brazil,"CDM, CB, RB",78,Anchor,Sweeper,Inverted Fullback
+Kai Havertz,2014,Bayer Leverkusen,Germany,"CAM, ST",78,Advanced Playmaker,Poacher,
+Marcos Alonso,2014,Chelsea,Spain,"LB, LM",78,Defensive Fullback,Low Cross Specialist,
+Nacho Monreal,2014,Arsenal,Spain,"LB, CB",78,Defensive Fullback,Sweeper,
+Thomas Meunier,2014,Club Brugge,Belgium,"RB, RM",78,Pressing Fullback,Low Cross Specialist,
+Aymeric Laporte,2013,Manchester City,Spain,CB,78,Fast Defender,Sweeper,
+Benjamin Mendy,2013,Marseille,France,"LB, LM",78,Pressing Fullback,Low Cross Specialist,
+Hector Bellerin,2013,Arsenal,Spain,RB,78,Inverted Fullback,Pressing Fullback,
+Kyle Walker,2013,Manchester City,England,"RB, CB",78,Pressing Fullback,Fast Defender,
+Lorenzo De Silvestri,2013,Sampdoria,Italy,RB,78,Inverted Fullback,Pressing Fullback,
+Fabian Monzon,2012,Nice,Argentina,"LB, LM",78,Defensive Fullback,Low Cross Specialist,
+Mario Fernandes,2012,CSKA Moscow,Russia,"RB, CB",78,Pressing Fullback,Sweeper,
+Memphis Depay,2012,Lyon,Netherlands,"LW, ST, CAM",78,Low Cross Specialist,Target Man,Set Piece Specialist
+Yacine Brahimi,2012,Granada,Algeria,"LW, CAM",78,Low Cross Specialist,Advanced Playmaker,
+Alexandre Lacazette,2011,Lyon,France,ST,78,Poacher,,
+Sofiane Feghouli,2011,Valencia,Algeria,"RW, RM",78,Low Cross Specialist,Wide Creator,
+Toby Alderweireld,2011,Tottenham Hotspur,Belgium,"CB, RB",78,Fast Defender,Inverted Fullback,
+Blaise Matuidi,2010,Paris Saint-Germain,France,"CM, CDM, LM",78,Engine,Press Machine,Low Cross Specialist
+Jan Vertonghen,2010,Tottenham Hotspur,Belgium,"CB, LB",78,Sweeper,Defensive Fullback,
+Laurent Koscielny,2010,Arsenal,France,CB,78,Sweeper,Fast Defender,
+Marcel Schmelzer,2010,Borussia Dortmund,Germany,LB,78,Defensive Fullback,Crossing Fullback,
+Domenico Criscito,2009,Zenit,Italy,"LB, CB",78,Defensive Fullback,Sweeper,
+Gregory van der Wiel,2009,Ajax,Netherlands,RB,78,Defensive Fullback,Crossing Fullback,
+Mauricio Isla,2009,Udinese,Chile,"RB, RM, CM",78,Inverted Fullback,Low Cross Specialist,Engine
+Hatem Ben Arfa,2008,Marseille,France,"RW, CAM, LW",78,Low Cross Specialist,Set Piece Specialist,Wide Creator
+Mehdi Benatia,2008,Roma,Morocco,CB,78,Fast Defender,Sweeper,
+Thiago Motta,2008,Paris Saint-Germain,Italy,"CDM, CM",78,Ball Winner,Box-to-Box,
+Glen Johnson,2007,Liverpool,England,RB,78,Inverted Fullback,Pressing Fullback,
+Gokhan Gonul,2007,Fenerbahce,Turkey,RB,78,Pressing Fullback,Inverted Fullback,
+Rafinha,2007,Schalke 04,Brazil,RB,78,Inverted Fullback,Pressing Fullback,
+Santi Cazorla,2007,Arsenal,Spain,"CM, CAM, LW",78,Tempo Controller,Long Shot Specialist,Low Cross Specialist
+Sulley Muntari,2007,Inter Milan,Ghana,"CM, LM, CDM",78,Box-to-Box,Speedster,Press Machine
+Theo Walcott,2007,Arsenal,England,"RW, ST",78,Speedster,Target Man,
+Branislav Ivanovic,2006,Chelsea,Serbia,"RB, CB",78,Crossing Fullback,Fast Defender,
+Carlos Salcido,2006,PSV Eindhoven,Mexico,"LB, CB",78,Crossing Fullback,Fast Defender,
+Eddie Lewis,2006,Leeds United,United States,"LB, LM",78,Defensive Fullback,Low Cross Specialist,
+Shinji Kagawa,2006,Borussia Dortmund,Japan,CAM,78,Set Piece Specialist,,
+Hulk,2005,Porto,Brazil,"RW, ST",78,Low Cross Specialist,Poacher,
+Nani,2005,Manchester United,Portugal,"LW, RW",78,Wide Creator,Speedster,
+Nuri Sahin,2005,Borussia Dortmund,Turkey,"CM, CDM",78,Tempo Controller,Anchor,
+Taye Taiwo,2005,Marseille,Nigeria,"LB, LM",78,Defensive Fullback,Low Cross Specialist,
+Claudio Pizarro,2004,Werder Bremen,Peru,ST,78,Target Man,,
+Dejan Stankovic,2004,Inter Milan,Serbia,CM,78,Box-to-Box,,
+Massimo Oddo,2003,Lazio,Italy,RB,78,Inverted Fullback,Defensive Fullback,
+Steve Finnan,2003,Liverpool,Ireland,RB,78,Defensive Fullback,Pressing Fullback,
+Aleksandr Kerzhakov,2002,Zenit St. Petersburg,Russia,"RW, ST",78,Low Cross Specialist,Poacher,
+Luis Garcia,2002,Atletico Madrid,Spain,"RW, CAM, ST",78,Low Cross Specialist,Long Shot Specialist,Target Man
+Shaun Wright-Phillips,2002,Manchester City,England,"RM, RW",78,Low Cross Specialist,Wide Creator,
+Pepe Reina,2001,Liverpool,Spain,GK,78,Distribution Keeper,,
+Sidney Govou,2001,Lyon,France,"RW, RM, ST",78,Low Cross Specialist,Wide Creator,Poacher
+Ze Roberto,2001,Bayern Munich,Brazil,"LM, CM, LB",78,Low Cross Specialist,Tempo Controller,Inverted Fullback
+Niko Kovac,2000,Bayern Munich,Croatia,"CDM, CM",78,Ball Winner,Engine,
+Willy Sagnol,2000,Bayern Munich,France,RB,78,Pressing Fullback,Inverted Fullback,
+Jamie Carragher,1999,Liverpool,England,"CB, RB",78,Sweeper,Defensive Fullback,
+Freddie Ljungberg,1998,Arsenal,Sweden,"RM, RW, CAM",78,Low Cross Specialist,Speedster,Set Piece Specialist
+Gilberto Silva,1998,Arsenal,Brazil,"CDM, CB",78,Anchor,Fast Defender,
+Juan,1998,Bayer Leverkusen,Brazil,CB,78,Fast Defender,Sweeper,
+Kolo Toure,1998,Arsenal,Ivory Coast,"CB, RB",78,Sweeper,Inverted Fullback,
+Mehdi Mahdavikia,1998,Hamburger SV,Iran,"RM, RW, RB",78,Low Cross Specialist,Wide Creator,Pressing Fullback
+Nolberto Solano,1998,Newcastle United,Peru,"RM, CM",78,Low Cross Specialist,Tempo Controller,
+Robinho,1998,Santos,Brazil,"LW, RW, ST",78,Low Cross Specialist,Speedster,Target Man
+Amedeo Carboni,1997,Valencia,Italy,LB,78,Defensive Fullback,Pressing Fullback,
+Boudewijn Zenden,1997,PSV Eindhoven,Netherlands,"LM, LW, LB",78,Low Cross Specialist,Wide Creator,Inverted Fullback
+Celestine Babayaro,1997,Chelsea,Nigeria,"LB, LM",78,Defensive Fullback,Low Cross Specialist,
+Claudio Reyna,1997,Rangers,United States,"CM, CDM",78,Box-to-Box,Ball Winner,
+Dmitri Alenichev,1997,Spartak Moscow,Russia,"RM, CAM, CM",78,Low Cross Specialist,Advanced Playmaker,Engine
+Elvir Baljic,1996,Fenerbahce,Bosnia and Herzegovina,"LW, ST",78,Low Cross Specialist,Poacher,
+Jorg Heinrich,1996,Borussia Dortmund,Germany,"LB, LM",78,Pressing Fullback,Low Cross Specialist,
+Tomas Rosicky,1996,Borussia Dortmund,Czech Republic,"CAM, CM, RM",78,Long Shot Specialist,Box-to-Box,Low Cross Specialist
+Hidetoshi Nakata,1995,Roma,Japan,"CAM, CM",78,Advanced Playmaker,Engine,
+Stefan Effenberg,1995,Bayern Munich,Germany,"CM, CDM",78,Tempo Controller,Press Machine,
+Fernando Couto,1994,Lazio,Portugal,CB,78,Fast Defender,Sweeper,
+Andy Cole,1993,Manchester United,England,ST,78,Target Man,,
+Finidi George,1993,Ajax,Nigeria,"RM, RW",78,Low Cross Specialist,Speedster,
+Gary Neville,1993,Manchester United,England,RB,78,Defensive Fullback,Inverted Fullback,
+Nicolas Anelka,1993,Arsenal,France,"ST, RW",78,Poacher,Low Cross Specialist,
+Cuauhtemoc Blanco,1992,Club America,Mexico,"CAM, ST",78,Long Shot Specialist,Target Man,
+Gheorghe Popescu,1991,Barcelona,Romania,"CB, CDM",78,Fast Defender,Press Machine,
+Leonardo,1991,AC Milan,Brazil,"LM, LW, LB",78,Low Cross Specialist,Wide Creator,Pressing Fullback
+David Ginola,1990,Newcastle United,France,"LW, LM",78,Speedster,Low Cross Specialist,
+Nigel Winterburn,1989,Arsenal,England,LB,78,Defensive Fullback,Inverted Fullback,
+Miguel Angel Nadal,1986,Barcelona,Spain,"CB, CDM",78,Sweeper,Anchor,
+Kalusha Bwalya,1985,Cercle Brugge,Zambia,"LW, CAM",78,Wide Creator,Advanced Playmaker,
+Sergio Goycochea,1984,Racing Club,Argentina,GK,78,Penalty Specialist,,
+Lakhdar Belloumi,1978,MC Oran,Algeria,"RW, CAM",78,Low Cross Specialist,Set Piece Specialist,
+Dejan Lovren,2015,Liverpool,Croatia,CB,77,Fast Defender,Sweeper,
+John Stones,2015,Manchester City,England,"CB, CDM",77,Fast Defender,Ball Winner,
+Jonas Hector,2014,1. FC Koeln,Germany,"LB, LM, CM",77,Pressing Fullback,Low Cross Specialist,Tempo Controller
+Jordan Henderson,2014,Liverpool,England,"CM, CDM",77,Engine,Press Machine,
+Mattia De Sciglio,2013,AC Milan,Italy,"RB, LB",77,Inverted Fullback,Defensive Fullback,
+Kostas Manolas,2012,Roma,Greece,CB,77,Sweeper,Fast Defender,
+Nicolas Otamendi,2012,Manchester City,Argentina,CB,77,Sweeper,Fast Defender,
+Willian,2012,Chelsea,Brazil,"RW, LW, RM",77,Low Cross Specialist,Speedster,Wide Creator
+Cesar Azpilicueta,2011,Chelsea,Spain,"RB, CB, LB",77,Defensive Fullback,Sweeper,Pressing Fullback
+Joao Moutinho,2011,Monaco,Portugal,"CM, CAM",77,Box-to-Box,Long Shot Specialist,
+Marcos Rojo,2011,Spartak Moscow,Argentina,"LB, CB",77,Inverted Fullback,Sweeper,
+Juanfran,2010,Atletico Madrid,Spain,"RB, RM",77,Pressing Fullback,Low Cross Specialist,
+Alvaro Arbeloa,2007,Liverpool,Spain,"RB, LB, CB",77,Inverted Fullback,Defensive Fullback,Fast Defender
+Vedran Corluka,2007,Manchester City,Croatia,"RB, CB",77,Defensive Fullback,Fast Defender,
+Pablo Zabaleta,2006,Manchester City,Argentina,RB,77,Pressing Fullback,Inverted Fullback,
+Kader Keita,2005,Lille,Ivory Coast,"RW, LW",77,Low Cross Specialist,Wide Creator,
+Christian Chivu,2004,Inter Milan,Romania,"CB, LB",77,Fast Defender,Defensive Fullback,
+Keisuke Honda,2004,CSKA Moscow,Japan,"CAM, RW",77,Advanced Playmaker,Wide Creator,
+Fabio Grosso,2003,Palermo,Italy,"LB, LM",77,Pressing Fullback,Low Cross Specialist,
+Park Ji-sung,2003,Manchester United,South Korea,"LM, RM, CM",77,Low Cross Specialist,Wide Creator,Box-to-Box
+Asier Del Horno,2002,Athletic Bilbao,Spain,LB,77,Inverted Fullback,Pressing Fullback,
+Jerome Rothen,2001,Monaco,France,"LM, LW",77,Low Cross Specialist,Speedster,
+Ledley King,2001,Tottenham Hotspur,England,CB,77,Fast Defender,Sweeper,
+Lukas Podolski,2000,Cologne,Germany,"LW, ST",77,Low Cross Specialist,Poacher,
+Mario Melchiot,1999,Chelsea,Netherlands,"RB, CB",77,Defensive Fullback,Sweeper,
+Gianluca Pessotto,1996,Juventus,Italy,"LB, RB",77,Inverted Fullback,Pressing Fullback,
+Luca Marchegiani,1994,Lazio,Italy,GK,77,Shot Stopper,,
+Mustapha Hadji,1994,Sporting CP,Morocco,"RW, CAM, LW",77,Speedster,Long Shot Specialist,Low Cross Specialist
+Ramon Ramirez,1994,Guadalajara,Mexico,"LB, LM",77,Inverted Fullback,Low Cross Specialist,
+Serhiy Rebrov,1993,Dynamo Kyiv,Ukraine,ST,77,Target Man,,
+Daniel Amokachi,1992,Club Brugge,Nigeria,"RW, ST",77,Low Cross Specialist,Poacher,
+Moreno Torricelli,1992,Juventus,Italy,"RB, LB",77,Defensive Fullback,Pressing Fullback,
+Les Ferdinand,1990,Newcastle United,England,ST,77,Poacher,,
+Wlodzimierz Smolarek,1982,Widzew Lodz,Poland,"LW, ST",77,Low Cross Specialist,Target Man,
+Nico OReilly,2026,Manchester City,England,"CM, CDM, LB",76,Engine,Anchor,Inverted Fullback
+Youssouf Fofana,2020,Monaco,France,"CM, CDM",76,Tempo Controller,Anchor,
+Diogo Dalot,2018,Manchester United,Portugal,"RB, LB",76,Pressing Fullback,Inverted Fullback,
+Renan Lodi,2018,Athletico Paranaense,Brazil,"LB, LM",76,Defensive Fullback,Low Cross Specialist,
+Alvaro Odriozola,2017,Real Sociedad,Spain,"RB, RM",76,Defensive Fullback,Low Cross Specialist,
+Ben Chilwell,2017,Leicester City,England,"LB, LM",76,Pressing Fullback,Low Cross Specialist,
+Lisandro Martinez,2017,Manchester United,Argentina,"CB, CDM",76,Sweeper,Ball Winner,
+Ognjen Vranjes,2016,Tom Tomsk,Bosnia and Herzegovina,"RB, CB",76,Defensive Fullback,Fast Defender,
+Aurelien Tchouameni,2015,Monaco,France,"CDM, CM",76,Press Machine,Box-to-Box,
+Jules Kounde,2015,Sevilla,France,"CB, RB",76,Fast Defender,Defensive Fullback,
+Sofiane Boufal,2015,Lille,Morocco,"LW, CAM",76,Low Cross Specialist,Advanced Playmaker,
+Timo Werner,2014,RB Leipzig,Germany,"ST, LW",76,Target Man,Low Cross Specialist,
+Georginio Wijnaldum,2013,Liverpool,Netherlands,"CM, CAM",76,Engine,Set Piece Specialist,
+Joel Matip,2013,Liverpool,Cameroon,CB,76,Sweeper,Fast Defender,
+Julian Brandt,2013,Bayer Leverkusen,Germany,"CAM, LW, RW",76,Long Shot Specialist,Wide Creator,Low Cross Specialist
+Ruben Neves,2013,Wolves,Portugal,"CM, CDM",76,Tempo Controller,Anchor,
+Santiago Arias,2013,PSV Eindhoven,Colombia,"RB, RM",76,Inverted Fullback,Low Cross Specialist,
+Takashi Inui,2012,Eintracht Frankfurt,Japan,"LW, LM",76,Low Cross Specialist,Speedster,
+Mario Gaspar,2011,Villarreal,Spain,RB,76,Pressing Fullback,Inverted Fullback,
+Michael Bradley,2010,Roma,United States,"CM, CDM",76,Box-to-Box,Ball Winner,
+Seamus Coleman,2010,Everton,Ireland,"RB, RM",76,Pressing Fullback,Low Cross Specialist,
+Andres Guardado,2009,PSV Eindhoven,Mexico,"LM, CM, LB",76,Low Cross Specialist,Engine,Inverted Fullback
+Andriy Yarmolenko,2009,Dynamo Kyiv,Ukraine,RW,76,Low Cross Specialist,,
+Gary Cahill,2009,Chelsea,England,CB,76,Sweeper,Fast Defender,
+Olivier Giroud,2009,Arsenal,France,ST,76,Target Man,,
+Eljero Elia,2008,Twente,Netherlands,"LW, RW",76,Wide Creator,Low Cross Specialist,
+Federico Balzaretti,2008,Palermo,Italy,LB,76,Defensive Fullback,Pressing Fullback,
+Jose Enrique,2008,Newcastle United,Spain,LB,76,Inverted Fullback,Defensive Fullback,
+Oscar,2008,Chelsea,Brazil,"CAM, CM",76,Set Piece Specialist,Tempo Controller,
+Per Mertesacker,2008,Arsenal,Germany,CB,76,Fast Defender,Sweeper,
+Benoit Assou-Ekotto,2007,Tottenham Hotspur,Cameroon,LB,76,Defensive Fullback,Pressing Fullback,
+David Luiz,2007,Chelsea,Brazil,"CB, CDM",76,Sweeper,Press Machine,
+Micah Richards,2007,Manchester City,England,"RB, CB",76,Defensive Fullback,Sweeper,
+Salomon Kalou,2007,Chelsea,Ivory Coast,"LW, ST",76,Speedster,Poacher,
+Aiden McGeady,2006,Celtic,Ireland,"LW, RW",76,Speedster,Wide Creator,
+Bacary Sagna,2006,Arsenal,France,RB,76,Defensive Fullback,Inverted Fullback,
+Bobby Convey,2006,Reading,United States,"LM, LW",76,Low Cross Specialist,Wide Creator,
+Clint Dempsey,2006,Fulham,United States,"CAM, ST, LW",76,Long Shot Specialist,Poacher,Speedster
+John O'Shea,2006,Manchester United,Ireland,"CB, RB, LB",76,Fast Defender,Defensive Fullback,Pressing Fullback
+Aaron Lennon,2005,Tottenham Hotspur,England,"RM, RW",76,Speedster,Wide Creator,
+Albert Riera,2005,Espanyol,Spain,"LM, LW",76,Low Cross Specialist,Speedster,
+Javier Hernandez,2005,Manchester United,Mexico,ST,76,Target Man,,
+Marcell Jansen,2005,Borussia Monchengladbach,Germany,"LB, LM",76,Inverted Fullback,Low Cross Specialist,
+Pedro,2005,Barcelona,Spain,"RW, LW",76,Low Cross Specialist,Speedster,
+Seydou Keita,2005,Barcelona,Mali,"CM, CDM, LM",76,Box-to-Box,Anchor,Low Cross Specialist
+Stewart Downing,2005,Middlesbrough,England,"LM, LW",76,Wide Creator,Speedster,
+Wes Brown,2005,Manchester United,England,"CB, RB",76,Sweeper,Pressing Fullback,
+Florent Malouda,2004,Chelsea,France,"LM, LW",76,Wide Creator,Speedster,
+Landon Donovan,2004,LA Galaxy,United States,"CAM, RW, ST",76,Set Piece Specialist,Low Cross Specialist,Poacher
+Thomas Vermaelen,2004,Arsenal,Belgium,"CB, LB",76,Fast Defender,Inverted Fullback,
+Andreas Hinkel,2003,Stuttgart,Germany,RB,76,Pressing Fullback,Inverted Fullback,
+Daniel Agger,2003,Liverpool,Denmark,CB,76,Sweeper,Fast Defender,
+Emmanuel Eboue,2003,Arsenal,Ivory Coast,"RB, RM",76,Pressing Fullback,Low Cross Specialist,
+DaMarcus Beasley,2002,Chicago Fire,United States,"LM, LW, LB",76,Wide Creator,Speedster,Inverted Fullback
+Paulo Ferreira,2002,Chelsea,Portugal,RB,76,Defensive Fullback,Pressing Fullback,
+Steve Cherundolo,2002,Hannover 96,United States,RB,76,Inverted Fullback,Defensive Fullback,
+Andy van der Meyde,2001,Ajax,Netherlands,"RM, RW",76,Low Cross Specialist,Wide Creator,
+Clemente Rodriguez,2001,Boca Juniors,Argentina,LB,76,Inverted Fullback,Pressing Fullback,
+Dirk Kuyt,2001,Liverpool,Netherlands,"RW, ST",76,Speedster,Target Man,
+Mario Yepes,2000,Paris Saint-Germain,Colombia,CB,76,Fast Defender,Sweeper,
+Matias Fernandez,2000,Villarreal,Chile,"CAM, CM",76,Advanced Playmaker,Engine,
+Jesper Gronkjaer,1998,Ajax,Denmark,"RW, RM",76,Low Cross Specialist,Wide Creator,
+Lauren,1998,Arsenal,Cameroon,"RB, RM",76,Defensive Fullback,Speedster,
+Hugo Ibarra,1997,Boca Juniors,Argentina,RB,76,Pressing Fullback,Inverted Fullback,
+Ali Daei,1993,Bayern Munich,Iran,ST,76,Poacher,,
+Teddy Sheringham,1993,Manchester United,England,"ST, CAM",76,Target Man,Advanced Playmaker,
+Karel Poborsky,1991,Manchester United,Czech Republic,"RM, RW",76,Wide Creator,Speedster,
+Oleg Salenko,1991,Dynamo Kyiv,Russia,"RW, ST",76,Low Cross Specialist,Poacher,
+Saeed Al-Owairan,1991,Al-Shabab,Saudi Arabia,"RW, CAM",76,Low Cross Specialist,Advanced Playmaker,
+Florin Raducioiu,1990,Bari,Romania,"LW, ST",76,Wide Creator,Target Man,
+Bixente Lizarazu Winger Era,1989,Bordeaux,France,"LM, LW, LB",76,Speedster,Wide Creator,Defensive Fullback
+David Raum,2020,Greuther Fuerth,Germany,"LB, LM",75,Pressing Fullback,Low Cross Specialist,
+Nathan Ake,2017,Manchester City,Netherlands,"CB, LB",75,Sweeper,Inverted Fullback,
+Luke Shaw,2015,Manchester United,England,"LB, CB",75,Pressing Fullback,Fast Defender,
+Elseid Hysaj,2014,Empoli,Albania,"RB, LB",75,Inverted Fullback,Defensive Fullback,
+Sebastien Corchia,2013,Sochaux,France,RB,75,Defensive Fullback,Pressing Fullback,
+Gokhan Tore,2012,Rubin Kazan,Turkey,"RW, LW",75,Speedster,Low Cross Specialist,
+Kamil Grosicki,2012,Sivasspor,Poland,"LM, LW, RW",75,Wide Creator,Speedster,Low Cross Specialist
+Jean Beausejour,2010,Birmingham City,Chile,"LB, LM",75,Inverted Fullback,Wide Creator,
+Adam Johnson,2009,Middlesbrough,England,"RW, LM",75,Speedster,Wide Creator,
+Maxwell,2009,Paris Saint-Germain,Brazil,"LB, LM",75,Defensive Fullback,Low Cross Specialist,
+Alan Hutton,2007,Rangers,Scotland,RB,75,Pressing Fullback,Inverted Fullback,
+Martin Skrtel,2006,Liverpool,Slovakia,CB,75,Sweeper,Fast Defender,
+Sebastian Kehl,2006,Borussia Dortmund,Germany,"CDM, CM",75,Ball Winner,Tempo Controller,
+Seydou Doumbia,2006,CSKA Moscow,Ivory Coast,ST,75,Poacher,,
+Mark Gonzalez,2005,Albacete,Chile,"LM, LW",75,Speedster,Low Cross Specialist,
+Alex,2004,Chelsea,Brazil,CB,75,Fast Defender,Sweeper,
+Fernando Navarro,2004,Barcelona,Spain,"LB, CB",75,Defensive Fullback,Fast Defender,
+Lee Chun-soo,2002,Ulsan Hyundai,South Korea,"LW, RW",75,Wide Creator,Speedster,
+Yasuhito Endo,2002,Gamba Osaka,Japan,"CM, CDM",75,Box-to-Box,Anchor,
+Dennis Rommedahl,2000,PSV Eindhoven,Denmark,"RM, RW",75,Speedster,Low Cross Specialist,
+Ali Karimi,1999,Bayern Munich,Iran,"CAM, LW",75,Long Shot Specialist,Wide Creator,
+Igor Korneev,1991,CSKA Moscow,Russia,"RW, CAM",75,Low Cross Specialist,Set Piece Specialist,
+Achraf Bencharki,2017,Wydad AC,Morocco,"LW, RW",74,Wide Creator,Speedster,
+Emre Can,2015,Borussia Dortmund,Germany,"CDM, CM, CB",74,Press Machine,Engine,Sweeper
+Mason Mount,2015,Chelsea,England,"CAM, CM, LW",74,Long Shot Specialist,Tempo Controller,Low Cross Specialist
+Oleksandr Zinchenko,2015,Manchester City,Ukraine,"LB, CM",74,Inverted Fullback,Engine,
+Sunil Chhetri,2015,Bengaluru,India,"ST, LW",74,Target Man,Wide Creator,
+Tomas Soucek,2015,West Ham United,Czech Republic,"CM, CDM",74,Box-to-Box,Ball Winner,
+Eduardo Camavinga,2014,Rennes,France,"CM, CDM, LB",74,Tempo Controller,Press Machine,Inverted Fullback
+Javier Manquillo,2014,Liverpool,Spain,"RB, LB",74,Pressing Fullback,Defensive Fullback,
+Joe Gomez,2014,Liverpool,England,"CB, RB",74,Sweeper,Pressing Fullback,
+Kieran Tierney,2014,Arsenal,Scotland,"LB, CB",74,Defensive Fullback,Fast Defender,
+Sergio Reguilon,2014,Sevilla,Spain,LB,74,Pressing Fullback,Inverted Fullback,
+Harry Maguire,2013,Leicester City,England,CB,74,Sweeper,Fast Defender,
+James Milner,2013,Liverpool,England,"CM, RM, LB",74,Box-to-Box,Speedster,Defensive Fullback
+Alessandro Florenzi,2011,Roma,Italy,"RB, RM, CM",74,Pressing Fullback,Low Cross Specialist,Engine
+Marcos Alonso,2011,Chelsea,Spain,"LB, LM",74,Inverted Fullback,Wide Creator,
+Nacho Monreal,2011,Arsenal,Spain,"LB, CB",74,Defensive Fullback,Sweeper,
+Hector Bellerin,2010,Arsenal,Spain,RB,74,Inverted Fullback,Pressing Fullback,
+Lorenzo De Silvestri,2009,Fiorentina,Italy,RB,74,Inverted Fullback,Pressing Fullback,
+Fabian Monzon,2008,Boca Juniors,Argentina,"LB, LM",74,Defensive Fullback,Speedster,
+Domenico Criscito,2006,Zenit,Italy,"LB, CB",74,Defensive Fullback,Sweeper,
+Glen Johnson,2004,Liverpool,England,RB,74,Inverted Fullback,Pressing Fullback,
+Sulley Muntari,2004,Inter Milan,Ghana,"CM, LM, CDM",74,Tempo Controller,Speedster,Press Machine
+Eddie Lewis,2002,Preston North End,United States,"LB, LM",74,Defensive Fullback,Low Cross Specialist,
+Steve Finnan,2000,Liverpool,Ireland,RB,74,Defensive Fullback,Pressing Fullback,
+Niko Kovac,1997,Bayern Munich,Croatia,"CDM, CM",74,Ball Winner,Box-to-Box,
+Claudio Reyna,1994,Rangers,United States,"CM, CDM",74,Engine,Ball Winner,
+Dejan Lovren,2012,Liverpool,Croatia,CB,73,Fast Defender,Sweeper,
+Youssouf Fofana,2017,Monaco,France,"CM, CDM",72,Tempo Controller,Anchor,
+Ognjen Vranjes,2012,Krasnodar,Bosnia and Herzegovina,"RB, CB",72,Defensive Fullback,Fast Defender,
+Michael Bradley,2007,Roma,United States,"CM, CDM",72,Box-to-Box,Press Machine,
+Salomon Kalou,2004,Chelsea,Ivory Coast,"LW, ST",72,Wide Creator,Poacher,
+John O'Shea,2003,Manchester United,Ireland,"CB, RB, LB",72,Fast Defender,Defensive Fullback,Inverted Fullback
+Bobby Convey,2002,D.C. United,United States,"LM, LW",72,Low Cross Specialist,Wide Creator,
+Wes Brown,2002,Manchester United,England,"CB, RB",72,Sweeper,Pressing Fullback,
+Emmanuel Eboue,2000,Arsenal,Ivory Coast,"RB, RM",72,Inverted Fullback,Speedster,
+Paulo Ferreira,1999,Chelsea,Portugal,RB,72,Pressing Fullback,Inverted Fullback,
+Sunil Chhetri,2012,Bengaluru,India,"ST, LW",70,Target Man,Low Cross Specialist,
