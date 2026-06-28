@@ -8,7 +8,7 @@ import {
 } from "../../draftRules.js";
 import { appState, userTeam } from "../linearState.js";
 import { goTo } from "../linearRouter.js";
-import { clearApp, pageShell, playerCard, primaryButton } from "../pageUtils.js";
+import { clearApp, pageShell, playerCard } from "../pageUtils.js";
 
 export function renderPage04Draft() {
   if (isDraftComplete(appState.currentPick, appState.availablePlayers)) {
@@ -34,7 +34,11 @@ export function renderPage04Draft() {
   card.appendChild(roster);
 
   if (!isUser) {
-    card.appendChild(primaryButton("Run AI Pick", () => runAiPick(team)));
+    const notice = document.createElement("p");
+    notice.className = "subtitle";
+    notice.textContent = `${team.name} is picking automatically...`;
+    card.appendChild(notice);
+    window.setTimeout(() => runAiPick(team), 80);
   } else {
     renderUserDraftBoard(card);
   }
@@ -73,6 +77,10 @@ function pickUserPlayer(player) {
 }
 
 function runAiPick(team) {
+  if (isDraftComplete(appState.currentPick, appState.availablePlayers)) {
+    goTo("page05");
+    return;
+  }
   const player = chooseAIPlayer(team, appState.availablePlayers);
   appState.availablePlayers = draftPlayer(team, player, appState.availablePlayers);
   appState.currentPick += 1;
