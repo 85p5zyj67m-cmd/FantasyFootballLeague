@@ -1,0 +1,110 @@
+/* Broadcast-style match screen + segmented graph colors */
+
+body.live-match-focus .season-command {
+  display: none !important;
+}
+
+body.live-match-focus .season-shell {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+body.live-match-focus .live-match-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+body.live-match-focus .live-match-card h2 {
+  order: 1;
+  margin-bottom: 0;
+}
+
+body.live-match-focus .replay-header {
+  order: 2;
+  margin: 0;
+}
+
+body.live-match-focus .xg-graph-card {
+  order: 3;
+}
+
+body.live-match-focus .replay-controls {
+  display: none !important;
+}
+
+body.live-match-focus .live-events {
+  order: 4;
+}
+
+body.live-match-focus .focus-match-stats {
+  order: 5;
+}
+
+body.live-match-focus .momentum-graph {
+  background:
+    linear-gradient(180deg, #10371f 0%, #0b2215 48%, #10202d 52%, #07121c 100%) !important;
+}
+
+body.live-match-focus .segmented-source-line {
+  opacity: 0 !important;
+}
+
+body.live-match-focus .segmented-momentum-line {
+  fill: none;
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 4px 8px #00000088);
+}
+
+body.live-match-focus .segmented-home-line {
+  stroke: #65e58d;
+}
+
+body.live-match-focus .segmented-away-line {
+  stroke: #70d7ff;
+}
+
+body.live-match-focus .positive-momentum-area {
+  fill: #65e58d24 !important;
+}
+
+body.live-match-focus .negative-momentum-area {
+  fill: #70d7ff24 !important;
+}
+
+body.live-match-focus .xg-grid {
+  stroke: #ffffff18;
+}
+
+body.live-match-focus .momentum-zero-axis {
+  stroke: #ffffff88;
+  stroke-width: 1.5;
+  stroke-dasharray: 6 5;
+}
+
+body.live-match-focus .momentum-minute-marker {
+  stroke: #f7c95f;
+  stroke-width: 1.4;
+}
+
+body.live-match-focus .xg-graph-card {
+  border: 1px solid #ffffff20;
+  box-shadow: inset 0 1px 0 #ffffff12, 0 18px 40px #00000045;
+}
+
+body.live-match-focus .live-events {
+  max-height: 420px;
+  overflow-y: auto;
+}
+
+body.live-match-focus .focus-stat-row {
+  background: linear-gradient(180deg, #0d1812, #07110d);
+}
+
+@media (min-width: 720px) {
+  body.live-match-focus .focus-match-stats {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
