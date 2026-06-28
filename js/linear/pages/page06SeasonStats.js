@@ -51,7 +51,7 @@ function renderCompassDraw() {
     divisionDrawComplete = true;
     drawTimer = null;
     renderPage06SeasonStats();
-  }, 2800);
+  }, 5000);
 }
 
 function renderDivisionOverview() {
@@ -200,12 +200,12 @@ function installPageSixStyles() {
       transform: rotate(0deg) translate(-50%, -4px);
       border-radius: 999px;
       background: linear-gradient(180deg, #f7c95f 0 50%, #65e58d 50% 100%);
-      animation: spinCompass 2.65s cubic-bezier(.15,.85,.25,1) forwards;
+      animation: spinCompass 5s cubic-bezier(.15,.85,.25,1) forwards;
     }
 
     @keyframes spinCompass {
       from { transform: rotate(0deg) translate(-50%, -4px); }
-      to { transform: rotate(1515deg) translate(-50%, -4px); }
+      to { transform: rotate(2520deg) translate(-50%, -4px); }
     }
 
     .division-overview-grid {
