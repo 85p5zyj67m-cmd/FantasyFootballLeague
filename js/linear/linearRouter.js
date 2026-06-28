@@ -1,7 +1,7 @@
 import { renderPage01StartDraft } from "./pages/page01StartDraft.js";
 import { renderPage02DraftPosition } from "./pages/page02DraftPosition.js";
 import { renderPage03YourSystem } from "./pages/page03YourSystem.js";
-import { renderPage04Draft } from "./pages/page04Draft.js?v=draft-speed-live-1";
+import { renderPage04Draft } from "./pages/page04Draft.js?v=draft-speed-live-3";
 import { renderPage05Tactics } from "./pages/page05Tactics.js";
 import { renderPage06SeasonStats } from "./pages/page06SeasonStats.js";
 import { renderPage07Match1 } from "./pages/page07Match1.js";
