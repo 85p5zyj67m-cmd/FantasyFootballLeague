@@ -2,7 +2,7 @@ import { renderPage01StartDraft } from "./pages/page01StartDraft.js?v=player-tra
 import { renderPage02DraftPosition } from "./pages/page02DraftPosition.js";
 import { renderPage03YourSystem } from "./pages/page03YourSystem.js";
 import { renderPage04Draft } from "./pages/page04Draft.js?v=my-team-cards-1";
-import { renderPage05Tactics } from "./pages/page05Tactics.js?v=second-half-route-2";
+import { renderPage05Tactics } from "./pages/page05Tactics.js?v=text-only-cards-1";
 import { renderPage06SeasonStats } from "./pages/page06SeasonStats.js?v=second-half-route-2";
 import { renderPage07Match1 } from "./pages/page07Match1.js?v=second-half-route-2";
 import { renderPage08Match2 } from "./pages/page08Match2.js?v=second-half-route-2";
