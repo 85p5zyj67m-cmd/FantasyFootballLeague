@@ -25,6 +25,7 @@ export function renderPage06SeasonStats() {
 
 function renderCompassDraw() {
   const app = clearApp();
+  const ownDivision = getUserDivision();
   const shell = pageShell({
     eyebrow: "Page 6",
     title: "Division Draw",
@@ -33,6 +34,7 @@ function renderCompassDraw() {
 
   const compass = document.createElement("div");
   compass.className = "division-compass-draw";
+  compass.style.setProperty("--compass-target-angle", `${getNeedleTargetAngle(ownDivision)}deg`);
   compass.innerHTML = `
     <div class="compass-ring">
       <span class="north">N</span>
@@ -54,6 +56,23 @@ function renderCompassDraw() {
   }, 5000);
 }
 
+function getUserDivision() {
+  return appState.season?.divisions.find(division =>
+    division.teams.includes(userTeam())
+  );
+}
+
+function getNeedleTargetAngle(division) {
+  const finalAngles = {
+    north: 180,
+    west: 90,
+    east: 270,
+    south: 360
+  };
+  const compassKey = division?.compass || "south";
+  return 1800 + (finalAngles[compassKey] || 360);
+}
+
 function renderDivisionOverview() {
   const app = clearApp();
   const shell = pageShell({
@@ -73,9 +92,7 @@ function createUserDivisionCard() {
   const card = document.createElement("div");
   card.className = "linear-mini-card user-division-card";
 
-  const ownDivision = appState.season.divisions.find(division =>
-    division.teams.includes(userTeam())
-  );
+  const ownDivision = getUserDivision();
 
   const title = document.createElement("h3");
   title.textContent = ownDivision
@@ -205,7 +222,7 @@ function installPageSixStyles() {
 
     @keyframes spinCompass {
       from { transform: rotate(0deg) translate(-50%, -4px); }
-      to { transform: rotate(2520deg) translate(-50%, -4px); }
+      to { transform: rotate(var(--compass-target-angle, 2160deg)) translate(-50%, -4px); }
     }
 
     .division-overview-grid {
