@@ -10,6 +10,17 @@ export function installDraftPolishStyles() {
       white-space: nowrap;
       font-weight: 900;
       text-align: center;
+      border-color: #65e58d66 !important;
+      box-shadow: inset 0 0 0 1px #65e58d1f;
+    }
+
+    .linear-counter-pill strong,
+    .linear-order-ticker.centered span.active,
+    .linear-draft-tabs button.active,
+    .linear-tab-btn.active,
+    .linear-myteam-tabs button.active {
+      color: #06110b !important;
+      background: linear-gradient(90deg, #65e58d, #9df5b5) !important;
     }
 
     .linear-order-ticker.centered {
@@ -18,6 +29,8 @@ export function installDraftPolishStyles() {
       align-items: center;
       padding-left: 8px;
       padding-right: 8px;
+      border-color: #65e58d44 !important;
+      box-shadow: inset 0 0 0 1px #65e58d18;
     }
 
     .linear-order-ticker.centered span {
@@ -35,7 +48,7 @@ export function installDraftPolishStyles() {
     .linear-order-ticker.centered span.active {
       opacity: 1;
       transform: scale(1.08);
-      box-shadow: 0 0 0 2px #65e58d44;
+      box-shadow: 0 0 0 2px #65e58d66;
     }
 
     .linear-myteam-tabs {
@@ -55,11 +68,6 @@ export function installDraftPolishStyles() {
       color: white;
       font-weight: 900;
       background: #111827;
-    }
-
-    .linear-myteam-tabs button.active {
-      color: #06110b;
-      background: linear-gradient(90deg, #65e58d, #18c7f3);
     }
 
     .linear-s11-view {
