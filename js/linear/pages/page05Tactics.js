@@ -6,7 +6,7 @@ import {
   movePlayer
 } from "../../lineup.js";
 import { appState, userTeam } from "../linearState.js";
-import { startLinearSeason } from "../seasonFlow.js?v=random-division-1";
+import { startLinearSeason } from "../seasonFlow.js?v=second-half-route-1";
 import { clearApp, pageShell, primaryButton } from "../pageUtils.js";
 
 let selectedPlayerId = null;
