@@ -2,15 +2,29 @@ import { formatTraits, getDisplayPosition } from "../playerUtils.js";
 import { appState } from "./linearState.js";
 
 let installed = false;
+let queued = false;
 
 export function installPlayerTraitEnhancer() {
   if (installed) return;
   installed = true;
   addTraitStyles();
 
-  const observer = new MutationObserver(() => enhanceVisiblePlayers());
-  observer.observe(document.body, { childList: true, subtree: true });
-  enhanceVisiblePlayers();
+  const app = document.getElementById("app");
+  if (!app) return;
+
+  const observer = new MutationObserver(queueEnhanceVisiblePlayers);
+  observer.observe(app, { childList: true, subtree: true });
+  queueEnhanceVisiblePlayers();
+}
+
+function queueEnhanceVisiblePlayers() {
+  if (queued) return;
+  queued = true;
+
+  window.requestAnimationFrame(() => {
+    queued = false;
+    enhanceVisiblePlayers();
+  });
 }
 
 function enhanceVisiblePlayers() {
@@ -22,34 +36,49 @@ function enhanceSlotPlayer(element) {
   const player = findPlayer(element.dataset.playerId);
   if (!player) return;
 
+  const displayPosition = getDisplayPosition(player);
   const position = element.querySelector("strong");
-  if (position) position.textContent = getDisplayPosition(player);
+  if (position && position.textContent !== displayPosition) {
+    position.textContent = displayPosition;
+  }
 
+  const traits = formatTraits(player);
   let traitLine = element.querySelector(".linear-player-traitline");
+
   if (!traitLine) {
     traitLine = document.createElement("small");
     traitLine.className = "linear-player-traitline";
+    traitLine.textContent = traits;
     element.appendChild(traitLine);
+    return;
   }
 
-  traitLine.textContent = formatTraits(player);
+  if (traitLine.textContent !== traits) {
+    traitLine.textContent = traits;
+  }
 }
 
 function enhanceBenchPlayer(element) {
   const player = findPlayer(element.dataset.playerId);
-  if (!player || element.dataset.traitsEnhanced === "true") return;
+  if (!player) return;
+
+  const mainText = `${player.overall} - ${player.name} - ${getDisplayPosition(player)}`;
+  const traitText = formatTraits(player);
+  const currentMain = element.querySelector("span")?.textContent || "";
+  const currentTraits = element.querySelector(".linear-player-traitline")?.textContent || "";
+
+  if (currentMain === mainText && currentTraits === traitText) return;
 
   element.textContent = "";
 
   const main = document.createElement("span");
-  main.textContent = `${player.overall} - ${player.name} - ${getDisplayPosition(player)}`;
+  main.textContent = mainText;
 
   const traitLine = document.createElement("small");
   traitLine.className = "linear-player-traitline";
-  traitLine.textContent = formatTraits(player);
+  traitLine.textContent = traitText;
 
   element.append(main, traitLine);
-  element.dataset.traitsEnhanced = "true";
 }
 
 function findPlayer(playerId) {
