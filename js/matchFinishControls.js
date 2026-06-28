@@ -13,44 +13,41 @@ function updateFinishControls(container) {
 
   const clock = card.querySelector(".replay-clock");
   const replayComplete = card.textContent.includes("Replay complete");
-  const isFinished = replayComplete || (clock && /^90\+|^120|^FT/i.test(clock.textContent.trim()));
+  const clockText = clock ? clock.textContent.trim() : "";
+  const isFinished = replayComplete || /^90\+|^120|^FT|^FINISH/i.test(clockText);
 
   if (!isFinished) return;
 
   if (clock) clock.textContent = "FINISH";
+  document.body.classList.add("match-finished");
 
   let controls = card.querySelector(".post-match-controls");
   if (!controls) {
     controls = document.createElement("div");
     controls.className = "post-match-controls";
-
-    const button = document.createElement("button");
-    button.type = "button";
-    button.className = "primary-btn post-match-next-btn";
-    button.textContent = "Next Match";
-    button.addEventListener("click", () => {
-      const adjustBtn = document.getElementById("continueAfterTacticsBtn");
-      const nextBtn = document.getElementById("simulateMatchBtn");
-      const newSeasonBtn = document.getElementById("newSeasonBtn");
-
-      if (adjustBtn && !adjustBtn.classList.contains("hidden")) {
-        adjustBtn.click();
-        return;
-      }
-
-      if (nextBtn && !nextBtn.classList.contains("hidden")) {
-        nextBtn.click();
-        return;
-      }
-
-      if (newSeasonBtn && !newSeasonBtn.classList.contains("hidden")) {
-        newSeasonBtn.click();
-      }
-    });
-
-    controls.appendChild(button);
     card.appendChild(controls);
   }
 
-  document.body.classList.add("match-finished");
+  const seasonActions = document.querySelector(".season-actions");
+  if (!seasonActions) return;
+
+  controls.replaceChildren();
+  controls.appendChild(seasonActions);
+
+  const simulateBtn = document.getElementById("simulateMatchBtn");
+  const tacticsBtn = document.getElementById("continueAfterTacticsBtn");
+  const newSeasonBtn = document.getElementById("newSeasonBtn");
+
+  [simulateBtn, tacticsBtn, newSeasonBtn].forEach(button => {
+    if (!button) return;
+    button.classList.add("post-match-action-btn");
+  });
+
+  if (tacticsBtn && !tacticsBtn.classList.contains("hidden")) {
+    tacticsBtn.textContent = "Next Match";
+  }
+
+  if (simulateBtn && !simulateBtn.classList.contains("hidden")) {
+    simulateBtn.textContent = simulateBtn.textContent || "Next Match";
+  }
 }
