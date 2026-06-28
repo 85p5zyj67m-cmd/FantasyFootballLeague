@@ -2,7 +2,7 @@ import { renderPage01StartDraft } from "./pages/page01StartDraft.js";
 import { renderPage02DraftPosition } from "./pages/page02DraftPosition.js";
 import { renderPage03YourSystem } from "./pages/page03YourSystem.js";
 import { renderPage04Draft } from "./pages/page04Draft.js?v=draft-speed-live-3";
-import { renderPage05Tactics } from "./pages/page05Tactics.js";
+import { renderPage05Tactics } from "./pages/page05Tactics.js?v=page-five-team-setup-1";
 import { renderPage06SeasonStats } from "./pages/page06SeasonStats.js";
 import { renderPage07Match1 } from "./pages/page07Match1.js";
 import { renderPage08Match2 } from "./pages/page08Match2.js";
