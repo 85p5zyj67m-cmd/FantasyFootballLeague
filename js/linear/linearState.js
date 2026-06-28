@@ -7,6 +7,9 @@ export const appState = {
   draftOrder: [],
   currentPick: 0,
   activePosition: "ALL",
+  activeDraftView: "Player List",
+  aiSpeed: "normal",
+  draftLog: [],
   selectedFormation: "4-3-3",
   season: null,
   userMatchNumber: 0,
@@ -25,6 +28,9 @@ export function resetLinearState() {
   appState.draftOrder = [];
   appState.currentPick = 0;
   appState.activePosition = "ALL";
+  appState.activeDraftView = "Player List";
+  appState.aiSpeed = "normal";
+  appState.draftLog = [];
   appState.selectedFormation = "4-3-3";
   appState.season = null;
   appState.userMatchNumber = 0;
