@@ -18,7 +18,7 @@ import {
   getSlotsFromFormation,
   movePlayer
 } from "../../lineup.js";
-import { formatTraits, getDisplayPosition } from "../../playerUtils.js";
+import { formatTraits, getDisplayPosition, getTraitList } from "../../playerUtils.js";
 import { appState, userTeam } from "../linearState.js";
 import { goTo } from "../linearRouter.js";
 import { clearApp, playerCard } from "../pageUtils.js";
@@ -34,6 +34,8 @@ const AI_SPEEDS = {
 };
 
 export function renderPage04Draft() {
+  installMyTeamCardStyles();
+
   if (isDraftComplete(appState.currentPick, appState.availablePlayers)) {
     clearAiTimer();
     goTo("page05");
@@ -267,10 +269,10 @@ function createMyTeamTabs() {
 
 function renderStartingElevenView() {
   const wrapper = document.createElement("div");
-  wrapper.className = "linear-s11-view";
+  wrapper.className = "linear-s11-view linear-info-card-view";
   const hint = document.createElement("p");
-  hint.className = "subtitle";
-  hint.textContent = "Drag players onto matching positions, or tap a player and then a position.";
+  hint.className = "subtitle compact-hint";
+  hint.textContent = "Your XI at a glance. Drag cards between matching slots or tap a card and then a position.";
   wrapper.appendChild(hint);
   wrapper.appendChild(createPitch(userTeam()));
   wrapper.appendChild(createBench(userTeam()));
@@ -288,19 +290,25 @@ function renderTacticsView() {
     risk: "Balanced Risk"
   };
   const wrapper = document.createElement("div");
-  wrapper.className = "linear-tactics-view";
-  wrapper.appendChild(createTacticSelect(team, "mentality", "Mentality", ["Defensive", "Balanced", "Attacking"]));
-  wrapper.appendChild(createTacticSelect(team, "pressing", "Pressing", ["Low Block", "Medium Press", "High Press"]));
-  wrapper.appendChild(createTacticSelect(team, "defensiveLine", "Defensive Line", ["Deep Line", "Normal Line", "High Line"]));
-  wrapper.appendChild(createTacticSelect(team, "passing", "Passing", ["Short Passing", "Mixed Passing", "Direct Passing"]));
-  wrapper.appendChild(createTacticSelect(team, "tempo", "Tempo", ["Slow Tempo", "Normal Tempo", "Fast Tempo"]));
-  wrapper.appendChild(createTacticSelect(team, "risk", "Risk", ["Safe Risk", "Balanced Risk", "High Risk"]));
+  wrapper.className = "linear-tactics-view linear-info-card-view";
+
+  const controls = document.createElement("div");
+  controls.className = "linear-tactics-controls-grid";
+  controls.appendChild(createTacticSelect(team, "mentality", "Mentality", ["Defensive", "Balanced", "Attacking"]));
+  controls.appendChild(createTacticSelect(team, "pressing", "Pressing", ["Low Block", "Medium Press", "High Press"]));
+  controls.appendChild(createTacticSelect(team, "defensiveLine", "Defensive Line", ["Deep Line", "Normal Line", "High Line"]));
+  controls.appendChild(createTacticSelect(team, "passing", "Passing", ["Short Passing", "Mixed Passing", "Direct Passing"]));
+  controls.appendChild(createTacticSelect(team, "tempo", "Tempo", ["Slow Tempo", "Normal Tempo", "Fast Tempo"]));
+  controls.appendChild(createTacticSelect(team, "risk", "Risk", ["Safe Risk", "Balanced Risk", "High Risk"]));
+
+  wrapper.appendChild(controls);
+  wrapper.appendChild(createTacticsSquadOverview(team));
   return wrapper;
 }
 
 function createTacticSelect(team, key, labelText, options) {
   const label = document.createElement("label");
-  label.className = "linear-tactic-control";
+  label.className = "linear-tactic-control compact";
   const span = document.createElement("span");
   span.textContent = labelText;
   const select = document.createElement("select");
@@ -323,7 +331,7 @@ function createPitch(team) {
   const slots = getSlotsFromFormation(formation);
   const playersBySlot = getPlayersBySlot(team);
   const pitch = document.createElement("div");
-  pitch.className = "linear-pitch";
+  pitch.className = "linear-pitch compact-player-pitch";
   const lines = new Map();
   slots.forEach(slot => {
     const line = slot.key.split("-")[0];
@@ -332,7 +340,7 @@ function createPitch(team) {
   });
   Array.from(lines.values()).forEach(lineSlots => {
     const line = document.createElement("div");
-    line.className = "linear-pitch-line";
+    line.className = "linear-pitch-line compact-player-line";
     lineSlots.forEach(slot => line.appendChild(createSlot(team, slot, playersBySlot.get(slot.key))));
     pitch.appendChild(line);
   });
@@ -341,23 +349,12 @@ function createPitch(team) {
 
 function createSlot(team, slot, player) {
   const box = document.createElement("div");
-  box.className = "linear-slot";
+  box.className = player ? "linear-slot linear-slot-card" : "linear-slot linear-empty-slot";
   box.dataset.slot = slot.key;
   box.dataset.position = slot.position;
 
-  const position = document.createElement("strong");
-  position.textContent = player ? getDisplayPosition(player) : slot.position;
-
-  const name = document.createElement("span");
-  name.textContent = player ? player.name : "Empty";
-
-  const overall = document.createElement("small");
-  overall.textContent = player ? String(player.overall) : "";
-
-  box.append(position, name, overall);
-
   if (player) {
-    box.appendChild(createTraitLine(player));
+    box.appendChild(createPlayerInfoCard(player, "slot"));
     box.draggable = true;
     box.dataset.playerId = player.id;
     box.addEventListener("dragstart", event => event.dataTransfer.setData("text/plain", player.id));
@@ -370,6 +367,11 @@ function createSlot(team, slot, player) {
       renderPage04Draft();
     });
   } else {
+    const position = document.createElement("strong");
+    position.textContent = slot.position;
+    const name = document.createElement("span");
+    name.textContent = "Empty";
+    box.append(position, name);
     box.addEventListener("click", () => moveSelectedPlayer(team, slot.key));
   }
 
@@ -386,20 +388,16 @@ function createSlot(team, slot, player) {
 
 function createBench(team) {
   const bench = document.createElement("div");
-  bench.className = "linear-bench";
+  bench.className = "linear-bench compact-player-bench";
   const heading = document.createElement("h3");
   heading.textContent = "Bench";
   bench.appendChild(heading);
   const players = document.createElement("div");
-  players.className = "linear-bench-list";
+  players.className = "linear-bench-list compact-bench-grid";
   getBenchPlayers(team).forEach(player => {
     const item = document.createElement("div");
-    item.className = "linear-bench-player";
-
-    const main = document.createElement("span");
-    main.textContent = `${getDisplayPosition(player)} - ${player.name} - ${player.overall}`;
-    item.append(main, createTraitLine(player));
-
+    item.className = "linear-bench-player linear-bench-card";
+    item.appendChild(createPlayerInfoCard(player, "bench"));
     item.draggable = true;
     item.dataset.playerId = player.id;
     item.addEventListener("dragstart", event => event.dataTransfer.setData("text/plain", player.id));
@@ -421,11 +419,96 @@ function createBench(team) {
   return bench;
 }
 
-function createTraitLine(player) {
-  const traitLine = document.createElement("small");
-  traitLine.className = "linear-player-traitline";
-  traitLine.textContent = formatTraits(player);
-  return traitLine;
+function createTacticsSquadOverview(team) {
+  const section = document.createElement("div");
+  section.className = "linear-tactics-squad";
+
+  const heading = document.createElement("h3");
+  heading.textContent = "Squad Card Overview";
+  section.appendChild(heading);
+
+  const playersBySlot = getPlayersBySlot(team);
+  const starters = Array.from(playersBySlot.entries())
+    .sort(([slotA], [slotB]) => slotA.localeCompare(slotB))
+    .map(([, player]) => player);
+  const bench = getBenchPlayers(team);
+  const allVisible = [...starters, ...bench];
+
+  const grid = document.createElement("div");
+  grid.className = "linear-tactics-squad-grid";
+
+  allVisible.forEach(player => {
+    const card = document.createElement("div");
+    card.className = "linear-tactics-player-card";
+    card.appendChild(createPlayerInfoCard(player, "tactics"));
+    grid.appendChild(card);
+  });
+
+  if (!allVisible.length) {
+    const empty = document.createElement("p");
+    empty.className = "subtitle";
+    empty.textContent = "Draft players to see your squad cards here.";
+    grid.appendChild(empty);
+  }
+
+  section.appendChild(grid);
+  return section;
+}
+
+function createPlayerInfoCard(player, variant = "default") {
+  const card = document.createElement("div");
+  card.className = `linear-info-player-card ${variant}`;
+
+  const top = document.createElement("div");
+  top.className = "linear-info-player-top";
+
+  const rating = document.createElement("strong");
+  rating.className = "linear-info-rating";
+  rating.textContent = String(player.overall);
+
+  const identity = document.createElement("div");
+  identity.className = "linear-info-identity";
+
+  const name = document.createElement("b");
+  name.className = "linear-info-name";
+  name.textContent = player.name;
+
+  const position = document.createElement("span");
+  position.className = "linear-info-position";
+  position.textContent = getDisplayPosition(player);
+
+  identity.append(name, position);
+  top.append(rating, identity);
+
+  const meta = document.createElement("div");
+  meta.className = "linear-info-meta";
+
+  const club = document.createElement("span");
+  club.textContent = `${player.club} ${player.year}`;
+
+  const country = document.createElement("span");
+  country.textContent = player.nationality;
+
+  meta.append(club, country);
+
+  const traits = document.createElement("div");
+  traits.className = "linear-info-traits";
+  traits.title = formatTraits(player);
+  const traitList = getTraitList(player);
+  if (traitList.length) {
+    traitList.forEach(trait => {
+      const chip = document.createElement("small");
+      chip.textContent = trait;
+      traits.appendChild(chip);
+    });
+  } else {
+    const chip = document.createElement("small");
+    chip.textContent = "No traits";
+    traits.appendChild(chip);
+  }
+
+  card.append(top, meta, traits);
+  return card;
 }
 
 function moveSelectedPlayer(team, slotKey) {
@@ -503,4 +586,43 @@ function pickPlayer(team, player) {
   });
   appState.currentPick += 1;
   renderPage04Draft();
+}
+
+function installMyTeamCardStyles() {
+  if (document.getElementById("linear-my-team-card-styles")) return;
+
+  const style = document.createElement("style");
+  style.id = "linear-my-team-card-styles";
+  style.textContent = `
+    .linear-info-card-view .compact-hint { margin-bottom: 10px; }
+    .compact-player-pitch { gap: 8px; padding: 14px; }
+    .compact-player-line { gap: 8px; align-items: stretch; }
+    .linear-slot-card { min-width: 148px; max-width: 188px; padding: 0; }
+    .linear-empty-slot { min-width: 126px; padding: 12px; opacity: .78; }
+    .linear-info-player-card { width: 100%; box-sizing: border-box; border-radius: 16px; padding: 9px; background: rgba(6, 18, 13, .58); border: 1px solid rgba(255, 255, 255, .11); }
+    .linear-info-player-top { display: grid; grid-template-columns: 38px 1fr; gap: 8px; align-items: center; }
+    .linear-info-rating { display: grid; place-items: center; min-width: 34px; height: 34px; border-radius: 11px; background: rgba(75, 255, 151, .14); font-size: 1rem; }
+    .linear-info-identity { min-width: 0; display: grid; gap: 2px; }
+    .linear-info-name { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: .82rem; line-height: 1.05; }
+    .linear-info-position { font-size: .68rem; line-height: 1; opacity: .8; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .linear-info-meta { display: grid; grid-template-columns: 1fr; gap: 2px; margin-top: 6px; font-size: .66rem; line-height: 1.1; opacity: .76; }
+    .linear-info-meta span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .linear-info-traits { display: flex; flex-wrap: wrap; gap: 3px; margin-top: 6px; }
+    .linear-info-traits small { border-radius: 999px; border: 1px solid rgba(255, 255, 255, .13); padding: 2px 5px; font-size: .58rem; line-height: 1.05; opacity: .88; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .compact-player-bench { margin-top: 12px; }
+    .compact-bench-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 8px; }
+    .linear-bench-card { padding: 0; }
+    .linear-tactics-controls-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(155px, 1fr)); gap: 8px; margin-bottom: 14px; }
+    .linear-tactic-control.compact { padding: 9px 10px; }
+    .linear-tactics-squad h3 { margin: 4px 0 10px; }
+    .linear-tactics-squad-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(165px, 1fr)); gap: 8px; }
+    .linear-tactics-player-card { min-width: 0; }
+    .linear-info-player-card.tactics .linear-info-player-top { grid-template-columns: 36px 1fr; }
+    @media (max-width: 760px) {
+      .linear-slot-card { min-width: 132px; max-width: 160px; }
+      .linear-info-name { font-size: .76rem; }
+      .linear-info-traits small { font-size: .55rem; }
+    }
+  `;
+  document.head.appendChild(style);
 }
