@@ -42,10 +42,7 @@ body.live-match-focus .focus-match-stats {
 }
 
 body.live-match-focus .momentum-graph {
-  background:
-    radial-gradient(circle at 18% 20%, #65e58d24, transparent 28%),
-    radial-gradient(circle at 78% 75%, #70d7ff22, transparent 30%),
-    linear-gradient(180deg, #123f24 0%, #0b2417 47%, #122c3f 53%, #071421 100%) !important;
+  background: radial-gradient(circle at 18% 20%, #65e58d24, transparent 28%), radial-gradient(circle at 78% 75%, #70d7ff22, transparent 30%), linear-gradient(180deg, #123f24 0%, #0b2417 47%, #122c3f 53%, #071421 100%) !important;
 }
 
 body.live-match-focus .segmented-source-line {
@@ -113,10 +110,6 @@ body.live-match-focus .live-events {
 
 body.live-match-focus .focus-stat-row {
   background: linear-gradient(180deg, #0d1812, #07110d);
-}
-
-body.live-match-focus .momentum-graph::after {
-  content: none;
 }
 
 @media (min-width: 720px) {
