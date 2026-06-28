@@ -84,8 +84,12 @@ export function routeForCurrentMatch() {
   const match = appState.lastMatch;
   const number = appState.userMatchNumber;
 
-  if (number <= 8) {
+  if (number >= 1 && number <= 4) {
     return `page${String(6 + number).padStart(2, "0")}`;
+  }
+
+  if (number >= 5 && number <= 8) {
+    return `page${String(7 + number).padStart(2, "0")}`;
   }
 
   if (!match) return "seasonEnd";
