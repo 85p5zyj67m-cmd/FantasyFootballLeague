@@ -1,3 +1,5 @@
+import { formatTraits, getDisplayPosition, getTraitList } from "../playerUtils.js";
+
 export function clearApp() {
   const app = document.getElementById("app");
   app.replaceChildren();
@@ -76,7 +78,8 @@ export function playerCard(player, onClick = null) {
   const top = document.createElement("span");
   top.className = "linear-player-top";
   const pos = document.createElement("b");
-  pos.textContent = player.position;
+  pos.textContent = getDisplayPosition(player);
+  pos.title = player.positionGroup ? `Draft group: ${player.positionGroup}` : "";
   const overall = document.createElement("strong");
   overall.textContent = player.overall;
   top.append(pos, overall);
@@ -91,7 +94,25 @@ export function playerCard(player, onClick = null) {
   const nat = document.createElement("small");
   nat.textContent = player.nationality;
 
-  card.append(top, name, club, nat);
+  const traitRow = document.createElement("span");
+  traitRow.className = "linear-trait-chip-row";
+  traitRow.title = formatTraits(player);
+  const traits = getTraitList(player);
+  if (traits.length) {
+    traits.forEach(trait => {
+      const chip = document.createElement("small");
+      chip.className = "linear-trait-chip";
+      chip.textContent = trait;
+      traitRow.appendChild(chip);
+    });
+  } else {
+    const empty = document.createElement("small");
+    empty.className = "linear-trait-chip empty";
+    empty.textContent = "No traits";
+    traitRow.appendChild(empty);
+  }
+
+  card.append(top, name, club, nat, traitRow);
   if (onClick) card.addEventListener("click", () => onClick(player));
   return card;
 }
