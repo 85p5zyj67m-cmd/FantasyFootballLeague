@@ -2,12 +2,38 @@ import { createSeason, continueAfterTactics, simulateNextMatch } from "../season
 import { appState, userTeam } from "./linearState.js";
 import { goTo } from "./linearRouter.js";
 
+const DIVISION_NAMES = ["North", "West", "East", "South"];
+
 export function startLinearSeason() {
-  appState.season = createSeason(appState.teams, 0);
+  appState.season = createSeasonWithRandomUserDivision();
   appState.userMatchNumber = 0;
   appState.lastMatch = null;
   continueAfterTactics(appState.season);
   goTo("page06");
+}
+
+function createSeasonWithRandomUserDivision() {
+  const targetDivisionName = DIVISION_NAMES[Math.floor(Math.random() * DIVISION_NAMES.length)];
+  let fallbackSeason = null;
+
+  for (let attempt = 0; attempt < 80; attempt++) {
+    const season = createSeason(appState.teams, 0);
+    fallbackSeason = season;
+
+    const userDivision = season.divisions.find(division =>
+      division.teams.includes(season.userTeam)
+    );
+
+    if (userDivision && userDivision.name === targetDivisionName) {
+      season.targetDivisionName = targetDivisionName;
+      return season;
+    }
+  }
+
+  if (fallbackSeason) {
+    fallbackSeason.targetDivisionName = targetDivisionName;
+  }
+  return fallbackSeason || createSeason(appState.teams, 0);
 }
 
 export function playNextLinearMatch() {
