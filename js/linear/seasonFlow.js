@@ -34,11 +34,6 @@ export function continueAfterMatch() {
   const season = appState.season;
   if (!season) return;
 
-  if (season.phase === "COMPLETE") {
-    goTo("seasonEnd");
-    return;
-  }
-
   if (appState.userMatchNumber === 4 && season.phase === "SECOND_HALF") {
     appState.lastOverview = "firstHalf";
     goTo("page11");
@@ -48,6 +43,11 @@ export function continueAfterMatch() {
   if (appState.userMatchNumber === 8) {
     appState.lastOverview = "secondHalf";
     goTo("page16");
+    return;
+  }
+
+  if (season.phase === "COMPLETE") {
+    goTo("seasonEnd");
     return;
   }
 
@@ -78,9 +78,9 @@ export function routeForCurrentMatch() {
 export function nextMatchButtonText() {
   const season = appState.season;
   if (!season) return "Next";
-  if (season.phase === "COMPLETE") return "Season Statistics";
   if (appState.userMatchNumber === 4) return "First Half Overview";
   if (appState.userMatchNumber === 8) return "Second Half Overview";
+  if (season.phase === "COMPLETE") return "Season Statistics";
   if (season.phase === "QUARTERFINALS") return "Play Quarterfinal";
   if (season.phase === "SEMIFINALS") return "Play Semifinal";
   if (season.phase === "FINAL") return "Play Final";
