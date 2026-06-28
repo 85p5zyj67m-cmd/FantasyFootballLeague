@@ -5,6 +5,7 @@ import {
   getSlotsFromFormation,
   movePlayer
 } from "../../lineup.js";
+import { formatTraits, getDisplayPosition, getTraitList } from "../../playerUtils.js";
 import { appState, userTeam } from "../linearState.js";
 import { startLinearSeason } from "../seasonFlow.js?v=second-half-route-1";
 import { clearApp, pageShell, primaryButton } from "../pageUtils.js";
@@ -19,6 +20,7 @@ export function renderPage05Tactics() {
     subtitle: "Set your starting eleven and tactics before the season starts."
   });
 
+  shell.card.classList.add("linear-info-card-view", "linear-season-setup-card");
   shell.card.appendChild(createMyTeamTabs());
 
   if (appState.activeMyTeamView === "Tactics") {
@@ -56,11 +58,11 @@ function createMyTeamTabs() {
 
 function renderStartingElevenView() {
   const wrapper = document.createElement("div");
-  wrapper.className = "linear-s11-view";
+  wrapper.className = "linear-s11-view linear-info-card-view";
 
   const hint = document.createElement("p");
-  hint.className = "subtitle";
-  hint.textContent = "Drag players onto matching positions, or tap a player and then a position.";
+  hint.className = "subtitle compact-hint";
+  hint.textContent = "Your XI at a glance. Drag cards between matching slots or tap a card and then a position.";
   wrapper.appendChild(hint);
 
   wrapper.appendChild(createPitch(userTeam()));
@@ -73,14 +75,20 @@ function renderTacticsView() {
   team.tactics = team.tactics || defaultTactics();
 
   const wrapper = document.createElement("div");
-  wrapper.className = "linear-tactics-view";
-  wrapper.appendChild(createTacticSelect(team, "playStyle", "Play Style", ["Balanced", "Possession", "Counter Attack", "High Press", "Defensive Block"]));
-  wrapper.appendChild(createTacticSelect(team, "mentality", "Mentality", ["Defensive", "Balanced", "Attacking"]));
-  wrapper.appendChild(createTacticSelect(team, "pressing", "Pressing", ["Low Block", "Medium Press", "High Press"]));
-  wrapper.appendChild(createTacticSelect(team, "defensiveLine", "Defensive Line", ["Deep Line", "Normal Line", "High Line"]));
-  wrapper.appendChild(createTacticSelect(team, "passing", "Passing", ["Short Passing", "Mixed Passing", "Direct Passing"]));
-  wrapper.appendChild(createTacticSelect(team, "tempo", "Tempo", ["Slow Tempo", "Normal Tempo", "Fast Tempo"]));
-  wrapper.appendChild(createTacticSelect(team, "risk", "Risk", ["Safe Risk", "Balanced Risk", "High Risk"]));
+  wrapper.className = "linear-tactics-view linear-info-card-view";
+
+  const controls = document.createElement("div");
+  controls.className = "linear-tactics-controls-grid";
+  controls.appendChild(createTacticSelect(team, "playStyle", "Play Style", ["Balanced", "Possession", "Counter Attack", "High Press", "Defensive Block"]));
+  controls.appendChild(createTacticSelect(team, "mentality", "Mentality", ["Defensive", "Balanced", "Attacking"]));
+  controls.appendChild(createTacticSelect(team, "pressing", "Pressing", ["Low Block", "Medium Press", "High Press"]));
+  controls.appendChild(createTacticSelect(team, "defensiveLine", "Defensive Line", ["Deep Line", "Normal Line", "High Line"]));
+  controls.appendChild(createTacticSelect(team, "passing", "Passing", ["Short Passing", "Mixed Passing", "Direct Passing"]));
+  controls.appendChild(createTacticSelect(team, "tempo", "Tempo", ["Slow Tempo", "Normal Tempo", "Fast Tempo"]));
+  controls.appendChild(createTacticSelect(team, "risk", "Risk", ["Safe Risk", "Balanced Risk", "High Risk"]));
+
+  wrapper.appendChild(controls);
+  wrapper.appendChild(createTacticsSquadOverview(team));
   return wrapper;
 }
 
@@ -100,7 +108,7 @@ function createTacticSelect(team, key, labelText, options) {
   team.tactics = team.tactics || defaultTactics();
 
   const label = document.createElement("label");
-  label.className = "linear-tactic-control";
+  label.className = "linear-tactic-control compact";
 
   const span = document.createElement("span");
   span.textContent = labelText;
@@ -139,7 +147,7 @@ function createPitch(team) {
   const slots = getSlotsFromFormation(formation);
   const playersBySlot = getPlayersBySlot(team);
   const pitch = document.createElement("div");
-  pitch.className = "linear-pitch";
+  pitch.className = "linear-pitch compact-player-pitch";
 
   const lines = new Map();
   slots.forEach(slot => {
@@ -150,7 +158,7 @@ function createPitch(team) {
 
   Array.from(lines.values()).forEach(lineSlots => {
     const line = document.createElement("div");
-    line.className = "linear-pitch-line";
+    line.className = "linear-pitch-line compact-player-line";
     lineSlots.forEach(slot => line.appendChild(createSlot(team, slot, playersBySlot.get(slot.key))));
     pitch.appendChild(line);
   });
@@ -160,19 +168,12 @@ function createPitch(team) {
 
 function createSlot(team, slot, player) {
   const box = document.createElement("div");
-  box.className = "linear-slot";
+  box.className = player ? "linear-slot linear-slot-card" : "linear-slot linear-empty-slot";
   box.dataset.slot = slot.key;
   box.dataset.position = slot.position;
 
-  const position = document.createElement("strong");
-  position.textContent = slot.position;
-  const name = document.createElement("span");
-  name.textContent = player ? player.name : "Empty";
-  const overall = document.createElement("small");
-  overall.textContent = player ? String(player.overall) : "";
-  box.append(position, name, overall);
-
   if (player) {
+    box.appendChild(createPlayerInfoCard(player));
     box.draggable = true;
     box.dataset.playerId = player.id;
     box.addEventListener("dragstart", event => event.dataTransfer.setData("text/plain", player.id));
@@ -185,6 +186,11 @@ function createSlot(team, slot, player) {
       renderPage05Tactics();
     });
   } else {
+    const position = document.createElement("strong");
+    position.textContent = slot.position;
+    const name = document.createElement("span");
+    name.textContent = "Empty";
+    box.append(position, name);
     box.addEventListener("click", () => moveSelectedPlayer(team, slot.key));
   }
 
@@ -206,19 +212,19 @@ function createSlot(team, slot, player) {
 
 function createBench(team) {
   const bench = document.createElement("div");
-  bench.className = "linear-bench";
+  bench.className = "linear-bench compact-player-bench";
 
   const heading = document.createElement("h3");
   heading.textContent = "Bench";
   bench.appendChild(heading);
 
   const players = document.createElement("div");
-  players.className = "linear-bench-list";
+  players.className = "linear-bench-list compact-bench-grid";
 
   getBenchPlayers(team).forEach(player => {
     const item = document.createElement("div");
-    item.className = "linear-bench-player";
-    item.textContent = `${player.position} - ${player.name} - ${player.overall}`;
+    item.className = "linear-bench-player linear-bench-card";
+    item.appendChild(createPlayerInfoCard(player));
     item.draggable = true;
     item.dataset.playerId = player.id;
     item.addEventListener("dragstart", event => event.dataTransfer.setData("text/plain", player.id));
@@ -243,6 +249,96 @@ function createBench(team) {
 
   bench.appendChild(players);
   return bench;
+}
+
+function createTacticsSquadOverview(team) {
+  const section = document.createElement("div");
+  section.className = "linear-tactics-squad";
+
+  const heading = document.createElement("h3");
+  heading.textContent = "Squad Cards";
+  section.appendChild(heading);
+
+  const playersBySlot = getPlayersBySlot(team);
+  const starters = Array.from(playersBySlot.entries())
+    .sort(([slotA], [slotB]) => slotA.localeCompare(slotB))
+    .map(([, player]) => player);
+  const bench = getBenchPlayers(team);
+  const allVisible = [...starters, ...bench];
+
+  const grid = document.createElement("div");
+  grid.className = "linear-tactics-squad-grid";
+
+  allVisible.forEach(player => {
+    const card = document.createElement("div");
+    card.className = "linear-tactics-player-card";
+    card.appendChild(createPlayerInfoCard(player));
+    grid.appendChild(card);
+  });
+
+  section.appendChild(grid);
+  return section;
+}
+
+function createPlayerInfoCard(player) {
+  const card = document.createElement("div");
+  card.className = "linear-info-player-card text-only-player-card";
+
+  const top = document.createElement("div");
+  top.className = "linear-info-player-top";
+
+  const rating = document.createElement("strong");
+  rating.className = "linear-info-rating";
+  rating.textContent = String(player.overall);
+
+  const position = document.createElement("span");
+  position.className = "linear-info-position";
+  position.textContent = getDisplayPosition(player);
+
+  top.append(rating, position);
+
+  const name = document.createElement("b");
+  name.className = "linear-info-name";
+  name.textContent = player.name;
+
+  const divider = document.createElement("span");
+  divider.className = "linear-info-divider";
+
+  const meta = document.createElement("div");
+  meta.className = "linear-info-meta";
+  meta.append(
+    createInfoRow("CLUB", `${player.club} (${player.year})`),
+    createInfoRow("COUNTRY", player.nationality)
+  );
+
+  const traits = document.createElement("div");
+  traits.className = "linear-info-traits";
+  traits.title = formatTraits(player);
+  const traitList = getTraitList(player);
+  (traitList.length ? traitList : ["No traits"]).forEach(trait => {
+    const chip = document.createElement("small");
+    chip.textContent = trait;
+    traits.appendChild(chip);
+  });
+
+  card.append(top, name, divider, meta, traits);
+  return card;
+}
+
+function createInfoRow(labelText, valueText) {
+  const row = document.createElement("div");
+  row.className = "linear-info-row";
+
+  const label = document.createElement("span");
+  label.className = "linear-info-label";
+  label.textContent = labelText;
+
+  const value = document.createElement("span");
+  value.className = "linear-info-value";
+  value.textContent = valueText;
+
+  row.append(label, value);
+  return row;
 }
 
 function moveSelectedPlayer(team, slotKey) {
