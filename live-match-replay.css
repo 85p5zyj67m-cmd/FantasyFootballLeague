@@ -1,0 +1,161 @@
+/* Live match replay ticker + xG graph */
+
+.live-replay-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.replay-header {
+  display: grid;
+  grid-template-columns: minmax(110px, auto) minmax(0, 1fr);
+  gap: 10px;
+  align-items: center;
+  margin: 10px 0 14px;
+  padding: 10px;
+  border-radius: 10px;
+  background: #07110d;
+  border: 1px solid #ffffff18;
+}
+
+.replay-clock {
+  color: #06110b;
+  background: linear-gradient(90deg, #65e58d, #f7c95f);
+  border-radius: 999px;
+  padding: 8px 12px;
+  font-weight: 900;
+  text-align: center;
+}
+
+.replay-pressure {
+  color: #f0f5ef;
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}
+
+.replay-progress-bar {
+  grid-column: 1 / -1;
+  height: 8px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #ffffff18;
+}
+
+.replay-progress-fill {
+  width: 0%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #65e58d, #70d7ff, #f7c95f);
+  transition: width 0.2s linear;
+}
+
+.xg-graph-card {
+  display: grid;
+  gap: 10px;
+  margin: 14px 0;
+  padding: 12px;
+  border-radius: 10px;
+  background: #07110d;
+  border: 1px solid #ffffff18;
+}
+
+.xg-graph-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px;
+  align-items: center;
+}
+
+.xg-graph-header strong {
+  color: #f7c95f;
+}
+
+.xg-score {
+  color: #b9c7be;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.xg-graph {
+  width: 100%;
+  min-height: 150px;
+  border-radius: 8px;
+  background:
+    linear-gradient(180deg, #0c1811, #050b08);
+}
+
+.xg-grid {
+  fill: none;
+  stroke: #ffffff14;
+  stroke-width: 1;
+}
+
+.xg-line {
+  fill: none;
+  stroke-width: 5;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  filter: drop-shadow(0 4px 8px #00000066);
+}
+
+.home-xg-line {
+  stroke: #65e58d;
+}
+
+.away-xg-line {
+  stroke: #70d7ff;
+}
+
+.replay-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0;
+  color: #b9c7be;
+  font-size: 12px;
+}
+
+.replay-controls button {
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: #ffffff16;
+  color: white;
+  border: 1px solid #ffffff22;
+}
+
+.replay-controls button:disabled {
+  opacity: 0.65;
+  cursor: default;
+}
+
+.replay-event-enter {
+  animation: replayEventEnter 0.24s ease-out both;
+}
+
+@keyframes replayEventEnter {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 520px) {
+  .replay-header {
+    grid-template-columns: 1fr;
+  }
+
+  .replay-controls {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .replay-controls button {
+    width: 100%;
+  }
+}
