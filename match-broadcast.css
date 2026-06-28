@@ -1,134 +1,46 @@
-/* Broadcast-style match screen + segmented graph colors */
-
 body.live-match-focus .season-command {
+  display: block !important;
+  position: sticky;
+  bottom: 10px;
+  z-index: 999;
+  background: transparent !important;
+  box-shadow: none !important;
+  border: 0 !important;
+  padding: 0 !important;
+}
+
+body.live-match-focus .season-command .eyebrow,
+body.live-match-focus .season-command #seasonPhaseTitle,
+body.live-match-focus .season-command #seasonSubtitle,
+body.live-match-focus .season-command #nextMatchCard {
   display: none !important;
 }
 
-body.live-match-focus .season-shell {
-  max-width: 900px;
-  margin: 0 auto;
+body.live-match-focus .season-command .season-actions {
+  display: grid !important;
+  gap: 8px !important;
+  margin-top: 10px !important;
 }
 
-body.live-match-focus .live-match-card {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+body.live-match-focus .season-command .season-actions .primary-btn.hidden {
+  display: none !important;
 }
 
-body.live-match-focus .live-match-card h2 {
-  order: 1;
-  margin-bottom: 0;
-}
-
-body.live-match-focus .replay-header {
-  order: 2;
-  margin: 0;
-}
-
-body.live-match-focus .xg-graph-card {
-  order: 3;
+body.live-match-focus .season-command .season-actions .primary-btn:not(.hidden) {
+  display: block !important;
+  width: 100% !important;
 }
 
 body.live-match-focus .replay-controls {
   display: none !important;
 }
 
-body.live-match-focus .live-events {
-  order: 4;
-}
-
-body.live-match-focus .focus-match-stats {
-  order: 5;
-}
-
 body.live-match-focus .post-match-controls {
-  order: 6;
-  display: grid;
-  margin-top: 8px;
+  display: grid !important;
+  margin-top: 8px !important;
 }
 
 body.live-match-focus .post-match-next-btn {
-  width: 100%;
-  font-size: 16px;
-}
-
-body.match-finished .replay-clock {
-  background: linear-gradient(90deg, #f7c95f, #65e58d);
-}
-
-body.live-match-focus .momentum-graph {
-  background: radial-gradient(circle at 18% 20%, #65e58d24, transparent 28%), radial-gradient(circle at 78% 75%, #70d7ff22, transparent 30%), linear-gradient(180deg, #123f24 0%, #0b2417 47%, #122c3f 53%, #071421 100%) !important;
-}
-
-body.live-match-focus .segmented-source-line {
-  opacity: 0 !important;
-}
-
-body.live-match-focus .segmented-momentum-line {
-  fill: none;
-  stroke-width: 6;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  filter: drop-shadow(0 0 7px currentColor) drop-shadow(0 5px 12px #000000aa);
-}
-
-body.live-match-focus .segmented-home-line {
-  stroke: #68ff9a;
-  color: #68ff9a;
-}
-
-body.live-match-focus .segmented-away-line {
-  stroke: #66cfff;
-  color: #66cfff;
-}
-
-body.live-match-focus .positive-momentum-area {
-  fill: #68ff9a2c !important;
-}
-
-body.live-match-focus .negative-momentum-area {
-  fill: #66cfff2c !important;
-}
-
-body.live-match-focus .xg-grid {
-  stroke: #ffffff1c;
-}
-
-body.live-match-focus .momentum-zero-axis {
-  stroke: #ffffff9a;
-  stroke-width: 1.6;
-  stroke-dasharray: 6 5;
-}
-
-body.live-match-focus .momentum-minute-marker {
-  stroke: #f7c95f;
-  stroke-width: 1.8;
-  filter: drop-shadow(0 0 5px #f7c95faa);
-}
-
-body.live-match-focus .momentum-label {
-  fill: #ffffffcc;
-  paint-order: stroke;
-  stroke: #00000066;
-  stroke-width: 2px;
-}
-
-body.live-match-focus .xg-graph-card {
-  border: 1px solid #ffffff22;
-  box-shadow: inset 0 1px 0 #ffffff14, 0 18px 40px #00000055;
-}
-
-body.live-match-focus .live-events {
-  max-height: 420px;
-  overflow-y: auto;
-}
-
-body.live-match-focus .focus-stat-row {
-  background: linear-gradient(180deg, #0d1812, #07110d);
-}
-
-@media (min-width: 720px) {
-  body.live-match-focus .focus-match-stats {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
+  width: 100% !important;
+  font-size: 16px !important;
 }
