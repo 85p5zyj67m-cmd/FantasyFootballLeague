@@ -1,4 +1,4 @@
-import { playNextLinearMatch } from "../seasonFlow.js";
+import { playNextLinearMatch } from "../seasonFlow.js?v=second-half-route-1";
 import { clearApp, pageShell, primaryButton } from "../pageUtils.js";
 import { renderHistoryBlock, renderStandingsBlock } from "../seasonRenderUtils.js";
 
