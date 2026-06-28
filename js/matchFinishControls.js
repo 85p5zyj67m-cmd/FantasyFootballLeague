@@ -3,7 +3,15 @@ window.addEventListener("DOMContentLoaded", () => {
   if (!liveMatchCard) return;
 
   const observer = new MutationObserver(() => updateFinishControls(liveMatchCard));
-  observer.observe(liveMatchCard, { childList: true, subtree: true, characterData: true });
+  observer.observe(liveMatchCard, {
+    childList: true,
+    subtree: true,
+    characterData: true,
+    attributes: true,
+    attributeFilter: ["style", "class"]
+  });
+
+  window.setInterval(() => updateFinishControls(liveMatchCard), 500);
   updateFinishControls(liveMatchCard);
 });
 
@@ -12,9 +20,11 @@ function updateFinishControls(container) {
   if (!card) return;
 
   const clock = card.querySelector(".replay-clock");
+  const progress = card.querySelector(".replay-progress-fill");
   const replayComplete = card.textContent.includes("Replay complete");
   const clockText = clock ? clock.textContent.trim() : "";
-  const isFinished = replayComplete || /^90\+|^120|^FT|^FINISH/i.test(clockText);
+  const progressValue = progress ? parseFloat(progress.style.width || "0") : 0;
+  const isFinished = replayComplete || progressValue >= 99.5 || /^90('|\+)|^120|^FT|^FINISH/i.test(clockText);
 
   if (!isFinished) return;
 
@@ -31,8 +41,10 @@ function updateFinishControls(container) {
   const seasonActions = document.querySelector(".season-actions");
   if (!seasonActions) return;
 
-  controls.replaceChildren();
-  controls.appendChild(seasonActions);
+  if (!controls.contains(seasonActions)) {
+    controls.replaceChildren();
+    controls.appendChild(seasonActions);
+  }
 
   const simulateBtn = document.getElementById("simulateMatchBtn");
   const tacticsBtn = document.getElementById("continueAfterTacticsBtn");
