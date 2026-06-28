@@ -21,8 +21,18 @@ body.live-match-focus .season-command {
 
 body.live-match-focus .season-command .eyebrow,
 body.live-match-focus #seasonSubtitle,
-body.live-match-focus .season-actions {
+body.live-match-focus .season-command .season-actions {
   display: none !important;
+}
+
+body.live-match-focus .post-match-controls .season-actions {
+  display: grid !important;
+  gap: 10px;
+}
+
+body.live-match-focus .post-match-controls .primary-btn:not(.hidden) {
+  display: block !important;
+  width: 100%;
 }
 
 body.live-match-focus #seasonPhaseTitle {
