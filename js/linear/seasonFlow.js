@@ -51,11 +51,6 @@ export function continueAfterMatch() {
     return;
   }
 
-  if (season.waitingForTactics) {
-    playNextLinearMatch();
-    return;
-  }
-
   playNextLinearMatch();
 }
 
@@ -86,10 +81,9 @@ export function nextMatchButtonText() {
   if (season.phase === "COMPLETE") return "Season Statistics";
   if (appState.userMatchNumber === 4) return "First Half Overview";
   if (appState.userMatchNumber === 8) return "Second Half Overview";
-  if (season.phase === "ROUND_OF_16") return "Play Quarterfinal";
-  if (season.phase === "QUARTERFINALS") return "Play Semifinal";
-  if (season.phase === "SEMIFINALS") return "Play Final";
-  if (season.phase === "FINAL") return "Season Statistics";
+  if (season.phase === "QUARTERFINALS") return "Play Quarterfinal";
+  if (season.phase === "SEMIFINALS") return "Play Semifinal";
+  if (season.phase === "FINAL") return "Play Final";
   return "Play Next Match";
 }
 
