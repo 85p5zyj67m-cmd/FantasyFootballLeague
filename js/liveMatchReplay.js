@@ -1,4 +1,4 @@
-const REPLAY_DURATION_MS = 30000;
+const REPLAY_DURATION_MS = 34000;
 const SCORE_PATTERN = /^(.*)\s+(\d+)\s+-\s+(\d+)\s+(.*)$/;
 const FIRST_HALF_ADDED = 2;
 const SECOND_HALF_ADDED = 4;
@@ -32,9 +32,9 @@ function enhanceLatestMatch(target) {
   card.classList.add("live-replay-card");
 
   const replayEvents = originalEvents
-    .map(row => normalizeReplayEvent(row))
+    .map(row => normalizeReplayEvent(row, parsedScore))
     .filter(Boolean)
-    .sort((a, b) => a.replayMinute - b.replayMinute);
+    .sort((a, b) => a.replayMinute - b.replayMinute || eventPriority(a.type) - eventPriority(b.type));
 
   const timelineEnd = getTimelineEnd(replayEvents);
   const replayState = {
@@ -83,7 +83,6 @@ function runReplay({ title, eventsBox, replayEvents, replayState, header, graph,
     const elapsed = performance.now() - start;
     const progress = Math.min(1, elapsed / REPLAY_DURATION_MS);
     const currentReplayMinute = progress * replayState.timelineEnd;
-    const currentMinuteFloor = Math.floor(currentReplayMinute);
 
     replayState.currentReplayMinute = currentReplayMinute;
     header.clock.textContent = formatMatchClock(currentReplayMinute, replayState.timelineEnd);
@@ -97,9 +96,7 @@ function runReplay({ title, eventsBox, replayEvents, replayState, header, graph,
       currentEventIndex++;
     }
 
-    replayState.visibleMomentumSeries = replayState.momentumSeries.filter(point =>
-      point.minute <= currentMinuteFloor
-    );
+    replayState.visibleMomentumSeries = getVisibleInterpolatedMomentum(replayState, currentReplayMinute);
 
     updateScoreTitle(title, replayState);
     updatePressureLabel(header.pressure, replayState, getCurrentMomentum(replayState));
@@ -115,7 +112,7 @@ function runReplay({ title, eventsBox, replayEvents, replayState, header, graph,
     replayState.visibleMomentumSeries = replayState.momentumSeries;
     updateScoreTitle(title, replayState);
     renderMomentumGraph(graph, replayState);
-    header.clock.textContent = replayState.timelineEnd > 94 ? "120+" : "90+4";
+    header.clock.textContent = getFinalClockLabel(replayState.timelineEnd);
     playBtn.textContent = "Replay complete";
     playBtn.disabled = true;
   };
@@ -136,7 +133,7 @@ function revealEvent(event, eventsBox, replayState) {
   eventsBox.prepend(row);
 }
 
-function normalizeReplayEvent(row) {
+function normalizeReplayEvent(row, teams) {
   const text = row.textContent;
   const minute = getEventMinute(text);
   const type = getEventType(row);
@@ -147,7 +144,8 @@ function normalizeReplayEvent(row) {
     minute,
     replayMinute: getReplayMinute(minute, type, text),
     text,
-    type
+    type,
+    side: getEventSideFromText(text, teams.homeName, teams.awayName)
   };
 }
 
@@ -159,50 +157,101 @@ function getReplayMinute(minute, type, text) {
   }
 
   if (minute === 90 && lower.includes("full-time")) {
-    return 90 + SECOND_HALF_ADDED;
+    return 45 + FIRST_HALF_ADDED + 45 + SECOND_HALF_ADDED;
   }
 
-  return minute;
+  if (minute <= 45) {
+    return minute;
+  }
+
+  if (minute <= 90) {
+    return 45 + FIRST_HALF_ADDED + (minute - 45);
+  }
+
+  return 45 + FIRST_HALF_ADDED + 45 + SECOND_HALF_ADDED + (minute - 90);
 }
 
 function getTimelineEnd(events) {
-  const maxReplayMinute = Math.max(90 + SECOND_HALF_ADDED, ...events.map(event => event.replayMinute));
-  return maxReplayMinute > 94 ? Math.max(120, maxReplayMinute) : 90 + SECOND_HALF_ADDED;
+  const regulationEnd = 45 + FIRST_HALF_ADDED + 45 + SECOND_HALF_ADDED;
+  const maxReplayMinute = Math.max(regulationEnd, ...events.map(event => event.replayMinute));
+
+  if (maxReplayMinute > regulationEnd) {
+    return Math.max(maxReplayMinute, regulationEnd + 30);
+  }
+
+  return regulationEnd;
+}
+
+function formatMatchClock(replayMinute, timelineEnd) {
+  const rounded = Math.floor(replayMinute);
+  const secondHalfStart = 45 + FIRST_HALF_ADDED;
+  const regulationEnd = secondHalfStart + 45;
+  const finalEnd = regulationEnd + SECOND_HALF_ADDED;
+
+  if (rounded <= 45) {
+    return `${rounded}'`;
+  }
+
+  if (rounded <= secondHalfStart) {
+    return `45+${rounded - 45}'`;
+  }
+
+  if (rounded <= regulationEnd) {
+    return `${45 + (rounded - secondHalfStart)}'`;
+  }
+
+  if (rounded <= finalEnd) {
+    return `90+${rounded - regulationEnd}'`;
+  }
+
+  const extraTimeMinute = 90 + (rounded - finalEnd);
+  return `${Math.min(extraTimeMinute, 120)}'`;
+}
+
+function getFinalClockLabel(timelineEnd) {
+  const regulationEnd = 45 + FIRST_HALF_ADDED + 45 + SECOND_HALF_ADDED;
+  return timelineEnd > regulationEnd ? "120'" : `90+${SECOND_HALF_ADDED}'`;
 }
 
 function updateReplayStats(event, replayState) {
-  const side = getEventSide(event, replayState);
   const xgValue = getApproxXg(event.text, event.type);
 
   if (event.type === "GOAL") {
-    if (side === "home") replayState.homeGoals++;
-    if (side === "away") replayState.awayGoals++;
+    if (event.side === "home") replayState.homeGoals++;
+    if (event.side === "away") replayState.awayGoals++;
   }
 
-  if (side === "home") replayState.homeXg += xgValue;
-  if (side === "away") replayState.awayXg += xgValue;
+  if (event.side === "home") replayState.homeXg += xgValue;
+  if (event.side === "away") replayState.awayXg += xgValue;
 }
 
 function buildMomentumSeries(events, timelineEnd) {
   const points = [];
   let momentum = 0;
+  const eventsByMinute = new Map();
+
+  events.forEach(event => {
+    const key = Math.floor(event.replayMinute);
+    const bucket = eventsByMinute.get(key) || [];
+    bucket.push(event);
+    eventsByMinute.set(key, bucket);
+  });
 
   for (let minute = 0; minute <= timelineEnd; minute++) {
-    const minuteEvents = events.filter(event => Math.floor(event.replayMinute) === minute);
+    const minuteEvents = eventsByMinute.get(minute) || [];
 
-    momentum *= 0.9;
+    momentum *= 0.92;
 
     minuteEvents.forEach(event => {
-      const side = getEventSideByNames(event.text, event.homeName, event.awayName);
       const impact = getEventImpact(event);
 
-      if (side === "home") momentum += impact;
-      if (side === "away") momentum -= impact;
-      if (event.type === "INFO") momentum *= 0.82;
+      if (event.side === "home") momentum += impact;
+      if (event.side === "away") momentum -= impact;
+      if (event.type === "INFO") momentum *= 0.78;
     });
 
-    momentum += Math.sin(minute / 5) * 0.012;
-    momentum = clamp(-1.25, 1.25, momentum);
+    momentum += getAmbientPulse(minute) * 0.035;
+    momentum = clamp(-1.35, 1.35, momentum);
 
     points.push({
       minute,
@@ -210,30 +259,53 @@ function buildMomentumSeries(events, timelineEnd) {
     });
   }
 
-  return smoothSeries(points);
+  return smoothSeries(smoothSeries(points));
 }
 
-function getEventSide(event, replayState) {
-  const text = event.text.toLowerCase();
-  const homeKey = replayState.homeName.toLowerCase();
-  const awayKey = replayState.awayName.toLowerCase();
+function getVisibleInterpolatedMomentum(state, currentReplayMinute) {
+  const visible = state.momentumSeries.filter(point => point.minute <= currentReplayMinute);
+  const nextPoint = state.momentumSeries.find(point => point.minute > currentReplayMinute);
 
-  if (text.includes(homeKey)) return "home";
-  if (text.includes(awayKey)) return "away";
-  return null;
+  if (!visible.length) {
+    return [{ minute: 0, value: 0 }];
+  }
+
+  if (nextPoint) {
+    const previousPoint = visible[visible.length - 1];
+    const span = Math.max(1, nextPoint.minute - previousPoint.minute);
+    const ratio = (currentReplayMinute - previousPoint.minute) / span;
+    const interpolatedValue = previousPoint.value + (nextPoint.value - previousPoint.value) * ratio;
+
+    return [
+      ...visible,
+      {
+        minute: currentReplayMinute,
+        value: Number(interpolatedValue.toFixed(3))
+      }
+    ];
+  }
+
+  return visible;
 }
 
-function getEventSideByNames() {
+function getEventSideFromText(text, homeName, awayName) {
+  const lower = text.toLowerCase();
+  const homeKey = homeName.toLowerCase();
+  const awayKey = awayName.toLowerCase();
+
+  if (lower.includes(homeKey)) return "home";
+  if (lower.includes(awayKey)) return "away";
   return null;
 }
 
 function getEventImpact(event) {
-  if (event.type === "GOAL") return 0.8;
-  if (event.text.includes("Huge chance")) return 0.6;
-  if (event.text.includes("sharp save")) return 0.42;
-  if (event.text.includes("half chance")) return 0.22;
-  if (event.type === "SAVE") return 0.34;
-  if (event.type === "CHANCE") return 0.26;
+  if (!event.side) return 0;
+  if (event.type === "GOAL") return 0.92;
+  if (event.text.includes("Huge chance")) return 0.68;
+  if (event.text.includes("sharp save")) return 0.46;
+  if (event.text.includes("half chance")) return 0.24;
+  if (event.type === "SAVE") return 0.38;
+  if (event.type === "CHANCE") return 0.28;
   return 0;
 }
 
@@ -245,6 +317,10 @@ function getApproxXg(text, type) {
   if (type === "SAVE") return 0.18;
   if (type === "CHANCE") return 0.12;
   return 0;
+}
+
+function getAmbientPulse(minute) {
+  return Math.sin(minute / 4.2) + Math.sin(minute / 9.5) * 0.55;
 }
 
 function smoothSeries(points) {
@@ -260,7 +336,7 @@ function smoothSeries(points) {
   });
 }
 
-function createReplayHeader(state) {
+function createReplayHeader() {
   const wrapper = document.createElement("div");
   wrapper.className = "replay-header";
 
@@ -319,18 +395,6 @@ function createMomentumGraph(state) {
   svg.setAttribute("viewBox", "0 0 320 150");
   svg.classList.add("xg-graph", "momentum-graph");
 
-  const topLabel = document.createElementNS("http://www.w3.org/2000/svg", "text");
-  topLabel.setAttribute("x", "8");
-  topLabel.setAttribute("y", "18");
-  topLabel.classList.add("momentum-label", "home-momentum-label");
-  topLabel.textContent = state.homeName;
-
-  const bottomLabel = document.createElementNS("http://www.w3.org/2000/svg", "text");
-  bottomLabel.setAttribute("x", "8");
-  bottomLabel.setAttribute("y", "142");
-  bottomLabel.classList.add("momentum-label", "away-momentum-label");
-  bottomLabel.textContent = state.awayName;
-
   const grid = document.createElementNS("http://www.w3.org/2000/svg", "path");
   grid.setAttribute("d", "M0 25 H320 M0 75 H320 M0 125 H320");
   grid.classList.add("xg-grid");
@@ -346,12 +410,29 @@ function createMomentumGraph(state) {
   negativeArea.classList.add("momentum-area", "negative-momentum-area");
 
   const line = document.createElementNS("http://www.w3.org/2000/svg", "polyline");
-  line.classList.add("xg-line", "momentum-line");
+  line.classList.add("xg-line", "momentum-line", "neutral-momentum-line");
 
-  svg.append(grid, positiveArea, negativeArea, axis, line, topLabel, bottomLabel);
+  const minuteMarker = document.createElementNS("http://www.w3.org/2000/svg", "line");
+  minuteMarker.classList.add("momentum-minute-marker");
+  minuteMarker.setAttribute("y1", "18");
+  minuteMarker.setAttribute("y2", "132");
+
+  const topLabel = document.createElementNS("http://www.w3.org/2000/svg", "text");
+  topLabel.setAttribute("x", "8");
+  topLabel.setAttribute("y", "18");
+  topLabel.classList.add("momentum-label", "home-momentum-label");
+  topLabel.textContent = state.homeName;
+
+  const bottomLabel = document.createElementNS("http://www.w3.org/2000/svg", "text");
+  bottomLabel.setAttribute("x", "8");
+  bottomLabel.setAttribute("y", "142");
+  bottomLabel.classList.add("momentum-label", "away-momentum-label");
+  bottomLabel.textContent = state.awayName;
+
+  svg.append(grid, positiveArea, negativeArea, axis, line, minuteMarker, topLabel, bottomLabel);
   wrapper.append(header, svg);
 
-  const graph = { wrapper, score, line, positiveArea, negativeArea };
+  const graph = { wrapper, score, line, positiveArea, negativeArea, minuteMarker };
   renderMomentumGraph(graph, state);
   return graph;
 }
@@ -363,36 +444,60 @@ function renderMomentumGraph(graph, state) {
 
   const width = 320;
   const centerY = 75;
-  const scale = 46;
+  const scale = 44;
   const maxMinute = Math.max(1, state.timelineEnd);
 
   const toX = minute => (minute / maxMinute) * width;
   const toY = value => centerY - value * scale;
 
-  const points = series.map(point =>
-    `${toX(point.minute).toFixed(1)},${toY(point.value).toFixed(1)}`
-  ).join(" ");
+  const linePoints = series
+    .map(point => `${toX(point.minute).toFixed(1)},${toY(point.value).toFixed(1)}`)
+    .join(" ");
 
-  graph.line.setAttribute("points", points);
-  graph.positiveArea.setAttribute("d", buildMomentumAreaPath(series, maxMinute, toX, toY, value => Math.max(0, value), centerY));
-  graph.negativeArea.setAttribute("d", buildMomentumAreaPath(series, maxMinute, toX, toY, value => Math.min(0, value), centerY));
+  graph.line.setAttribute("points", linePoints);
 
-  const current = getCurrentMomentum(state);
-  const leadingTeam = current > 0.08 ? state.homeName : current < -0.08 ? state.awayName : "Balanced";
-  graph.score.textContent = `${leadingTeam} · ${Math.abs(current).toFixed(2)}`;
+  graph.positiveArea.setAttribute("d", buildAreaPath(series, toX, toY, centerY, value => value > 0));
+  graph.negativeArea.setAttribute("d", buildAreaPath(series, toX, toY, centerY, value => value < 0));
+
+  const markerX = toX(Math.min(state.currentReplayMinute, state.timelineEnd));
+  graph.minuteMarker.setAttribute("x1", markerX.toFixed(1));
+  graph.minuteMarker.setAttribute("x2", markerX.toFixed(1));
+
+  const currentMomentum = getCurrentMomentum(state);
+  graph.line.classList.toggle("home-momentum-line", currentMomentum > 0.12);
+  graph.line.classList.toggle("away-momentum-line", currentMomentum < -0.12);
+  graph.line.classList.toggle("neutral-momentum-line", Math.abs(currentMomentum) <= 0.12);
+
+  graph.score.textContent = `${state.homeName} ${state.homeXg.toFixed(1)} xG · ${state.awayXg.toFixed(1)} xG ${state.awayName}`;
 }
 
-function buildMomentumAreaPath(series, maxMinute, toX, toY, transformValue, centerY) {
-  if (!series.length) return "";
+function buildAreaPath(series, toX, toY, centerY, predicate) {
+  const segments = [];
+  let current = [];
 
-  const startX = toX(series[0].minute);
-  const line = series.map(point => {
-    const value = transformValue(point.value);
-    return `${toX(point.minute).toFixed(1)} ${toY(value).toFixed(1)}`;
-  }).join(" L ");
+  series.forEach(point => {
+    if (predicate(point.value)) {
+      current.push(point);
+      return;
+    }
 
-  const endX = toX(series[series.length - 1].minute);
-  return `M ${startX.toFixed(1)} ${centerY} L ${line} L ${endX.toFixed(1)} ${centerY} Z`;
+    if (current.length) {
+      segments.push(current);
+      current = [];
+    }
+  });
+
+  if (current.length) segments.push(current);
+
+  return segments.map(segment => {
+    const start = segment[0];
+    const end = segment[segment.length - 1];
+    const line = segment
+      .map(point => `L ${toX(point.minute).toFixed(1)} ${toY(point.value).toFixed(1)}`)
+      .join(" ");
+
+    return `M ${toX(start.minute).toFixed(1)} ${centerY} ${line} L ${toX(end.minute).toFixed(1)} ${centerY} Z`;
+  }).join(" ");
 }
 
 function updateScoreTitle(title, state) {
@@ -402,38 +507,21 @@ function updateScoreTitle(title, state) {
 function updatePressureLabel(label, state, momentum) {
   label.classList.remove("home-pressure", "away-pressure", "neutral-pressure");
 
-  if (Math.abs(momentum) < 0.1) {
+  if (Math.abs(momentum) < 0.15) {
     label.textContent = "Balanced game";
     label.classList.add("neutral-pressure");
     return;
   }
 
   const teamName = momentum > 0 ? state.homeName : state.awayName;
-  const intensity = Math.abs(momentum) > 0.65 ? "dominating" : "pushing";
+  const intensity = Math.abs(momentum) > 0.7 ? "dominating" : "pushing";
   label.textContent = `${teamName} ${intensity}`;
   label.classList.add(momentum > 0 ? "home-pressure" : "away-pressure");
 }
 
 function getCurrentMomentum(state) {
-  const currentMinute = Math.floor(state.currentReplayMinute || 0);
-  const point = state.momentumSeries.find(item => item.minute === currentMinute) || state.momentumSeries[0];
-  return point ? point.value : 0;
-}
-
-function formatMatchClock(replayMinute, timelineEnd) {
-  const minute = Math.floor(replayMinute);
-
-  if (minute < 45) return `${minute}'`;
-  if (minute <= 45 + FIRST_HALF_ADDED) return `45+${Math.max(0, minute - 45)}'`;
-  if (minute < 90) return `${minute}'`;
-
-  if (timelineEnd <= 94) {
-    return `90+${Math.max(0, minute - 90)}'`;
-  }
-
-  if (minute <= 90 + SECOND_HALF_ADDED) return `90+${Math.max(0, minute - 90)}'`;
-  if (minute <= 120) return `${minute}'`;
-  return `120+${minute - 120}'`;
+  const series = state.visibleMomentumSeries;
+  return series.length ? series[series.length - 1].value : 0;
 }
 
 function parseScoreTitle(text) {
@@ -461,6 +549,13 @@ function getEventType(row) {
   return "INFO";
 }
 
+function eventPriority(type) {
+  if (type === "GOAL") return 0;
+  if (type === "CHANCE") return 1;
+  if (type === "SAVE") return 2;
+  return 3;
+}
+
 function clamp(min, max, value) {
-  return Math.max(min, Math.min(max, value));
+  return Math.min(max, Math.max(min, value));
 }
