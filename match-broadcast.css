@@ -41,6 +41,21 @@ body.live-match-focus .focus-match-stats {
   order: 5;
 }
 
+body.live-match-focus .post-match-controls {
+  order: 6;
+  display: grid;
+  margin-top: 8px;
+}
+
+body.live-match-focus .post-match-next-btn {
+  width: 100%;
+  font-size: 16px;
+}
+
+body.match-finished .replay-clock {
+  background: linear-gradient(90deg, #f7c95f, #65e58d);
+}
+
 body.live-match-focus .momentum-graph {
   background: radial-gradient(circle at 18% 20%, #65e58d24, transparent 28%), radial-gradient(circle at 78% 75%, #70d7ff22, transparent 30%), linear-gradient(180deg, #123f24 0%, #0b2417 47%, #122c3f 53%, #071421 100%) !important;
 }
