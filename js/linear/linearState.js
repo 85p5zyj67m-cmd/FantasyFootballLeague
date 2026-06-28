@@ -9,7 +9,7 @@ export const appState = {
   activePosition: "ALL",
   activeDraftView: "Player List",
   activeMyTeamView: "S11",
-  aiSpeed: "normal",
+  aiSpeed: "fast",
   draftLog: [],
   selectedFormation: "4-3-3",
   season: null,
@@ -31,7 +31,7 @@ export function resetLinearState() {
   appState.activePosition = "ALL";
   appState.activeDraftView = "Player List";
   appState.activeMyTeamView = "S11";
-  appState.aiSpeed = "normal";
+  appState.aiSpeed = "fast";
   appState.draftLog = [];
   appState.selectedFormation = "4-3-3";
   appState.season = null;
