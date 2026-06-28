@@ -23,6 +23,7 @@ import { goTo } from "../linearRouter.js";
 import { clearApp, playerCard } from "../pageUtils.js";
 
 let aiTimer = null;
+let aiTimerToken = 0;
 let selectedPlayerId = null;
 
 const AI_SPEEDS = {
@@ -39,9 +40,9 @@ export function renderPage04Draft() {
   }
 
   const app = clearApp();
-  const teamIndex = getTeamOnClock(appState.currentPick, appState.draftOrder);
-  const team = appState.teams[teamIndex];
-  const isUserTurn = team === userTeam();
+  const activeTeamIndex = getTeamOnClock(appState.currentPick, appState.draftOrder);
+  const activeTeam = appState.teams[activeTeamIndex];
+  const isUserTurn = activeTeam === userTeam();
   const round = getRound(appState.currentPick);
   const pickInRound = getPickInRound(appState.currentPick) + 1;
 
@@ -50,10 +51,9 @@ export function renderPage04Draft() {
 
   const card = document.createElement("div");
   card.className = "linear-card linear-draft-card";
-
-  card.appendChild(createDraftTopbar(round, pickInRound, team, isUserTurn));
+  card.appendChild(createDraftTopbar(round, pickInRound, activeTeam, isUserTurn));
   card.appendChild(createRoundPickCounter(round));
-  card.appendChild(createDraftOrderTicker(teamIndex));
+  card.appendChild(createDraftOrderTicker(activeTeamIndex));
   card.appendChild(createDraftTabs());
   card.appendChild(createDraftView(isUserTurn));
 
@@ -63,7 +63,7 @@ export function renderPage04Draft() {
   if (isUserTurn) {
     clearAiTimer();
   } else {
-    scheduleAiPick(team);
+    scheduleAiPick(activeTeam);
   }
 }
 
@@ -77,18 +77,18 @@ function createDraftTopbar(round, pickInRound, team, isUserTurn) {
   label.textContent = "Live Snake Draft";
 
   const title = document.createElement("h1");
-  title.textContent = `R${round}/${GAME_CONFIG.totalRounds} · P${pickInRound}`;
+  title.textContent = `R${round}/${GAME_CONFIG.totalRounds} - P${pickInRound}`;
 
   const onClock = document.createElement("p");
   onClock.className = isUserTurn ? "linear-on-clock user" : "linear-on-clock";
   onClock.textContent = `${team.name} on clock`;
-
   info.append(label, title, onClock);
 
   const speedBox = document.createElement("label");
   speedBox.className = "linear-speed-box";
   const speedLabel = document.createElement("span");
   speedLabel.textContent = "AI Speed";
+
   const select = document.createElement("select");
   ["normal", "fast", "instant"].forEach(value => {
     const option = document.createElement("option");
@@ -97,14 +97,18 @@ function createDraftTopbar(round, pickInRound, team, isUserTurn) {
     select.appendChild(option);
   });
   select.value = appState.aiSpeed;
-  select.addEventListener("change", () => {
+
+  const applySpeed = () => {
     appState.aiSpeed = select.value;
-    const activeIndex = getTeamOnClock(appState.currentPick, appState.draftOrder);
-    const activeTeam = appState.teams[activeIndex];
-    if (activeTeam && activeTeam !== userTeam()) {
-      scheduleAiPick(activeTeam);
+    const currentTeamIndex = getTeamOnClock(appState.currentPick, appState.draftOrder);
+    const currentTeam = appState.teams[currentTeamIndex];
+    if (currentTeam && currentTeam !== userTeam()) {
+      scheduleAiPick(currentTeam, true);
     }
-  });
+  };
+
+  select.addEventListener("input", applySpeed);
+  select.addEventListener("change", applySpeed);
   speedBox.append(speedLabel, select);
 
   topbar.append(info, speedBox);
@@ -112,9 +116,11 @@ function createDraftTopbar(round, pickInRound, team, isUserTurn) {
 }
 
 function createRoundPickCounter(round) {
+  const block = document.createElement("div");
+  block.className = "linear-counter-block";
+
   const wrapper = document.createElement("div");
   wrapper.className = "linear-round-counter";
-
   const distances = getNextUserPickDistances(appState.currentPick, appState.draftOrder);
   wrapper.append(
     createCounterPill("Next", distances.next),
@@ -127,11 +133,9 @@ function createRoundPickCounter(round) {
   const ticker = document.createElement("div");
   ticker.className = "linear-round-picks";
   ticker.textContent = lastRoundPick
-    ? `${lastRoundPick.teamName}: ${lastRoundPick.overall} · ${lastRoundPick.playerName} · ${lastRoundPick.position}`
+    ? `${lastRoundPick.teamName}: ${lastRoundPick.overall} - ${lastRoundPick.playerName} - ${lastRoundPick.position}`
     : "Waiting for the first pick of this round.";
 
-  const block = document.createElement("div");
-  block.className = "linear-counter-block";
   block.append(wrapper, ticker);
   return block;
 }
@@ -161,7 +165,6 @@ function createDraftOrderTicker(activeTeamIndex) {
     item.textContent = appState.teams[teamIndex].name;
     ticker.appendChild(item);
   });
-
   return ticker;
 }
 
@@ -169,12 +172,10 @@ function getCenteredOrderIndexes(length, activeIndex, targetSize) {
   const size = Math.min(length, targetSize);
   let start = Math.max(0, activeIndex - Math.floor(size / 2));
   let end = start + size;
-
   if (end > length) {
     end = length;
     start = Math.max(0, end - size);
   }
-
   return Array.from({ length: end - start }, (_, index) => start + index);
 }
 
@@ -198,25 +199,15 @@ function createDraftTabs() {
 function createDraftView(isUserTurn) {
   const container = document.createElement("div");
   container.className = "linear-draft-view";
-
-  if (appState.activeDraftView === "My Team") {
-    container.appendChild(renderMyTeamView());
-    return container;
-  }
-
-  if (appState.activeDraftView === "AI Teams") {
-    container.appendChild(renderAiTeamsView());
-    return container;
-  }
-
-  container.appendChild(renderPlayerListView(isUserTurn));
+  if (appState.activeDraftView === "My Team") container.appendChild(renderMyTeamView());
+  else if (appState.activeDraftView === "AI Teams") container.appendChild(renderAiTeamsView());
+  else container.appendChild(renderPlayerListView(isUserTurn));
   return container;
 }
 
 function renderPlayerListView(isUserTurn) {
   const wrapper = document.createElement("div");
   wrapper.className = "linear-player-list-view";
-
   const heading = document.createElement("h2");
   heading.textContent = "Player List";
   wrapper.appendChild(heading);
@@ -242,26 +233,17 @@ function renderPlayerListView(isUserTurn) {
     grid.appendChild(playerCard(player, isUserTurn ? selected => pickPlayer(userTeam(), selected) : null));
   });
   wrapper.appendChild(grid);
-
   return wrapper;
 }
 
 function renderMyTeamView() {
   const wrapper = document.createElement("div");
   wrapper.className = "linear-my-team-view";
-
   const heading = document.createElement("h2");
   heading.textContent = "My Team";
   wrapper.appendChild(heading);
-
   wrapper.appendChild(createMyTeamTabs());
-
-  if (appState.activeMyTeamView === "Tactics") {
-    wrapper.appendChild(renderTacticsView());
-  } else {
-    wrapper.appendChild(renderStartingElevenView());
-  }
-
+  wrapper.appendChild(appState.activeMyTeamView === "Tactics" ? renderTacticsView() : renderStartingElevenView());
   return wrapper;
 }
 
@@ -285,12 +267,10 @@ function createMyTeamTabs() {
 function renderStartingElevenView() {
   const wrapper = document.createElement("div");
   wrapper.className = "linear-s11-view";
-
   const hint = document.createElement("p");
   hint.className = "subtitle";
   hint.textContent = "Drag players onto matching positions, or tap a player and then a position.";
   wrapper.appendChild(hint);
-
   wrapper.appendChild(createPitch(userTeam()));
   wrapper.appendChild(createBench(userTeam()));
   return wrapper;
@@ -306,7 +286,6 @@ function renderTacticsView() {
     tempo: "Normal Tempo",
     risk: "Balanced Risk"
   };
-
   const wrapper = document.createElement("div");
   wrapper.className = "linear-tactics-view";
   wrapper.appendChild(createTacticSelect(team, "mentality", "Mentality", ["Defensive", "Balanced", "Attacking"]));
@@ -344,21 +323,18 @@ function createPitch(team) {
   const playersBySlot = getPlayersBySlot(team);
   const pitch = document.createElement("div");
   pitch.className = "linear-pitch";
-
   const lines = new Map();
   slots.forEach(slot => {
     const line = slot.key.split("-")[0];
     if (!lines.has(line)) lines.set(line, []);
     lines.get(line).push(slot);
   });
-
   Array.from(lines.values()).forEach(lineSlots => {
     const line = document.createElement("div");
     line.className = "linear-pitch-line";
     lineSlots.forEach(slot => line.appendChild(createSlot(team, slot, playersBySlot.get(slot.key))));
     pitch.appendChild(line);
   });
-
   return pitch;
 }
 
@@ -367,7 +343,6 @@ function createSlot(team, slot, player) {
   box.className = "linear-slot";
   box.dataset.slot = slot.key;
   box.dataset.position = slot.position;
-
   const position = document.createElement("strong");
   position.textContent = slot.position;
   const name = document.createElement("span");
@@ -375,7 +350,6 @@ function createSlot(team, slot, player) {
   const overall = document.createElement("small");
   overall.textContent = player ? String(player.overall) : "";
   box.append(position, name, overall);
-
   if (player) {
     box.draggable = true;
     box.dataset.playerId = player.id;
@@ -391,7 +365,6 @@ function createSlot(team, slot, player) {
   } else {
     box.addEventListener("click", () => moveSelectedPlayer(team, slot.key));
   }
-
   box.addEventListener("dragover", event => event.preventDefault());
   box.addEventListener("drop", event => {
     event.preventDefault();
@@ -399,7 +372,6 @@ function createSlot(team, slot, player) {
     movePlayer(team, playerId, slot.key);
     renderPage04Draft();
   });
-
   if (selectedPlayerId && player && player.id === selectedPlayerId) box.classList.add("selected");
   return box;
 }
@@ -410,13 +382,12 @@ function createBench(team) {
   const heading = document.createElement("h3");
   heading.textContent = "Bench";
   bench.appendChild(heading);
-
   const players = document.createElement("div");
   players.className = "linear-bench-list";
   getBenchPlayers(team).forEach(player => {
     const item = document.createElement("div");
     item.className = "linear-bench-player";
-    item.textContent = `${player.position} · ${player.name} · ${player.overall}`;
+    item.textContent = `${player.position} - ${player.name} - ${player.overall}`;
     item.draggable = true;
     item.dataset.playerId = player.id;
     item.addEventListener("dragstart", event => event.dataTransfer.setData("text/plain", player.id));
@@ -427,7 +398,6 @@ function createBench(team) {
     if (selectedPlayerId === player.id) item.classList.add("selected");
     players.appendChild(item);
   });
-
   bench.addEventListener("dragover", event => event.preventDefault());
   bench.addEventListener("drop", event => {
     event.preventDefault();
@@ -435,7 +405,6 @@ function createBench(team) {
     movePlayer(team, playerId, "BENCH");
     renderPage04Draft();
   });
-
   bench.appendChild(players);
   return bench;
 }
@@ -450,24 +419,22 @@ function moveSelectedPlayer(team, slotKey) {
 function renderAiTeamsView() {
   const wrapper = document.createElement("div");
   wrapper.className = "linear-ai-teams-view";
-
   const heading = document.createElement("h2");
   heading.textContent = "AI Teams";
   wrapper.appendChild(heading);
-
   const grid = document.createElement("div");
   grid.className = "linear-ai-grid";
   appState.teams.filter(team => team !== userTeam()).forEach(team => {
     const card = document.createElement("div");
     card.className = "linear-ai-card";
     const title = document.createElement("h3");
-    title.textContent = `${team.name} · ${team.players.length} players`;
+    title.textContent = `${team.name} - ${team.players.length} players`;
     card.appendChild(title);
     const list = document.createElement("div");
     list.className = "linear-ai-list";
     team.players.slice().sort((a, b) => b.overall - a.overall).forEach(player => {
       const row = document.createElement("p");
-      row.textContent = `${player.overall} · ${player.name} · ${player.position}`;
+      row.textContent = `${player.overall} - ${player.name} - ${player.position}`;
       list.appendChild(row);
     });
     card.appendChild(list);
@@ -477,21 +444,34 @@ function renderAiTeamsView() {
   return wrapper;
 }
 
-function scheduleAiPick(team) {
+function scheduleAiPick(team, immediate = false) {
   clearAiTimer();
-  aiTimer = window.setTimeout(() => pickPlayer(team, chooseAIPlayer(team, appState.availablePlayers)), AI_SPEEDS[appState.aiSpeed] || AI_SPEEDS.normal);
+  const token = ++aiTimerToken;
+  const delay = immediate && appState.aiSpeed === "instant"
+    ? 0
+    : AI_SPEEDS[appState.aiSpeed] || AI_SPEEDS.normal;
+
+  aiTimer = window.setTimeout(() => {
+    if (token !== aiTimerToken) return;
+    const activeIndex = getTeamOnClock(appState.currentPick, appState.draftOrder);
+    const activeTeam = appState.teams[activeIndex];
+    if (activeTeam !== team || activeTeam === userTeam()) return;
+    pickPlayer(team, chooseAIPlayer(team, appState.availablePlayers));
+  }, delay);
 }
 
 function clearAiTimer() {
+  aiTimerToken += 1;
   if (aiTimer) window.clearTimeout(aiTimer);
   aiTimer = null;
 }
 
 function pickPlayer(team, player) {
   if (!player) return;
+  const activeIndex = getTeamOnClock(appState.currentPick, appState.draftOrder);
+  if (appState.teams[activeIndex] !== team) return;
   const round = getRound(appState.currentPick);
   const pickInRound = getPickInRound(appState.currentPick) + 1;
-
   appState.availablePlayers = draftPlayer(team, player, appState.availablePlayers);
   autoPlacePlayer(team, player);
   appState.draftLog.push({
