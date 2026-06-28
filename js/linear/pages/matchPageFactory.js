@@ -1,4 +1,4 @@
-import { continueAfterMatch, nextMatchButtonText, userWonLastMatch } from "../seasonFlow.js";
+import { continueAfterMatch, nextMatchButtonText, userWonLastMatch } from "../seasonFlow.js?v=second-half-route-1";
 import { appState } from "../linearState.js";
 import { clearApp, pageShell, primaryButton } from "../pageUtils.js";
 import { renderMatchSummary } from "../seasonRenderUtils.js";
