@@ -1,4 +1,4 @@
-import { getActiveTraitChains } from "../traitChainEngine.js?v=chain-text-en-1";
+import { getActiveTraitChains } from "../traitChainEngine.js?v=chain-segments-1";
 import { userTeam } from "./linearState.js";
 
 let observer = null;
@@ -97,12 +97,10 @@ function createTraitChainPanel(chains, selectedChain) {
 
   const list = document.createElement("div");
   list.className = "trait-chain-list";
-
   chains.forEach(chain => list.appendChild(createChainButton(chain, selectedChain?.id === chain.id)));
   panel.appendChild(list);
 
   if (selectedChain) panel.appendChild(createChainDetail(selectedChain));
-
   return panel;
 }
 
@@ -153,7 +151,7 @@ function createChainDetail(chain) {
 
   const note = document.createElement("p");
   note.className = "trait-chain-build-note";
-  note.textContent = "Build the chain in this exact connected order on the pitch.";
+  note.textContent = "Build the chain in any connected consecutive order. Gaps like 1 + 4 do not count.";
 
   detail.append(top, effect, note, createCurrentOrder(chain), createBuildRoadmap(chain));
   return detail;
@@ -189,11 +187,9 @@ function createBuildRoadmap(chain) {
   headline.textContent = "Upgrade roadmap";
   roadmap.appendChild(headline);
 
-  const levels = (chain.allLevels || [])
-    .filter(level => level.size > chain.level)
-    .sort((a, b) => a.size - b.size);
+  const segments = getUpgradeSegments(chain);
 
-  if (!levels.length) {
+  if (!segments.length) {
     const max = document.createElement("p");
     max.className = "trait-chain-max-note";
     max.textContent = "Max level reached. This chain is fully built.";
@@ -201,12 +197,11 @@ function createBuildRoadmap(chain) {
     return roadmap;
   }
 
-  levels.forEach(level => roadmap.appendChild(createLevelPlan(chain, level)));
-
+  segments.forEach(segment => roadmap.appendChild(createSegmentPlan(chain, segment)));
   return roadmap;
 }
 
-function createLevelPlan(chain, level) {
+function createSegmentPlan(chain, segment) {
   const plan = document.createElement("div");
   plan.className = "trait-chain-level-plan";
 
@@ -214,10 +209,10 @@ function createLevelPlan(chain, level) {
   title.className = "trait-chain-level-title";
 
   const label = document.createElement("strong");
-  label.textContent = `Build Level ${level.size}`;
+  label.textContent = `Build Level ${segment.size}`;
 
   const reward = document.createElement("span");
-  reward.textContent = `${level.effect} (${level.winChance})`;
+  reward.textContent = `${segment.effect} (${segment.winChance})`;
 
   title.append(label, reward);
 
@@ -225,7 +220,7 @@ function createLevelPlan(chain, level) {
   steps.className = "trait-chain-steps roadmap";
 
   const activeByTrait = getActiveItemsByTrait(chain);
-  const orderedTraits = getDisplayTraitsForLevel(chain, level);
+  const orderedTraits = getDisplayTraitsForSegment(chain, segment);
 
   orderedTraits.forEach((trait, index) => {
     const normalized = normalizeTrait(trait);
@@ -248,6 +243,17 @@ function createLevelPlan(chain, level) {
   return plan;
 }
 
+function getUpgradeSegments(chain) {
+  const options = Array.isArray(chain.segmentOptions) ? chain.segmentOptions : [];
+  const start = Number.isFinite(chain.segmentStartIndex) ? chain.segmentStartIndex : 0;
+  const end = start + chain.level - 1;
+
+  return options
+    .filter(segment => segment.size > chain.level)
+    .filter(segment => segment.startIndex <= start && segment.endIndex >= end)
+    .sort((a, b) => a.size - b.size || a.startIndex - b.startIndex);
+}
+
 function getActiveItemsByTrait(chain) {
   const map = new Map();
 
@@ -260,8 +266,8 @@ function getActiveItemsByTrait(chain) {
   return map;
 }
 
-function getDisplayTraitsForLevel(chain, level) {
-  const traits = level.traits || [];
+function getDisplayTraitsForSegment(chain, segment) {
+  const traits = segment.traits || [];
   return chain.direction === "reverse" ? [...traits].reverse() : traits;
 }
 
@@ -282,7 +288,6 @@ function getSelectedChain(chains) {
 
 function markChainPlayers(chains) {
   const activeSlotKeys = new Set();
-
   chains.forEach(chain => chain.path.forEach(item => activeSlotKeys.add(item.slot.key)));
 
   document.querySelectorAll(".linear-slot").forEach(slot => {
@@ -409,6 +414,7 @@ function createPanelSignature(chains, selectedChain) {
       id: chain.id,
       level: chain.level,
       traits: chain.traits,
+      segmentStartIndex: chain.segmentStartIndex,
       slots: chain.path.map(item => item.slot.key),
       players: chain.path.map(item => item.player.id)
     }))
@@ -423,6 +429,7 @@ function createOverlaySignature(chains, pitchRect) {
     chains: chains.map(chain => ({
       id: chain.id,
       level: chain.level,
+      segmentStartIndex: chain.segmentStartIndex,
       slots: chain.path.map(item => item.slot.key),
       players: chain.path.map(item => item.player.id)
     }))
