@@ -1,5 +1,5 @@
-import { getFormationById } from "./formations.js";
-import { canPlayPosition } from "./playerUtils.js";
+import { getFormationById } from "./formations.js?v=detailed-formations-3";
+import { canPlayPosition } from "./playerUtils.js?v=strict-cdm-1";
 
 const formationSlotsCache = new WeakMap();
 
