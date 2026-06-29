@@ -59,13 +59,9 @@ function enhanceTraitChains() {
     const hint = s11View.querySelector(".compact-hint, .subtitle");
     const panel = createTraitChainPanel(chains, selectedChain);
 
-    if (existingPanel) {
-      existingPanel.replaceWith(panel);
-    } else if (hint) {
-      hint.insertAdjacentElement("afterend", panel);
-    } else {
-      s11View.prepend(panel);
-    }
+    if (existingPanel) existingPanel.replaceWith(panel);
+    else if (hint) hint.insertAdjacentElement("afterend", panel);
+    else s11View.prepend(panel);
 
     lastPanelSignature = panelSignature;
   }
@@ -102,16 +98,10 @@ function createTraitChainPanel(chains, selectedChain) {
   const list = document.createElement("div");
   list.className = "trait-chain-list";
 
-  chains.forEach(chain => {
-    const item = createChainButton(chain, selectedChain?.id === chain.id);
-    list.appendChild(item);
-  });
-
+  chains.forEach(chain => list.appendChild(createChainButton(chain, selectedChain?.id === chain.id)));
   panel.appendChild(list);
 
-  if (selectedChain) {
-    panel.appendChild(createChainDetail(selectedChain));
-  }
+  if (selectedChain) panel.appendChild(createChainDetail(selectedChain));
 
   return panel;
 }
@@ -161,24 +151,29 @@ function createChainDetail(chain) {
   effect.className = "trait-chain-effect";
   effect.textContent = chain.effect;
 
-  detail.append(top, effect, createBuildGuide(chain), createUpgradeGuide(chain));
+  const note = document.createElement("p");
+  note.className = "trait-chain-build-note";
+  note.textContent = "Build the chain in this exact connected order on the pitch.";
+
+  detail.append(top, effect, note, createCurrentOrder(chain), createBuildRoadmap(chain));
   return detail;
 }
 
-function createBuildGuide(chain) {
+function createCurrentOrder(chain) {
   const guide = document.createElement("div");
   guide.className = "trait-chain-build-guide";
 
   const headline = document.createElement("strong");
-  headline.textContent = "Aktive Bauteile";
+  headline.textContent = "Current active order";
 
   const steps = document.createElement("ol");
   steps.className = "trait-chain-steps";
 
   chain.path.forEach((item, index) => {
     const step = document.createElement("li");
+    step.className = "chain-step active";
     const trait = chain.traits[index] || "Trait";
-    step.textContent = `${index + 1}. ${trait}: ${item.player.name} auf ${item.slot.position}`;
+    step.textContent = `${index + 1}. ${trait} - ${item.player.name} (${item.slot.position})`;
     steps.appendChild(step);
   });
 
@@ -186,62 +181,80 @@ function createBuildGuide(chain) {
   return guide;
 }
 
-function createUpgradeGuide(chain) {
-  const guide = document.createElement("div");
-  guide.className = "trait-chain-upgrade-guide";
+function createBuildRoadmap(chain) {
+  const roadmap = document.createElement("div");
+  roadmap.className = "trait-chain-roadmap";
 
   const headline = document.createElement("strong");
-  headline.textContent = chain.level >= chain.maxLevel ? "Upgrade" : "Naechstes Upgrade";
-  guide.appendChild(headline);
+  headline.textContent = "Upgrade roadmap";
+  roadmap.appendChild(headline);
 
-  const higherLevels = (chain.allLevels || [])
-    .filter(level => level.size > chain.level)
+  const levels = (chain.allLevels || [])
+    .filter(level => level.size >= chain.level)
     .sort((a, b) => a.size - b.size);
 
-  if (!higherLevels.length) {
-    const max = document.createElement("p");
-    max.className = "trait-chain-upgrade";
-    max.textContent = "Max Level erreicht. Diese Chain ist komplett.";
-    guide.appendChild(max);
-    return guide;
-  }
+  levels.forEach(level => roadmap.appendChild(createLevelPlan(chain, level)));
 
-  const currentTraits = normalizeTraitList(chain.traits);
-  const nextLevel = higherLevels[0];
-  const maxLevel = higherLevels[higherLevels.length - 1];
-
-  const nextMissing = getMissingTraits(nextLevel.traits, currentTraits);
-  const next = document.createElement("p");
-  next.className = "trait-chain-upgrade";
-  next.textContent = `Fuer Level ${nextLevel.size} fehlt: ${formatMissingTraits(nextMissing)}.`;
-
-  const nextEffect = document.createElement("p");
-  nextEffect.className = "trait-chain-upgrade-effect";
-  nextEffect.textContent = `Dann bekommst du: ${nextLevel.effect} (${nextLevel.winChance}).`;
-
-  guide.append(next, nextEffect);
-
-  if (maxLevel.size !== nextLevel.size) {
-    const maxMissing = getMissingTraits(maxLevel.traits, currentTraits);
-    const full = document.createElement("p");
-    full.className = "trait-chain-upgrade-full";
-    full.textContent = `Bis Level ${maxLevel.size} brauchst du insgesamt noch: ${formatMissingTraits(maxMissing)}.`;
-    guide.appendChild(full);
-  }
-
-  return guide;
+  return roadmap;
 }
 
-function getMissingTraits(levelTraits, currentTraits) {
-  return levelTraits.filter(trait => !currentTraits.has(normalizeTrait(trait)));
+function createLevelPlan(chain, level) {
+  const plan = document.createElement("div");
+  plan.className = level.size === chain.level ? "trait-chain-level-plan active" : "trait-chain-level-plan";
+
+  const title = document.createElement("div");
+  title.className = "trait-chain-level-title";
+
+  const label = document.createElement("strong");
+  label.textContent = level.size === chain.level ? `Level ${level.size} - active now` : `Build Level ${level.size}`;
+
+  const reward = document.createElement("span");
+  reward.textContent = `${level.effect} (${level.winChance})`;
+
+  title.append(label, reward);
+
+  const steps = document.createElement("ol");
+  steps.className = "trait-chain-steps roadmap";
+
+  const activeByTrait = getActiveItemsByTrait(chain);
+  const orderedTraits = getDisplayTraitsForLevel(chain, level);
+
+  orderedTraits.forEach((trait, index) => {
+    const normalized = normalizeTrait(trait);
+    const activeItems = activeByTrait.get(normalized) || [];
+    const item = activeItems.shift();
+    const step = document.createElement("li");
+
+    if (item) {
+      step.className = "chain-step active";
+      step.textContent = `${index + 1}. ${trait} - ${item.player.name} (${item.slot.position})`;
+    } else {
+      step.className = "chain-step missing";
+      step.textContent = `${index + 1}. ${trait} - missing`;
+    }
+
+    steps.appendChild(step);
+  });
+
+  plan.append(title, steps);
+  return plan;
 }
 
-function formatMissingTraits(traits) {
-  return traits.length ? traits.join(", ") : "nichts";
+function getActiveItemsByTrait(chain) {
+  const map = new Map();
+
+  chain.path.forEach((item, index) => {
+    const trait = normalizeTrait(chain.traits[index]);
+    if (!map.has(trait)) map.set(trait, []);
+    map.get(trait).push(item);
+  });
+
+  return map;
 }
 
-function normalizeTraitList(traits) {
-  return new Set((traits || []).map(normalizeTrait));
+function getDisplayTraitsForLevel(chain, level) {
+  const traits = level.traits || [];
+  return chain.direction === "reverse" ? [...traits].reverse() : traits;
 }
 
 function normalizeTrait(trait) {
@@ -262,15 +275,11 @@ function getSelectedChain(chains) {
 function markChainPlayers(chains) {
   const activeSlotKeys = new Set();
 
-  chains.forEach(chain => {
-    chain.path.forEach(item => activeSlotKeys.add(item.slot.key));
-  });
+  chains.forEach(chain => chain.path.forEach(item => activeSlotKeys.add(item.slot.key)));
 
   document.querySelectorAll(".linear-slot").forEach(slot => {
     slot.classList.remove("chain-active-slot");
-    if (activeSlotKeys.has(slot.dataset.slot)) {
-      slot.classList.add("chain-active-slot");
-    }
+    if (activeSlotKeys.has(slot.dataset.slot)) slot.classList.add("chain-active-slot");
   });
 
   document.querySelectorAll(".compact-player-line").forEach(line => {
