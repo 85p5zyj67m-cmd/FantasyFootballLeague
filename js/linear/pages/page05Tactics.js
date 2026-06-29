@@ -282,7 +282,7 @@ function createTacticsSquadOverview(team) {
 
 function createPlayerInfoCard(player) {
   const card = document.createElement("div");
-  card.className = "linear-info-player-card text-only-player-card";
+  card.className = "linear-info-player-card";
 
   const top = document.createElement("div");
   top.className = "linear-info-player-top";
@@ -291,25 +291,30 @@ function createPlayerInfoCard(player) {
   rating.className = "linear-info-rating";
   rating.textContent = String(player.overall);
 
-  const position = document.createElement("span");
-  position.className = "linear-info-position";
-  position.textContent = getDisplayPosition(player);
-
-  top.append(rating, position);
+  const identity = document.createElement("div");
+  identity.className = "linear-info-identity";
 
   const name = document.createElement("b");
   name.className = "linear-info-name";
   name.textContent = player.name;
 
-  const divider = document.createElement("span");
-  divider.className = "linear-info-divider";
+  const position = document.createElement("span");
+  position.className = "linear-info-position";
+  position.textContent = getDisplayPosition(player);
+
+  identity.append(name, position);
+  top.append(rating, identity);
 
   const meta = document.createElement("div");
   meta.className = "linear-info-meta";
-  meta.append(
-    createInfoRow("CLUB", `${player.club} (${player.year})`),
-    createInfoRow("COUNTRY", player.nationality)
-  );
+
+  const club = document.createElement("span");
+  club.textContent = `${player.club} (${player.year})`;
+
+  const country = document.createElement("span");
+  country.textContent = player.nationality;
+
+  meta.append(club, country);
 
   const traits = document.createElement("div");
   traits.className = "linear-info-traits";
@@ -321,24 +326,8 @@ function createPlayerInfoCard(player) {
     traits.appendChild(chip);
   });
 
-  card.append(top, name, divider, meta, traits);
+  card.append(top, meta, traits);
   return card;
-}
-
-function createInfoRow(labelText, valueText) {
-  const row = document.createElement("div");
-  row.className = "linear-info-row";
-
-  const label = document.createElement("span");
-  label.className = "linear-info-label";
-  label.textContent = labelText;
-
-  const value = document.createElement("span");
-  value.className = "linear-info-value";
-  value.textContent = valueText;
-
-  row.append(label, value);
-  return row;
 }
 
 function moveSelectedPlayer(team, slotKey) {
