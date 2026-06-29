@@ -72,45 +72,52 @@ export function twoColumnRow(left, right) {
 export function playerCard(player, onClick = null) {
   const card = document.createElement("button");
   card.type = "button";
-  card.className = "linear-player-card";
+  card.className = "linear-player-card draft-list-player-card";
   card.disabled = !onClick;
 
   const top = document.createElement("span");
-  top.className = "linear-player-top";
+  top.className = "linear-player-top draft-list-card-top";
+
+  const overall = document.createElement("strong");
+  overall.className = "draft-list-rating";
+  overall.textContent = String(player.overall);
+
+  const separator = document.createElement("span");
+  separator.className = "draft-list-separator";
+  separator.textContent = "-";
+
   const pos = document.createElement("b");
+  pos.className = "draft-list-position";
   pos.textContent = getDisplayPosition(player);
   pos.title = player.positionGroup ? `Draft group: ${player.positionGroup}` : "";
-  const overall = document.createElement("strong");
-  overall.textContent = player.overall;
-  top.append(pos, overall);
+
+  top.append(overall, separator, pos);
 
   const name = document.createElement("span");
-  name.className = "linear-player-name";
+  name.className = "linear-player-name draft-list-name";
   name.textContent = player.name;
 
   const club = document.createElement("span");
-  club.textContent = `${player.club} ${player.year}`;
+  club.className = "draft-list-club";
+  club.textContent = `${player.club} (${player.year})`;
 
-  const nat = document.createElement("small");
+  const nat = document.createElement("span");
+  nat.className = "draft-list-nationality";
   nat.textContent = player.nationality;
 
   const traitRow = document.createElement("span");
-  traitRow.className = "linear-trait-chip-row";
+  traitRow.className = "linear-trait-chip-row draft-list-traits";
   traitRow.title = formatTraits(player);
+
   const traits = getTraitList(player);
-  if (traits.length) {
-    traits.forEach(trait => {
-      const chip = document.createElement("small");
-      chip.className = "linear-trait-chip";
-      chip.textContent = trait;
-      traitRow.appendChild(chip);
-    });
-  } else {
-    const empty = document.createElement("small");
-    empty.className = "linear-trait-chip empty";
-    empty.textContent = "No traits";
-    traitRow.appendChild(empty);
-  }
+  const visibleTraits = traits.length ? traits : ["No traits"];
+
+  visibleTraits.forEach(trait => {
+    const chip = document.createElement("small");
+    chip.className = traits.length ? "linear-trait-chip draft-list-trait" : "linear-trait-chip draft-list-trait empty";
+    chip.textContent = trait;
+    traitRow.appendChild(chip);
+  });
 
   card.append(top, name, club, nat, traitRow);
   if (onClick) card.addEventListener("click", () => onClick(player));
