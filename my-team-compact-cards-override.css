@@ -1,0 +1,215 @@
+/* Compact, fixed-size player cards for My Team S11 and Bench.
+   Required layout:
+   Row 1: Rating - Position
+   Row 2: Name
+   Row 3: Club (Year)
+   Row 4: Nationality
+   Rows 5-6: Traits
+*/
+
+.linear-info-card-view {
+  --compact-player-card-width: 160px;
+  --compact-player-card-height: 118px;
+  --compact-player-card-padding: 7px;
+}
+
+.linear-info-card-view .linear-slot-card,
+.linear-info-card-view .linear-empty-slot,
+.linear-info-card-view .linear-bench-player,
+.linear-info-card-view .linear-tactics-player-card {
+  width: var(--compact-player-card-width) !important;
+  min-width: var(--compact-player-card-width) !important;
+  max-width: var(--compact-player-card-width) !important;
+  height: var(--compact-player-card-height) !important;
+  min-height: var(--compact-player-card-height) !important;
+  max-height: var(--compact-player-card-height) !important;
+  box-sizing: border-box !important;
+}
+
+.linear-info-card-view .linear-slot-card,
+.linear-info-card-view .linear-bench-player {
+  padding: 0 !important;
+  overflow: hidden !important;
+}
+
+.linear-info-card-view .linear-empty-slot {
+  display: grid !important;
+  place-content: center !important;
+  gap: 4px !important;
+  padding: 8px !important;
+  text-align: center !important;
+}
+
+.linear-info-card-view .linear-info-player-card {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: var(--compact-player-card-height) !important;
+  max-height: var(--compact-player-card-height) !important;
+  box-sizing: border-box !important;
+  display: grid !important;
+  grid-template-rows: 15px 17px 15px 14px 1fr !important;
+  gap: 2px !important;
+  padding: var(--compact-player-card-padding) !important;
+  overflow: hidden !important;
+}
+
+.linear-info-card-view .linear-info-player-top {
+  display: grid !important;
+  grid-template-columns: auto minmax(0, 1fr) !important;
+  grid-template-rows: 15px 17px !important;
+  column-gap: 5px !important;
+  row-gap: 1px !important;
+  align-items: center !important;
+  min-width: 0 !important;
+}
+
+.linear-info-card-view .linear-info-identity {
+  display: contents !important;
+}
+
+.linear-info-card-view .linear-info-rating {
+  grid-column: 1 !important;
+  grid-row: 1 !important;
+  display: inline !important;
+  min-width: 0 !important;
+  width: auto !important;
+  height: auto !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: #75ff9e !important;
+  font-size: 0.67rem !important;
+  line-height: 1 !important;
+  font-weight: 900 !important;
+  text-align: left !important;
+  white-space: nowrap !important;
+}
+
+.linear-info-card-view .linear-info-rating::after {
+  content: " -";
+  color: rgba(255, 255, 255, 0.72);
+  font-weight: 800;
+}
+
+.linear-info-card-view .linear-info-position {
+  grid-column: 2 !important;
+  grid-row: 1 !important;
+  display: block !important;
+  min-width: 0 !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+  color: #75ff9e !important;
+  font-size: 0.59rem !important;
+  line-height: 1 !important;
+  font-weight: 900 !important;
+  text-align: left !important;
+}
+
+.linear-info-card-view .linear-info-name {
+  grid-column: 1 / -1 !important;
+  grid-row: 2 !important;
+  display: block !important;
+  min-width: 0 !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+  font-size: clamp(0.58rem, 1.9vw, 0.76rem) !important;
+  line-height: 1.05 !important;
+  font-weight: 900 !important;
+  letter-spacing: -0.025em !important;
+  text-align: center !important;
+}
+
+.linear-info-card-view .linear-info-meta {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) !important;
+  grid-template-rows: 15px 14px !important;
+  gap: 0 !important;
+  margin: 0 !important;
+  min-width: 0 !important;
+  overflow: hidden !important;
+  text-align: center !important;
+}
+
+.linear-info-card-view .linear-info-meta span {
+  display: block !important;
+  min-width: 0 !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+  font-size: 0.58rem !important;
+  line-height: 1.1 !important;
+  opacity: 0.84 !important;
+}
+
+.linear-info-card-view .linear-info-traits {
+  display: -webkit-box !important;
+  -webkit-box-orient: vertical !important;
+  -webkit-line-clamp: 2 !important;
+  overflow: hidden !important;
+  margin: 1px 0 0 !important;
+  padding: 0 2px !important;
+  min-width: 0 !important;
+  text-align: center !important;
+  line-height: 1.22 !important;
+}
+
+.linear-info-card-view .linear-info-traits small {
+  display: inline !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  max-width: none !important;
+  background: transparent !important;
+  color: rgba(255, 255, 255, 0.88) !important;
+  font-size: 0.53rem !important;
+  line-height: 1.22 !important;
+  font-weight: 800 !important;
+  white-space: normal !important;
+}
+
+.linear-info-card-view .linear-info-traits small:not(:last-child)::after {
+  content: " - ";
+  color: rgba(117, 255, 158, 0.82);
+}
+
+.linear-info-card-view .compact-player-pitch {
+  gap: 9px !important;
+  padding: 14px !important;
+}
+
+.linear-info-card-view .compact-player-line {
+  gap: 9px !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.linear-info-card-view .compact-bench-grid,
+.linear-info-card-view .linear-tactics-squad-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, var(--compact-player-card-width)) !important;
+  gap: 9px !important;
+  justify-content: center !important;
+}
+
+@media (max-width: 760px) {
+  .linear-info-card-view {
+    --compact-player-card-width: 146px;
+    --compact-player-card-height: 112px;
+    --compact-player-card-padding: 6px;
+  }
+
+  .linear-info-card-view .linear-info-name {
+    font-size: clamp(0.53rem, 2.8vw, 0.68rem) !important;
+  }
+
+  .linear-info-card-view .linear-info-position {
+    font-size: 0.54rem !important;
+  }
+
+  .linear-info-card-view .linear-info-traits small {
+    font-size: 0.5rem !important;
+  }
+}
