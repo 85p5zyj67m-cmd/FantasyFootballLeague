@@ -1,8 +1,8 @@
 export const FORMATIONS = [
   {
     id: "4-3-3",
-    name: "4-3-3",
-    lines: [["LW", "ST", "RW"], ["CM", "CDM", "CM"], ["LB", "CB", "CB", "RB"], ["GK"]]
+    name: "4-3-3 (Offensive)",
+    lines: [["LW", "ST", "RW"], ["CM", "CM"], ["CDM"], ["LB", "CB", "CB", "RB"], ["GK"]]
   },
   {
     id: "4-2-3-1",
