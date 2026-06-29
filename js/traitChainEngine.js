@@ -1,6 +1,6 @@
 import { getFormationById } from "./formations.js?v=detailed-formations-3";
-import { getSlotsFromFormation } from "./lineup.js?v=detailed-formations-2";
-import { getTraitList } from "./playerUtils.js?v=chain-engine-1";
+import { getSlotsFromFormation } from "./lineup.js?v=strict-cdm-1";
+import { getTraitList } from "./playerUtils.js?v=strict-cdm-1";
 import { TRAIT_CHAINS } from "./traitChains.js?v=chain-engine-1";
 import { getFormationChainLinkScore, hasFormationSpecificChainLinks } from "./formationChainLinks.js?v=formation-links-1";
 
