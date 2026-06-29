@@ -1,0 +1,52 @@
+/* Formation selection cards for the detailed position model. */
+.detailed-formation-grid {
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)) !important;
+}
+
+.formation-option-btn {
+  width: 100% !important;
+  min-height: 86px !important;
+  display: grid !important;
+  gap: 6px !important;
+  align-content: center !important;
+  justify-items: center !important;
+  padding: 14px 12px !important;
+  text-align: center !important;
+}
+
+.formation-option-btn strong {
+  display: block !important;
+  font-size: 1.15rem !important;
+  line-height: 1 !important;
+}
+
+.formation-option-btn span {
+  display: block !important;
+  max-width: 100% !important;
+  color: rgba(6, 17, 11, 0.78) !important;
+  font-size: 0.68rem !important;
+  line-height: 1.25 !important;
+  font-weight: 900 !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+@media (max-width: 760px) {
+  .detailed-formation-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .formation-option-btn {
+    min-height: 70px !important;
+    padding: 9px 7px !important;
+  }
+
+  .formation-option-btn strong {
+    font-size: 0.92rem !important;
+  }
+
+  .formation-option-btn span {
+    font-size: 0.52rem !important;
+    line-height: 1.18 !important;
+  }
+}
