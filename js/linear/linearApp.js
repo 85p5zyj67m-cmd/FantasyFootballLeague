@@ -4,6 +4,7 @@ import { installDraftPolishStyles } from "./draftPolishStyles.js?v=default-fast-
 import { installDraftSpeedController } from "./draftSpeedController.js?v=draft-speed-live-3";
 import { installFormationSelectorEnhancer } from "./formationSelectorEnhancer.js?v=formation-links-1";
 import { installTraitChainEnhancer } from "./traitChainEnhancer.js?v=chain-segments-1";
+import { installTacticsSystemEnhancer } from "./tacticsSystemEnhancer.js";
 import { installStrictPositionEnforcer } from "./strictPositionEnforcer.js?v=strict-cdm-1";
 
 window.addEventListener("DOMContentLoaded", () => {
@@ -12,6 +13,7 @@ window.addEventListener("DOMContentLoaded", () => {
   installDraftSpeedController();
   installFormationSelectorEnhancer();
   installTraitChainEnhancer();
+  installTacticsSystemEnhancer();
   installStrictPositionEnforcer();
   goTo("page01");
 });
