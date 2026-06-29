@@ -1,5 +1,6 @@
 /* Compact and consistent Draft Player List cards.
    Matches the My Team information order while keeping Player List traits readable.
+   This file also supports the previous cached markup, so the visual fix applies immediately.
 */
 
 .linear-player-grid {
@@ -7,6 +8,7 @@
   align-items: stretch !important;
 }
 
+.linear-player-card,
 .draft-list-player-card {
   min-height: 188px !important;
   height: 188px !important;
@@ -23,11 +25,13 @@
     linear-gradient(180deg, #13251a, #07110d) !important;
 }
 
+.linear-player-card:disabled,
 .draft-list-player-card:disabled {
   opacity: 1 !important;
   cursor: default !important;
 }
 
+.linear-player-card .linear-player-top,
 .draft-list-card-top {
   display: flex !important;
   align-items: center !important;
@@ -38,8 +42,10 @@
   white-space: nowrap !important;
 }
 
+.linear-player-card .linear-player-top strong,
 .draft-list-card-top .draft-list-rating,
 .linear-player-top .draft-list-rating {
+  order: 1 !important;
   color: #75ff9e !important;
   background: transparent !important;
   border-radius: 0 !important;
@@ -51,7 +57,14 @@
   flex: 0 0 auto !important;
 }
 
+.linear-player-card .linear-player-top strong::after {
+  content: " -";
+  color: rgba(255, 255, 255, 0.74);
+  font-weight: 900;
+}
+
 .draft-list-separator {
+  order: 2 !important;
   color: rgba(255, 255, 255, 0.74) !important;
   font-size: 0.78rem !important;
   line-height: 1 !important;
@@ -59,8 +72,10 @@
   flex: 0 0 auto !important;
 }
 
+.linear-player-card .linear-player-top b,
 .draft-list-card-top .draft-list-position,
 .linear-player-top .draft-list-position {
+  order: 3 !important;
   display: block !important;
   min-width: 0 !important;
   overflow: hidden !important;
@@ -76,6 +91,7 @@
   letter-spacing: -0.015em !important;
 }
 
+.linear-player-card .linear-player-name,
 .draft-list-name {
   display: block !important;
   min-width: 0 !important;
@@ -89,6 +105,8 @@
   letter-spacing: -0.03em !important;
 }
 
+.linear-player-card > span:not(.linear-player-top):not(.linear-player-name):not(.linear-trait-chip-row),
+.linear-player-card > small:not(.linear-trait-chip),
 .draft-list-club,
 .draft-list-nationality {
   display: block !important;
@@ -102,11 +120,13 @@
   font-weight: 800 !important;
 }
 
+.linear-player-card > small:not(.linear-trait-chip),
 .draft-list-nationality {
   color: rgba(219, 231, 223, 0.78) !important;
   font-size: 0.74rem !important;
 }
 
+.linear-player-card .linear-trait-chip-row,
 .draft-list-traits {
   display: flex !important;
   flex-wrap: wrap !important;
@@ -120,6 +140,7 @@
   border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
 }
 
+.linear-player-card .linear-trait-chip,
 .draft-list-trait {
   display: inline-flex !important;
   align-items: center !important;
@@ -138,6 +159,7 @@
   text-overflow: ellipsis !important;
 }
 
+.linear-player-card .linear-trait-chip.empty,
 .draft-list-trait.empty {
   opacity: 0.72 !important;
   border-color: rgba(255, 255, 255, 0.14) !important;
@@ -149,6 +171,7 @@
     grid-template-columns: repeat(auto-fit, minmax(162px, 1fr)) !important;
   }
 
+  .linear-player-card,
   .draft-list-player-card {
     min-height: 176px !important;
     height: 176px !important;
@@ -156,15 +179,19 @@
     padding: 11px 12px !important;
   }
 
+  .linear-player-card .linear-player-name,
   .draft-list-name {
     font-size: clamp(0.78rem, 4vw, 0.96rem) !important;
   }
 
+  .linear-player-card > span:not(.linear-player-top):not(.linear-player-name):not(.linear-trait-chip-row),
+  .linear-player-card > small:not(.linear-trait-chip),
   .draft-list-club,
   .draft-list-nationality {
     font-size: 0.69rem !important;
   }
 
+  .linear-player-card .linear-trait-chip,
   .draft-list-trait {
     font-size: 0.55rem !important;
     padding: 3px 5px !important;
