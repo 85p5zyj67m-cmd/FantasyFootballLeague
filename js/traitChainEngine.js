@@ -11,13 +11,22 @@ const X_BY_LINE_LENGTH = {
   5: [-1, -0.5, 0, 0.5, 1]
 };
 
+const chainCache = new WeakMap();
+
 export function getActiveTraitChains(team) {
+  const signature = getTeamChainSignature(team);
+  const cached = chainCache.get(team);
+  if (cached?.signature === signature) {
+    return cached.chains;
+  }
+
   const placedPlayers = getPlacedStarterPlayers(team);
+  const playersByTrait = buildTraitIndex(placedPlayers);
   const activeChains = [];
 
   TRAIT_CHAINS.forEach(chain => {
     const matchedLevels = chain.levels
-      .map(level => ({ level, match: findBestChainPath(level.traits, placedPlayers) }))
+      .map(level => ({ level, match: findBestChainPath(level.traits, playersByTrait) }))
       .filter(item => item.match && Array.isArray(item.match.path) && item.match.path.length === item.level.traits.length);
 
     if (!matchedLevels.length) return;
@@ -30,18 +39,22 @@ export function getActiveTraitChains(team) {
       name: chain.name,
       summary: chain.summary,
       level: best.level.size,
-      traits: best.level.traits,
+      traits: best.match.traits,
+      canonicalTraits: best.level.traits,
       effect: best.level.effect,
       winChance: best.level.winChance,
       path: best.match.path,
       pathScore: best.match.score,
+      direction: best.match.direction,
       nextLevel,
       maxLevel: Math.max(...chain.levels.map(level => level.size)),
       allLevels: chain.levels
     });
   });
 
-  return activeChains.sort((a, b) => b.level - a.level || a.pathScore - b.pathScore || a.name.localeCompare(b.name));
+  const chains = activeChains.sort((a, b) => b.level - a.level || a.pathScore - b.pathScore || a.name.localeCompare(b.name));
+  chainCache.set(team, { signature, chains });
+  return chains;
 }
 
 export function getTraitChainScore(team) {
@@ -80,21 +93,52 @@ function getPlacedStarterPlayers(team) {
     .filter(Boolean);
 }
 
-function findBestChainPath(requiredTraits, placedPlayers) {
-  const normalizedTraits = requiredTraits.map(normalizeTrait);
-  const completePaths = [];
+function buildTraitIndex(placedPlayers) {
+  const index = new Map();
+
+  placedPlayers.forEach(item => {
+    item.traits.forEach(trait => {
+      if (!index.has(trait)) index.set(trait, []);
+      index.get(trait).push(item);
+    });
+  });
+
+  return index;
+}
+
+function findBestChainPath(requiredTraits, playersByTrait) {
+  const normal = requiredTraits.map(normalizeTrait);
+  const reversed = [...normal].reverse();
+  const candidates = [
+    { traits: normal, direction: "forward" },
+    { traits: reversed, direction: "reverse" }
+  ];
+
+  return candidates
+    .map(candidate => ({ ...candidate, ...findBestOrderedPath(candidate.traits, playersByTrait) }))
+    .filter(candidate => candidate.path)
+    .sort((a, b) => a.score - b.score)[0] || null;
+}
+
+function findBestOrderedPath(normalizedTraits, playersByTrait) {
+  let best = null;
+  const candidateLists = normalizedTraits.map(trait => playersByTrait.get(trait) || []);
+
+  if (candidateLists.some(list => list.length === 0)) {
+    return { path: null, score: Number.POSITIVE_INFINITY };
+  }
 
   function walk(index, usedPlayerIds, path, score) {
+    if (best && score >= best.score) return;
+
     if (index >= normalizedTraits.length) {
-      completePaths.push({ path, score });
+      best = { path, score };
       return;
     }
 
-    const requiredTrait = normalizedTraits[index];
-    const candidates = placedPlayers
+    const candidates = candidateLists[index]
       .filter(item => {
         if (usedPlayerIds.has(item.player.id)) return false;
-        if (!item.traits.includes(requiredTrait)) return false;
         if (!path.length) return true;
         return getAdjacencyScore(path[path.length - 1], item) !== null;
       })
@@ -103,16 +147,16 @@ function findBestChainPath(requiredTraits, placedPlayers) {
         return getAdjacencyScore(path[path.length - 1], a) - getAdjacencyScore(path[path.length - 1], b);
       });
 
-    candidates.forEach(candidate => {
+    for (const candidate of candidates) {
+      const linkScore = path.length ? getAdjacencyScore(path[path.length - 1], candidate) : 0;
       const nextUsed = new Set(usedPlayerIds);
       nextUsed.add(candidate.player.id);
-      const linkScore = path.length ? getAdjacencyScore(path[path.length - 1], candidate) : 0;
       walk(index + 1, nextUsed, [...path, candidate], score + linkScore);
-    });
+    }
   }
 
   walk(0, new Set(), [], 0);
-  return completePaths.sort((a, b) => a.score - b.score)[0] || null;
+  return best || { path: null, score: Number.POSITIVE_INFINITY };
 }
 
 function getAdjacencyScore(a, b) {
@@ -132,6 +176,22 @@ function getAdjacencyScore(a, b) {
   if (Math.abs(a.x) <= 0.42 && Math.abs(b.x) <= 0.42 && dy <= 2.1) return directDistance + 0.35;
 
   return null;
+}
+
+function getTeamChainSignature(team) {
+  if (!team) return "no-team";
+
+  const lineupSignature = Object.entries(team.lineup || {})
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([playerId, slotKey]) => `${playerId}:${slotKey}`)
+    .join("|");
+
+  const traitSignature = (team.players || [])
+    .map(player => `${player.id}:${getTraitList(player).join(",")}`)
+    .sort()
+    .join("|");
+
+  return `${team.formationId || ""}::${lineupSignature}::${traitSignature}`;
 }
 
 function normalizeTrait(trait) {
