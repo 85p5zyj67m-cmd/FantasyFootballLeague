@@ -1,12 +1,20 @@
+.trait-chain-build-note {
+  margin: 0 !important;
+  color: rgba(255, 255, 255, 0.72) !important;
+  font-size: 0.76rem !important;
+  line-height: 1.28 !important;
+  font-weight: 800 !important;
+}
+
 .trait-chain-build-guide,
-.trait-chain-upgrade-guide {
+.trait-chain-roadmap {
   display: grid !important;
-  gap: 4px !important;
+  gap: 6px !important;
   padding: 6px 0 0 !important;
 }
 
 .trait-chain-build-guide > strong,
-.trait-chain-upgrade-guide > strong {
+.trait-chain-roadmap > strong {
   color: #75ff9e !important;
   font-size: 0.74rem !important;
   font-weight: 950 !important;
@@ -16,37 +24,79 @@
 
 .trait-chain-steps {
   display: grid !important;
-  gap: 3px !important;
+  gap: 4px !important;
   margin: 0 !important;
   padding: 0 !important;
   list-style: none !important;
 }
 
-.trait-chain-steps li,
-.trait-chain-upgrade-effect,
-.trait-chain-upgrade-full {
-  margin: 0 !important;
-  color: rgba(255, 255, 255, 0.84) !important;
-  font-size: 0.76rem !important;
-  line-height: 1.28 !important;
-  font-weight: 800 !important;
+.trait-chain-level-plan {
+  display: grid !important;
+  gap: 5px !important;
+  padding: 7px !important;
+  border-radius: 10px !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  background: rgba(255, 255, 255, 0.035) !important;
 }
 
-.trait-chain-upgrade-guide .trait-chain-upgrade {
+.trait-chain-level-plan.active {
+  border-color: rgba(247, 201, 95, 0.45) !important;
+  background: rgba(247, 201, 95, 0.07) !important;
+}
+
+.trait-chain-level-title {
+  display: flex !important;
+  justify-content: space-between !important;
+  gap: 8px !important;
+  align-items: center !important;
+}
+
+.trait-chain-level-title strong {
+  color: #f7c95f !important;
+  font-size: 0.72rem !important;
+  font-weight: 950 !important;
+  white-space: nowrap !important;
+}
+
+.trait-chain-level-title span {
+  color: rgba(255, 255, 255, 0.72) !important;
+  font-size: 0.68rem !important;
+  font-weight: 800 !important;
+  text-align: right !important;
+}
+
+.chain-step {
+  margin: 0 !important;
+  font-size: 0.75rem !important;
+  line-height: 1.25 !important;
+  font-weight: 850 !important;
+}
+
+.chain-step.active {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.chain-step.missing {
   color: #75ff9e !important;
   font-weight: 950 !important;
 }
 
-.trait-chain-upgrade-full {
-  color: #f7c95f !important;
-}
-
 @media (max-width: 760px) {
+  .trait-chain-build-note,
   .trait-chain-build-guide > strong,
-  .trait-chain-upgrade-guide > strong,
-  .trait-chain-steps li,
-  .trait-chain-upgrade-effect,
-  .trait-chain-upgrade-full {
+  .trait-chain-roadmap > strong,
+  .trait-chain-level-title strong,
+  .trait-chain-level-title span,
+  .chain-step {
     font-size: 0.62rem !important;
+  }
+
+  .trait-chain-level-title {
+    display: grid !important;
+    gap: 3px !important;
+  }
+
+  .trait-chain-level-title span {
+    text-align: left !important;
   }
 }
