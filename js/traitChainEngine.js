@@ -17,12 +17,12 @@ export function getActiveTraitChains(team) {
 
   TRAIT_CHAINS.forEach(chain => {
     const matchedLevels = chain.levels
-      .map(level => ({ level, path: findChainPath(level.traits, placedPlayers) }))
-      .filter(match => Array.isArray(match.path) && match.path.length === match.level.traits.length);
+      .map(level => ({ level, match: findBestChainPath(level.traits, placedPlayers) }))
+      .filter(item => item.match && Array.isArray(item.match.path) && item.match.path.length === item.level.traits.length);
 
     if (!matchedLevels.length) return;
 
-    const best = matchedLevels.sort((a, b) => b.level.size - a.level.size)[0];
+    const best = matchedLevels.sort((a, b) => b.level.size - a.level.size || a.match.score - b.match.score)[0];
     const nextLevel = chain.levels.find(level => level.size > best.level.size);
 
     activeChains.push({
@@ -33,14 +33,15 @@ export function getActiveTraitChains(team) {
       traits: best.level.traits,
       effect: best.level.effect,
       winChance: best.level.winChance,
-      path: best.path,
+      path: best.match.path,
+      pathScore: best.match.score,
       nextLevel,
       maxLevel: Math.max(...chain.levels.map(level => level.size)),
       allLevels: chain.levels
     });
   });
 
-  return activeChains.sort((a, b) => b.level - a.level || a.name.localeCompare(b.name));
+  return activeChains.sort((a, b) => b.level - a.level || a.pathScore - b.pathScore || a.name.localeCompare(b.name));
 }
 
 export function getTraitChainScore(team) {
@@ -79,50 +80,58 @@ function getPlacedStarterPlayers(team) {
     .filter(Boolean);
 }
 
-function findChainPath(requiredTraits, placedPlayers) {
+function findBestChainPath(requiredTraits, placedPlayers) {
   const normalizedTraits = requiredTraits.map(normalizeTrait);
+  const completePaths = [];
 
-  function walk(index, usedPlayerIds, path) {
-    if (index >= normalizedTraits.length) return path;
-
-    const requiredTrait = normalizedTraits[index];
-    const candidates = placedPlayers.filter(item => {
-      if (usedPlayerIds.has(item.player.id)) return false;
-      if (!item.traits.includes(requiredTrait)) return false;
-      if (!path.length) return true;
-      return areChainAdjacent(path[path.length - 1], item);
-    });
-
-    for (const candidate of candidates) {
-      const nextUsed = new Set(usedPlayerIds);
-      nextUsed.add(candidate.player.id);
-      const result = walk(index + 1, nextUsed, [...path, candidate]);
-      if (result) return result;
+  function walk(index, usedPlayerIds, path, score) {
+    if (index >= normalizedTraits.length) {
+      completePaths.push({ path, score });
+      return;
     }
 
-    return null;
+    const requiredTrait = normalizedTraits[index];
+    const candidates = placedPlayers
+      .filter(item => {
+        if (usedPlayerIds.has(item.player.id)) return false;
+        if (!item.traits.includes(requiredTrait)) return false;
+        if (!path.length) return true;
+        return getAdjacencyScore(path[path.length - 1], item) !== null;
+      })
+      .sort((a, b) => {
+        if (!path.length) return a.y - b.y || a.x - b.x;
+        return getAdjacencyScore(path[path.length - 1], a) - getAdjacencyScore(path[path.length - 1], b);
+      });
+
+    candidates.forEach(candidate => {
+      const nextUsed = new Set(usedPlayerIds);
+      nextUsed.add(candidate.player.id);
+      const linkScore = path.length ? getAdjacencyScore(path[path.length - 1], candidate) : 0;
+      walk(index + 1, nextUsed, [...path, candidate], score + linkScore);
+    });
   }
 
-  return walk(0, new Set(), []);
+  walk(0, new Set(), [], 0);
+  return completePaths.sort((a, b) => a.score - b.score)[0] || null;
 }
 
-function areChainAdjacent(a, b) {
-  if (!a || !b) return false;
+function getAdjacencyScore(a, b) {
+  if (!a || !b) return null;
 
   const dx = Math.abs(a.x - b.x);
   const dy = Math.abs(a.y - b.y);
   const directDistance = Math.sqrt(dx * dx + dy * dy);
 
-  if (directDistance <= 1.18) return true;
+  if (directDistance <= 1.18) return directDistance;
 
-  // Same lane, slightly deeper/higher line connection.
+  // Same side lane, slightly deeper/higher line connection.
   // This makes LB/LWB connect with LM/LW on the same side, but not with RW/RM.
-  if (dx <= 0.42 && dy <= 2.1) return true;
+  if (dx <= 0.42 && dy <= 2.1) return directDistance + 0.25;
 
   // Central spine: GK-CB-CDM-CM-CAM-ST style chains.
-  if (Math.abs(a.x) <= 0.42 && Math.abs(b.x) <= 0.42 && dy <= 2.1) return true;
+  if (Math.abs(a.x) <= 0.42 && Math.abs(b.x) <= 0.42 && dy <= 2.1) return directDistance + 0.35;
 
-  return false;
+  return null;
 }
 
 function normalizeTrait(trait) {
