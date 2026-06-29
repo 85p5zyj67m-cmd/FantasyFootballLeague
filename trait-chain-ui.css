@@ -98,6 +98,7 @@
   box-shadow:
     0 0 0 1px rgba(247, 201, 95, 0.38),
     0 0 18px rgba(247, 201, 95, 0.32) !important;
+  z-index: 3 !important;
 }
 
 .linear-slot.chain-active-slot .linear-info-player-card {
@@ -107,11 +108,49 @@
 }
 
 .compact-player-pitch {
+  position: relative !important;
   row-gap: 18px !important;
 }
 
 .compact-player-line {
+  position: relative !important;
+  z-index: 2 !important;
   gap: 14px !important;
+}
+
+.trait-chain-link-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: visible;
+}
+
+.trait-chain-link {
+  stroke: url(#trait-chain-link-gradient);
+  stroke-width: 5;
+  stroke-linecap: round;
+  opacity: 0.82;
+  filter: drop-shadow(0 0 6px rgba(247, 201, 95, 0.55));
+}
+
+.trait-chain-link.level-3 {
+  stroke-width: 6;
+  opacity: 0.9;
+}
+
+.trait-chain-link.level-4 {
+  stroke-width: 7;
+  opacity: 0.96;
+}
+
+.trait-chain-link-dot {
+  fill: #f7c95f;
+  stroke: rgba(7, 17, 13, 0.92);
+  stroke-width: 2;
+  filter: drop-shadow(0 0 4px rgba(247, 201, 95, 0.8));
 }
 
 @media (max-width: 760px) {
@@ -148,5 +187,21 @@
 
   .compact-player-line {
     gap: 7px !important;
+  }
+
+  .trait-chain-link {
+    stroke-width: 3.5;
+  }
+
+  .trait-chain-link.level-3 {
+    stroke-width: 4.5;
+  }
+
+  .trait-chain-link.level-4 {
+    stroke-width: 5;
+  }
+
+  .trait-chain-link-dot {
+    r: 3;
   }
 }
