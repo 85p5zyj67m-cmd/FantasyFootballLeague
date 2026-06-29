@@ -1,4 +1,4 @@
-import { getActiveTraitChains } from "../traitChainEngine.js?v=chain-engine-2";
+import { getActiveTraitChains } from "../traitChainEngine.js?v=chain-engine-3";
 import { userTeam } from "./linearState.js";
 
 let observer = null;
@@ -18,6 +18,8 @@ export function installTraitChainEnhancer() {
   window.addEventListener("change", queueEnhancement, true);
   window.addEventListener("dragend", queueEnhancement, true);
   window.addEventListener("drop", queueEnhancement, true);
+  window.addEventListener("resize", queueEnhancement);
+  window.addEventListener("scroll", queueEnhancement, true);
 
   queueEnhancement();
 }
@@ -33,7 +35,10 @@ function queueEnhancement() {
 
 function enhanceTraitChains() {
   const s11View = document.querySelector(".linear-s11-view");
-  if (!s11View) return;
+  if (!s11View) {
+    removeChainOverlay();
+    return;
+  }
 
   const hint = s11View.querySelector(".compact-hint, .subtitle");
   const existingPanel = s11View.querySelector(".trait-chain-panel");
@@ -48,6 +53,7 @@ function enhanceTraitChains() {
   }
 
   markChainPlayers();
+  drawChainLinks();
 }
 
 function createTraitChainPanel(team) {
@@ -150,8 +156,7 @@ function createChainDetail(chain) {
 }
 
 function markChainPlayers() {
-  const team = userTeam();
-  const chains = safeGetActiveTraitChains(team);
+  const chains = safeGetActiveTraitChains(userTeam());
   const activeSlotKeys = new Set();
 
   chains.forEach(chain => {
@@ -169,6 +174,102 @@ function markChainPlayers() {
     const activeInLine = line.querySelectorAll(".chain-active-slot").length;
     line.classList.toggle("chain-active-line", activeInLine > 1);
   });
+}
+
+function drawChainLinks() {
+  const pitch = document.querySelector(".compact-player-pitch");
+  if (!pitch) {
+    removeChainOverlay();
+    return;
+  }
+
+  const chains = safeGetActiveTraitChains(userTeam());
+  const oldOverlay = pitch.querySelector(".trait-chain-link-overlay");
+  if (oldOverlay) oldOverlay.remove();
+
+  if (!chains.length) return;
+
+  const pitchRect = pitch.getBoundingClientRect();
+  const overlay = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  overlay.classList.add("trait-chain-link-overlay");
+  overlay.setAttribute("viewBox", `0 0 ${pitchRect.width} ${pitchRect.height}`);
+  overlay.setAttribute("preserveAspectRatio", "none");
+  overlay.setAttribute("aria-hidden", "true");
+
+  const defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
+  const gradient = document.createElementNS("http://www.w3.org/2000/svg", "linearGradient");
+  gradient.setAttribute("id", "trait-chain-link-gradient");
+  gradient.setAttribute("x1", "0%");
+  gradient.setAttribute("x2", "100%");
+
+  const stopA = document.createElementNS("http://www.w3.org/2000/svg", "stop");
+  stopA.setAttribute("offset", "0%");
+  stopA.setAttribute("stop-color", "#75ff9e");
+
+  const stopB = document.createElementNS("http://www.w3.org/2000/svg", "stop");
+  stopB.setAttribute("offset", "100%");
+  stopB.setAttribute("stop-color", "#f7c95f");
+
+  gradient.append(stopA, stopB);
+  defs.appendChild(gradient);
+  overlay.appendChild(defs);
+
+  const drawnLinks = new Set();
+
+  chains.forEach(chain => {
+    chain.path.forEach((item, index) => {
+      if (index === 0) return;
+      const previous = chain.path[index - 1];
+      const linkKey = [previous.slot.key, item.slot.key].sort().join("|");
+      const exactKey = `${chain.id}:${previous.slot.key}->${item.slot.key}`;
+      const key = drawnLinks.has(linkKey) ? exactKey : linkKey;
+      drawnLinks.add(key);
+
+      const start = getSlotCenter(previous.slot.key, pitchRect);
+      const end = getSlotCenter(item.slot.key, pitchRect);
+      if (!start || !end) return;
+
+      overlay.appendChild(createSvgLine(start, end, chain.level));
+      overlay.appendChild(createSvgChainDot(start));
+      overlay.appendChild(createSvgChainDot(end));
+    });
+  });
+
+  pitch.prepend(overlay);
+}
+
+function createSvgLine(start, end, level) {
+  const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+  line.setAttribute("x1", String(start.x));
+  line.setAttribute("y1", String(start.y));
+  line.setAttribute("x2", String(end.x));
+  line.setAttribute("y2", String(end.y));
+  line.setAttribute("class", `trait-chain-link level-${level}`);
+  return line;
+}
+
+function createSvgChainDot(point) {
+  const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+  circle.setAttribute("cx", String(point.x));
+  circle.setAttribute("cy", String(point.y));
+  circle.setAttribute("r", "4");
+  circle.setAttribute("class", "trait-chain-link-dot");
+  return circle;
+}
+
+function getSlotCenter(slotKey, pitchRect) {
+  const slot = document.querySelector(`.linear-slot[data-slot="${slotKey}"]`);
+  if (!slot) return null;
+
+  const rect = slot.getBoundingClientRect();
+  return {
+    x: rect.left - pitchRect.left + rect.width / 2,
+    y: rect.top - pitchRect.top + rect.height / 2
+  };
+}
+
+function removeChainOverlay() {
+  document.querySelectorAll(".trait-chain-link-overlay").forEach(overlay => overlay.remove());
 }
 
 function safeGetActiveTraitChains(team) {
