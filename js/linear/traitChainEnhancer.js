@@ -135,6 +135,7 @@ function createChainButton(chain, isActive) {
     activeDetailId = chain.id;
     lastPanelSignature = "";
     lastOverlaySignature = "";
+    removeChainOverlay();
     queueEnhancement();
   });
 
@@ -229,20 +230,21 @@ function drawChainLinks(chains) {
   overlay.setAttribute("viewBox", `0 0 ${pitchRect.width} ${pitchRect.height}`);
   overlay.setAttribute("preserveAspectRatio", "none");
   overlay.setAttribute("aria-hidden", "true");
+  overlay.dataset.selectedChainId = chains[0]?.id || "";
 
   const defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
   const gradient = document.createElementNS("http://www.w3.org/2000/svg", "linearGradient");
-  gradient.setAttribute("id", "trait-chain-link-gradient");
+  gradient.setAttribute("id", `trait-chain-link-gradient-${chains[0]?.id || "selected"}`);
   gradient.setAttribute("x1", "0%");
   gradient.setAttribute("x2", "100%");
 
   const stopA = document.createElementNS("http://www.w3.org/2000/svg", "stop");
   stopA.setAttribute("offset", "0%");
-  stopA.setAttribute("stop-color", "#75ff9e");
+  stopA.setAttribute("stop-color", "#f7c95f");
 
   const stopB = document.createElementNS("http://www.w3.org/2000/svg", "stop");
   stopB.setAttribute("offset", "100%");
-  stopB.setAttribute("stop-color", "#f7c95f");
+  stopB.setAttribute("stop-color", "#ffeaa0");
 
   gradient.append(stopA, stopB);
   defs.appendChild(gradient);
@@ -256,22 +258,34 @@ function drawChainLinks(chains) {
       const end = getSlotCenter(item.slot.key, pitchRect);
       if (!start || !end) return;
 
-      overlay.appendChild(createSvgLine(start, end, chain.level));
+      overlay.appendChild(createSvgLine(start, end, chain.level, chain.id));
       overlay.appendChild(createSvgChainDot(start));
       overlay.appendChild(createSvgChainDot(end));
     });
   });
 
-  pitch.prepend(overlay);
+  pitch.appendChild(overlay);
+
+  window.requestAnimationFrame(() => {
+    const currentOverlay = pitch.querySelector(".trait-chain-link-overlay");
+    if (!currentOverlay) {
+      lastOverlaySignature = "";
+      drawChainLinks(chains);
+    }
+  });
 }
 
-function createSvgLine(start, end, level) {
+function createSvgLine(start, end, level, chainId) {
   const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
   line.setAttribute("x1", String(start.x));
   line.setAttribute("y1", String(start.y));
   line.setAttribute("x2", String(end.x));
   line.setAttribute("y2", String(end.y));
   line.setAttribute("class", `trait-chain-link level-${level}`);
+  line.setAttribute("stroke", `url(#trait-chain-link-gradient-${chainId || "selected"})`);
+  line.setAttribute("stroke-width", String(level >= 4 ? 8 : level >= 3 ? 7 : 6));
+  line.setAttribute("stroke-linecap", "round");
+  line.setAttribute("opacity", "0.98");
   return line;
 }
 
@@ -279,7 +293,7 @@ function createSvgChainDot(point) {
   const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
   circle.setAttribute("cx", String(point.x));
   circle.setAttribute("cy", String(point.y));
-  circle.setAttribute("r", "4");
+  circle.setAttribute("r", "5");
   circle.setAttribute("class", "trait-chain-link-dot");
   return circle;
 }
@@ -314,12 +328,14 @@ function createPanelSignature(chains, selectedChain) {
 
 function createOverlaySignature(chains, pitchRect) {
   return JSON.stringify({
+    selected: activeDetailId,
     width: Math.round(pitchRect.width),
     height: Math.round(pitchRect.height),
     chains: chains.map(chain => ({
       id: chain.id,
       level: chain.level,
-      slots: chain.path.map(item => item.slot.key)
+      slots: chain.path.map(item => item.slot.key),
+      players: chain.path.map(item => item.player.id)
     }))
   });
 }
