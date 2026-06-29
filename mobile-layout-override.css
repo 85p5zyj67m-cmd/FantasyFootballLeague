@@ -1,0 +1,455 @@
+/* Mobile-only layout polish.
+   Desktop is intentionally untouched: every rule in this file is scoped to small screens.
+   Goal: keep important controls side-by-side on phones by reducing spacing and font sizes.
+*/
+
+@media (max-width: 760px) {
+  :root {
+    --mobile-gap: 6px;
+    --mobile-card-padding: 10px;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+
+  .linear-page,
+  .linear-draft-page {
+    width: min(100% - 10px, 1240px) !important;
+    padding: 8px 0 !important;
+  }
+
+  .linear-card,
+  .linear-draft-card {
+    gap: 10px !important;
+    padding: var(--mobile-card-padding) !important;
+    border-radius: 14px !important;
+  }
+
+  .linear-card h1,
+  .linear-draft-topbar h1 {
+    font-size: clamp(2rem, 12vw, 2.85rem) !important;
+    line-height: 0.95 !important;
+    letter-spacing: -1px !important;
+  }
+
+  .eyebrow {
+    margin-bottom: 4px !important;
+    font-size: 0.6rem !important;
+    letter-spacing: 0.28em !important;
+  }
+
+  .subtitle,
+  .compact-hint {
+    font-size: 0.78rem !important;
+    line-height: 1.25 !important;
+  }
+
+  .linear-draft-topbar {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) 96px !important;
+    gap: 8px !important;
+    align-items: start !important;
+  }
+
+  .linear-speed-box {
+    min-width: 0 !important;
+    padding: 8px !important;
+    border-radius: 12px !important;
+    font-size: 0.72rem !important;
+  }
+
+  .linear-speed-box select {
+    min-height: 30px !important;
+    padding: 5px 7px !important;
+    font-size: 0.72rem !important;
+  }
+
+  .linear-round-counter,
+  #turnCounter {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: var(--mobile-gap) !important;
+  }
+
+  .linear-counter-pill,
+  .counter-pill {
+    min-height: 38px !important;
+    padding: 5px 6px !important;
+    gap: 4px !important;
+  }
+
+  .linear-counter-pill span,
+  .counter-label {
+    font-size: 0.55rem !important;
+    letter-spacing: -0.02em !important;
+  }
+
+  .linear-counter-pill strong,
+  .counter-number {
+    min-width: 28px !important;
+    width: 28px !important;
+    min-height: 28px !important;
+    height: 28px !important;
+    font-size: 0.88rem !important;
+  }
+
+  .linear-round-picks,
+  .linear-order-ticker,
+  .last-pick,
+  .draft-order {
+    padding: 7px 8px !important;
+    border-radius: 999px !important;
+    font-size: 0.72rem !important;
+  }
+
+  .linear-order-ticker {
+    gap: 5px !important;
+    justify-content: center !important;
+  }
+
+  .linear-order-ticker span,
+  .order-chip {
+    padding: 5px 8px !important;
+    font-size: 0.68rem !important;
+  }
+
+  .linear-draft-tabs,
+  .main-tabs,
+  .linear-myteam-tabs {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: var(--mobile-gap) !important;
+    padding: 7px !important;
+    border-radius: 13px !important;
+  }
+
+  .linear-myteam-tabs {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .linear-draft-tabs button,
+  .main-tab,
+  .linear-myteam-tabs button {
+    min-height: 38px !important;
+    padding: 8px 6px !important;
+    border-radius: 11px !important;
+    font-size: 0.78rem !important;
+  }
+
+  .linear-draft-view {
+    gap: 10px !important;
+    padding: 10px !important;
+    border-radius: 14px !important;
+  }
+
+  .linear-tabs,
+  .chip-row {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    gap: 6px !important;
+    overflow-x: auto !important;
+    padding-bottom: 4px !important;
+  }
+
+  .linear-tab-btn,
+  .chip {
+    flex: 0 0 auto !important;
+    width: auto !important;
+    min-height: 34px !important;
+    padding: 7px 10px !important;
+    font-size: 0.76rem !important;
+  }
+
+  .linear-player-grid,
+  .player-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 8px !important;
+  }
+
+  .draft-list-player-card,
+  .linear-player-card {
+    min-height: 164px !important;
+    height: 164px !important;
+    grid-template-rows: 18px 22px 18px 16px 1fr !important;
+    gap: 4px !important;
+    padding: 9px 10px !important;
+  }
+
+  .draft-list-name,
+  .linear-player-card .linear-player-name {
+    font-size: clamp(0.72rem, 3.2vw, 0.86rem) !important;
+  }
+
+  .draft-list-card-top .draft-list-rating,
+  .linear-player-top .draft-list-rating,
+  .linear-player-card .linear-player-top strong {
+    font-size: 0.68rem !important;
+  }
+
+  .draft-list-card-top .draft-list-position,
+  .linear-player-top .draft-list-position,
+  .linear-player-card .linear-player-top b {
+    font-size: 0.62rem !important;
+  }
+
+  .draft-list-club,
+  .draft-list-nationality,
+  .linear-player-card > span:not(.linear-player-top):not(.linear-player-name):not(.linear-trait-chip-row),
+  .linear-player-card > small:not(.linear-trait-chip) {
+    font-size: 0.58rem !important;
+  }
+
+  .draft-list-trait,
+  .linear-player-card .linear-trait-chip {
+    max-width: 100% !important;
+    padding: 2px 4px !important;
+    font-size: 0.47rem !important;
+  }
+
+  .draft-list-traits,
+  .linear-player-card .linear-trait-chip-row {
+    gap: 3px !important;
+    max-height: 48px !important;
+  }
+
+  .linear-info-card-view {
+    --compact-player-card-width: 118px !important;
+    --compact-player-card-height: 96px !important;
+    --compact-player-card-padding: 5px !important;
+  }
+
+  .linear-info-card-view .compact-player-pitch {
+    gap: 6px !important;
+    padding: 8px !important;
+    min-height: 390px !important;
+    overflow-x: hidden !important;
+  }
+
+  .linear-info-card-view .compact-player-line {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    gap: 5px !important;
+    justify-content: center !important;
+  }
+
+  .linear-info-card-view .linear-info-player-card {
+    grid-template-rows: 13px 14px 12px 12px 1fr !important;
+    gap: 1px !important;
+  }
+
+  .linear-info-card-view .linear-info-rating,
+  .linear-info-card-view .linear-info-position {
+    font-size: 0.48rem !important;
+  }
+
+  .linear-info-card-view .linear-info-name {
+    font-size: clamp(0.5rem, 2.2vw, 0.62rem) !important;
+  }
+
+  .linear-info-card-view .linear-info-meta span {
+    font-size: 0.43rem !important;
+  }
+
+  .linear-info-card-view .linear-info-traits small {
+    font-size: 0.39rem !important;
+  }
+
+  .linear-empty-slot strong,
+  .linear-empty-slot span {
+    font-size: 0.66rem !important;
+  }
+
+  .linear-info-card-view .compact-bench-grid,
+  .linear-info-card-view .linear-tactics-squad-grid {
+    grid-template-columns: repeat(3, var(--compact-player-card-width)) !important;
+    gap: 6px !important;
+    justify-content: center !important;
+  }
+
+  .linear-bench {
+    padding: 10px !important;
+    gap: 8px !important;
+  }
+
+  .linear-tactics-controls-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 7px !important;
+  }
+
+  .linear-tactic-control.compact,
+  .linear-tactic-control {
+    padding: 8px !important;
+    border-radius: 10px !important;
+    font-size: 0.72rem !important;
+  }
+
+  .linear-tactic-control select {
+    min-height: 34px !important;
+    padding: 6px 7px !important;
+    font-size: 0.7rem !important;
+  }
+
+  .formation-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 8px !important;
+  }
+
+  .formation-grid button {
+    min-height: 48px !important;
+    padding: 10px 8px !important;
+    font-size: 1rem !important;
+  }
+
+  .linear-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 8px !important;
+  }
+
+  .linear-mini-card,
+  .linear-match-summary,
+  .season-card,
+  .schedule-card,
+  .next-match-card,
+  .title-match-card,
+  .live-match-card {
+    padding: 10px !important;
+    border-radius: 12px !important;
+  }
+
+  .linear-ai-grid,
+  .ai-teams-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 8px !important;
+  }
+
+  .linear-ai-card,
+  .ai-team-card {
+    max-height: 210px !important;
+    padding: 10px !important;
+    font-size: 0.74rem !important;
+  }
+
+  .linear-ai-card h3,
+  .ai-team-card h3 {
+    font-size: 0.78rem !important;
+  }
+
+  .linear-ai-card p,
+  .roster-row {
+    font-size: 0.66rem !important;
+  }
+
+  .compass-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 7px !important;
+  }
+
+  .season-shell,
+  .season-results,
+  #seasonResults {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 8px !important;
+  }
+
+  #liveMatchCard,
+  #mySchedule,
+  #seasonResults > h2,
+  #seasonResults > .season-compass {
+    grid-column: auto !important;
+    grid-row: auto !important;
+  }
+
+  .live-scoreboard {
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) !important;
+    gap: 6px !important;
+    padding: 8px !important;
+  }
+
+  .live-team,
+  .live-clock,
+  .live-badge {
+    font-size: 0.68rem !important;
+  }
+
+  .live-score {
+    font-size: clamp(1.4rem, 8vw, 2rem) !important;
+  }
+
+  .live-stats-panel {
+    gap: 6px !important;
+    padding: 9px !important;
+  }
+
+  .live-stat-row {
+    grid-template-columns: 42px minmax(0, 1fr) 42px !important;
+    gap: 5px !important;
+    font-size: 0.68rem !important;
+  }
+
+  .live-momentum-card,
+  .live-stats-panel,
+  .live-ticker-panel,
+  .live-controls {
+    border-radius: 12px !important;
+  }
+
+  .live-controls {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 7px !important;
+  }
+
+  .live-controls button,
+  .primary-btn,
+  .linear-next-btn {
+    min-height: 42px !important;
+    padding: 10px 12px !important;
+    font-size: 0.82rem !important;
+  }
+}
+
+@media (max-width: 420px) {
+  .linear-info-card-view {
+    --compact-player-card-width: 104px !important;
+    --compact-player-card-height: 90px !important;
+  }
+
+  .linear-info-card-view .compact-player-pitch {
+    padding: 6px !important;
+    gap: 5px !important;
+  }
+
+  .linear-info-card-view .compact-player-line {
+    gap: 4px !important;
+  }
+
+  .linear-player-grid,
+  .player-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .linear-draft-tabs button,
+  .main-tab,
+  .linear-myteam-tabs button {
+    font-size: 0.7rem !important;
+    padding-inline: 4px !important;
+  }
+
+  .linear-counter-pill,
+  .counter-pill {
+    padding-inline: 4px !important;
+  }
+
+  .linear-counter-pill strong,
+  .counter-number {
+    min-width: 24px !important;
+    width: 24px !important;
+    min-height: 24px !important;
+    height: 24px !important;
+    font-size: 0.78rem !important;
+  }
+
+  .linear-info-card-view .compact-bench-grid,
+  .linear-info-card-view .linear-tactics-squad-grid {
+    grid-template-columns: repeat(3, var(--compact-player-card-width)) !important;
+  }
+}
