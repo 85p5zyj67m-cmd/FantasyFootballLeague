@@ -1,4 +1,4 @@
-import { getActiveTraitChains } from "../traitChainEngine.js?v=chain-box-1";
+import { getActiveTraitChains } from "../traitChainEngine.js?v=chain-text-en-1";
 import { userTeam } from "./linearState.js";
 
 let observer = null;
@@ -190,8 +190,16 @@ function createBuildRoadmap(chain) {
   roadmap.appendChild(headline);
 
   const levels = (chain.allLevels || [])
-    .filter(level => level.size >= chain.level)
+    .filter(level => level.size > chain.level)
     .sort((a, b) => a.size - b.size);
+
+  if (!levels.length) {
+    const max = document.createElement("p");
+    max.className = "trait-chain-max-note";
+    max.textContent = "Max level reached. This chain is fully built.";
+    roadmap.appendChild(max);
+    return roadmap;
+  }
 
   levels.forEach(level => roadmap.appendChild(createLevelPlan(chain, level)));
 
@@ -200,13 +208,13 @@ function createBuildRoadmap(chain) {
 
 function createLevelPlan(chain, level) {
   const plan = document.createElement("div");
-  plan.className = level.size === chain.level ? "trait-chain-level-plan active" : "trait-chain-level-plan";
+  plan.className = "trait-chain-level-plan";
 
   const title = document.createElement("div");
   title.className = "trait-chain-level-title";
 
   const label = document.createElement("strong");
-  label.textContent = level.size === chain.level ? `Level ${level.size} - active now` : `Build Level ${level.size}`;
+  label.textContent = `Build Level ${level.size}`;
 
   const reward = document.createElement("span");
   reward.textContent = `${level.effect} (${level.winChance})`;
