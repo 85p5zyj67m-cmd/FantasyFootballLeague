@@ -1,25 +1,33 @@
-import { getActiveTraitChains } from "../traitChainEngine.js?v=chain-engine-3";
+import { getActiveTraitChains } from "../traitChainEngine.js?v=chain-engine-4";
 import { userTeam } from "./linearState.js";
 
 let observer = null;
 let queued = false;
 let activeDetailId = null;
+let lastPanelSignature = "";
+let lastOverlaySignature = "";
 
 export function installTraitChainEnhancer() {
   if (observer) return;
 
-  observer = new MutationObserver(queueEnhancement);
+  observer = new MutationObserver(mutations => {
+    const shouldRefresh = mutations.some(mutation =>
+      Array.from(mutation.addedNodes).some(isRelevantNode) ||
+      Array.from(mutation.removedNodes).some(isRelevantNode)
+    );
+
+    if (shouldRefresh) queueEnhancement();
+  });
+
   observer.observe(document.getElementById("app"), {
     childList: true,
     subtree: true
   });
 
-  window.addEventListener("click", queueEnhancement, true);
   window.addEventListener("change", queueEnhancement, true);
   window.addEventListener("dragend", queueEnhancement, true);
   window.addEventListener("drop", queueEnhancement, true);
   window.addEventListener("resize", queueEnhancement);
-  window.addEventListener("scroll", queueEnhancement, true);
 
   queueEnhancement();
 }
@@ -37,27 +45,35 @@ function enhanceTraitChains() {
   const s11View = document.querySelector(".linear-s11-view");
   if (!s11View) {
     removeChainOverlay();
+    lastPanelSignature = "";
+    lastOverlaySignature = "";
     return;
   }
 
-  const hint = s11View.querySelector(".compact-hint, .subtitle");
+  const chains = safeGetActiveTraitChains(userTeam());
+  const panelSignature = createPanelSignature(chains);
   const existingPanel = s11View.querySelector(".trait-chain-panel");
-  const panel = createTraitChainPanel(userTeam());
 
-  if (existingPanel) {
-    existingPanel.replaceWith(panel);
-  } else if (hint) {
-    hint.insertAdjacentElement("afterend", panel);
-  } else {
-    s11View.prepend(panel);
+  if (!existingPanel || panelSignature !== lastPanelSignature) {
+    const hint = s11View.querySelector(".compact-hint, .subtitle");
+    const panel = createTraitChainPanel(chains);
+
+    if (existingPanel) {
+      existingPanel.replaceWith(panel);
+    } else if (hint) {
+      hint.insertAdjacentElement("afterend", panel);
+    } else {
+      s11View.prepend(panel);
+    }
+
+    lastPanelSignature = panelSignature;
   }
 
-  markChainPlayers();
-  drawChainLinks();
+  markChainPlayers(chains);
+  drawChainLinks(chains);
 }
 
-function createTraitChainPanel(team) {
-  const chains = safeGetActiveTraitChains(team);
+function createTraitChainPanel(chains) {
   const panel = document.createElement("section");
   panel.className = "trait-chain-panel";
 
@@ -81,6 +97,10 @@ function createTraitChainPanel(team) {
     return panel;
   }
 
+  if (!chains.some(chain => chain.id === activeDetailId)) {
+    activeDetailId = chains[0].id;
+  }
+
   const list = document.createElement("div");
   list.className = "trait-chain-list";
 
@@ -92,7 +112,6 @@ function createTraitChainPanel(team) {
   panel.appendChild(list);
 
   const selectedChain = chains.find(chain => chain.id === activeDetailId) || chains[0];
-  activeDetailId = selectedChain.id;
   panel.appendChild(createChainDetail(selectedChain));
 
   return panel;
@@ -115,6 +134,7 @@ function createChainButton(chain) {
     event.preventDefault();
     event.stopPropagation();
     activeDetailId = chain.id;
+    lastPanelSignature = "";
     queueEnhancement();
   });
 
@@ -143,20 +163,19 @@ function createChainDetail(chain) {
   players.className = "trait-chain-players";
   players.textContent = chain.path
     .map((item, index) => `${chain.traits[index]}: ${item.player.name} (${item.slot.position})`)
-    .join("  →  ");
+    .join("  ->  ");
 
   const upgrade = document.createElement("p");
   upgrade.className = "trait-chain-upgrade";
   upgrade.textContent = chain.nextLevel
-    ? `Upgrade: ${chain.nextLevel.traits.join(" → ")} | ${chain.nextLevel.effect} | ${chain.nextLevel.winChance}`
+    ? `Upgrade: ${chain.nextLevel.traits.join(" -> ")} | ${chain.nextLevel.effect} | ${chain.nextLevel.winChance}`
     : "Max level reached.";
 
   detail.append(top, effect, players, upgrade);
   return detail;
 }
 
-function markChainPlayers() {
-  const chains = safeGetActiveTraitChains(userTeam());
+function markChainPlayers(chains) {
   const activeSlotKeys = new Set();
 
   chains.forEach(chain => {
@@ -176,20 +195,24 @@ function markChainPlayers() {
   });
 }
 
-function drawChainLinks() {
+function drawChainLinks(chains) {
   const pitch = document.querySelector(".compact-player-pitch");
   if (!pitch) {
     removeChainOverlay();
+    lastOverlaySignature = "";
     return;
   }
 
-  const chains = safeGetActiveTraitChains(userTeam());
+  const pitchRect = pitch.getBoundingClientRect();
+  const overlaySignature = createOverlaySignature(chains, pitchRect);
   const oldOverlay = pitch.querySelector(".trait-chain-link-overlay");
+
+  if (oldOverlay && overlaySignature === lastOverlaySignature) return;
   if (oldOverlay) oldOverlay.remove();
 
+  lastOverlaySignature = overlaySignature;
   if (!chains.length) return;
 
-  const pitchRect = pitch.getBoundingClientRect();
   const overlay = document.createElementNS("http://www.w3.org/2000/svg", "svg");
   overlay.classList.add("trait-chain-link-overlay");
   overlay.setAttribute("viewBox", `0 0 ${pitchRect.width} ${pitchRect.height}`);
@@ -270,6 +293,41 @@ function getSlotCenter(slotKey, pitchRect) {
 
 function removeChainOverlay() {
   document.querySelectorAll(".trait-chain-link-overlay").forEach(overlay => overlay.remove());
+}
+
+function createPanelSignature(chains) {
+  return JSON.stringify({
+    activeDetailId,
+    chains: chains.map(chain => ({
+      id: chain.id,
+      level: chain.level,
+      traits: chain.traits,
+      slots: chain.path.map(item => item.slot.key),
+      players: chain.path.map(item => item.player.id)
+    }))
+  });
+}
+
+function createOverlaySignature(chains, pitchRect) {
+  return JSON.stringify({
+    width: Math.round(pitchRect.width),
+    height: Math.round(pitchRect.height),
+    chains: chains.map(chain => ({
+      id: chain.id,
+      level: chain.level,
+      slots: chain.path.map(item => item.slot.key)
+    }))
+  });
+}
+
+function isRelevantNode(node) {
+  if (!(node instanceof Element)) return false;
+  if (node.classList?.contains("trait-chain-panel")) return false;
+  if (node.classList?.contains("trait-chain-link-overlay")) return false;
+  return Boolean(
+    node.matches?.(".linear-s11-view, .compact-player-pitch, .linear-slot, .linear-info-card-view") ||
+    node.querySelector?.(".linear-s11-view, .compact-player-pitch, .linear-slot, .linear-info-card-view")
+  );
 }
 
 function safeGetActiveTraitChains(team) {
