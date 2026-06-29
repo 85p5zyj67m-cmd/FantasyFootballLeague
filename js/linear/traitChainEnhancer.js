@@ -1,4 +1,4 @@
-import { getActiveTraitChains } from "../traitChainEngine.js?v=formation-links-1";
+import { getActiveTraitChains } from "../traitChainEngine.js?v=chain-box-1";
 import { userTeam } from "./linearState.js";
 
 let observer = null;
@@ -158,38 +158,86 @@ function createChainDetail(chain) {
   top.append(title, bonus);
 
   const effect = document.createElement("p");
+  effect.className = "trait-chain-effect";
   effect.textContent = chain.effect;
 
-  const players = document.createElement("p");
-  players.className = "trait-chain-players";
-  players.textContent = chain.path
-    .map((item, index) => `${chain.traits[index]}: ${item.player.name} (${item.slot.position})`)
-    .join("  ->  ");
-
-  const upgrade = document.createElement("p");
-  upgrade.className = "trait-chain-upgrade";
-  upgrade.textContent = createUpgradeText(chain);
-
-  detail.append(top, effect, players, upgrade);
+  detail.append(top, effect, createBuildGuide(chain), createUpgradeGuide(chain));
   return detail;
 }
 
-function createUpgradeText(chain) {
+function createBuildGuide(chain) {
+  const guide = document.createElement("div");
+  guide.className = "trait-chain-build-guide";
+
+  const headline = document.createElement("strong");
+  headline.textContent = "Aktive Bauteile";
+
+  const steps = document.createElement("ol");
+  steps.className = "trait-chain-steps";
+
+  chain.path.forEach((item, index) => {
+    const step = document.createElement("li");
+    const trait = chain.traits[index] || "Trait";
+    step.textContent = `${index + 1}. ${trait}: ${item.player.name} auf ${item.slot.position}`;
+    steps.appendChild(step);
+  });
+
+  guide.append(headline, steps);
+  return guide;
+}
+
+function createUpgradeGuide(chain) {
+  const guide = document.createElement("div");
+  guide.className = "trait-chain-upgrade-guide";
+
+  const headline = document.createElement("strong");
+  headline.textContent = chain.level >= chain.maxLevel ? "Upgrade" : "Naechstes Upgrade";
+  guide.appendChild(headline);
+
   const higherLevels = (chain.allLevels || [])
     .filter(level => level.size > chain.level)
     .sort((a, b) => a.size - b.size);
 
-  if (!higherLevels.length) return "Max level reached.";
+  if (!higherLevels.length) {
+    const max = document.createElement("p");
+    max.className = "trait-chain-upgrade";
+    max.textContent = "Max Level erreicht. Diese Chain ist komplett.";
+    guide.appendChild(max);
+    return guide;
+  }
 
   const currentTraits = normalizeTraitList(chain.traits);
+  const nextLevel = higherLevels[0];
+  const maxLevel = higherLevels[higherLevels.length - 1];
 
-  return higherLevels
-    .map(level => {
-      const missingTraits = level.traits.filter(trait => !currentTraits.has(normalizeTrait(trait)));
-      const missingText = missingTraits.length ? `missing: ${missingTraits.join(", ")}` : "missing: none";
-      return `Upgrade to Lv.${level.size}: ${missingText} | ${level.effect} | ${level.winChance}`;
-    })
-    .join(" | ");
+  const nextMissing = getMissingTraits(nextLevel.traits, currentTraits);
+  const next = document.createElement("p");
+  next.className = "trait-chain-upgrade";
+  next.textContent = `Fuer Level ${nextLevel.size} fehlt: ${formatMissingTraits(nextMissing)}.`;
+
+  const nextEffect = document.createElement("p");
+  nextEffect.className = "trait-chain-upgrade-effect";
+  nextEffect.textContent = `Dann bekommst du: ${nextLevel.effect} (${nextLevel.winChance}).`;
+
+  guide.append(next, nextEffect);
+
+  if (maxLevel.size !== nextLevel.size) {
+    const maxMissing = getMissingTraits(maxLevel.traits, currentTraits);
+    const full = document.createElement("p");
+    full.className = "trait-chain-upgrade-full";
+    full.textContent = `Bis Level ${maxLevel.size} brauchst du insgesamt noch: ${formatMissingTraits(maxMissing)}.`;
+    guide.appendChild(full);
+  }
+
+  return guide;
+}
+
+function getMissingTraits(levelTraits, currentTraits) {
+  return levelTraits.filter(trait => !currentTraits.has(normalizeTrait(trait)));
+}
+
+function formatMissingTraits(traits) {
+  return traits.length ? traits.join(", ") : "nichts";
 }
 
 function normalizeTraitList(traits) {
