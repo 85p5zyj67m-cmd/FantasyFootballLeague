@@ -81,13 +81,26 @@
   font-weight: 950 !important;
 }
 
+.trait-chain-max-note {
+  margin: 0 !important;
+  padding: 7px 8px !important;
+  border-radius: 10px !important;
+  border: 1px solid rgba(117, 255, 158, 0.28) !important;
+  background: rgba(117, 255, 158, 0.07) !important;
+  color: #75ff9e !important;
+  font-size: 0.74rem !important;
+  line-height: 1.28 !important;
+  font-weight: 950 !important;
+}
+
 @media (max-width: 760px) {
   .trait-chain-build-note,
   .trait-chain-build-guide > strong,
   .trait-chain-roadmap > strong,
   .trait-chain-level-title strong,
   .trait-chain-level-title span,
-  .chain-step {
+  .chain-step,
+  .trait-chain-max-note {
     font-size: 0.62rem !important;
   }
 
