@@ -38,30 +38,35 @@ export function getActiveTraitChains(team) {
   const formationId = team?.formationId || "4-3-3";
 
   TRAIT_CHAINS.forEach(chain => {
-    const matchedLevels = chain.levels
-      .map(level => ({ level, match: findBestChainPath(level.traits, playersByTrait, formationId) }))
-      .filter(item => item.match && Array.isArray(item.match.path) && item.match.path.length === item.level.traits.length);
+    const matchedSegments = createChainSegments(chain)
+      .map(segment => ({ segment, match: findBestChainPath(segment.traits, playersByTrait, formationId) }))
+      .filter(item => item.match && Array.isArray(item.match.path) && item.match.path.length === item.segment.traits.length);
 
-    if (!matchedLevels.length) return;
+    if (!matchedSegments.length) return;
 
-    const best = matchedLevels.sort((a, b) => b.level.size - a.level.size || a.match.score - b.match.score)[0];
-    const nextLevel = chain.levels.find(level => level.size > best.level.size);
+    const best = matchedSegments.sort((a, b) =>
+      b.segment.size - a.segment.size ||
+      a.match.score - b.match.score ||
+      a.segment.startIndex - b.segment.startIndex
+    )[0];
 
     activeChains.push({
       id: chain.id,
       name: chain.name,
       summary: chain.summary,
-      level: best.level.size,
+      level: best.segment.size,
       traits: best.match.traits,
-      canonicalTraits: best.level.traits,
-      effect: best.level.effect,
-      winChance: best.level.winChance,
+      canonicalTraits: best.segment.traits,
+      effect: best.segment.effect,
+      winChance: best.segment.winChance,
       path: best.match.path,
       pathScore: best.match.score,
       direction: best.match.direction,
-      nextLevel,
+      segmentStartIndex: best.segment.startIndex,
+      nextLevel: findNextLevel(chain, best.segment.size),
       maxLevel: Math.max(...chain.levels.map(level => level.size)),
-      allLevels: chain.levels
+      allLevels: chain.levels,
+      segmentOptions: createChainSegments(chain)
     });
   });
 
@@ -118,6 +123,35 @@ function buildTraitIndex(placedPlayers) {
   });
 
   return index;
+}
+
+function createChainSegments(chain) {
+  const maxLevel = chain.levels.find(level => level.size === Math.max(...chain.levels.map(item => item.size)));
+  const fullTraits = maxLevel?.traits || [];
+  const segments = [];
+
+  chain.levels.forEach(level => {
+    if (level.size < 2) return;
+
+    for (let startIndex = 0; startIndex <= fullTraits.length - level.size; startIndex += 1) {
+      const traits = fullTraits.slice(startIndex, startIndex + level.size);
+      segments.push({
+        ...level,
+        id: `${chain.id}-${level.size}-${startIndex}`,
+        traits,
+        startIndex,
+        endIndex: startIndex + level.size - 1
+      });
+    }
+  });
+
+  return segments;
+}
+
+function findNextLevel(chain, currentSize) {
+  return chain.levels
+    .filter(level => level.size > currentSize)
+    .sort((a, b) => a.size - b.size)[0] || null;
 }
 
 function findBestChainPath(requiredTraits, playersByTrait, formationId) {
