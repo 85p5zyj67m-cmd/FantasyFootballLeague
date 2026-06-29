@@ -7,14 +7,12 @@ import {
 import { getActiveTraitChains } from "./traitChainEngine.js?v=chain-segments-1";
 import { getFormationById } from "./formations.js";
 
-const QUALITY_ANCHOR = 82;
-const QUALITY_FACTOR = 0.5;
-const CHAIN_BOOST_PER_POINT = 0.9;
-const TACTIC_IDENTITY_BOOST = 0.55;
-const CHAIN_TACTIC_SYNERGY_BOOST = 0.9;
-const MAX_CHAIN_BOOST = 8;
-const MAX_TACTIC_BOOST = 5;
-const MAX_SYNERGY_BOOST = 5;
+const CHAIN_BOOST_PER_POINT = 0.8;
+const TACTIC_IDENTITY_BOOST = 0.85;
+const CHAIN_TACTIC_SYNERGY_BOOST = 0.85;
+const MAX_CHAIN_BOOST = 7.5;
+const MAX_TACTIC_BOOST = 6.5;
+const MAX_SYNERGY_BOOST = 5.5;
 const MAX_FORMATION_BOOST = 2.4;
 const MAX_FORMATION_PENALTY = -3.2;
 
@@ -76,31 +74,31 @@ const TACTIC_SYNERGIES = {
 };
 
 export function createSeason(teams, userTeamIndex) {
-  return withEqualWeightBalance(teams, () => createTacticalSeason(teams, userTeamIndex));
+  return withBalancedSystemInfluence(teams, () => createTacticalSeason(teams, userTeamIndex));
 }
 
 export function continueAfterTactics(season) {
-  return withEqualWeightBalance(collectSeasonTeams(season), () => continueTacticalAfterTactics(season));
+  return withBalancedSystemInfluence(collectSeasonTeams(season), () => continueTacticalAfterTactics(season));
 }
 
 export function simulateNextMatch(season) {
-  return withEqualWeightBalance(collectSeasonTeams(season), () => simulateTacticalNextMatch(season));
+  return withBalancedSystemInfluence(collectSeasonTeams(season), () => simulateTacticalNextMatch(season));
 }
 
 export function getTeamStrength(team) {
-  return withEqualWeightBalance([team], () => getTacticalTeamStrength(team));
+  return withBalancedSystemInfluence([team], () => getTacticalTeamStrength(team));
 }
 
-function withEqualWeightBalance(teams, callback) {
+function withBalancedSystemInfluence(teams, callback) {
   const touched = [];
   const uniqueTeams = Array.from(new Set((teams || []).filter(Boolean)));
 
   uniqueTeams.forEach(team => {
-    const virtualBoost = calculateSystemBoost(team);
+    const systemBoost = calculateSystemBoost(team);
     (team.players || []).forEach(player => {
       if (typeof player.overall !== "number") return;
       touched.push([player, player.overall]);
-      player.overall = compressOverall(player.overall) + virtualBoost;
+      player.overall = roundOne(player.overall + systemBoost);
     });
   });
 
@@ -113,16 +111,12 @@ function withEqualWeightBalance(teams, callback) {
   }
 }
 
-function compressOverall(overall) {
-  return Math.round((QUALITY_ANCHOR + (overall - QUALITY_ANCHOR) * QUALITY_FACTOR) * 10) / 10;
-}
-
 function calculateSystemBoost(team) {
   const chain = calculateChainBoost(team);
   const tactic = calculateTacticIdentityBoost(team);
   const synergy = calculateChainTacticSynergy(team);
   const formation = calculateFormationFitBoost(team);
-  return Math.round((chain + tactic + synergy + formation) * 10) / 10;
+  return roundOne(chain + tactic + synergy + formation);
 }
 
 function calculateChainBoost(team) {
@@ -133,8 +127,8 @@ function calculateChainBoost(team) {
 function calculateTacticIdentityBoost(team) {
   const tactics = normalizeTactics(team?.tactics);
   const activeChoices = Object.keys(DEFAULT_TACTICS).filter(key => tactics[key] !== DEFAULT_TACTICS[key]).length;
-  const braveBonus = tactics.riskLevel === "Brave" ? 0.35 : tactics.riskLevel === "All In" ? 0.55 : 0;
-  return Math.min(MAX_TACTIC_BOOST, activeChoices * TACTIC_IDENTITY_BOOST + braveBonus);
+  const riskBonus = tactics.riskLevel === "Brave" ? 0.45 : tactics.riskLevel === "All In" ? 0.65 : 0;
+  return Math.min(MAX_TACTIC_BOOST, activeChoices * TACTIC_IDENTITY_BOOST + riskBonus);
 }
 
 function calculateChainTacticSynergy(team) {
@@ -276,4 +270,8 @@ function collectSeasonTeams(season) {
 
 function clamp(min, max, value) {
   return Math.max(min, Math.min(max, value));
+}
+
+function roundOne(value) {
+  return Math.round(value * 10) / 10;
 }
