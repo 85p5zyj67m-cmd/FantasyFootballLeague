@@ -1,4 +1,4 @@
-import { createSeason, continueAfterTactics, simulateNextMatch } from "../seasonEngineTacticalLite.js?v=tactical-chain-engine-2";
+import { createSeason, continueAfterTactics, simulateNextMatch } from "../seasonEngineBalanced.js?v=equal-overall-tactics-chains-1";
 import { appState, userTeam } from "./linearState.js";
 import { goTo } from "./linearRouter.js";
 
