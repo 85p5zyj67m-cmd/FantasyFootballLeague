@@ -5,9 +5,7 @@
   --card-border: rgba(101, 229, 141, 0.48);
 }
 
-.linear-info-card-view .compact-hint {
-  margin-bottom: 10px !important;
-}
+.linear-info-card-view .compact-hint { margin-bottom: 10px !important; }
 
 .linear-info-card-view .compact-player-pitch,
 .linear-s11-view.linear-info-card-view .linear-pitch,
@@ -50,22 +48,22 @@
 
 .linear-info-card-view .linear-slot-card,
 .linear-season-setup-card .linear-slot-card {
-  flex: 0 1 168px !important;
-  width: 168px !important;
-  max-width: 168px !important;
+  flex: 0 1 160px !important;
+  width: 160px !important;
+  max-width: 160px !important;
   border: 0 !important;
   background: transparent !important;
 }
 
 .linear-info-card-view .linear-empty-slot,
 .linear-season-setup-card .linear-empty-slot {
-  flex: 0 1 168px !important;
-  width: 168px !important;
-  max-width: 168px !important;
-  min-height: 96px !important;
+  flex: 0 1 160px !important;
+  width: 160px !important;
+  max-width: 160px !important;
+  min-height: 88px !important;
   display: grid !important;
   place-items: center !important;
-  gap: 3px !important;
+  gap: 2px !important;
   border-radius: 14px !important;
   border: 1px solid rgba(255,255,255,.16) !important;
   background: rgba(3, 14, 10, .62) !important;
@@ -83,15 +81,15 @@
   display: grid !important;
   grid-template-rows: auto auto auto auto !important;
   align-content: start !important;
-  gap: 5px !important;
+  gap: 4px !important;
   width: 100% !important;
-  min-height: 128px !important;
+  min-height: 118px !important;
   overflow: visible !important;
-  border-radius: 16px !important;
-  padding: 9px !important;
+  border-radius: 15px !important;
+  padding: 8px !important;
   background: linear-gradient(180deg, rgba(9, 32, 22, .98), rgba(2, 9, 7, .98)) !important;
   border: 1px solid var(--card-border) !important;
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,.035), 0 0 12px rgba(101,229,141,.08) !important;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.035), 0 0 10px rgba(101,229,141,.08) !important;
   color: #ffffff !important;
   text-align: center !important;
 }
@@ -108,14 +106,14 @@
 .linear-info-card-view .linear-info-rating {
   display: inline-grid !important;
   place-items: center !important;
-  flex: 0 0 30px !important;
-  width: 30px !important;
-  height: 30px !important;
-  border-radius: 10px !important;
+  flex: 0 0 28px !important;
+  width: 28px !important;
+  height: 28px !important;
+  border-radius: 9px !important;
   border: 1px solid rgba(101,229,141,.62) !important;
   background: rgba(101,229,141,.13) !important;
   color: var(--card-green) !important;
-  font-size: .78rem !important;
+  font-size: .74rem !important;
   font-weight: 950 !important;
   line-height: 1 !important;
 }
@@ -125,14 +123,14 @@
   align-items: center !important;
   justify-content: center !important;
   margin-left: auto !important;
-  max-width: 104px !important;
-  min-height: 24px !important;
+  max-width: 96px !important;
+  min-height: 22px !important;
   border-radius: 999px !important;
   border: 1px solid rgba(101,229,141,.58) !important;
   padding: 3px 7px !important;
   background: rgba(101,229,141,.09) !important;
   color: var(--card-green) !important;
-  font-size: .52rem !important;
+  font-size: .50rem !important;
   font-weight: 950 !important;
   line-height: 1.05 !important;
   text-align: center !important;
@@ -140,18 +138,16 @@
   overflow-wrap: anywhere !important;
 }
 
-.linear-info-card-view .linear-info-identity {
-  display: contents !important;
-}
+.linear-info-card-view .linear-info-identity { display: contents !important; }
 
 .linear-info-card-view .linear-info-name {
   display: block !important;
   width: 100% !important;
   margin: 0 !important;
   color: #ffffff !important;
-  font-size: .84rem !important;
+  font-size: .80rem !important;
   font-weight: 950 !important;
-  line-height: 1.05 !important;
+  line-height: 1.04 !important;
   letter-spacing: -.01em !important;
   white-space: normal !important;
   overflow: visible !important;
@@ -159,13 +155,11 @@
   word-break: normal !important;
 }
 
-.linear-info-card-view .linear-info-divider {
-  display: none !important;
-}
+.linear-info-card-view .linear-info-divider { display: none !important; }
 
 .linear-info-card-view .linear-info-meta {
   display: grid !important;
-  gap: 3px !important;
+  gap: 2px !important;
   width: 100% !important;
   margin: 0 !important;
   padding: 0 !important;
@@ -174,7 +168,7 @@
 
 .linear-info-card-view .linear-info-row {
   display: grid !important;
-  gap: 1px !important;
+  gap: 0 !important;
   padding: 0 !important;
   border-bottom: 0 !important;
 }
@@ -183,9 +177,9 @@
 .linear-info-card-view .linear-info-meta span:nth-child(1)::before,
 .linear-info-card-view .linear-info-meta span:nth-child(2)::before {
   color: rgba(255,255,255,.58) !important;
-  font-size: .47rem !important;
+  font-size: .44rem !important;
   font-weight: 900 !important;
-  letter-spacing: .08em !important;
+  letter-spacing: .07em !important;
   line-height: 1 !important;
   text-transform: uppercase !important;
   text-align: center !important;
@@ -195,9 +189,9 @@
 .linear-info-card-view .linear-info-meta > span {
   display: block !important;
   color: #ffffff !important;
-  font-size: .60rem !important;
+  font-size: .56rem !important;
   font-weight: 900 !important;
-  line-height: 1.05 !important;
+  line-height: 1.03 !important;
   white-space: normal !important;
   overflow: visible !important;
   text-overflow: clip !important;
@@ -208,18 +202,17 @@
 .linear-info-card-view .linear-info-meta > span:nth-child(1)::before {
   content: "CLUB:";
   display: block;
-  margin-bottom: 2px;
+  margin-bottom: 1px;
 }
 
 .linear-info-card-view .linear-info-meta > span:nth-child(2)::before {
   content: "COUNTRY:";
   display: block;
-  margin-bottom: 2px;
+  margin-bottom: 1px;
 }
 
 .linear-info-card-view .linear-info-traits {
-  display: grid !important;
-  gap: 1px !important;
+  display: block !important;
   width: 100% !important;
   margin: 0 !important;
   padding-top: 0 !important;
@@ -232,15 +225,15 @@
   display: block;
   margin-bottom: 1px;
   color: rgba(255,255,255,.58);
-  font-size: .47rem;
+  font-size: .44rem;
   font-weight: 900;
-  letter-spacing: .08em;
+  letter-spacing: .07em;
   text-align: center;
 }
 
 .linear-info-card-view .linear-info-traits small,
 .linear-info-card-view .linear-info-trait-text {
-  display: block !important;
+  display: inline !important;
   max-width: 100% !important;
   min-height: 0 !important;
   border: 0 !important;
@@ -248,12 +241,17 @@
   padding: 0 !important;
   background: transparent !important;
   color: #ffffff !important;
-  font-size: .52rem !important;
+  font-size: .49rem !important;
   font-weight: 900 !important;
-  line-height: 1.08 !important;
+  line-height: 1.03 !important;
   text-align: center !important;
   white-space: normal !important;
   overflow-wrap: anywhere !important;
+}
+
+.linear-info-card-view .linear-info-traits small:not(:last-child)::after {
+  content: " - ";
+  color: rgba(255,255,255,.72);
 }
 
 .linear-info-card-view .compact-player-bench,
@@ -265,7 +263,7 @@
 .linear-info-card-view .compact-bench-grid,
 .linear-season-setup-card .compact-bench-grid {
   display: grid !important;
-  grid-template-columns: repeat(auto-fit, minmax(168px, 1fr)) !important;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)) !important;
   gap: 10px !important;
   align-items: stretch !important;
   overflow: visible !important;
@@ -273,7 +271,7 @@
 
 .linear-info-card-view .linear-bench-card,
 .linear-season-setup-card .linear-bench-card {
-  min-height: 128px !important;
+  min-height: 118px !important;
   border: 0 !important;
   background: transparent !important;
 }
@@ -285,24 +283,17 @@
   margin-bottom: 12px !important;
 }
 
-.linear-info-card-view .linear-tactic-control.compact {
-  padding: 10px !important;
-}
-
-.linear-info-card-view .linear-tactics-squad h3 {
-  margin: 4px 0 10px !important;
-}
+.linear-info-card-view .linear-tactic-control.compact { padding: 10px !important; }
+.linear-info-card-view .linear-tactics-squad h3 { margin: 4px 0 10px !important; }
 
 .linear-info-card-view .linear-tactics-squad-grid {
   display: grid !important;
-  grid-template-columns: repeat(auto-fit, minmax(168px, 1fr)) !important;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)) !important;
   gap: 10px !important;
   align-items: stretch !important;
 }
 
-.linear-info-card-view .linear-tactics-player-card {
-  min-height: 128px !important;
-}
+.linear-info-card-view .linear-tactics-player-card { min-height: 118px !important; }
 
 .linear-info-card-view .linear-slot.selected,
 .linear-info-card-view .linear-bench-player.selected {
@@ -315,28 +306,20 @@
   .linear-season-setup-card .linear-slot-card,
   .linear-info-card-view .linear-empty-slot,
   .linear-season-setup-card .linear-empty-slot {
-    flex-basis: 158px !important;
-    width: 158px !important;
-    max-width: 158px !important;
+    flex-basis: 150px !important;
+    width: 150px !important;
+    max-width: 150px !important;
   }
 
   .linear-info-card-view .linear-info-player-card,
   .linear-info-card-view .text-only-player-card {
-    min-height: 132px !important;
-    padding: 8px !important;
+    min-height: 122px !important;
+    padding: 7px !important;
   }
 
-  .linear-info-card-view .linear-info-name {
-    font-size: .78rem !important;
-  }
-
+  .linear-info-card-view .linear-info-name { font-size: .74rem !important; }
   .linear-info-card-view .linear-info-value,
-  .linear-info-card-view .linear-info-meta > span {
-    font-size: .56rem !important;
-  }
-
+  .linear-info-card-view .linear-info-meta > span { font-size: .52rem !important; }
   .linear-info-card-view .linear-info-traits small,
-  .linear-info-card-view .linear-info-trait-text {
-    font-size: .49rem !important;
-  }
+  .linear-info-card-view .linear-info-trait-text { font-size: .46rem !important; }
 }
