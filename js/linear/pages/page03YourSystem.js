@@ -1,31 +1,46 @@
+import { FORMATIONS } from "../../formations.js";
 import { appState, userTeam } from "../linearState.js";
 import { goTo } from "../linearRouter.js";
 import { clearApp, pageShell } from "../pageUtils.js";
 
 export function renderPage03YourSystem() {
   const app = clearApp();
-  const shell = pageShell({ eyebrow: "Page 3", title: "Your System", subtitle: "Pick your formation." });
-  const box = document.createElement("div");
-  box.className = "linear-grid";
+  const shell = pageShell({
+    eyebrow: "Page 3",
+    title: "Your System",
+    subtitle: "Pick your formation. Slots now use real football positions."
+  });
 
-  box.appendChild(makeSystemButton("4-3-3"));
-  box.appendChild(makeSystemButton("4-4-2"));
-  box.appendChild(makeSystemButton("3-5-2"));
-  box.appendChild(makeSystemButton("4-2-3-1"));
+  const box = document.createElement("div");
+  box.className = "linear-grid formation-grid detailed-formation-grid";
+
+  FORMATIONS.forEach(formation => {
+    box.appendChild(makeSystemButton(formation));
+  });
 
   shell.card.appendChild(box);
   app.appendChild(shell.section);
 }
 
-function makeSystemButton(id) {
+function makeSystemButton(formation) {
   const button = document.createElement("button");
   button.type = "button";
-  button.className = "primary-btn linear-next-btn";
-  button.textContent = id;
+  button.className = "primary-btn linear-next-btn formation-option-btn";
+
+  const name = document.createElement("strong");
+  name.textContent = formation.name;
+
+  const shape = document.createElement("span");
+  shape.textContent = formation.lines
+    .map(line => line.join(" "))
+    .join(" / ");
+
+  button.append(name, shape);
   button.addEventListener("click", () => {
-    appState.selectedFormation = id;
-    userTeam().formationId = id;
+    appState.selectedFormation = formation.id;
+    userTeam().formationId = formation.id;
     goTo("page04");
   });
+
   return button;
 }
