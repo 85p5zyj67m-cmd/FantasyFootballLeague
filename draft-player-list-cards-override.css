@@ -1,0 +1,172 @@
+/* Compact and consistent Draft Player List cards.
+   Matches the My Team information order while keeping Player List traits readable.
+*/
+
+.linear-player-grid {
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)) !important;
+  align-items: stretch !important;
+}
+
+.draft-list-player-card {
+  min-height: 188px !important;
+  height: 188px !important;
+  display: grid !important;
+  grid-template-rows: 22px 26px 21px 19px 1fr !important;
+  gap: 5px !important;
+  padding: 13px 14px !important;
+  overflow: hidden !important;
+  text-align: left !important;
+  border-radius: 14px !important;
+  border: 1px solid rgba(101, 229, 141, 0.25) !important;
+  background:
+    radial-gradient(circle at top right, rgba(101, 229, 141, 0.13), transparent 42%),
+    linear-gradient(180deg, #13251a, #07110d) !important;
+}
+
+.draft-list-player-card:disabled {
+  opacity: 1 !important;
+  cursor: default !important;
+}
+
+.draft-list-card-top {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 4px !important;
+  min-width: 0 !important;
+  overflow: hidden !important;
+  white-space: nowrap !important;
+}
+
+.draft-list-card-top .draft-list-rating,
+.linear-player-top .draft-list-rating {
+  color: #75ff9e !important;
+  background: transparent !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  font-size: 0.82rem !important;
+  line-height: 1 !important;
+  font-weight: 950 !important;
+  min-width: 0 !important;
+  flex: 0 0 auto !important;
+}
+
+.draft-list-separator {
+  color: rgba(255, 255, 255, 0.74) !important;
+  font-size: 0.78rem !important;
+  line-height: 1 !important;
+  font-weight: 900 !important;
+  flex: 0 0 auto !important;
+}
+
+.draft-list-card-top .draft-list-position,
+.linear-player-top .draft-list-position {
+  display: block !important;
+  min-width: 0 !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+  color: #75ff9e !important;
+  background: transparent !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  font-size: 0.76rem !important;
+  line-height: 1 !important;
+  font-weight: 950 !important;
+  letter-spacing: -0.015em !important;
+}
+
+.draft-list-name {
+  display: block !important;
+  min-width: 0 !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+  color: #ffffff !important;
+  font-size: clamp(0.86rem, 1.7vw, 1.05rem) !important;
+  line-height: 1.08 !important;
+  font-weight: 950 !important;
+  letter-spacing: -0.03em !important;
+}
+
+.draft-list-club,
+.draft-list-nationality {
+  display: block !important;
+  min-width: 0 !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+  color: rgba(255, 255, 255, 0.88) !important;
+  font-size: 0.78rem !important;
+  line-height: 1.15 !important;
+  font-weight: 800 !important;
+}
+
+.draft-list-nationality {
+  color: rgba(219, 231, 223, 0.78) !important;
+  font-size: 0.74rem !important;
+}
+
+.draft-list-traits {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-content: flex-start !important;
+  align-items: flex-start !important;
+  gap: 4px !important;
+  min-width: 0 !important;
+  max-height: 58px !important;
+  overflow: hidden !important;
+  padding-top: 2px !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.draft-list-trait {
+  display: inline-flex !important;
+  align-items: center !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  padding: 3px 6px !important;
+  border-radius: 999px !important;
+  border: 1px solid rgba(117, 255, 158, 0.24) !important;
+  background: rgba(117, 255, 158, 0.08) !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-size: 0.62rem !important;
+  line-height: 1.05 !important;
+  font-weight: 850 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+.draft-list-trait.empty {
+  opacity: 0.72 !important;
+  border-color: rgba(255, 255, 255, 0.14) !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+}
+
+@media (max-width: 760px) {
+  .linear-player-grid {
+    grid-template-columns: repeat(auto-fit, minmax(162px, 1fr)) !important;
+  }
+
+  .draft-list-player-card {
+    min-height: 176px !important;
+    height: 176px !important;
+    grid-template-rows: 20px 24px 19px 17px 1fr !important;
+    padding: 11px 12px !important;
+  }
+
+  .draft-list-name {
+    font-size: clamp(0.78rem, 4vw, 0.96rem) !important;
+  }
+
+  .draft-list-club,
+  .draft-list-nationality {
+    font-size: 0.69rem !important;
+  }
+
+  .draft-list-trait {
+    font-size: 0.55rem !important;
+    padding: 3px 5px !important;
+  }
+}
