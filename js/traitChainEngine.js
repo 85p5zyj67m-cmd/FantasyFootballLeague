@@ -18,7 +18,7 @@ export function getActiveTraitChains(team) {
   TRAIT_CHAINS.forEach(chain => {
     const matchedLevels = chain.levels
       .map(level => ({ level, path: findChainPath(level.traits, placedPlayers) }))
-      .filter(match => match.path);
+      .filter(match => Array.isArray(match.path) && match.path.length === match.level.traits.length);
 
     if (!matchedLevels.length) return;
 
@@ -103,7 +103,7 @@ function findChainPath(requiredTraits, placedPlayers) {
     return null;
   }
 
-  return walk(0, new Set(), null) || walk(0, new Set(), []);
+  return walk(0, new Set(), []);
 }
 
 function areChainAdjacent(a, b) {
