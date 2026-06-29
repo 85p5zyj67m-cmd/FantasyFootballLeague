@@ -51,12 +51,13 @@ function enhanceTraitChains() {
   }
 
   const chains = safeGetActiveTraitChains(userTeam());
-  const panelSignature = createPanelSignature(chains);
+  const selectedChain = getSelectedChain(chains);
+  const panelSignature = createPanelSignature(chains, selectedChain);
   const existingPanel = s11View.querySelector(".trait-chain-panel");
 
   if (!existingPanel || panelSignature !== lastPanelSignature) {
     const hint = s11View.querySelector(".compact-hint, .subtitle");
-    const panel = createTraitChainPanel(chains);
+    const panel = createTraitChainPanel(chains, selectedChain);
 
     if (existingPanel) {
       existingPanel.replaceWith(panel);
@@ -69,11 +70,12 @@ function enhanceTraitChains() {
     lastPanelSignature = panelSignature;
   }
 
-  markChainPlayers(chains);
-  drawChainLinks(chains);
+  const visibleChains = selectedChain ? [selectedChain] : [];
+  markChainPlayers(visibleChains);
+  drawChainLinks(visibleChains);
 }
 
-function createTraitChainPanel(chains) {
+function createTraitChainPanel(chains, selectedChain) {
   const panel = document.createElement("section");
   panel.className = "trait-chain-panel";
 
@@ -97,30 +99,27 @@ function createTraitChainPanel(chains) {
     return panel;
   }
 
-  if (!chains.some(chain => chain.id === activeDetailId)) {
-    activeDetailId = chains[0].id;
-  }
-
   const list = document.createElement("div");
   list.className = "trait-chain-list";
 
   chains.forEach(chain => {
-    const item = createChainButton(chain);
+    const item = createChainButton(chain, selectedChain?.id === chain.id);
     list.appendChild(item);
   });
 
   panel.appendChild(list);
 
-  const selectedChain = chains.find(chain => chain.id === activeDetailId) || chains[0];
-  panel.appendChild(createChainDetail(selectedChain));
+  if (selectedChain) {
+    panel.appendChild(createChainDetail(selectedChain));
+  }
 
   return panel;
 }
 
-function createChainButton(chain) {
+function createChainButton(chain, isActive) {
   const button = document.createElement("button");
   button.type = "button";
-  button.className = chain.id === activeDetailId ? "trait-chain-chip active" : "trait-chain-chip";
+  button.className = isActive ? "trait-chain-chip active" : "trait-chain-chip";
   button.dataset.chainId = chain.id;
 
   const name = document.createElement("span");
@@ -135,6 +134,7 @@ function createChainButton(chain) {
     event.stopPropagation();
     activeDetailId = chain.id;
     lastPanelSignature = "";
+    lastOverlaySignature = "";
     queueEnhancement();
   });
 
@@ -173,6 +173,17 @@ function createChainDetail(chain) {
 
   detail.append(top, effect, players, upgrade);
   return detail;
+}
+
+function getSelectedChain(chains) {
+  if (!chains.length) {
+    activeDetailId = null;
+    return null;
+  }
+
+  const selected = chains.find(chain => chain.id === activeDetailId) || chains[0];
+  activeDetailId = selected.id;
+  return selected;
 }
 
 function markChainPlayers(chains) {
@@ -237,17 +248,10 @@ function drawChainLinks(chains) {
   defs.appendChild(gradient);
   overlay.appendChild(defs);
 
-  const drawnLinks = new Set();
-
   chains.forEach(chain => {
     chain.path.forEach((item, index) => {
       if (index === 0) return;
       const previous = chain.path[index - 1];
-      const linkKey = [previous.slot.key, item.slot.key].sort().join("|");
-      const exactKey = `${chain.id}:${previous.slot.key}->${item.slot.key}`;
-      const key = drawnLinks.has(linkKey) ? exactKey : linkKey;
-      drawnLinks.add(key);
-
       const start = getSlotCenter(previous.slot.key, pitchRect);
       const end = getSlotCenter(item.slot.key, pitchRect);
       if (!start || !end) return;
@@ -295,9 +299,9 @@ function removeChainOverlay() {
   document.querySelectorAll(".trait-chain-link-overlay").forEach(overlay => overlay.remove());
 }
 
-function createPanelSignature(chains) {
+function createPanelSignature(chains, selectedChain) {
   return JSON.stringify({
-    activeDetailId,
+    activeDetailId: selectedChain?.id || null,
     chains: chains.map(chain => ({
       id: chain.id,
       level: chain.level,
