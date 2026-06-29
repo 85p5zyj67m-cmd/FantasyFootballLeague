@@ -1,4 +1,4 @@
-import { FORMATIONS } from "../../formations.js";
+import { FORMATIONS } from "../../formations.js?v=detailed-formations-2";
 import { appState, userTeam } from "../linearState.js";
 import { goTo } from "../linearRouter.js";
 import { clearApp, pageShell } from "../pageUtils.js";
