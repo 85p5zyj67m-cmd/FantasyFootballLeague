@@ -1,0 +1,41 @@
+.trait-chain-panel {
+  max-height: 230px !important;
+  overflow-y: auto !important;
+  overscroll-behavior: contain !important;
+}
+
+.trait-chain-header {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 2 !important;
+  padding-bottom: 2px !important;
+  background: rgba(7, 17, 13, 0.94) !important;
+}
+
+.trait-chain-list {
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  padding: 2px 0 6px !important;
+  scrollbar-width: thin !important;
+  touch-action: pan-x !important;
+  overscroll-behavior-x: contain !important;
+}
+
+.trait-chain-list::-webkit-scrollbar {
+  height: 5px !important;
+}
+
+.trait-chain-list::-webkit-scrollbar-thumb {
+  border-radius: 999px !important;
+  background: rgba(117, 255, 158, 0.36) !important;
+}
+
+.trait-chain-chip {
+  cursor: pointer !important;
+}
+
+@media (max-width: 760px) {
+  .trait-chain-panel {
+    max-height: 190px !important;
+  }
+}
