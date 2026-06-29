@@ -21,6 +21,24 @@ export function getPositionGroup(player) {
   return player?.positionGroup || getPositionGroupFromPosition(player?.position || player?.detailedPosition || "");
 }
 
+export function getPlayerPositions(player) {
+  if (!player) return [];
+
+  const detailed = player.detailedPosition || player.positionDetail || player.rawPosition || "";
+  const positions = splitPositions(detailed);
+
+  if (positions.length) return positions;
+
+  const fallback = String(player.position || "").trim().toUpperCase();
+  return fallback ? [fallback] : [];
+}
+
+export function canPlayPosition(player, slotPosition) {
+  const target = String(slotPosition || "").trim().toUpperCase();
+  if (!target) return false;
+  return getPlayerPositions(player).includes(target);
+}
+
 export function getTraitList(player) {
   if (!player) return [];
   if (Array.isArray(player.traits)) {
