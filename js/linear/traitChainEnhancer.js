@@ -1,4 +1,4 @@
-import { getActiveTraitChains } from "../traitChainEngine.js?v=chain-engine-1";
+import { getActiveTraitChains } from "../traitChainEngine.js?v=chain-engine-2";
 import { userTeam } from "./linearState.js";
 
 let observer = null;
@@ -13,6 +13,11 @@ export function installTraitChainEnhancer() {
     childList: true,
     subtree: true
   });
+
+  window.addEventListener("click", queueEnhancement, true);
+  window.addEventListener("change", queueEnhancement, true);
+  window.addEventListener("dragend", queueEnhancement, true);
+  window.addEventListener("drop", queueEnhancement, true);
 
   queueEnhancement();
 }
@@ -29,12 +34,14 @@ function queueEnhancement() {
 function enhanceTraitChains() {
   const s11View = document.querySelector(".linear-s11-view");
   if (!s11View) return;
-  if (s11View.querySelector(".trait-chain-panel")) return;
 
   const hint = s11View.querySelector(".compact-hint, .subtitle");
+  const existingPanel = s11View.querySelector(".trait-chain-panel");
   const panel = createTraitChainPanel(userTeam());
 
-  if (hint) {
+  if (existingPanel) {
+    existingPanel.replaceWith(panel);
+  } else if (hint) {
     hint.insertAdjacentElement("afterend", panel);
   } else {
     s11View.prepend(panel);
@@ -44,7 +51,7 @@ function enhanceTraitChains() {
 }
 
 function createTraitChainPanel(team) {
-  const chains = getActiveTraitChains(team);
+  const chains = safeGetActiveTraitChains(team);
   const panel = document.createElement("section");
   panel.className = "trait-chain-panel";
 
@@ -98,12 +105,11 @@ function createChainButton(chain) {
   meta.textContent = `Lv.${chain.level}`;
 
   button.append(name, meta);
-  button.addEventListener("click", () => {
+  button.addEventListener("click", event => {
+    event.preventDefault();
+    event.stopPropagation();
     activeDetailId = chain.id;
-    const currentPanel = document.querySelector(".trait-chain-panel");
-    if (!currentPanel) return;
-    currentPanel.replaceWith(createTraitChainPanel(userTeam()));
-    markChainPlayers();
+    queueEnhancement();
   });
 
   return button;
@@ -145,7 +151,7 @@ function createChainDetail(chain) {
 
 function markChainPlayers() {
   const team = userTeam();
-  const chains = getActiveTraitChains(team);
+  const chains = safeGetActiveTraitChains(team);
   const activeSlotKeys = new Set();
 
   chains.forEach(chain => {
@@ -163,4 +169,13 @@ function markChainPlayers() {
     const activeInLine = line.querySelectorAll(".chain-active-slot").length;
     line.classList.toggle("chain-active-line", activeInLine > 1);
   });
+}
+
+function safeGetActiveTraitChains(team) {
+  try {
+    return getActiveTraitChains(team);
+  } catch (error) {
+    console.error("Trait chain calculation failed", error);
+    return [];
+  }
 }
