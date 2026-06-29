@@ -36,7 +36,16 @@ export function getPlayerPositions(player) {
 export function canPlayPosition(player, slotPosition) {
   const target = String(slotPosition || "").trim().toUpperCase();
   if (!target) return false;
-  return getPlayerPositions(player).includes(target);
+
+  const positions = getPlayerPositions(player);
+
+  if (positions.includes(target)) return true;
+
+  // One-way compatibility: every CM can play a CDM slot.
+  // A CDM-only player does NOT automatically qualify for CM slots.
+  if (target === "CDM" && positions.includes("CM")) return true;
+
+  return false;
 }
 
 export function getTraitList(player) {
