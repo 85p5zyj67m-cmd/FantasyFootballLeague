@@ -1,4 +1,4 @@
-import { getActiveTraitChains } from "../traitChainEngine.js?v=chain-engine-4";
+import { getActiveTraitChains } from "../traitChainEngine.js?v=chain-adjacency-1";
 import { userTeam } from "./linearState.js";
 
 let observer = null;
