@@ -5,6 +5,7 @@ import {
   getTeamStrength as getTacticalTeamStrength
 } from "./seasonEngineTacticalLite.js?v=tactical-chain-engine-2";
 import { getActiveTraitChains } from "./traitChainEngine.js?v=chain-segments-1";
+import { getFormationById } from "./formations.js";
 
 const QUALITY_ANCHOR = 82;
 const QUALITY_FACTOR = 0.5;
@@ -14,6 +15,8 @@ const CHAIN_TACTIC_SYNERGY_BOOST = 0.9;
 const MAX_CHAIN_BOOST = 8;
 const MAX_TACTIC_BOOST = 5;
 const MAX_SYNERGY_BOOST = 5;
+const MAX_FORMATION_BOOST = 2.4;
+const MAX_FORMATION_PENALTY = -3.2;
 
 const DEFAULT_TACTICS = {
   attackingPlan: "Balanced Attack",
@@ -118,7 +121,8 @@ function calculateSystemBoost(team) {
   const chain = calculateChainBoost(team);
   const tactic = calculateTacticIdentityBoost(team);
   const synergy = calculateChainTacticSynergy(team);
-  return Math.round((chain + tactic + synergy) * 10) / 10;
+  const formation = calculateFormationFitBoost(team);
+  return Math.round((chain + tactic + synergy + formation) * 10) / 10;
 }
 
 function calculateChainBoost(team) {
@@ -147,6 +151,45 @@ function calculateChainTacticSynergy(team) {
   });
 
   return Math.min(MAX_SYNERGY_BOOST, score);
+}
+
+function calculateFormationFitBoost(team) {
+  const formation = getFormationById(team?.formationId);
+  if (!formation?.lines?.length) return 0;
+
+  const required = { ATT: 0, MID: 0, DEF: 0, GK: 0 };
+  const actual = { ATT: 0, MID: 0, DEF: 0, GK: 0 };
+
+  formation.lines.flat().forEach(positionGroup => {
+    if (positionGroup in required) required[positionGroup] += 1;
+  });
+
+  getSelectedStarters(team).forEach(player => {
+    if (player.position in actual) actual[player.position] += 1;
+  });
+
+  const missing =
+    Math.max(0, required.ATT - actual.ATT) +
+    Math.max(0, required.MID - actual.MID) +
+    Math.max(0, required.DEF - actual.DEF) +
+    Math.max(0, required.GK - actual.GK);
+
+  const overload =
+    Math.max(0, actual.ATT - required.ATT) * 0.25 +
+    Math.max(0, actual.MID - required.MID) * 0.2 +
+    Math.max(0, actual.DEF - required.DEF) * 0.25;
+
+  const fitBonus = missing === 0 ? 1.15 : 0;
+  const goalkeeperPenalty = actual.GK >= 1 ? 0 : -1.8;
+  const raw = fitBonus + overload - missing * 1.05 + goalkeeperPenalty;
+
+  return clamp(MAX_FORMATION_PENALTY, MAX_FORMATION_BOOST, raw);
+}
+
+function getSelectedStarters(team) {
+  const players = team?.players || [];
+  const selected = players.filter(player => team?.lineup?.[player.id] && team.lineup[player.id] !== "BENCH");
+  return (selected.length >= 8 ? selected : [...players].sort((a, b) => b.overall - a.overall)).slice(0, 11);
 }
 
 function getChainSystemScore(team) {
@@ -229,4 +272,8 @@ function collectSeasonTeams(season) {
     match.away && teams.add(match.away);
   });
   return Array.from(teams);
+}
+
+function clamp(min, max, value) {
+  return Math.max(min, Math.min(max, value));
 }
