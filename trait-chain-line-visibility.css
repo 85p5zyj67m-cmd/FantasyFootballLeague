@@ -1,0 +1,39 @@
+.compact-player-pitch {
+  position: relative !important;
+  isolation: isolate !important;
+}
+
+.trait-chain-link-overlay {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  pointer-events: none !important;
+  z-index: 8 !important;
+  overflow: visible !important;
+}
+
+.trait-chain-link {
+  stroke: #f7c95f !important;
+  stroke-linecap: round !important;
+  opacity: 0.98 !important;
+  filter: drop-shadow(0 0 8px rgba(247, 201, 95, 0.9)) !important;
+}
+
+.trait-chain-link-dot {
+  fill: #ffeaa0 !important;
+  stroke: #07110d !important;
+  stroke-width: 2.5 !important;
+  filter: drop-shadow(0 0 6px rgba(247, 201, 95, 0.9)) !important;
+}
+
+.linear-slot.chain-active-slot {
+  position: relative !important;
+  z-index: 10 !important;
+}
+
+@media (max-width: 760px) {
+  .trait-chain-link {
+    stroke-width: 5 !important;
+  }
+}
