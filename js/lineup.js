@@ -1,4 +1,5 @@
 import { getFormationById } from "./formations.js";
+import { canPlayPosition } from "./playerUtils.js";
 
 const formationSlotsCache = new WeakMap();
 
@@ -8,7 +9,7 @@ export function autoPlacePlayer(team, player) {
   const occupiedSlots = new Set(Object.values(team.lineup));
 
   for (const slot of slots) {
-    if (slot.position === player.position && !occupiedSlots.has(slot.key)) {
+    if (canPlayPosition(player, slot.position) && !occupiedSlots.has(slot.key)) {
       team.lineup[player.id] = slot.key;
       return;
     }
@@ -34,15 +35,19 @@ export function movePlayer(team, movingPlayerId, targetSlot) {
   const targetSlotData = slots.find(s => s.key === targetSlot);
 
   if (!targetSlotData) return false;
-  if (targetSlotData.position !== movingPlayer.position) return false;
+  if (!canPlayPosition(movingPlayer, targetSlotData.position)) return false;
 
   const targetPlayerId = getPlayerIdBySlot(team, targetSlot);
 
   if (targetPlayerId && targetPlayerId !== movingPlayerId) {
     const targetPlayer = playersById.get(targetPlayerId);
-
     if (!targetPlayer) return false;
-    if (targetPlayer.position !== movingPlayer.position) return false;
+
+    if (oldSlot !== "BENCH") {
+      const oldSlotData = slots.find(s => s.key === oldSlot);
+      if (!oldSlotData) return false;
+      if (!canPlayPosition(targetPlayer, oldSlotData.position)) return false;
+    }
 
     team.lineup[targetPlayerId] = oldSlot;
   }
