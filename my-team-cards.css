@@ -1,8 +1,8 @@
-/* Compact text-only player stat cards. No logos, flags or icons. */
+/* Compact centered text-only player cards. */
 .linear-info-card-view {
   --card-green: #65e58d;
   --card-yellow: #ffd45f;
-  --card-border: rgba(101, 229, 141, 0.52);
+  --card-border: rgba(101, 229, 141, 0.48);
 }
 
 .linear-info-card-view .compact-hint {
@@ -16,11 +16,11 @@
   flex-direction: column !important;
   align-items: center !important;
   justify-content: center !important;
-  gap: 12px !important;
+  gap: 10px !important;
   height: auto !important;
   min-height: 0 !important;
   overflow: visible !important;
-  padding: 16px !important;
+  padding: 14px !important;
 }
 
 .linear-info-card-view .compact-player-line,
@@ -44,29 +44,29 @@
   min-height: 0 !important;
   overflow: visible !important;
   padding: 0 !important;
-  text-align: left !important;
+  text-align: center !important;
   white-space: normal !important;
 }
 
 .linear-info-card-view .linear-slot-card,
 .linear-season-setup-card .linear-slot-card {
-  flex: 0 1 184px !important;
-  width: 184px !important;
-  max-width: 184px !important;
+  flex: 0 1 168px !important;
+  width: 168px !important;
+  max-width: 168px !important;
   border: 0 !important;
   background: transparent !important;
 }
 
 .linear-info-card-view .linear-empty-slot,
 .linear-season-setup-card .linear-empty-slot {
-  flex: 0 1 184px !important;
-  width: 184px !important;
-  max-width: 184px !important;
-  min-height: 112px !important;
+  flex: 0 1 168px !important;
+  width: 168px !important;
+  max-width: 168px !important;
+  min-height: 96px !important;
   display: grid !important;
   place-items: center !important;
-  gap: 4px !important;
-  border-radius: 16px !important;
+  gap: 3px !important;
+  border-radius: 14px !important;
   border: 1px solid rgba(255,255,255,.16) !important;
   background: rgba(3, 14, 10, .62) !important;
   color: rgba(255,255,255,.72) !important;
@@ -74,47 +74,48 @@
 
 .linear-info-card-view .linear-empty-slot strong {
   color: var(--card-green) !important;
-  font-size: .74rem !important;
+  font-size: .72rem !important;
 }
 
 .linear-info-card-view .linear-info-player-card,
 .linear-info-card-view .text-only-player-card {
   box-sizing: border-box !important;
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 6px !important;
+  display: grid !important;
+  grid-template-rows: auto auto auto auto !important;
+  align-content: start !important;
+  gap: 5px !important;
   width: 100% !important;
-  min-height: 166px !important;
-  overflow: hidden !important;
-  border-radius: 18px !important;
-  padding: 10px !important;
-  background: radial-gradient(circle at top left, rgba(101, 229, 141, .13), transparent 40%), linear-gradient(180deg, rgba(9, 32, 22, .98), rgba(2, 9, 7, .98)) !important;
+  min-height: 128px !important;
+  overflow: visible !important;
+  border-radius: 16px !important;
+  padding: 9px !important;
+  background: linear-gradient(180deg, rgba(9, 32, 22, .98), rgba(2, 9, 7, .98)) !important;
   border: 1px solid var(--card-border) !important;
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,.04), 0 0 14px rgba(101,229,141,.10) !important;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.035), 0 0 12px rgba(101,229,141,.08) !important;
   color: #ffffff !important;
-  text-align: left !important;
+  text-align: center !important;
 }
 
 .linear-info-card-view .linear-info-player-top {
   display: flex !important;
-  align-items: flex-start !important;
+  align-items: center !important;
   justify-content: space-between !important;
-  gap: 8px !important;
+  gap: 6px !important;
   width: 100% !important;
-  min-height: 30px !important;
+  min-height: 24px !important;
 }
 
 .linear-info-card-view .linear-info-rating {
-  display: grid !important;
+  display: inline-grid !important;
   place-items: center !important;
-  flex: 0 0 34px !important;
-  width: 34px !important;
-  height: 34px !important;
-  border-radius: 11px !important;
+  flex: 0 0 30px !important;
+  width: 30px !important;
+  height: 30px !important;
+  border-radius: 10px !important;
   border: 1px solid rgba(101,229,141,.62) !important;
-  background: rgba(101,229,141,.14) !important;
+  background: rgba(101,229,141,.13) !important;
   color: var(--card-green) !important;
-  font-size: .88rem !important;
+  font-size: .78rem !important;
   font-weight: 950 !important;
   line-height: 1 !important;
 }
@@ -124,14 +125,14 @@
   align-items: center !important;
   justify-content: center !important;
   margin-left: auto !important;
-  max-width: 118px !important;
-  min-height: 25px !important;
+  max-width: 104px !important;
+  min-height: 24px !important;
   border-radius: 999px !important;
-  border: 1px solid rgba(101,229,141,.68) !important;
-  padding: 4px 8px !important;
-  background: rgba(101,229,141,.10) !important;
+  border: 1px solid rgba(101,229,141,.58) !important;
+  padding: 3px 7px !important;
+  background: rgba(101,229,141,.09) !important;
   color: var(--card-green) !important;
-  font-size: .58rem !important;
+  font-size: .52rem !important;
   font-weight: 950 !important;
   line-height: 1.05 !important;
   text-align: center !important;
@@ -148,10 +149,10 @@
   width: 100% !important;
   margin: 0 !important;
   color: #ffffff !important;
-  font-size: .88rem !important;
+  font-size: .84rem !important;
   font-weight: 950 !important;
-  line-height: 1.04 !important;
-  letter-spacing: -.02em !important;
+  line-height: 1.05 !important;
+  letter-spacing: -.01em !important;
   white-space: normal !important;
   overflow: visible !important;
   text-align: center !important;
@@ -159,19 +160,16 @@
 }
 
 .linear-info-card-view .linear-info-divider {
-  display: block !important;
-  width: 100% !important;
-  height: 1px !important;
-  margin: 0 !important;
-  background: linear-gradient(90deg, var(--card-green), rgba(255,255,255,.10), transparent) !important;
+  display: none !important;
 }
 
 .linear-info-card-view .linear-info-meta {
   display: grid !important;
-  gap: 4px !important;
+  gap: 3px !important;
   width: 100% !important;
   margin: 0 !important;
   padding: 0 !important;
+  text-align: center !important;
 }
 
 .linear-info-card-view .linear-info-row {
@@ -184,74 +182,75 @@
 .linear-info-card-view .linear-info-label,
 .linear-info-card-view .linear-info-meta span:nth-child(1)::before,
 .linear-info-card-view .linear-info-meta span:nth-child(2)::before {
-  color: rgba(255,255,255,.54) !important;
+  color: rgba(255,255,255,.58) !important;
   font-size: .47rem !important;
   font-weight: 900 !important;
-  letter-spacing: .10em !important;
+  letter-spacing: .08em !important;
   line-height: 1 !important;
   text-transform: uppercase !important;
+  text-align: center !important;
 }
 
 .linear-info-card-view .linear-info-value,
 .linear-info-card-view .linear-info-meta > span {
   display: block !important;
   color: #ffffff !important;
-  font-size: .62rem !important;
+  font-size: .60rem !important;
   font-weight: 900 !important;
   line-height: 1.05 !important;
   white-space: normal !important;
   overflow: visible !important;
   text-overflow: clip !important;
   overflow-wrap: anywhere !important;
+  text-align: center !important;
 }
 
 .linear-info-card-view .linear-info-meta > span:nth-child(1)::before {
-  content: "CLUB";
+  content: "CLUB:";
   display: block;
   margin-bottom: 2px;
 }
 
 .linear-info-card-view .linear-info-meta > span:nth-child(2)::before {
-  content: "COUNTRY";
+  content: "COUNTRY:";
   display: block;
   margin-bottom: 2px;
 }
 
 .linear-info-card-view .linear-info-traits {
-  display: flex !important;
-  flex-wrap: wrap !important;
-  gap: 4px !important;
+  display: grid !important;
+  gap: 1px !important;
   width: 100% !important;
-  margin-top: 2px !important;
+  margin: 0 !important;
   padding-top: 0 !important;
   overflow: visible !important;
+  text-align: center !important;
 }
 
 .linear-info-card-view .linear-info-traits::before {
-  content: "TRAITS";
+  content: "TRAITS:";
   display: block;
-  flex-basis: 100%;
-  margin-bottom: 0;
-  color: rgba(255,255,255,.54);
+  margin-bottom: 1px;
+  color: rgba(255,255,255,.58);
   font-size: .47rem;
   font-weight: 900;
-  letter-spacing: .10em;
+  letter-spacing: .08em;
+  text-align: center;
 }
 
-.linear-info-card-view .linear-info-traits small {
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
+.linear-info-card-view .linear-info-traits small,
+.linear-info-card-view .linear-info-trait-text {
+  display: block !important;
   max-width: 100% !important;
-  min-height: 18px !important;
-  border-radius: 999px !important;
-  border: 1px solid rgba(101,229,141,.42) !important;
-  padding: 3px 6px !important;
-  background: rgba(101,229,141,.07) !important;
+  min-height: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
   color: #ffffff !important;
-  font-size: .50rem !important;
+  font-size: .52rem !important;
   font-weight: 900 !important;
-  line-height: 1.02 !important;
+  line-height: 1.08 !important;
   text-align: center !important;
   white-space: normal !important;
   overflow-wrap: anywhere !important;
@@ -259,14 +258,14 @@
 
 .linear-info-card-view .compact-player-bench,
 .linear-season-setup-card .compact-player-bench {
-  margin-top: 12px !important;
+  margin-top: 10px !important;
   overflow: visible !important;
 }
 
 .linear-info-card-view .compact-bench-grid,
 .linear-season-setup-card .compact-bench-grid {
   display: grid !important;
-  grid-template-columns: repeat(auto-fit, minmax(184px, 1fr)) !important;
+  grid-template-columns: repeat(auto-fit, minmax(168px, 1fr)) !important;
   gap: 10px !important;
   align-items: stretch !important;
   overflow: visible !important;
@@ -274,7 +273,7 @@
 
 .linear-info-card-view .linear-bench-card,
 .linear-season-setup-card .linear-bench-card {
-  min-height: 166px !important;
+  min-height: 128px !important;
   border: 0 !important;
   background: transparent !important;
 }
@@ -283,7 +282,7 @@
   display: grid !important;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)) !important;
   gap: 10px !important;
-  margin-bottom: 14px !important;
+  margin-bottom: 12px !important;
 }
 
 .linear-info-card-view .linear-tactic-control.compact {
@@ -296,13 +295,13 @@
 
 .linear-info-card-view .linear-tactics-squad-grid {
   display: grid !important;
-  grid-template-columns: repeat(auto-fit, minmax(184px, 1fr)) !important;
+  grid-template-columns: repeat(auto-fit, minmax(168px, 1fr)) !important;
   gap: 10px !important;
   align-items: stretch !important;
 }
 
 .linear-info-card-view .linear-tactics-player-card {
-  min-height: 166px !important;
+  min-height: 128px !important;
 }
 
 .linear-info-card-view .linear-slot.selected,
@@ -316,27 +315,28 @@
   .linear-season-setup-card .linear-slot-card,
   .linear-info-card-view .linear-empty-slot,
   .linear-season-setup-card .linear-empty-slot {
-    flex-basis: 170px !important;
-    width: 170px !important;
-    max-width: 170px !important;
+    flex-basis: 158px !important;
+    width: 158px !important;
+    max-width: 158px !important;
   }
 
   .linear-info-card-view .linear-info-player-card,
   .linear-info-card-view .text-only-player-card {
-    min-height: 172px !important;
-    padding: 9px !important;
+    min-height: 132px !important;
+    padding: 8px !important;
   }
 
   .linear-info-card-view .linear-info-name {
-    font-size: .82rem !important;
+    font-size: .78rem !important;
   }
 
   .linear-info-card-view .linear-info-value,
   .linear-info-card-view .linear-info-meta > span {
-    font-size: .58rem !important;
+    font-size: .56rem !important;
   }
 
-  .linear-info-card-view .linear-info-traits small {
-    font-size: .48rem !important;
+  .linear-info-card-view .linear-info-traits small,
+  .linear-info-card-view .linear-info-trait-text {
+    font-size: .49rem !important;
   }
 }
