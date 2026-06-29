@@ -1,0 +1,14 @@
+/* Hide the redundant Squad Cards / Squad Card Overview blocks in every tactics view. */
+.linear-tactics-squad,
+.linear-tactics-squad-grid,
+.linear-tactics-squad h3 {
+  display: none !important;
+}
+
+.linear-tactics-view {
+  gap: 0 !important;
+}
+
+.linear-tactics-controls-grid {
+  margin-bottom: 0 !important;
+}
