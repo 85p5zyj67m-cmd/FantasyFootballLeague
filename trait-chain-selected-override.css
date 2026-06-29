@@ -1,0 +1,29 @@
+.trait-chain-panel {
+  align-items: stretch !important;
+}
+
+.trait-chain-list {
+  position: relative !important;
+  z-index: 3 !important;
+  min-height: 40px !important;
+  margin-bottom: 4px !important;
+  flex-shrink: 0 !important;
+}
+
+.trait-chain-chip {
+  position: relative !important;
+  z-index: 4 !important;
+}
+
+.trait-chain-detail {
+  position: relative !important;
+  z-index: 1 !important;
+  margin-top: 0 !important;
+}
+
+@media (max-width: 760px) {
+  .trait-chain-list {
+    min-height: 34px !important;
+    margin-bottom: 5px !important;
+  }
+}
