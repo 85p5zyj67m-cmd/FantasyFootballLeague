@@ -168,12 +168,36 @@ function createChainDetail(chain) {
 
   const upgrade = document.createElement("p");
   upgrade.className = "trait-chain-upgrade";
-  upgrade.textContent = chain.nextLevel
-    ? `Upgrade: ${chain.nextLevel.traits.join(" -> ")} | ${chain.nextLevel.effect} | ${chain.nextLevel.winChance}`
-    : "Max level reached.";
+  upgrade.textContent = createUpgradeText(chain);
 
   detail.append(top, effect, players, upgrade);
   return detail;
+}
+
+function createUpgradeText(chain) {
+  const higherLevels = (chain.allLevels || [])
+    .filter(level => level.size > chain.level)
+    .sort((a, b) => a.size - b.size);
+
+  if (!higherLevels.length) return "Max level reached.";
+
+  const currentTraits = normalizeTraitList(chain.traits);
+
+  return higherLevels
+    .map(level => {
+      const missingTraits = level.traits.filter(trait => !currentTraits.has(normalizeTrait(trait)));
+      const missingText = missingTraits.length ? `missing: ${missingTraits.join(", ")}` : "missing: none";
+      return `Upgrade to Lv.${level.size}: ${missingText} | ${level.effect} | ${level.winChance}`;
+    })
+    .join(" | ");
+}
+
+function normalizeTraitList(traits) {
+  return new Set((traits || []).map(normalizeTrait));
+}
+
+function normalizeTrait(trait) {
+  return String(trait || "").trim().toLowerCase();
 }
 
 function getSelectedChain(chains) {
