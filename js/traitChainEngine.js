@@ -1,14 +1,15 @@
-import { getFormationById } from "./formations.js?v=detailed-formations-2";
+import { getFormationById } from "./formations.js?v=detailed-formations-3";
 import { getSlotsFromFormation } from "./lineup.js?v=detailed-formations-2";
 import { getTraitList } from "./playerUtils.js?v=chain-engine-1";
 import { TRAIT_CHAINS } from "./traitChains.js?v=chain-engine-1";
+import { getFormationChainLinkScore, hasFormationSpecificChainLinks } from "./formationChainLinks.js?v=formation-links-1";
 
 const X_BY_LINE_LENGTH = {
   1: [0],
-  2: [-0.5, 0.5],
-  3: [-1, 0, 1],
-  4: [-1, -0.34, 0.34, 1],
-  5: [-1, -0.5, 0, 0.5, 1]
+  2: [-0.62, 0.62],
+  3: [-1.05, 0, 1.05],
+  4: [-1.5, -0.5, 0.5, 1.5],
+  5: [-2, -1, 0, 1, 2]
 };
 
 const LEFT_SIDE_POSITIONS = new Set(["LB", "LWB", "LM", "LW"]);
@@ -17,7 +18,6 @@ const LEFT_DEFENDERS = new Set(["LB", "LWB"]);
 const RIGHT_DEFENDERS = new Set(["RB", "RWB"]);
 const LEFT_WIDE_ATTACK = new Set(["LM", "LW"]);
 const RIGHT_WIDE_ATTACK = new Set(["RM", "RW"]);
-const CENTRAL_DEFENSE = new Set(["GK", "CB"]);
 const CENTRAL_MIDFIELD = new Set(["CDM", "CM", "CAM"]);
 const CENTRAL_ATTACK = new Set(["CAM", "CF", "ST"]);
 const CENTRAL_POSITIONS = new Set(["GK", "CB", "CDM", "CM", "CAM", "CF", "ST"]);
@@ -35,10 +35,11 @@ export function getActiveTraitChains(team) {
   const placedPlayers = getPlacedStarterPlayers(team);
   const playersByTrait = buildTraitIndex(placedPlayers);
   const activeChains = [];
+  const formationId = team?.formationId || "4-3-3";
 
   TRAIT_CHAINS.forEach(chain => {
     const matchedLevels = chain.levels
-      .map(level => ({ level, match: findBestChainPath(level.traits, playersByTrait) }))
+      .map(level => ({ level, match: findBestChainPath(level.traits, playersByTrait, formationId) }))
       .filter(item => item.match && Array.isArray(item.match.path) && item.match.path.length === item.level.traits.length);
 
     if (!matchedLevels.length) return;
@@ -119,7 +120,7 @@ function buildTraitIndex(placedPlayers) {
   return index;
 }
 
-function findBestChainPath(requiredTraits, playersByTrait) {
+function findBestChainPath(requiredTraits, playersByTrait, formationId) {
   const normal = requiredTraits.map(normalizeTrait);
   const reversed = [...normal].reverse();
   const candidates = [
@@ -128,12 +129,12 @@ function findBestChainPath(requiredTraits, playersByTrait) {
   ];
 
   return candidates
-    .map(candidate => ({ ...candidate, ...findBestOrderedPath(candidate.traits, playersByTrait) }))
+    .map(candidate => ({ ...candidate, ...findBestOrderedPath(candidate.traits, playersByTrait, formationId) }))
     .filter(candidate => candidate.path)
     .sort((a, b) => a.score - b.score)[0] || null;
 }
 
-function findBestOrderedPath(normalizedTraits, playersByTrait) {
+function findBestOrderedPath(normalizedTraits, playersByTrait, formationId) {
   let best = null;
   const candidateLists = normalizedTraits.map(trait => playersByTrait.get(trait) || []);
 
@@ -153,15 +154,15 @@ function findBestOrderedPath(normalizedTraits, playersByTrait) {
       .filter(item => {
         if (usedPlayerIds.has(item.player.id)) return false;
         if (!path.length) return true;
-        return getAdjacencyScore(path[path.length - 1], item) !== null;
+        return getAdjacencyScore(path[path.length - 1], item, formationId) !== null;
       })
       .sort((a, b) => {
         if (!path.length) return a.y - b.y || a.x - b.x;
-        return getAdjacencyScore(path[path.length - 1], a) - getAdjacencyScore(path[path.length - 1], b);
+        return getAdjacencyScore(path[path.length - 1], a, formationId) - getAdjacencyScore(path[path.length - 1], b, formationId);
       });
 
     for (const candidate of candidates) {
-      const linkScore = path.length ? getAdjacencyScore(path[path.length - 1], candidate) : 0;
+      const linkScore = path.length ? getAdjacencyScore(path[path.length - 1], candidate, formationId) : 0;
       const nextUsed = new Set(usedPlayerIds);
       nextUsed.add(candidate.player.id);
       walk(index + 1, nextUsed, [...path, candidate], score + linkScore);
@@ -172,8 +173,12 @@ function findBestOrderedPath(normalizedTraits, playersByTrait) {
   return best || { path: null, score: Number.POSITIVE_INFINITY };
 }
 
-function getAdjacencyScore(a, b) {
+function getAdjacencyScore(a, b, formationId) {
   if (!a || !b) return null;
+
+  if (hasFormationSpecificChainLinks(formationId)) {
+    return getFormationChainLinkScore(formationId, a.slot.key, b.slot.key);
+  }
 
   const positionScore = getFootballAdjacencyScore(a, b);
   if (positionScore !== null) return positionScore;
@@ -197,36 +202,18 @@ function getFootballAdjacencyScore(a, b) {
   const distance = Math.sqrt(dx * dx + dy * dy);
 
   if (first === second && dy <= 1.2) return distance;
-
-  // Universal left-side lane: LB/LWB can always connect to LM/LW in any formation.
   if (isPair(first, second, LEFT_DEFENDERS, LEFT_WIDE_ATTACK) && dy <= 2.5) return distance + 0.05;
-
-  // Universal right-side lane: RB/RWB can always connect to RM/RW in any formation.
   if (isPair(first, second, RIGHT_DEFENDERS, RIGHT_WIDE_ATTACK) && dy <= 2.5) return distance + 0.05;
-
-  // Wide attackers must be able to connect inside to ST/CF/CAM across all formations.
   if (isPair(first, second, LEFT_WIDE_ATTACK, CENTRAL_ATTACK) && dy <= 2.1) return distance + 0.12;
   if (isPair(first, second, RIGHT_WIDE_ATTACK, CENTRAL_ATTACK) && dy <= 2.1) return distance + 0.12;
-
-  // Wide midfielders can connect inside to CM/CDM/CAM on their line or neighbouring line.
   if (isPair(first, second, LEFT_WIDE_ATTACK, CENTRAL_MIDFIELD) && dy <= 1.6) return distance + 0.18;
   if (isPair(first, second, RIGHT_WIDE_ATTACK, CENTRAL_MIDFIELD) && dy <= 1.6) return distance + 0.18;
-
-  // Fullbacks/wingbacks can step inside to CB/CDM/CM for build-up and inverted chains.
   if (isPair(first, second, LEFT_DEFENDERS, new Set(["CB", "CDM", "CM"])) && dy <= 1.6) return distance + 0.2;
   if (isPair(first, second, RIGHT_DEFENDERS, new Set(["CB", "CDM", "CM"])) && dy <= 1.6) return distance + 0.2;
-
-  // Central spine works from keeper through centre-backs and midfield to forwards.
   if (CENTRAL_POSITIONS.has(first) && CENTRAL_POSITIONS.has(second) && dy <= 2.1) return distance + 0.22;
-
-  // Front-three relationships: LW/RW/CAM/CF/ST can combine when they are adjacent attacking slots.
   if (FRONT_THREE.has(first) && FRONT_THREE.has(second) && dy <= 1.6) return distance + 0.24;
-
-  // Same flank support, for example LWB-LM-LW or RWB-RM-RW.
   if (LEFT_SIDE_POSITIONS.has(first) && LEFT_SIDE_POSITIONS.has(second) && dy <= 2.5) return distance + 0.26;
   if (RIGHT_SIDE_POSITIONS.has(first) && RIGHT_SIDE_POSITIONS.has(second) && dy <= 2.5) return distance + 0.26;
-
-  // Keeper can connect to every centre-back in three-, four- and five-at-the-back systems.
   if (isPair(first, second, new Set(["GK"]), new Set(["CB"])) && dy <= 2.5) return distance + 0.28;
 
   return null;
