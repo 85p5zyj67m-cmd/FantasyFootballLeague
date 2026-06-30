@@ -166,7 +166,7 @@ export const TRAIT_CHAINS = [
     levels: [
       { size: 2, traits: ["Defensive Fullback", "Anchor"], effect: "Stable defensive side", winChance: "+1 to +2%" },
       { size: 3, traits: ["Defensive Fullback", "Anchor", "Stopper"], effect: "Compact defensive structure", winChance: "+3 to +5%" },
-      { size: 4, traits: ["Defensive Fullback", "Anchor", "Stopper", "Sweeper"], effect: "Hard to break down", winChance: "+5 to +7%" }
+      { size: 4, traits: ["Defensive Fullback", "Anchor", "Stopper", "Shot Stopper"], effect: "Compact block protected by a shot-stopping keeper", winChance: "+5 to +7%" }
     ]
   },
   {
