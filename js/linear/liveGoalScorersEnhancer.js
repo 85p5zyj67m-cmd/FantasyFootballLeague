@@ -33,62 +33,29 @@ function enhanceLiveGoalScorers() {
     if (!momentumCard || !svg) return;
 
     const scorers = getGoalScorers(sim);
-    ensureGoalScorerPanel(momentumCard, svg, scorers);
+    ensureGoalScorerLine(momentumCard, svg, scorers);
     enhanceGoalMarkers(sim, scorers);
   });
 }
 
-function ensureGoalScorerPanel(momentumCard, svg, scorers) {
-  let panel = momentumCard.querySelector(".live-goal-scorers-panel");
-  if (!panel) {
-    panel = document.createElement("section");
-    panel.className = "live-goal-scorers-panel";
-    svg.insertAdjacentElement("afterend", panel);
+function ensureGoalScorerLine(momentumCard, svg, scorers) {
+  momentumCard.querySelector(".live-goal-scorers-panel")?.remove();
+
+  let line = momentumCard.querySelector(".live-goal-scorers-line");
+  if (!line) {
+    line = document.createElement("div");
+    line.className = "live-goal-scorers-line";
+    svg.insertAdjacentElement("beforebegin", line);
   }
 
-  panel.replaceChildren();
-
-  const title = document.createElement("div");
-  title.className = "live-goal-scorers-title";
-  title.textContent = "Goal Scorers";
-  panel.appendChild(title);
-
   if (!scorers.length) {
-    const empty = document.createElement("p");
-    empty.className = "live-goal-scorers-empty";
-    empty.textContent = "No goals yet.";
-    panel.appendChild(empty);
+    line.textContent = "Goal scorers: none yet";
+    line.classList.add("empty");
     return;
   }
 
-  const list = document.createElement("div");
-  list.className = "live-goal-scorers-list";
-
-  scorers.forEach(goal => {
-    const row = document.createElement("div");
-    row.className = `live-goal-scorer-row ${goal.side}`;
-
-    const minute = document.createElement("span");
-    minute.className = "live-goal-scorer-minute";
-    minute.textContent = `${goal.minute}'`;
-
-    const main = document.createElement("span");
-    main.className = "live-goal-scorer-main";
-    main.textContent = goal.scorer;
-
-    const team = document.createElement("span");
-    team.className = "live-goal-scorer-team";
-    team.textContent = goal.team;
-
-    const score = document.createElement("span");
-    score.className = "live-goal-scorer-score";
-    score.textContent = goal.score;
-
-    row.append(minute, main, team, score);
-    list.appendChild(row);
-  });
-
-  panel.appendChild(list);
+  line.classList.remove("empty");
+  line.textContent = `Goal scorers: ${scorers.map(goal => `${goal.minute}' ${goal.scorer}`).join("  ·  ")}`;
 }
 
 function enhanceGoalMarkers(sim, scorers) {
@@ -97,7 +64,12 @@ function enhanceGoalMarkers(sim, scorers) {
   const markerGroup = sim.querySelector(".live-goal-markers");
   if (!markerGroup) return;
 
-  markerGroup.querySelectorAll(".live-goal-minute-label").forEach(label => label.remove());
+  markerGroup.querySelectorAll(".live-goal-minute-label, .live-goal-ball-icon").forEach(label => label.remove());
+
+  markerTexts.forEach(textNode => {
+    textNode.textContent = "";
+    textNode.style.display = "none";
+  });
 
   markers.forEach((marker, index) => {
     const goal = scorers[index];
@@ -108,17 +80,17 @@ function enhanceGoalMarkers(sim, scorers) {
     title.textContent = `${goal.minute}' ${goal.scorer} (${goal.team}) - ${goal.score}`;
     marker.appendChild(title);
 
-    const markerText = markerTexts[index];
-    if (markerText) markerText.textContent = initials(goal.scorer);
+    marker.classList.add("live-goal-ball-bg");
 
     const cx = Number(marker.getAttribute("cx") || 0);
     const cy = Number(marker.getAttribute("cy") || 0);
-    const minuteLabel = document.createElementNS(SVG_NS, "text");
-    minuteLabel.setAttribute("x", String(cx));
-    minuteLabel.setAttribute("y", String(goal.side === "away" ? cy + 24 : cy - 17));
-    minuteLabel.setAttribute("class", "live-goal-minute-label");
-    minuteLabel.textContent = `${goal.minute}'`;
-    markerGroup.appendChild(minuteLabel);
+
+    const ball = document.createElementNS(SVG_NS, "text");
+    ball.setAttribute("x", String(cx));
+    ball.setAttribute("y", String(cy + 4));
+    ball.setAttribute("class", "live-goal-ball-icon");
+    ball.textContent = "⚽";
+    markerGroup.appendChild(ball);
   });
 }
 
@@ -184,102 +156,49 @@ function cleanupScorer(value, teamName) {
     .trim() || "Unknown scorer";
 }
 
-function initials(name) {
-  const parts = String(name || "G")
-    .split(/\s+/)
-    .filter(Boolean);
-  if (!parts.length) return "G";
-  if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
-  return `${parts[0][0]}${parts[parts.length - 1][0]}`.toUpperCase();
-}
-
 function installGoalScorerStyles() {
   if (document.getElementById("live-goal-scorers-styles")) return;
 
   const style = document.createElement("style");
   style.id = "live-goal-scorers-styles";
   style.textContent = `
-    .live-goal-scorers-panel {
-      margin-top: 12px;
-      padding: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 18px;
-      background: rgba(5, 8, 7, 0.48);
-    }
-    .live-goal-scorers-title {
-      margin-bottom: 8px;
-      color: #f7c95f;
-      font-size: 12px;
-      font-weight: 950;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      text-align: center;
-    }
-    .live-goal-scorers-empty {
-      margin: 0;
-      color: #a1a1aa;
-      text-align: center;
-      font-size: 13px;
-    }
-    .live-goal-scorers-list {
-      display: grid;
-      gap: 8px;
-    }
-    .live-goal-scorer-row {
-      display: grid;
-      grid-template-columns: 44px 1fr minmax(74px, auto) 54px;
-      align-items: center;
-      gap: 8px;
-      padding: 9px 10px;
-      border-radius: 14px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      color: #f4f4f5;
-      background: rgba(255, 255, 255, 0.045);
-    }
-    .live-goal-scorer-row.home { border-left: 4px solid #65e58d; }
-    .live-goal-scorer-row.away { border-left: 4px solid #ef4444; }
-    .live-goal-scorer-minute,
-    .live-goal-scorer-score {
-      color: #f7c95f;
-      font-weight: 950;
-      text-align: center;
-    }
-    .live-goal-scorer-main {
-      min-width: 0;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      font-weight: 950;
-    }
-    .live-goal-scorer-team {
-      min-width: 0;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      color: #a1a1aa;
-      font-size: 12px;
+    .live-goal-scorers-line {
+      margin: 2px 0 4px;
+      color: #d4d4d8;
+      font-size: 11px;
       font-weight: 800;
-      text-align: right;
+      line-height: 1.35;
+      text-align: center;
+      opacity: 0.78;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
-    .live-goal-minute-label {
-      fill: #f7c95f;
+    .live-goal-scorers-line.empty {
+      color: #a1a1aa;
+      opacity: 0.48;
+      font-weight: 700;
+    }
+    .live-goal-ball-bg {
+      fill: rgba(17, 24, 39, 0.88);
+      stroke: #f4f4f5;
+      stroke-width: 2.2;
+      filter: drop-shadow(0 0 8px rgba(0, 0, 0, 0.7));
+    }
+    .live-goal-ball-icon {
       font-family: inherit;
-      font-size: 10px;
-      font-weight: 950;
+      font-size: 15px;
       text-anchor: middle;
-      paint-order: stroke;
-      stroke: rgba(0, 0, 0, 0.72);
-      stroke-width: 3px;
-    }
-    .live-goal-text {
-      font-size: 8.5px;
+      dominant-baseline: middle;
+      pointer-events: none;
     }
     @media (max-width: 720px) {
-      .live-goal-scorer-row {
-        grid-template-columns: 38px 1fr 48px;
-      }
-      .live-goal-scorer-team {
-        display: none;
+      .live-goal-scorers-line {
+        font-size: 10px;
+        white-space: normal;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
       }
     }
   `;
