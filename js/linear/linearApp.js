@@ -6,6 +6,7 @@ import { installFormationSelectorEnhancer } from "./formationSelectorEnhancer.js
 import { installDraftFormationConstraintEnhancer } from "./draftFormationConstraintEnhancerV6.js?v=draft-constraint-perf-1";
 import { installTraitChainEnhancer } from "./traitChainEnhancerCompleteV6.js?v=show-all-control-robust-1";
 import { installMatchActionTopEnhancer } from "./matchActionTopEnhancer.js?v=page-flow-polish-1";
+import { installLiveGoalScorersEnhancer } from "./liveGoalScorersEnhancer.js?v=goal-scorers-1";
 import { installTacticsSystemEnhancer } from "./tacticsSystemEnhancer.js?v=english-ui-1";
 import { installStrictPositionEnforcer } from "./strictPositionEnforcer.js?v=strict-cdm-1";
 import { installSeasonStartBridge } from "./seasonStartBridge.js?v=live-balanced-engine-1";
@@ -18,6 +19,7 @@ window.addEventListener("DOMContentLoaded", () => {
   installDraftFormationConstraintEnhancer();
   installTraitChainEnhancer();
   installMatchActionTopEnhancer();
+  installLiveGoalScorersEnhancer();
   installTacticsSystemEnhancer();
   installStrictPositionEnforcer();
   installSeasonStartBridge();
