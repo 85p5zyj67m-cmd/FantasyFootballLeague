@@ -76,7 +76,7 @@ export const TRAIT_CHAINS = [
     levels: [
       { size: 2, traits: ["Deep Playmaker", "Speedster"], effect: "Faster attacks", winChance: "+1 to +2%" },
       { size: 3, traits: ["Deep Playmaker", "Speedster", "Clinical Finisher"], effect: "Direct attacks with finishing quality", winChance: "+4 to +6%" },
-      { size: 4, traits: ["Deep Playmaker", "Speedster", "Clinical Finisher", "Distribution Keeper"], effect: "Counterattack from keeper to finish", winChance: "+6 to +8%" }
+      { size: 4, traits: ["Deep Playmaker", "Speedster", "Clinical Finisher", "Ball Winner"], effect: "Direct attacks after midfield ball wins", winChance: "+6 to +8%" }
     ]
   },
   {
