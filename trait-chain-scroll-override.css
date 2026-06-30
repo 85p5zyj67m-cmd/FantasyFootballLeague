@@ -2,6 +2,9 @@
   max-height: 230px !important;
   overflow-y: auto !important;
   overscroll-behavior: contain !important;
+  border-color: rgba(209,179,110,.28) !important;
+  background: #11251b !important;
+  color: #f3ead7 !important;
 }
 
 .trait-chain-header {
@@ -10,6 +13,7 @@
   z-index: 2 !important;
   padding-bottom: 2px !important;
   background: rgba(7, 17, 13, 0.94) !important;
+  color: #d1b36e !important;
 }
 
 .trait-chain-list {
@@ -27,11 +31,14 @@
 
 .trait-chain-list::-webkit-scrollbar-thumb {
   border-radius: 999px !important;
-  background: rgba(117, 255, 158, 0.36) !important;
+  background: rgba(209, 179, 110, 0.44) !important;
 }
 
 .trait-chain-chip {
   cursor: pointer !important;
+  border-color: rgba(209,179,110,.24) !important;
+  background: rgba(6,18,12,.72) !important;
+  color: #f3ead7 !important;
 }
 
 @media (max-width: 760px) {
