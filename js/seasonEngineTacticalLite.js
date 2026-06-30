@@ -13,6 +13,57 @@ const CHAIN_VAR = {
 const VAR_LABEL = { aerialChance: "Aerial chance quality", crossVolume: "Cross volume", boxEntry: "Low box entries", halfSpaceShot: "Half-space shooting", fluidity: "False-nine fluidity", magicChance: "Creative special actions", throughBall: "Runs behind", transitionSpeed: "Direct transition speed", buildupSecurity: "Build-up security", possessionControl: "Possession control", linkPlay: "Line connection", highRecovery: "High recoveries", secondBalls: "Second-ball control", staminaPressure: "Sustained intensity", longShotThreat: "Long-shot threat", boxDefense: "Box defense", compactness: "Deep compactness", counterCover: "High-line cover", aerialControl: "Aerial control", setPieceThreat: "Set-piece threat", clutch: "Knockout clutch" };
 const VARS = Object.keys(VAR_LABEL).concat(["centralControl", "wideOverload"]);
 
+const BASE_STYLE_PROFILES = {
+  Balanced: { attack: 0, control: 0, defense: 0, tempo: 0, risk: 0 },
+  Possession: { attack: -0.4, control: 2.2, defense: 0.5, tempo: -0.8, risk: -1.2 },
+  "Counter Attack": { attack: 0.8, control: -0.8, defense: 0.7, tempo: 1.4, risk: 0.7 },
+  "High Press": { attack: 0.7, control: 0.9, defense: -0.4, tempo: 1.7, risk: 1.3 },
+  "Defensive Block": { attack: -1.1, control: -0.5, defense: 2.2, tempo: -1, risk: -1.4 }
+};
+
+const TACTIC_PROFILES = {
+  attackingPlan: {
+    "Balanced Attack": {},
+    "Wing Play": { crossVolume: 1.2, aerialChance: 0.45, wideOverload: 0.9, centralControl: -0.25, attack: 0.3 },
+    "Central Overload": { centralControl: 1.2, linkPlay: 0.55, fluidity: 0.35, wideOverload: -0.35, control: 0.5 },
+    "Direct Runs": { transitionSpeed: 1.15, throughBall: 0.8, buildupSecurity: -0.45, tempo: 0.8, risk: 0.35 },
+    "Patient Build Up": { possessionControl: 1.15, buildupSecurity: 0.75, tempo: -0.75, control: 0.5 },
+    "Long Shot Pressure": { longShotThreat: 1.35, boxEntry: -0.25, attack: 0.25 }
+  },
+  pressingPlan: {
+    "Low Block": { compactness: 1.1, boxDefense: 0.8, highRecovery: -0.65, tempo: -0.35, defense: 0.4, risk: -0.5 },
+    "Mid Block": { secondBalls: 0.7, compactness: 0.45, defense: 0.15 },
+    "High Press": { highRecovery: 1.2, staminaPressure: 0.65, counterCover: -0.35, tempo: 0.7, risk: 0.8 },
+    "Counter Press": { highRecovery: 0.85, secondBalls: 0.9, staminaPressure: 0.55, risk: 0.7 }
+  },
+  defensiveShape: {
+    "Deep Compact": { compactness: 1.1, boxDefense: 0.9, counterCover: -0.5, possessionControl: -0.35, defense: 0.4, risk: -0.35 },
+    "Balanced Line": { compactness: 0.25, counterCover: 0.25 },
+    "High Line": { counterCover: 0.95, highRecovery: 0.45, compactness: -0.45, tempo: 0.35, risk: 0.65 },
+    "Man Oriented": { secondBalls: 0.75, boxDefense: 0.35, fluidity: -0.2, risk: 0.25 }
+  },
+  buildUpPlan: {
+    "Short Build Up": { buildupSecurity: 1.15, possessionControl: 0.75, transitionSpeed: -0.45, control: 0.35 },
+    "Mixed Build Up": { linkPlay: 0.45, buildupSecurity: 0.25 },
+    "Direct Build Up": { transitionSpeed: 1.05, throughBall: 0.65, possessionControl: -0.5, tempo: 0.5, risk: 0.25 },
+    "Fast Transitions": { transitionSpeed: 1.2, boxEntry: 0.55, buildupSecurity: -0.45, tempo: 0.8, risk: 0.5 }
+  },
+  chanceFocus: {
+    "Best Chance": {},
+    Crosses: { crossVolume: 1.15, aerialChance: 0.85, longShotThreat: -0.25 },
+    "Through Balls": { throughBall: 1.2, transitionSpeed: 0.35, crossVolume: -0.25 },
+    Cutbacks: { boxEntry: 1.1, halfSpaceShot: 0.75, aerialChance: -0.3 },
+    "Set Pieces": { setPieceThreat: 1.25, tempo: -0.15 },
+    "Box Crashes": { boxEntry: 0.85, aerialChance: 0.55, risk: 0.35 }
+  },
+  riskLevel: {
+    Safe: { risk: -1.4, defense: 0.5, attack: -0.5, tempo: -0.4 },
+    Balanced: {},
+    Brave: { risk: 1.1, attack: 0.65, tempo: 0.35, defense: -0.35 },
+    "All In": { risk: 2.1, attack: 1.2, tempo: 0.7, defense: -1.1, counterCover: -0.6 }
+  }
+};
+
 export function createSeason(teams, userTeamIndex) {
   teams.forEach(ensureTactics);
   const divisions = createCompassDivisions(teams);
