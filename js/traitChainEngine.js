@@ -132,8 +132,8 @@ function createChainSegments(chain) {
       ...level,
       id: `${chain.id}-${level.size}-${index}`,
       traits: level.traits,
-      startIndex: index,
-      endIndex: index
+      startIndex: 0,
+      endIndex: level.size - 1
     }));
 }
 
