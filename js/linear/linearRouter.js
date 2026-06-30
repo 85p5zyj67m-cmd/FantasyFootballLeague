@@ -1,7 +1,7 @@
 import { renderPage01StartDraft } from "./pages/page01StartDraft.js?v=player-traits-2";
 import { renderPage02DraftPosition } from "./pages/page02DraftPosition.js";
-import { renderPage03YourSystem } from "./pages/page03YourSystem.js?v=detailed-formations-1";
-import { renderPage04Draft } from "./pages/page04Draft.js?v=detailed-formations-1";
+import { renderPage03YourSystem } from "./pages/page03YourSystem.js?v=formation-draft-constraints-1";
+import { renderPage04Draft } from "./pages/page04Draft.js?v=formation-draft-constraints-1";
 import { renderPage05Tactics } from "./pages/page05Tactics.js?v=real-overall-system-balance-3";
 import { renderPage06SeasonStats } from "./pages/page06SeasonStats.js?v=real-overall-system-balance-3";
 import { renderPage07Match1 } from "./pages/page07Match1.js?v=second-half-route-2";
