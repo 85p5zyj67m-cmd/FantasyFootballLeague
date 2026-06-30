@@ -1,10 +1,11 @@
-import { goTo } from "./linearRouter.js?v=formation-draft-constraints-1";
+import { goTo } from "./linearRouter.js?v=page-flow-polish-1";
 import { installLinearStyles } from "./linearStyles.js";
 import { installDraftPolishStyles } from "./draftPolishStyles.js?v=default-fast-green-draft-1";
 import { installDraftSpeedController } from "./draftSpeedController.js?v=draft-speed-live-3";
 import { installFormationSelectorEnhancer } from "./formationSelectorEnhancer.js?v=formation-links-1";
 import { installDraftFormationConstraintEnhancer } from "./draftFormationConstraintEnhancerV5.js?v=random-required-autopick-1";
 import { installTraitChainEnhancer } from "./traitChainEnhancerCompleteV6.js?v=show-all-control-robust-1";
+import { installMatchActionTopEnhancer } from "./matchActionTopEnhancer.js?v=page-flow-polish-1";
 import { installTacticsSystemEnhancer } from "./tacticsSystemEnhancer.js";
 import { installStrictPositionEnforcer } from "./strictPositionEnforcer.js?v=strict-cdm-1";
 import { installSeasonStartBridge } from "./seasonStartBridge.js?v=live-balanced-engine-1";
@@ -16,6 +17,7 @@ window.addEventListener("DOMContentLoaded", () => {
   installFormationSelectorEnhancer();
   installDraftFormationConstraintEnhancer();
   installTraitChainEnhancer();
+  installMatchActionTopEnhancer();
   installTacticsSystemEnhancer();
   installStrictPositionEnforcer();
   installSeasonStartBridge();
