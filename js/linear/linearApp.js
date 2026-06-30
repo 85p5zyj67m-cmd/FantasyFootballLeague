@@ -3,7 +3,7 @@ import { installLinearStyles } from "./linearStyles.js";
 import { installDraftPolishStyles } from "./draftPolishStyles.js?v=default-fast-green-draft-1";
 import { installDraftSpeedController } from "./draftSpeedController.js?v=draft-speed-live-3";
 import { installFormationSelectorEnhancer } from "./formationSelectorEnhancer.js?v=formation-links-1";
-import { installDraftFormationConstraintEnhancer } from "./draftFormationConstraintEnhancerV2.js?v=formation-draft-constraints-2";
+import { installDraftFormationConstraintEnhancer } from "./draftFormationConstraintEnhancerV3.js?v=formation-draft-constraints-3";
 import { installTraitChainEnhancer } from "./traitChainEnhancerCompleteV6.js?v=show-all-control-robust-1";
 import { installTacticsSystemEnhancer } from "./tacticsSystemEnhancer.js";
 import { installStrictPositionEnforcer } from "./strictPositionEnforcer.js?v=strict-cdm-1";
