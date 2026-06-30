@@ -7,7 +7,7 @@ import {
 } from "../../lineup.js";
 import { formatTraits, getDisplayPosition, getTraitList } from "../../playerUtils.js";
 import { appState, userTeam } from "../linearState.js";
-import { startLinearSeason } from "../seasonFlow.js?v=second-half-route-1";
+import { startLinearSeason } from "../seasonFlow.js?v=real-overall-system-balance-2";
 import { clearApp, pageShell, primaryButton } from "../pageUtils.js";
 
 let selectedPlayerId = null;
