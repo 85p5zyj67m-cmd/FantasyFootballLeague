@@ -7,7 +7,7 @@ export function renderPage11FirstHalfOverview() {
   const shell = pageShell({
     eyebrow: "Page 11",
     title: "First Half Overview",
-    subtitle: "Hinrunde summary, standings and your match history."
+    subtitle: "First-half summary, standings and your match history."
   });
 
   shell.card.appendChild(renderStandingsBlock());
