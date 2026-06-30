@@ -4,37 +4,37 @@ const TACTIC_FIELDS = [
   {
     key: "attackingPlan",
     label: "Attacking Plan",
-    help: "Wie du Chancen erzeugst. Wird vom gegnerischen Defensiv-Setup gekontert.",
+    help: "How you create chances. This can be countered by the opponent's defensive setup.",
     options: ["Balanced Attack", "Wing Play", "Central Overload", "Direct Runs", "Patient Build Up", "Long Shot Pressure"]
   },
   {
     key: "pressingPlan",
     label: "Pressing Plan",
-    help: "Wie du gegnerischen Aufbau störst. Besonders stark oder schwach gegen bestimmte Build-Up-Pläne.",
+    help: "How you disrupt the opponent's build-up. Strong or weak against specific build-up plans.",
     options: ["Low Block", "Mid Block", "High Press", "Counter Press"]
   },
   {
     key: "defensiveShape",
     label: "Defensive Shape",
-    help: "Deine Grundabsicherung. Kontert manche Angriffsmuster, öffnet aber andere Räume.",
+    help: "Your defensive base shape. It counters some attacking patterns but opens other spaces.",
     options: ["Deep Compact", "Balanced Line", "High Line", "Man Oriented"]
   },
   {
     key: "buildUpPlan",
     label: "Build-Up Plan",
-    help: "Wie du den Ball nach vorne bringst. Kann Pressing ausspielen oder darin hängen bleiben.",
+    help: "How you move the ball forward. It can beat pressing or get trapped by it.",
     options: ["Short Build Up", "Mixed Build Up", "Direct Build Up", "Fast Transitions"]
   },
   {
     key: "chanceFocus",
     label: "Chance Focus",
-    help: "Welche Abschlussart du forcierst. Passt besonders gut zu bestimmten Chains.",
+    help: "Which type of finish you force. This works especially well with matching chains.",
     options: ["Best Chance", "Crosses", "Through Balls", "Cutbacks", "Set Pieces", "Box Crashes"]
   },
   {
     key: "riskLevel",
     label: "Risk Level",
-    help: "Mehr Risiko erhöht Druck und Tore, macht dich aber konteranfälliger.",
+    help: "More risk increases pressure and goals, but makes you more vulnerable to counters.",
     options: ["Safe", "Balanced", "Brave", "All In"]
   }
 ];
@@ -49,11 +49,11 @@ const DEFAULT_TACTICS = {
 };
 
 const COUNTER_TEXT = [
-  "Direct Runs bestraft High Line, wird aber von Deep Compact gebremst.",
-  "High Press ist stark gegen Short Build Up, aber riskant gegen Direct Build Up und Fast Transitions.",
-  "Wing Play und Set Pieces helfen gegen Deep Compact, Man Oriented kann Wing Play aber stören.",
-  "Cutbacks sind stark gegen Man Oriented, Through Balls sind stark gegen High Line.",
-  "All In kann Low Block knacken, wird aber von High Press oder Counter Press hart bestraft."
+  "Direct Runs punish a High Line, but Deep Compact can slow them down.",
+  "High Press is strong against Short Build Up, but risky against Direct Build Up and Fast Transitions.",
+  "Wing Play and Set Pieces help against Deep Compact, while Man Oriented can disrupt Wing Play.",
+  "Cutbacks are strong against Man Oriented; Through Balls are strong against a High Line.",
+  "All In can break a Low Block, but High Press or Counter Press can punish it hard."
 ];
 
 let observer = null;
@@ -161,7 +161,7 @@ function createGuideCard(team) {
 
   const note = document.createElement("p");
   note.className = "counter-tactics-note";
-  note.textContent = "Chains verstärken jeweils genau eine eigene Engine-Variable. Deine Taktik entscheidet, wie oft diese Variable im Match wirklich zum Tragen kommt.";
+  note.textContent = "Each chain strengthens a specific engine variable. Your tactics decide how often that variable actually matters during the match.";
 
   card.append(title, current, list, note);
   return card;
