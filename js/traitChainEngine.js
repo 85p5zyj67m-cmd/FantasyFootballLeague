@@ -126,26 +126,15 @@ function buildTraitIndex(placedPlayers) {
 }
 
 function createChainSegments(chain) {
-  const maxLevel = chain.levels.find(level => level.size === Math.max(...chain.levels.map(item => item.size)));
-  const fullTraits = maxLevel?.traits || [];
-  const segments = [];
-
-  chain.levels.forEach(level => {
-    if (level.size < 2) return;
-
-    for (let startIndex = 0; startIndex <= fullTraits.length - level.size; startIndex += 1) {
-      const traits = fullTraits.slice(startIndex, startIndex + level.size);
-      segments.push({
-        ...level,
-        id: `${chain.id}-${level.size}-${startIndex}`,
-        traits,
-        startIndex,
-        endIndex: startIndex + level.size - 1
-      });
-    }
-  });
-
-  return segments;
+  return chain.levels
+    .filter(level => level.size >= 2 && Array.isArray(level.traits) && level.traits.length === level.size)
+    .map((level, index) => ({
+      ...level,
+      id: `${chain.id}-${level.size}-${index}`,
+      traits: level.traits,
+      startIndex: index,
+      endIndex: index
+    }));
 }
 
 function findNextLevel(chain, currentSize) {
