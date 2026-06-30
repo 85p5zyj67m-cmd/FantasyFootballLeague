@@ -176,7 +176,7 @@ export const TRAIT_CHAINS = [
     levels: [
       { size: 2, traits: ["Fast Defender", "Sweeper Keeper"], effect: "Lower counterattack risk", winChance: "+1 to +2%" },
       { size: 3, traits: ["Sweeper Keeper", "Fast Defender", "Ball Playing Defender"], effect: "High line with safety cover", winChance: "+3 to +5%" },
-      { size: 4, traits: ["Sweeper Keeper", "Fast Defender", "Ball Playing Defender", "Press Machine"], effect: "Aggressive high defensive block", winChance: "+5 to +7%" }
+      { size: 4, traits: ["Sweeper Keeper", "Fast Defender", "Ball Playing Defender", "Sweeper"], effect: "High line with extra sweeping cover", winChance: "+5 to +7%" }
     ]
   },
   {
