@@ -11,8 +11,6 @@ export function installSeasonStartBridge() {
     if ((button.textContent || "").trim() !== "Start Season") return;
 
     event.preventDefault();
-    event.stopPropagation();
-    event.stopImmediatePropagation?.();
 
     if (starting) return;
     starting = true;
@@ -21,7 +19,7 @@ export function installSeasonStartBridge() {
     button.textContent = "Starting Season...";
 
     try {
-      const seasonFlow = await import("./seasonFlow.js?v=real-overall-system-balance-3");
+      const seasonFlow = await import("./seasonFlow.js?v=live-balanced-engine-1");
       seasonFlow.startLinearSeason();
     } catch (error) {
       console.error("Start Season failed", error);
