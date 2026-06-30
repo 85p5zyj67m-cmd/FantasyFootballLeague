@@ -74,6 +74,7 @@ export function playerCard(player, onClick = null) {
   card.type = "button";
   card.className = "linear-player-card draft-list-player-card";
   card.disabled = !onClick;
+  if (player?.id) card.dataset.playerId = player.id;
 
   const top = document.createElement("span");
   top.className = "linear-player-top draft-list-card-top";
