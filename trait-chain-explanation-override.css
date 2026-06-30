@@ -4,4 +4,6 @@ body{color:#f3ead7!important;background:linear-gradient(180deg,#07150f 0%,#10281
 .primary-btn,.linear-next-btn{color:#140d08!important;border:1px solid rgba(255,231,164,.72)!important;background:linear-gradient(180deg,#f0d48a 0%,#c69d50 48%,#8f642e 100%)!important}
 .eyebrow,.bench-title,#pickInfo{color:#d1b36e!important}
 .subtitle,.hint{color:#b8ad98!important}
+.linear-player-card,.draft-list-player-card,.player,.team-card,.ai-team-card{border:1px solid rgba(209,179,110,.24)!important;border-radius:16px!important;background:linear-gradient(145deg,#173425,#07120c 60%,#22140d)!important;box-shadow:0 16px 42px rgba(0,0,0,.42)!important;color:#f3ead7!important}
+.draft-list-name,.linear-player-name,.player-title{color:#f3ead7!important}.draft-list-club,.draft-list-nationality,.player-meta{color:#b8ad98!important}
 
