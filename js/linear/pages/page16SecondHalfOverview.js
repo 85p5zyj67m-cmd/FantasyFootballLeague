@@ -11,7 +11,7 @@ export function renderPage16SecondHalfOverview() {
   const shell = pageShell({
     eyebrow: "Page 16",
     title: "Second Half Overview",
-    subtitle: complete ? "Your group stage is finished." : "Rückrunde summary. If you qualified, the knockouts start now."
+    subtitle: complete ? "Your group stage is finished." : "Second-half summary. If you qualified, the knockouts start now."
   });
 
   shell.card.appendChild(renderStandingsBlock());
