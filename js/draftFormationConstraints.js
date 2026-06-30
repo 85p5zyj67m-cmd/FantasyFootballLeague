@@ -1,7 +1,10 @@
 import { GAME_CONFIG } from "./config.js";
 import { getFormationById } from "./formations.js?v=detailed-formations-3";
 import { getSlotsFromFormation } from "./lineup.js?v=strict-cdm-1";
-import { canPlayPosition, getPlayerPositions } from "./playerUtils.js?v=strict-cdm-1";
+import { canPlayPosition } from "./playerUtils.js?v=strict-cdm-1";
+
+const fillCache = new Map();
+const CACHE_LIMIT = 1200;
 
 export function getUserDraftPicksRemaining(team, extraPlayers = 0) {
   const picked = (team?.players?.length || 0) + extraPlayers;
@@ -63,41 +66,67 @@ export function canCompleteFormationWithRoster(players, formationId, futurePicks
 export function getBestFormationFill(players, formationId) {
   const formation = getFormationById(formationId);
   const slots = getSlotsFromFormation(formation);
-  const items = (players || []).map(player => ({
-    player,
-    positions: getPlayerPositions(player)
-  }));
+  const roster = players || [];
+  const cacheKey = createFillCacheKey(roster, formationId);
 
-  let best = { filled: [], unfilledSlots: slots };
+  if (fillCache.has(cacheKey)) return fillCache.get(cacheKey);
 
-  function walk(slotIndex, usedPlayerIds, filled) {
-    if (slotIndex >= slots.length) {
-      if (filled.length > best.filled.length) {
-        const filledSlotKeys = new Set(filled.map(item => item.slot.key));
-        best = {
-          filled,
-          unfilledSlots: slots.filter(slot => !filledSlotKeys.has(slot.key))
-        };
-      }
-      return;
-    }
+  const match = findMaximumSlotMatching(roster, slots);
+  const filled = match.slotToPlayer
+    .map((playerIndex, slotIndex) => playerIndex >= 0 ? { slot: slots[slotIndex], player: roster[playerIndex] } : null)
+    .filter(Boolean);
 
-    if (filled.length + (slots.length - slotIndex) <= best.filled.length) return;
+  const unfilledSlots = slots.filter((_, slotIndex) => match.slotToPlayer[slotIndex] < 0);
+  const result = { filled, unfilledSlots };
 
-    const slot = slots[slotIndex];
-    const candidates = items.filter(item =>
-      !usedPlayerIds.has(item.player.id) && canPlayPosition(item.player, slot.position)
-    );
-
-    for (const candidate of candidates) {
-      const nextUsed = new Set(usedPlayerIds);
-      nextUsed.add(candidate.player.id);
-      walk(slotIndex + 1, nextUsed, [...filled, { slot, player: candidate.player }]);
-    }
-
-    walk(slotIndex + 1, usedPlayerIds, filled);
+  fillCache.set(cacheKey, result);
+  if (fillCache.size > CACHE_LIMIT) {
+    const firstKey = fillCache.keys().next().value;
+    fillCache.delete(firstKey);
   }
 
-  walk(0, new Set(), []);
-  return best;
+  return result;
+}
+
+function findMaximumSlotMatching(players, slots) {
+  const slotToPlayer = Array(slots.length).fill(-1);
+  const candidateSlotsByPlayer = players.map(player =>
+    slots
+      .map((slot, slotIndex) => canPlayPosition(player, slot.position) ? slotIndex : -1)
+      .filter(slotIndex => slotIndex >= 0)
+  );
+
+  const playerOrder = players
+    .map((_, playerIndex) => playerIndex)
+    .sort((a, b) => candidateSlotsByPlayer[a].length - candidateSlotsByPlayer[b].length);
+
+  playerOrder.forEach(playerIndex => {
+    const seenSlots = new Set();
+    tryAssignPlayer(playerIndex, candidateSlotsByPlayer, slotToPlayer, seenSlots);
+  });
+
+  return { slotToPlayer };
+}
+
+function tryAssignPlayer(playerIndex, candidateSlotsByPlayer, slotToPlayer, seenSlots) {
+  for (const slotIndex of candidateSlotsByPlayer[playerIndex]) {
+    if (seenSlots.has(slotIndex)) continue;
+    seenSlots.add(slotIndex);
+
+    const currentPlayerIndex = slotToPlayer[slotIndex];
+    if (currentPlayerIndex === -1 || tryAssignPlayer(currentPlayerIndex, candidateSlotsByPlayer, slotToPlayer, seenSlots)) {
+      slotToPlayer[slotIndex] = playerIndex;
+      return true;
+    }
+  }
+
+  return false;
+}
+
+function createFillCacheKey(players, formationId) {
+  const playerPart = (players || [])
+    .map(player => String(player.id || player.name || ""))
+    .sort()
+    .join("|");
+  return `${formationId || ""}::${playerPart}`;
 }
