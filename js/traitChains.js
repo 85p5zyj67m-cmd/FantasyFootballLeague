@@ -14,9 +14,9 @@ export const TRAIT_CHAINS = [
     name: "Overlap Crossing Chain",
     summary: "A crossing chain built around an attacking fullback.",
     levels: [
-      { size: 2, traits: ["Overlapping Runner", "Cross Specialist"], effect: "More space for crosses", winChance: "+1 to +2%" },
-      { size: 3, traits: ["Overlapping Runner", "Cross Specialist", "Target Man"], effect: "Strong wide-to-target connection", winChance: "+3 to +5%" },
-      { size: 4, traits: ["Connector", "Overlapping Runner", "Cross Specialist", "Target Man"], effect: "Better connected wing attacks", winChance: "+5 to +7%" }
+      { size: 2, traits: ["Overlapping Runner", "Crossing Fullback"], effect: "Fullback overlap creates wide progression", winChance: "+1 to +2%" },
+      { size: 3, traits: ["Overlapping Runner", "Crossing Fullback", "Cross Specialist"], effect: "Better crossing lanes from overlapping runs", winChance: "+3 to +5%" },
+      { size: 4, traits: ["Connector", "Overlapping Runner", "Crossing Fullback", "Cross Specialist"], effect: "Better connected wing attacks", winChance: "+5 to +7%" }
     ]
   },
   {
@@ -26,7 +26,7 @@ export const TRAIT_CHAINS = [
     levels: [
       { size: 2, traits: ["Low Cross Specialist", "Poacher"], effect: "More shots inside the box", winChance: "+1 to +2%" },
       { size: 3, traits: ["Wide Creator", "Low Cross Specialist", "Poacher"], effect: "Better low deliveries", winChance: "+3 to +5%" },
-      { size: 4, traits: ["Advanced Playmaker", "Wide Creator", "Low Cross Specialist", "Poacher"], effect: "Many clear chances from wide areas", winChance: "+5 to +7%" }
+      { size: 4, traits: ["Connector", "Wide Creator", "Low Cross Specialist", "Poacher"], effect: "Many clear chances from wide areas", winChance: "+5 to +7%" }
     ]
   },
   {
@@ -36,7 +36,7 @@ export const TRAIT_CHAINS = [
     levels: [
       { size: 2, traits: ["Overlapping Runner", "Inside Forward"], effect: "More space for the winger", winChance: "+1 to +2%" },
       { size: 3, traits: ["Overlapping Runner", "Inside Forward", "Clinical Finisher"], effect: "More shots from half-spaces", winChance: "+3 to +5%" },
-      { size: 4, traits: ["Connector", "Overlapping Runner", "Inside Forward", "Clinical Finisher"], effect: "Strong side overload with finishing focus", winChance: "+5 to +7%" }
+      { size: 4, traits: ["Crossing Fullback", "Overlapping Runner", "Inside Forward", "Clinical Finisher"], effect: "Strong side overload with finishing focus", winChance: "+5 to +7%" }
     ]
   },
   {
@@ -45,8 +45,8 @@ export const TRAIT_CHAINS = [
     summary: "Combination football with inverted wide forwards.",
     levels: [
       { size: 2, traits: ["False 9", "Inside Forward"], effect: "Space for inside forwards", winChance: "+1 to +2%" },
-      { size: 3, traits: ["Advanced Playmaker", "False 9", "Inside Forward"], effect: "More combinations in the final third", winChance: "+4 to +6%" },
-      { size: 4, traits: ["Creative Genius", "Advanced Playmaker", "False 9", "Inside Forward"], effect: "Extremely creative fluid attack", winChance: "+6 to +8%" }
+      { size: 3, traits: ["False 9", "Inside Forward", "Connector"], effect: "More combinations in the final third", winChance: "+4 to +6%" },
+      { size: 4, traits: ["False 9", "Inside Forward", "Connector", "Creative Genius"], effect: "Extremely creative fluid attack", winChance: "+6 to +8%" }
     ]
   },
   {
@@ -55,8 +55,8 @@ export const TRAIT_CHAINS = [
     summary: "Creative Genius as the main attacking trigger.",
     levels: [
       { size: 2, traits: ["Creative Genius", "Clinical Finisher"], effect: "More special goal actions", winChance: "+1 to +2%" },
-      { size: 3, traits: ["Creative Genius", "Advanced Playmaker", "Clinical Finisher"], effect: "More big chances through creativity", winChance: "+4 to +6%" },
-      { size: 4, traits: ["Tempo Controller", "Creative Genius", "Advanced Playmaker", "Clinical Finisher"], effect: "Controlled creative chance machine", winChance: "+6 to +8%" }
+      { size: 3, traits: ["Creative Genius", "Clinical Finisher", "Tempo Controller"], effect: "More big chances through controlled creativity", winChance: "+4 to +6%" },
+      { size: 4, traits: ["Creative Genius", "Clinical Finisher", "Tempo Controller", "Box-to-Box"], effect: "Controlled creative chance machine", winChance: "+6 to +8%" }
     ]
   },
   {
@@ -85,7 +85,7 @@ export const TRAIT_CHAINS = [
     summary: "Build-up play from the back.",
     levels: [
       { size: 2, traits: ["Ball Playing Defender", "Regista"], effect: "Better build-up play", winChance: "+1 to +2%" },
-      { size: 3, traits: ["Ball Playing Defender", "Regista", "Tempo Controller"], effect: "More possession and fewer turnovers", winChance: "+3 to +5%" },
+      { size: 3, traits: ["Distribution Keeper", "Ball Playing Defender", "Regista"], effect: "Cleaner first phase under pressure", winChance: "+3 to +5%" },
       { size: 4, traits: ["Distribution Keeper", "Ball Playing Defender", "Regista", "Tempo Controller"], effect: "Controlled build-up from the back", winChance: "+5 to +7%" }
     ]
   },
@@ -104,9 +104,9 @@ export const TRAIT_CHAINS = [
     name: "Connector Chain",
     summary: "Connector as a valuable puzzle trait.",
     levels: [
-      { size: 2, traits: ["Connector", "Advanced Playmaker"], effect: "Better link between midfield and attack", winChance: "+1 to +2%" },
-      { size: 3, traits: ["Connector", "Advanced Playmaker", "Clinical Finisher"], effect: "More clean chances", winChance: "+3 to +5%" },
-      { size: 4, traits: ["Regista", "Connector", "Advanced Playmaker", "Clinical Finisher"], effect: "Midfield perfectly connects build-up and finishing", winChance: "+5 to +7%" }
+      { size: 2, traits: ["Connector", "Box-to-Box"], effect: "Better link between midfield lines", winChance: "+1 to +2%" },
+      { size: 3, traits: ["Connector", "Box-to-Box", "Advanced Playmaker"], effect: "More clean midfield-to-attack progression", winChance: "+3 to +5%" },
+      { size: 4, traits: ["Connector", "Box-to-Box", "Advanced Playmaker", "Clinical Finisher"], effect: "Midfield perfectly connects build-up and finishing", winChance: "+5 to +7%" }
     ]
   },
   {
@@ -144,9 +144,9 @@ export const TRAIT_CHAINS = [
     name: "Long Shot Chain",
     summary: "Cutbacks and long-range shots.",
     levels: [
-      { size: 2, traits: ["Long Shot Specialist", "False 9"], effect: "Layoffs for long shots", winChance: "+1%" },
-      { size: 3, traits: ["Wide Creator", "False 9", "Long Shot Specialist"], effect: "Edge-of-box chances after wide attacks", winChance: "+3 to +4%" },
-      { size: 4, traits: ["Creative Genius", "Wide Creator", "False 9", "Long Shot Specialist"], effect: "Unpredictable edge-of-box attacks", winChance: "+5 to +6%" }
+      { size: 2, traits: ["Long Shot Specialist", "Wide Creator"], effect: "Layoffs and edge-of-box shots", winChance: "+1%" },
+      { size: 3, traits: ["Wide Creator", "Long Shot Specialist", "Tempo Controller"], effect: "Edge-of-box chances after controlled attacks", winChance: "+3 to +4%" },
+      { size: 4, traits: ["Creative Genius", "Wide Creator", "Long Shot Specialist", "Tempo Controller"], effect: "Unpredictable edge-of-box attacks", winChance: "+5 to +6%" }
     ]
   },
   {
@@ -164,8 +164,8 @@ export const TRAIT_CHAINS = [
     name: "Low Block Chain",
     summary: "Deep compact defense.",
     levels: [
-      { size: 2, traits: ["Defensive Fullback", "Stopper"], effect: "Stable defensive side", winChance: "+1 to +2%" },
-      { size: 3, traits: ["Defensive Fullback", "Stopper", "Anchor"], effect: "Compact defensive structure", winChance: "+3 to +5%" },
+      { size: 2, traits: ["Defensive Fullback", "Anchor"], effect: "Stable defensive side", winChance: "+1 to +2%" },
+      { size: 3, traits: ["Defensive Fullback", "Anchor", "Shot Stopper"], effect: "Compact defensive structure", winChance: "+3 to +5%" },
       { size: 4, traits: ["Defensive Fullback", "Stopper", "Anchor", "Shot Stopper"], effect: "Hard to break down", winChance: "+5 to +7%" }
     ]
   },
@@ -205,8 +205,8 @@ export const TRAIT_CHAINS = [
     summary: "Valuable in tight games and knockout rounds.",
     levels: [
       { size: 2, traits: ["Penalty Specialist", "Clinical Finisher"], effect: "Better penalties and late finishes", winChance: "Group: +0 to +1% | KO: +2 to +3%" },
-      { size: 3, traits: ["Penalty Specialist", "Clinical Finisher", "Creative Genius"], effect: "More late decisive actions", winChance: "Group: +1 to +2% | KO: +4 to +6%" },
-      { size: 4, traits: ["Penalty Specialist", "Clinical Finisher", "Creative Genius", "Advanced Playmaker"], effect: "Very strong in tight knockout games", winChance: "Group: +2 to +3% | KO: +6 to +8%" }
+      { size: 3, traits: ["Penalty Specialist", "Clinical Finisher", "Shot Stopper"], effect: "Better late moments and penalty security", winChance: "Group: +1 to +2% | KO: +4 to +6%" },
+      { size: 4, traits: ["Penalty Specialist", "Clinical Finisher", "Shot Stopper", "Creative Genius"], effect: "Very strong in tight knockout games", winChance: "Group: +2 to +3% | KO: +6 to +8%" }
     ]
   },
   {
