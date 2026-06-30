@@ -3,7 +3,7 @@ import { renderPage02DraftPosition } from "./pages/page02DraftPosition.js";
 import { renderPage03YourSystem } from "./pages/page03YourSystem.js?v=detailed-formations-1";
 import { renderPage04Draft } from "./pages/page04Draft.js?v=detailed-formations-1";
 import { renderPage05Tactics } from "./pages/page05Tactics.js?v=real-overall-system-balance-2";
-import { renderPage06SeasonStats } from "./pages/page06SeasonStats.js?v=second-half-route-2";
+import { renderPage06SeasonStats } from "./pages/page06SeasonStats.js?v=real-overall-system-balance-3";
 import { renderPage07Match1 } from "./pages/page07Match1.js?v=second-half-route-2";
 import { renderPage08Match2 } from "./pages/page08Match2.js?v=second-half-route-2";
 import { renderPage09Match3 } from "./pages/page09Match3.js?v=second-half-route-2";
