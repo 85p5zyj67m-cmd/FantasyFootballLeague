@@ -8,7 +8,7 @@ export function renderPage03YourSystem() {
   const shell = pageShell({
     eyebrow: "Page 3",
     title: "Your System",
-    subtitle: "Pick your formation. Slots now use real football positions."
+    subtitle: "Pick your formation."
   });
 
   const box = document.createElement("div");
@@ -31,12 +31,7 @@ function makeSystemButton(formation) {
   const name = document.createElement("strong");
   name.textContent = formation.name;
 
-  const shape = document.createElement("span");
-  shape.textContent = formation.lines
-    .map(line => line.join(" "))
-    .join(" / ");
-
-  button.append(name, shape);
+  button.append(name);
   button.addEventListener("click", () => {
     appState.selectedFormation = formation.id;
     userTeam().formationId = formation.id;
