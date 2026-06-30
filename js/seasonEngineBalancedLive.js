@@ -4,7 +4,7 @@ import {
   simulateNextMatch as simulateTacticalNextMatch,
   getTeamStrength as getTacticalTeamStrength
 } from "./seasonEngineTacticalLite.js?v=tactical-chain-engine-3";
-import { getActiveTraitChains } from "./traitChainEngine.js?v=all-traits-chain-recipes-1";
+import { getActiveTraitChains } from "./traitChainEngine.js?v=balanced-trait-recipes-1";
 import { getFormationById } from "./formations.js";
 
 const DEFAULT_TACTICS = {
