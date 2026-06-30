@@ -1,4 +1,4 @@
-import { goTo } from "./linearRouter.js?v=detailed-formations-1";
+import { goTo } from "./linearRouter.js?v=real-overall-system-balance-3";
 import { installLinearStyles } from "./linearStyles.js";
 import { installDraftPolishStyles } from "./draftPolishStyles.js?v=default-fast-green-draft-1";
 import { installDraftSpeedController } from "./draftSpeedController.js?v=draft-speed-live-3";
@@ -6,6 +6,7 @@ import { installFormationSelectorEnhancer } from "./formationSelectorEnhancer.js
 import { installTraitChainEnhancer } from "./traitChainEnhancer.js?v=chain-segments-1";
 import { installTacticsSystemEnhancer } from "./tacticsSystemEnhancer.js";
 import { installStrictPositionEnforcer } from "./strictPositionEnforcer.js?v=strict-cdm-1";
+import { installSeasonStartBridge } from "./seasonStartBridge.js?v=real-overall-system-balance-3";
 
 window.addEventListener("DOMContentLoaded", () => {
   installLinearStyles();
@@ -15,5 +16,6 @@ window.addEventListener("DOMContentLoaded", () => {
   installTraitChainEnhancer();
   installTacticsSystemEnhancer();
   installStrictPositionEnforcer();
+  installSeasonStartBridge();
   goTo("page01");
 });
