@@ -1,7 +1,7 @@
 import { getFormationById } from "./formations.js?v=detailed-formations-3";
 import { getSlotsFromFormation } from "./lineup.js?v=strict-cdm-1";
 import { getTraitList } from "./playerUtils.js?v=strict-cdm-1";
-import { TRAIT_CHAINS } from "./traitChains.js?v=all-traits-chain-recipes-1";
+import { TRAIT_CHAINS } from "./traitChains.js?v=balanced-trait-recipes-1";
 import { getFormationChainLinkScore, hasFormationSpecificChainLinks } from "./formationChainLinks.js?v=formation-links-1";
 
 const X_BY_LINE_LENGTH = {
