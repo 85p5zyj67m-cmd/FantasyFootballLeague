@@ -26,6 +26,7 @@ function makeSystemButton(formation) {
   const button = document.createElement("button");
   button.type = "button";
   button.className = "primary-btn linear-next-btn formation-option-btn";
+  button.dataset.formationId = formation.id;
 
   const name = document.createElement("strong");
   name.textContent = formation.name;
