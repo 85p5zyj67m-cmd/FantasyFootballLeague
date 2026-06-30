@@ -1,4 +1,4 @@
-import { getActiveTraitChains } from "../traitChainEngine.js?v=chain-segments-1";
+import { getActiveTraitChains } from "../traitChainEngine.js?v=normalized-chain-upgrades-1";
 import { userTeam } from "./linearState.js";
 
 let observer = null;
@@ -151,7 +151,7 @@ function createChainDetail(chain) {
 
   const note = document.createElement("p");
   note.className = "trait-chain-build-note";
-  note.textContent = "Build the chain in any connected consecutive order. Gaps like 1 + 4 do not count.";
+  note.textContent = "Build the exact level recipe with connected players. Higher levels keep the lower-level idea and add more traits.";
 
   detail.append(top, effect, note, createCurrentOrder(chain), createBuildRoadmap(chain));
   return detail;
@@ -245,13 +245,9 @@ function createSegmentPlan(chain, segment) {
 
 function getUpgradeSegments(chain) {
   const options = Array.isArray(chain.segmentOptions) ? chain.segmentOptions : [];
-  const start = Number.isFinite(chain.segmentStartIndex) ? chain.segmentStartIndex : 0;
-  const end = start + chain.level - 1;
-
   return options
     .filter(segment => segment.size > chain.level)
-    .filter(segment => segment.startIndex <= start && segment.endIndex >= end)
-    .sort((a, b) => a.size - b.size || a.startIndex - b.startIndex);
+    .sort((a, b) => a.size - b.size);
 }
 
 function getActiveItemsByTrait(chain) {
