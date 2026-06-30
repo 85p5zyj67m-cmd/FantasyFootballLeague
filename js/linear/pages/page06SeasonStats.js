@@ -1,5 +1,5 @@
 import { appState, userTeam } from "../linearState.js";
-import { playNextLinearMatch } from "../seasonFlow.js";
+import { playNextLinearMatch } from "../seasonFlow.js?v=real-overall-system-balance-3";
 import { clearApp, pageShell, primaryButton, playerCard, twoColumnRow } from "../pageUtils.js";
 import { renderHistoryBlock } from "../seasonRenderUtils.js";
 
