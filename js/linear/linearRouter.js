@@ -44,17 +44,11 @@ const routes = {
   seasonEnd: renderSeasonEndPage
 };
 
-export function getLegacyRouteNames() {
-  return Object.keys(routes);
-}
-
 export function goTo(routeName) {
   const render = routes[routeName];
   if (!render) {
     throw new Error(`Unknown route: ${routeName}`);
   }
-  window.dispatchEvent(new CustomEvent("ffl:route-before-render", { detail: { routeName } }));
   render();
-  window.dispatchEvent(new CustomEvent("ffl:route-after-render", { detail: { routeName } }));
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
