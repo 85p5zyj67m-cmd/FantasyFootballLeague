@@ -26,11 +26,11 @@ window.addEventListener("DOMContentLoaded", () => {
   installSeasonStartBridge();
   installVisualUnityLayer();
   document.getElementById("compact-draft-runtime-layer")?.remove();
-  installForcedDraftDesktopLayout();
+  installForcedDraftLayout();
   goTo("page01");
 });
 
-function installForcedDraftDesktopLayout() {
+function installForcedDraftLayout() {
   const set = (node, prop, value) => node?.style?.setProperty(prop, value, "important");
   const setAll = (selector, styles) => {
     document.querySelectorAll(selector).forEach(node => {
@@ -43,7 +43,44 @@ function installForcedDraftDesktopLayout() {
     if (!page) return;
 
     const desktop = window.matchMedia("(min-width: 901px)").matches;
-    if (!desktop) return;
+    page.classList.add("draft-final-forced");
+
+    /* Shared final card look: applies to desktop and mobile. */
+    setAll(".linear-draft-page .linear-player-card, .linear-draft-page .draft-list-player-card, .linear-draft-page .player-card, .linear-draft-page .my-team-card, .linear-draft-page .linear-info-player-card", {
+      outline: "1px solid rgba(217, 167, 61, .28)",
+      outlineOffset: "0",
+      border: "1px solid rgba(240, 223, 184, .18)",
+      borderRadius: "14px",
+      boxShadow: "inset 0 1px 0 rgba(255,255,255,.045), 0 8px 20px rgba(0,0,0,.30)"
+    });
+
+    setAll(".linear-draft-page .linear-player-card:hover, .linear-draft-page .draft-list-player-card:hover, .linear-draft-page .player-card:hover, .linear-draft-page .my-team-card:hover, .linear-draft-page .linear-info-player-card:hover", {
+      outline: "1px solid rgba(242, 204, 107, .58)",
+      border: "1px solid rgba(242, 204, 107, .42)",
+      boxShadow: "inset 0 1px 0 rgba(255,255,255,.07), 0 10px 24px rgba(0,0,0,.36)"
+    });
+
+    if (!desktop) {
+      page.classList.add("draft-mobile-final-forced");
+
+      setAll(".linear-draft-page .linear-player-grid", {
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fit, minmax(145px, 1fr))",
+        gap: "10px"
+      });
+
+      setAll(".linear-draft-page .linear-player-card, .linear-draft-page .draft-list-player-card", {
+        minHeight: "116px",
+        padding: "10px 11px"
+      });
+
+      setAll(".linear-draft-page .draft-list-name, .linear-draft-page .linear-player-name", {
+        fontSize: "15px",
+        lineHeight: "1.1"
+      });
+
+      return;
+    }
 
     page.classList.add("draft-desktop-final-forced");
 
@@ -163,14 +200,6 @@ function installForcedDraftDesktopLayout() {
       display: "grid",
       gridTemplateColumns: "repeat(5, minmax(0, 1fr))",
       gap: "16px"
-    });
-
-    setAll(".linear-draft-page .linear-player-card, .linear-draft-page .draft-list-player-card, .linear-draft-page .player-card, .linear-draft-page .my-team-card, .linear-draft-page .linear-info-player-card", {
-      outline: "1px solid rgba(217, 167, 61, .28)",
-      outlineOffset: "0",
-      border: "1px solid rgba(240, 223, 184, .18)",
-      borderRadius: "14px",
-      boxShadow: "inset 0 1px 0 rgba(255,255,255,.045), 0 8px 20px rgba(0,0,0,.30)"
     });
 
     setAll(".linear-draft-page .linear-player-card, .linear-draft-page .draft-list-player-card", {
