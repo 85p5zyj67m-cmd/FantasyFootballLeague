@@ -26,6 +26,7 @@ import { clearApp, playerCard } from "../pageUtils.js";
 let aiTimer = null;
 let aiTimerToken = 0;
 let selectedPlayerId = null;
+let instantBatchRunning = false;
 
 const AI_SPEEDS = {
   normal: 650,
@@ -93,6 +94,7 @@ function createDraftTopbar(round, pickInRound, team, isUserTurn) {
   speedLabel.textContent = "AI Speed";
 
   const select = document.createElement("select");
+  select.dataset.draftSpeedSelect = "true";
   ["normal", "fast", "instant"].forEach(value => {
     const option = document.createElement("option");
     option.value = value;
@@ -101,7 +103,8 @@ function createDraftTopbar(round, pickInRound, team, isUserTurn) {
   });
   select.value = appState.aiSpeed;
 
-  const applySpeed = () => {
+  const applySpeed = event => {
+    event.stopPropagation();
     appState.aiSpeed = select.value;
     const currentTeamIndex = getTeamOnClock(appState.currentPick, appState.draftOrder);
     const currentTeam = appState.teams[currentTeamIndex];
@@ -549,10 +552,16 @@ function renderAiTeamsView() {
 function scheduleAiPick(team, immediate = false) {
   clearAiTimer();
   const token = ++aiTimerToken;
-  const delay = immediate && appState.aiSpeed === "instant"
-    ? 0
-    : AI_SPEEDS[appState.aiSpeed] || AI_SPEEDS.normal;
 
+  if (appState.aiSpeed === "instant") {
+    aiTimer = window.setTimeout(() => {
+      if (token !== aiTimerToken) return;
+      runInstantAiBatch();
+    }, immediate ? 0 : AI_SPEEDS.instant);
+    return;
+  }
+
+  const delay = immediate ? 0 : AI_SPEEDS[appState.aiSpeed] || AI_SPEEDS.normal;
   aiTimer = window.setTimeout(() => {
     if (token !== aiTimerToken) return;
     const activeIndex = getTeamOnClock(appState.currentPick, appState.draftOrder);
@@ -562,14 +571,49 @@ function scheduleAiPick(team, immediate = false) {
   }, delay);
 }
 
+function runInstantAiBatch() {
+  if (instantBatchRunning) return;
+  instantBatchRunning = true;
+
+  try {
+    clearAiTimer();
+
+    let safety = GAME_CONFIG.totalTeams * GAME_CONFIG.totalRounds + 5;
+    let changed = false;
+
+    while (safety-- > 0 && !isDraftComplete(appState.currentPick, appState.availablePlayers)) {
+      const activeIndex = getTeamOnClock(appState.currentPick, appState.draftOrder);
+      const activeTeam = appState.teams[activeIndex];
+
+      if (!activeTeam || activeTeam === userTeam()) break;
+
+      const player = chooseAIPlayer(activeTeam, appState.availablePlayers);
+      if (!player) break;
+
+      pickPlayer(activeTeam, player, { render: false });
+      changed = true;
+    }
+
+    if (isDraftComplete(appState.currentPick, appState.availablePlayers)) {
+      goTo("page05");
+      return;
+    }
+
+    if (changed) renderPage04Draft();
+  } finally {
+    instantBatchRunning = false;
+  }
+}
+
 function clearAiTimer() {
   aiTimerToken += 1;
   if (aiTimer) window.clearTimeout(aiTimer);
   aiTimer = null;
 }
 
-function pickPlayer(team, player) {
+function pickPlayer(team, player, options = {}) {
   if (!player) return;
+  const shouldRender = options.render !== false;
   const activeIndex = getTeamOnClock(appState.currentPick, appState.draftOrder);
   if (appState.teams[activeIndex] !== team) return;
   const round = getRound(appState.currentPick);
@@ -585,7 +629,7 @@ function pickPlayer(team, player) {
     overall: player.overall
   });
   appState.currentPick += 1;
-  renderPage04Draft();
+  if (shouldRender) renderPage04Draft();
 }
 
 function installMyTeamCardStyles() {
@@ -603,25 +647,20 @@ function installMyTeamCardStyles() {
     .linear-info-player-top { display: grid; grid-template-columns: 38px 1fr; gap: 8px; align-items: center; }
     .linear-info-rating { display: grid; place-items: center; min-width: 34px; height: 34px; border-radius: 11px; background: rgba(75, 255, 151, .14); font-size: 1rem; }
     .linear-info-identity { min-width: 0; display: grid; gap: 2px; }
-    .linear-info-name { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: .82rem; line-height: 1.05; }
-    .linear-info-position { font-size: .68rem; line-height: 1; opacity: .8; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    .linear-info-meta { display: grid; grid-template-columns: 1fr; gap: 2px; margin-top: 6px; font-size: .66rem; line-height: 1.1; opacity: .76; }
+    .linear-info-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: .82rem; }
+    .linear-info-position { font-size: .66rem; opacity: .9; }
+    .linear-info-meta { display: grid; gap: 2px; margin-top: 7px; font-size: .66rem; opacity: .78; }
     .linear-info-meta span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    .linear-info-traits { display: flex; flex-wrap: wrap; gap: 3px; margin-top: 6px; }
-    .linear-info-traits small { border-radius: 999px; border: 1px solid rgba(255, 255, 255, .13); padding: 2px 5px; font-size: .58rem; line-height: 1.05; opacity: .88; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    .compact-player-bench { margin-top: 12px; }
-    .compact-bench-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 8px; }
-    .linear-bench-card { padding: 0; }
-    .linear-tactics-controls-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(155px, 1fr)); gap: 8px; margin-bottom: 14px; }
-    .linear-tactic-control.compact { padding: 9px 10px; }
-    .linear-tactics-squad h3 { margin: 4px 0 10px; }
-    .linear-tactics-squad-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(165px, 1fr)); gap: 8px; }
+    .linear-info-traits { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 7px; max-height: 42px; overflow: hidden; }
+    .linear-info-traits small { border-radius: 999px; border: 1px solid rgba(255,255,255,.12); padding: 2px 6px; font-size: .58rem; background: rgba(255,255,255,.05); white-space: nowrap; }
+    .linear-bench-card { padding: 0; min-width: 150px; }
+    .linear-tactics-squad { margin-top: 12px; }
+    .linear-tactics-squad-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(148px, 1fr)); gap: 8px; }
     .linear-tactics-player-card { min-width: 0; }
-    .linear-info-player-card.tactics .linear-info-player-top { grid-template-columns: 36px 1fr; }
-    @media (max-width: 760px) {
+    @media (max-width: 700px) {
       .linear-slot-card { min-width: 132px; max-width: 160px; }
-      .linear-info-name { font-size: .76rem; }
-      .linear-info-traits small { font-size: .55rem; }
+      .linear-empty-slot { min-width: 104px; }
+      .linear-info-player-card { padding: 8px; }
     }
   `;
   document.head.appendChild(style);
