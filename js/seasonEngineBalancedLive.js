@@ -6,6 +6,7 @@ import {
 } from "./seasonEngineTacticalLite.js?v=tactical-chain-engine-3";
 import { getActiveTraitChains } from "./traitChainEngine.js?v=balanced-trait-recipes-1";
 import { getFormationById } from "./formations.js";
+import { getDetailedPositionSystemBoost } from "./detailPositionEngine.js?v=detailed-position-engine-1";
 
 const DEFAULT_TACTICS = {
   attackingPlan: "Balanced Attack",
@@ -83,7 +84,7 @@ function withSystemBalance(teams, callback) {
 }
 
 function systemBoost(team) {
-  return roundOne(chainBoost(team) + tacticBoost(team) + chainTacticSynergy(team) + formationFit(team));
+  return roundOne(chainBoost(team) + tacticBoost(team) + chainTacticSynergy(team) + formationFit(team) + detailedPositionFit(team));
 }
 
 function chainBoost(team) {
@@ -134,6 +135,15 @@ function formationFit(team) {
   const overload = Math.max(0, actual.ATT - required.ATT) * 0.25 + Math.max(0, actual.MID - required.MID) * 0.2 + Math.max(0, actual.DEF - required.DEF) * 0.25;
   const raw = (missing === 0 ? 1.15 : 0) + overload - missing * 1.05 + (actual.GK >= 1 ? 0 : -1.8);
   return clamp(FORMATION_PENALTY_CAP, FORMATION_BONUS_CAP, raw);
+}
+
+function detailedPositionFit(team) {
+  try {
+    return getDetailedPositionSystemBoost(team);
+  } catch (error) {
+    console.warn("Detailed position boost calculation failed", error);
+    return 0;
+  }
 }
 
 function selectedStarters(team) {
