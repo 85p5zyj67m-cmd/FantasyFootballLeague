@@ -89,8 +89,14 @@ function installForcedDraftLayout() {
       });
 
       setAll(".linear-draft-page .draft-list-name, .linear-draft-page .linear-player-name", {
+        display: "-webkit-box",
         fontSize: "15px",
-        lineHeight: "1.1"
+        lineHeight: "1.1",
+        whiteSpace: "normal",
+        overflow: "hidden",
+        textOverflow: "ellipsis",
+        WebkitLineClamp: "2",
+        WebkitBoxOrient: "vertical"
       });
 
       return;
@@ -222,11 +228,14 @@ function installForcedDraftLayout() {
     });
 
     setAll(".linear-draft-page .draft-list-name, .linear-draft-page .linear-player-name", {
+      display: "-webkit-box",
       fontSize: "18px",
       lineHeight: "1.12",
       whiteSpace: "normal",
-      overflow: "visible",
-      textOverflow: "clip"
+      overflow: "hidden",
+      textOverflow: "ellipsis",
+      WebkitLineClamp: "2",
+      WebkitBoxOrient: "vertical"
     });
 
     setAll(".linear-draft-page .draft-list-club, .linear-draft-page .draft-list-nationality", {

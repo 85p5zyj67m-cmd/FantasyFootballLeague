@@ -250,6 +250,7 @@ html body .linear-player-card,
 html body .draft-list-player-card {
   min-height: 172px !important;
   padding: 14px 15px !important;
+  grid-template-rows: 22px 42px 21px 19px 1fr !important;
 }
 
 html body .draft-list-card-top {
@@ -266,12 +267,15 @@ html body .draft-list-position {
 
 html body .draft-list-name,
 html body .linear-player-name {
+  display: -webkit-box !important;
   margin-top: 8px !important;
   font-size: 18px !important;
   line-height: 1.12 !important;
   white-space: normal !important;
-  overflow: visible !important;
-  text-overflow: clip !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  -webkit-line-clamp: 2 !important;
+  -webkit-box-orient: vertical !important;
 }
 
 html body .draft-list-club,
@@ -387,6 +391,7 @@ html body .linear-trait-chip {
   html body .draft-list-player-card {
     min-height: 116px !important;
     padding: 10px 11px !important;
+    grid-template-rows: 22px 35px 21px 19px 1fr !important;
   }
 
   html body .draft-list-name,
