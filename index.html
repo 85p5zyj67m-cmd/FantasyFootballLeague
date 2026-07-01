@@ -22,7 +22,7 @@
   <link rel="stylesheet" href="bookmaker-theme.css?v=vintage-bookmaker-1" />
   <link rel="stylesheet" href="momentum-casino-colors.css?v=casino-momentum-2" />
   <link rel="stylesheet" href="page1-clean.css?v=page1-clean-1" />
-  <link rel="stylesheet" href="snake-draft-bookmaker.css?v=draft-screen-2" />
+  <link rel="stylesheet" href="snake-draft-bookmaker.css?v=draft-screen-final-1" />
   <link rel="stylesheet" href="draft-performance.css?v=draft-perf-5" />
   <link rel="stylesheet" href="solid-box-surfaces.css?v=solid-box-surfaces-2" />
   <link rel="stylesheet" href="live-snake-draft-compact.css?v=compact-header-5" />
@@ -42,166 +42,6 @@
       opacity: 0 !important;
       pointer-events: none !important;
     }
-
-    @media (min-width: 901px) {
-      html body .linear-draft-page.linear-page {
-        width: min(1180px, calc(100% - 28px)) !important;
-        padding-top: 8px !important;
-      }
-
-      html body .linear-draft-page .linear-draft-card.linear-card {
-        gap: 10px !important;
-        padding: 16px 18px 18px !important;
-      }
-
-      html body .linear-draft-page .linear-draft-topbar {
-        min-height: 78px !important;
-        height: auto !important;
-        max-height: none !important;
-        display: grid !important;
-        grid-template-columns: minmax(0, 1fr) auto !important;
-        align-items: center !important;
-        gap: 16px !important;
-        padding: 8px 12px !important;
-      }
-
-      html body .linear-draft-page .linear-draft-topbar .eyebrow {
-        font-size: 12px !important;
-        line-height: 1 !important;
-      }
-
-      html body .linear-draft-page .linear-draft-topbar h1 {
-        font-size: clamp(42px, 4vw, 54px) !important;
-        line-height: .9 !important;
-      }
-
-      html body .linear-draft-page .linear-on-clock {
-        font-size: 15px !important;
-        line-height: 1.05 !important;
-      }
-
-      html body .linear-draft-page .linear-speed-box {
-        min-width: 142px !important;
-        max-width: 150px !important;
-        padding: 9px 11px !important;
-      }
-
-      html body .linear-draft-page .linear-speed-box span,
-      html body .linear-draft-page .linear-speed-box select {
-        font-size: 13px !important;
-      }
-
-      html body .linear-draft-page .linear-speed-box select {
-        min-height: 32px !important;
-        height: 32px !important;
-      }
-
-      html body .linear-draft-page .linear-counter-block {
-        display: grid !important;
-        grid-template-columns: minmax(0, 1.15fr) minmax(360px, .85fr) !important;
-        gap: 10px !important;
-        min-height: 44px !important;
-      }
-
-      html body .linear-draft-page .linear-round-counter {
-        display: grid !important;
-        grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
-        gap: 10px !important;
-        min-height: 44px !important;
-      }
-
-      html body .linear-draft-page .linear-counter-pill {
-        min-height: 44px !important;
-        height: 44px !important;
-        padding: 5px 8px 5px 12px !important;
-        gap: 8px !important;
-      }
-
-      html body .linear-draft-page .linear-counter-pill span {
-        font-size: 11px !important;
-      }
-
-      html body .linear-draft-page .linear-counter-pill strong {
-        min-width: 34px !important;
-        min-height: 34px !important;
-        width: 34px !important;
-        height: 34px !important;
-        font-size: 19px !important;
-      }
-
-      html body .linear-draft-page .linear-round-picks,
-      html body .linear-draft-page .linear-order-ticker {
-        min-height: 42px !important;
-        height: 42px !important;
-        font-size: 14px !important;
-      }
-
-      html body .linear-draft-page .linear-order-ticker span {
-        font-size: 13px !important;
-        padding: 6px 12px !important;
-      }
-
-      html body .linear-draft-page .linear-draft-tabs {
-        min-height: 52px !important;
-        height: 52px !important;
-        gap: 10px !important;
-        padding: 7px 9px !important;
-      }
-
-      html body .linear-draft-page .linear-draft-tabs button {
-        min-height: 38px !important;
-        height: 38px !important;
-        padding: 8px 16px !important;
-        font-size: 14px !important;
-      }
-
-      html body .linear-draft-page .linear-draft-view {
-        padding: 16px !important;
-        gap: 12px !important;
-      }
-
-      html body .linear-draft-page .linear-player-grid {
-        display: grid !important;
-        grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
-        gap: 16px !important;
-      }
-
-      html body .linear-draft-page .linear-player-card,
-      html body .linear-draft-page .draft-list-player-card,
-      html body .linear-draft-page .player-card,
-      html body .linear-draft-page .my-team-card,
-      html body .linear-draft-page .linear-info-player-card {
-        outline: 1px solid rgba(217, 167, 61, .28) !important;
-        outline-offset: 0 !important;
-        border: 1px solid rgba(240, 223, 184, .18) !important;
-        border-radius: 14px !important;
-        box-shadow: inset 0 1px 0 rgba(255,255,255,.045), 0 8px 20px rgba(0,0,0,.30) !important;
-      }
-
-      html body .linear-draft-page .linear-player-card,
-      html body .linear-draft-page .draft-list-player-card {
-        min-height: 172px !important;
-        padding: 14px 15px !important;
-      }
-
-      html body .linear-draft-page .draft-list-name,
-      html body .linear-draft-page .linear-player-name {
-        font-size: 18px !important;
-        line-height: 1.12 !important;
-        white-space: normal !important;
-        overflow: visible !important;
-        text-overflow: clip !important;
-      }
-
-      html body .linear-draft-page .draft-list-club,
-      html body .linear-draft-page .draft-list-nationality {
-        font-size: 13px !important;
-        line-height: 1.2 !important;
-        white-space: normal !important;
-        overflow: visible !important;
-        text-overflow: clip !important;
-      }
-    }
   </style>
 </head>
 <body>
@@ -219,6 +59,6 @@
       new MutationObserver(removeDraftFormationStatus).observe(document.documentElement, { childList: true, subtree: true });
     })();
   </script>
-  <script type="module" src="js/linear/linearApp.js?v=start-bookmaker-11"></script>
+  <script type="module" src="js/linear/linearApp.js?v=start-bookmaker-final-1"></script>
 </body>
 </html>
