@@ -47,23 +47,202 @@
   <main id="app"></main>
   <script>
     (() => {
+      const important = (node, prop, value) => {
+        if (node) node.style.setProperty(prop, value, 'important');
+      };
+      const importantAll = (selector, styles) => {
+        document.querySelectorAll(selector).forEach(node => {
+          Object.entries(styles).forEach(([prop, value]) => important(node, prop, value));
+        });
+      };
+
       const removeDraftFormationStatus = () => {
         document.querySelectorAll('.draft-formation-status').forEach(node => node.remove());
         document.querySelectorAll('.linear-player-list-view > div').forEach(node => {
           const text = node.textContent || '';
-          if (text.includes('Formation target:') || text.includes('Missing XI slots:')) {
-            node.remove();
-          }
+          if (text.includes('Formation target:') || text.includes('Missing XI slots:')) node.remove();
         });
       };
+
+      const compactDraftLayout = () => {
+        const draftPage = document.querySelector('.linear-draft-page');
+        if (!draftPage) return;
+        draftPage.classList.add('compact-draft-forced');
+
+        important(draftPage, 'width', 'min(1100px, calc(100% - 18px))');
+        important(draftPage, 'padding-top', '4px');
+
+        importantAll('.linear-draft-card', {
+          'gap': '4px',
+          'padding': '8px 14px 14px',
+          'border-radius': '16px'
+        });
+
+        importantAll('.linear-draft-topbar', {
+          'min-height': '38px',
+          'height': '44px',
+          'max-height': '44px',
+          'align-items': 'center',
+          'gap': '8px',
+          'padding': '0',
+          'margin': '0'
+        });
+        importantAll('.linear-draft-topbar > div:first-child', {
+          'display': 'grid',
+          'gap': '0',
+          'align-content': 'center'
+        });
+        importantAll('.linear-draft-topbar .eyebrow', {
+          'margin': '0',
+          'font-size': '8px',
+          'line-height': '1',
+          'letter-spacing': '.13em'
+        });
+        importantAll('.linear-draft-topbar h1', {
+          'margin': '0',
+          'font-size': '31px',
+          'line-height': '.86',
+          'letter-spacing': '0'
+        });
+        importantAll('.linear-on-clock', {
+          'margin': '0',
+          'font-size': '10px',
+          'line-height': '1'
+        });
+
+        importantAll('.linear-speed-box', {
+          'min-width': '96px',
+          'max-width': '104px',
+          'gap': '1px',
+          'padding': '4px 6px',
+          'border-radius': '9px',
+          'outline-width': '1px',
+          'outline-offset': '2px'
+        });
+        importantAll('.linear-speed-box span', { 'font-size': '9px', 'line-height': '1' });
+        importantAll('.linear-speed-box select', {
+          'min-height': '20px',
+          'height': '20px',
+          'padding': '1px 5px',
+          'border-radius': '6px',
+          'font-size': '10px',
+          'line-height': '1'
+        });
+
+        importantAll('.linear-counter-block', {
+          'display': 'grid',
+          'grid-template-columns': 'minmax(0, 1.25fr) minmax(250px, .85fr)',
+          'gap': '5px',
+          'align-items': 'center',
+          'margin': '0',
+          'min-height': '26px'
+        });
+        importantAll('.linear-round-counter', {
+          'display': 'grid',
+          'grid-template-columns': 'repeat(4, minmax(0, 1fr))',
+          'gap': '4px',
+          'min-height': '26px',
+          'margin': '0'
+        });
+        importantAll('.linear-counter-pill', {
+          'min-height': '25px',
+          'height': '25px',
+          'padding': '1px 3px 1px 7px',
+          'gap': '4px',
+          'border-radius': '999px',
+          'outline-width': '0',
+          'margin': '0'
+        });
+        importantAll('.linear-counter-pill span', {
+          'font-size': '7px',
+          'line-height': '1',
+          'letter-spacing': '.04em'
+        });
+        importantAll('.linear-counter-pill strong', {
+          'min-width': '20px',
+          'min-height': '20px',
+          'width': '20px',
+          'height': '20px',
+          'font-size': '11px',
+          'line-height': '1'
+        });
+        importantAll('.linear-round-picks', {
+          'min-height': '25px',
+          'height': '25px',
+          'padding': '2px 8px',
+          'border-radius': '999px',
+          'font-size': '10px',
+          'line-height': '1',
+          'display': 'flex',
+          'align-items': 'center',
+          'justify-content': 'center',
+          'margin': '0',
+          'overflow': 'hidden',
+          'text-overflow': 'ellipsis'
+        });
+
+        importantAll('.linear-order-ticker', {
+          'min-height': '27px',
+          'height': '27px',
+          'padding': '2px 7px',
+          'gap': '4px',
+          'align-items': 'center',
+          'justify-content': 'center',
+          'border-radius': '11px',
+          'margin': '0',
+          'overflow': 'hidden'
+        });
+        importantAll('.linear-order-ticker span', {
+          'padding': '3px 7px',
+          'font-size': '9px',
+          'line-height': '1',
+          'border-radius': '999px'
+        });
+
+        importantAll('.linear-draft-tabs', {
+          'min-height': '31px',
+          'height': '31px',
+          'gap': '5px',
+          'padding': '3px 6px',
+          'border-radius': '11px',
+          'outline-width': '1px',
+          'outline-offset': '2px',
+          'margin': '0'
+        });
+        importantAll('.linear-draft-tabs button', {
+          'min-height': '23px',
+          'height': '23px',
+          'padding': '3px 8px',
+          'border-radius': '7px',
+          'font-size': '10px',
+          'line-height': '1'
+        });
+
+        importantAll('.linear-draft-view', {
+          'margin-top': '4px',
+          'padding': '10px',
+          'gap': '7px',
+          'border-radius': '15px'
+        });
+        importantAll('.linear-player-card, .draft-list-player-card, .player-card, .my-team-card, .linear-info-player-card', {
+          'outline-width': '1px',
+          'outline-offset': '2px',
+          'border-width': '1px',
+          'border-radius': '11px'
+        });
+      };
+
+      const runDraftFixes = () => {
+        removeDraftFormationStatus();
+        compactDraftLayout();
+      };
+
       window.__removeDraftFormationStatus = removeDraftFormationStatus;
-      document.addEventListener('DOMContentLoaded', removeDraftFormationStatus);
-      new MutationObserver(removeDraftFormationStatus).observe(document.documentElement, {
-        childList: true,
-        subtree: true
-      });
+      window.__compactDraftLayout = compactDraftLayout;
+      document.addEventListener('DOMContentLoaded', runDraftFixes);
+      new MutationObserver(runDraftFixes).observe(document.documentElement, { childList: true, subtree: true });
     })();
   </script>
-  <script type="module" src="js/linear/linearApp.js?v=start-bookmaker-4"></script>
+  <script type="module" src="js/linear/linearApp.js?v=start-bookmaker-5"></script>
 </body>
 </html>
