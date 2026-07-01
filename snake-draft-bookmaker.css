@@ -46,8 +46,8 @@ html body .formation-pitch,
 html body .linear-mini-card {
   color: var(--book-cream) !important;
   border: 1px solid rgba(240, 223, 184, .19) !important;
-  outline: 3px solid rgba(90, 53, 30, .72) !important;
-  outline-offset: 4px !important;
+  outline: 2px solid rgba(90, 53, 30, .55) !important;
+  outline-offset: 3px !important;
   border-radius: 18px !important;
   background:
     linear-gradient(180deg, rgba(255,255,255,.035), transparent 28%),
@@ -58,7 +58,6 @@ html body .linear-mini-card {
 
 html body .linear-draft-view {
   background:
-    repeating-linear-gradient(90deg, rgba(240,223,184,.04) 0 1px, transparent 1px 68px),
     linear-gradient(180deg, rgba(255,255,255,.03), transparent 28%),
     radial-gradient(circle at 16% 0%, rgba(242,204,107,.08), transparent 34%),
     linear-gradient(145deg, rgba(18,48,30,.9), rgba(5,14,9,.95) 62%, rgba(38,20,11,.82)) !important;
@@ -156,21 +155,21 @@ html body .player-card,
 html body .my-team-card,
 html body .linear-info-player-card {
   color: var(--book-cream) !important;
-  border: 1px solid rgba(240,223,184,.16) !important;
-  outline: 5px solid rgba(90,53,30,.86) !important;
+  border: 1px solid rgba(240,223,184,.18) !important;
+  outline: 1px solid rgba(217,167,61,.28) !important;
   outline-offset: 0 !important;
   border-radius: 14px !important;
   background: linear-gradient(145deg, #092016 0%, #06110b 58%, #241309 100%) !important;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.05), 0 12px 30px rgba(0,0,0,.38) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.05), 0 8px 20px rgba(0,0,0,.30) !important;
 }
 
 html body .linear-player-card:hover,
 html body .draft-list-player-card:hover,
 html body .player-card:hover,
 html body .my-team-card:hover {
-  border-color: rgba(242,204,107,.54) !important;
-  outline-color: rgba(138,90,50,.95) !important;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.07), 0 0 0 2px rgba(217,167,61,.1), 0 16px 38px rgba(0,0,0,.46) !important;
+  border-color: rgba(242,204,107,.42) !important;
+  outline-color: rgba(242,204,107,.58) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.07), 0 10px 24px rgba(0,0,0,.36) !important;
 }
 
 html body .draft-list-rating,
