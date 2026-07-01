@@ -31,7 +31,8 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 function installForcedDraftLayout() {
-  const set = (node, prop, value) => node?.style?.setProperty(prop, value, "important");
+  const cssProp = prop => prop.replace(/[A-Z]/g, match => `-${match.toLowerCase()}`);
+  const set = (node, prop, value) => node?.style?.setProperty(cssProp(prop), value, "important");
   const setAll = (selector, styles) => {
     document.querySelectorAll(selector).forEach(node => {
       Object.entries(styles).forEach(([prop, value]) => set(node, prop, value));
@@ -45,7 +46,20 @@ function installForcedDraftLayout() {
     const desktop = window.matchMedia("(min-width: 901px)").matches;
     page.classList.add("draft-final-forced");
 
-    /* Shared final card look: applies to desktop and mobile. */
+    /* Shared final chrome: thin elegant borders on cards, menus, counters and draft panels. */
+    setAll(".linear-draft-page .linear-card, .linear-draft-page .linear-draft-view, .linear-draft-page .linear-draft-tabs, .linear-draft-page .linear-round-picks, .linear-draft-page .linear-order-ticker, .linear-draft-page .linear-speed-box, .linear-draft-page .linear-counter-pill, .linear-draft-page .linear-mini-card, .linear-draft-page .active-chains-panel", {
+      border: "1px solid rgba(240, 223, 184, .18)",
+      outline: "1px solid rgba(217, 167, 61, .28)",
+      outlineOffset: "0",
+      boxShadow: "inset 0 1px 0 rgba(255,255,255,.045), 0 8px 20px rgba(0,0,0,.30)"
+    });
+
+    setAll(".linear-draft-page .linear-draft-tabs button, .linear-draft-page .linear-tab-btn, .linear-draft-page .position-filter-btn, .linear-draft-page .chip, .linear-draft-page .main-tab, .linear-draft-page .view-toggle-btn, .linear-draft-page .linear-order-ticker span", {
+      border: "1px solid rgba(217, 167, 61, .32)",
+      outline: "none",
+      boxShadow: "inset 0 1px 0 rgba(255,255,255,.045), 0 5px 12px rgba(0,0,0,.24)"
+    });
+
     setAll(".linear-draft-page .linear-player-card, .linear-draft-page .draft-list-player-card, .linear-draft-page .player-card, .linear-draft-page .my-team-card, .linear-draft-page .linear-info-player-card", {
       outline: "1px solid rgba(217, 167, 61, .28)",
       outlineOffset: "0",
@@ -85,7 +99,7 @@ function installForcedDraftLayout() {
     page.classList.add("draft-desktop-final-forced");
 
     set(page, "width", "min(1180px, calc(100% - 28px))");
-    set(page, "padding-top", "8px");
+    set(page, "paddingTop", "8px");
 
     setAll(".linear-draft-page .linear-draft-card", {
       gap: "10px",
