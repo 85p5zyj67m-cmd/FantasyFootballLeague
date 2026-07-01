@@ -45,7 +45,7 @@ export function renderPage01StartDraft() {
     button.textContent = "Loading players...";
 
     resetLinearState();
-    appState.allPlayers = await loadPlayersFromCSV("players.csv");
+    appState.allPlayers = await loadPlayersFromCSV("data/players.csv");
     appState.teams = createTeams();
     appState.draftOrder = createDraftOrder();
     appState.availablePlayers = selectDraftPool(appState.allPlayers);
