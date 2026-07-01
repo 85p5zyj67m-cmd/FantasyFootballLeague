@@ -1,4 +1,4 @@
-import { installTraitChainEnhancer as installPositionChainEnhancer } from "./traitChainEnhancerCompleteV4.js?v=position-chain-ui-1";
+import { installTraitChainEnhancer as installPositionChainEnhancer } from "./traitChainPositionHighlighter.js?v=position-chain-ui-1";
 import { getActiveTraitChains } from "../traitChainEngine.js?v=balanced-trait-recipes-1";
 import { userTeam } from "./linearState.js";
 

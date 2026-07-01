@@ -1,4 +1,4 @@
-import { installTraitChainEnhancer as installCompleteChainEnhancer } from "./traitChainEnhancerComplete.js?v=complete-chain-ui-1";
+import { installTraitChainEnhancer as installCompleteChainEnhancer } from "./traitChainPanel.js?v=complete-chain-ui-1";
 import { getFormationById } from "../formations.js?v=detailed-formations-3";
 import { getSlotsFromFormation } from "../lineup.js?v=strict-cdm-1";
 import { getFormationChainLinkScore, hasFormationSpecificChainLinks } from "../formationChainLinks.js?v=formation-links-1";
