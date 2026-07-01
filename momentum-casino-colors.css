@@ -1,0 +1,30 @@
+/* Casino / sportsbook momentum colors
+   Pure visual layer for the Match Momentum graph only. */
+
+html body .live-momentum-bar.home {
+  fill: #20c35a !important;
+  filter: drop-shadow(0 0 4px rgba(32, 195, 90, .34));
+}
+
+html body .live-momentum-bar.away {
+  fill: #d9473f !important;
+  filter: drop-shadow(0 0 4px rgba(217, 71, 63, .34));
+}
+
+html body .live-home-label {
+  fill: #8ff0aa !important;
+}
+
+html body .live-away-label {
+  fill: #ff9a8f !important;
+}
+
+html body .live-goal-dot {
+  fill: #f2cc6b !important;
+  stroke: #fff0bd !important;
+}
+
+html body .live-goal-text,
+html body .live-time-label {
+  fill: #f0dfb8 !important;
+}
