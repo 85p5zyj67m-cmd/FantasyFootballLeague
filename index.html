@@ -41,21 +41,12 @@
   <link rel="stylesheet" href="snake-draft-bookmaker.css?v=draft-screen-2" />
   <link rel="stylesheet" href="draft-performance.css?v=draft-perf-5" />
   <link rel="stylesheet" href="solid-box-surfaces.css?v=solid-box-surfaces-2" />
-  <link rel="stylesheet" href="live-snake-draft-compact.css?v=compact-header-2" />
+  <link rel="stylesheet" href="live-snake-draft-compact.css?v=compact-header-3" />
 </head>
 <body>
   <main id="app"></main>
   <script>
     (() => {
-      const important = (node, prop, value) => {
-        if (node) node.style.setProperty(prop, value, 'important');
-      };
-      const importantAll = (selector, styles) => {
-        document.querySelectorAll(selector).forEach(node => {
-          Object.entries(styles).forEach(([prop, value]) => important(node, prop, value));
-        });
-      };
-
       const removeDraftFormationStatus = () => {
         document.querySelectorAll('.draft-formation-status').forEach(node => node.remove());
         document.querySelectorAll('.linear-player-list-view > div').forEach(node => {
@@ -63,188 +54,10 @@
           if (text.includes('Formation target:') || text.includes('Missing XI slots:')) node.remove();
         });
       };
-
-      const applyReadableDraftHeader = () => {
-        const draftPage = document.querySelector('.linear-draft-page');
-        if (!draftPage) return;
-        draftPage.classList.add('compact-draft-forced', 'desktop-readable-draft');
-
-        important(draftPage, 'width', 'min(1220px, calc(100% - 24px))');
-        important(draftPage, 'padding-top', '6px');
-
-        importantAll('.linear-draft-card', {
-          'gap': '8px',
-          'padding': '12px 16px 16px',
-          'border-radius': '16px'
-        });
-
-        importantAll('.linear-draft-topbar', {
-          'min-height': '66px',
-          'height': '66px',
-          'max-height': '66px',
-          'align-items': 'center',
-          'gap': '12px',
-          'padding': '0',
-          'margin': '0'
-        });
-        importantAll('.linear-draft-topbar > div:first-child', {
-          'display': 'grid',
-          'gap': '2px',
-          'align-content': 'center'
-        });
-        importantAll('.linear-draft-topbar .eyebrow', {
-          'margin': '0',
-          'font-size': '11px',
-          'line-height': '1',
-          'letter-spacing': '.13em'
-        });
-        importantAll('.linear-draft-topbar h1', {
-          'margin': '0',
-          'font-size': '43px',
-          'line-height': '.92',
-          'letter-spacing': '0'
-        });
-        importantAll('.linear-on-clock', {
-          'margin': '0',
-          'font-size': '13px',
-          'line-height': '1'
-        });
-
-        importantAll('.linear-speed-box', {
-          'min-width': '126px',
-          'max-width': '136px',
-          'gap': '3px',
-          'padding': '7px 9px',
-          'border-radius': '11px',
-          'outline-width': '1px',
-          'outline-offset': '2px'
-        });
-        importantAll('.linear-speed-box span', { 'font-size': '12px', 'line-height': '1' });
-        importantAll('.linear-speed-box select', {
-          'min-height': '28px',
-          'height': '28px',
-          'padding': '3px 8px',
-          'border-radius': '8px',
-          'font-size': '12px',
-          'line-height': '1'
-        });
-
-        importantAll('.linear-counter-block', {
-          'display': 'grid',
-          'grid-template-columns': 'minmax(0, 1.15fr) minmax(330px, .85fr)',
-          'gap': '8px',
-          'align-items': 'center',
-          'margin': '0',
-          'min-height': '38px'
-        });
-        importantAll('.linear-round-counter', {
-          'display': 'grid',
-          'grid-template-columns': 'repeat(4, minmax(0, 1fr))',
-          'gap': '8px',
-          'min-height': '38px',
-          'margin': '0'
-        });
-        importantAll('.linear-counter-pill', {
-          'min-height': '38px',
-          'height': '38px',
-          'padding': '4px 6px 4px 10px',
-          'gap': '7px',
-          'border-radius': '999px',
-          'outline-width': '0',
-          'margin': '0'
-        });
-        importantAll('.linear-counter-pill span', {
-          'font-size': '10px',
-          'line-height': '1',
-          'letter-spacing': '.04em'
-        });
-        importantAll('.linear-counter-pill strong', {
-          'min-width': '30px',
-          'min-height': '30px',
-          'width': '30px',
-          'height': '30px',
-          'font-size': '17px',
-          'line-height': '1'
-        });
-        importantAll('.linear-round-picks', {
-          'min-height': '36px',
-          'height': '36px',
-          'padding': '4px 12px',
-          'border-radius': '999px',
-          'font-size': '13px',
-          'line-height': '1',
-          'display': 'flex',
-          'align-items': 'center',
-          'justify-content': 'center',
-          'margin': '0',
-          'overflow': 'hidden',
-          'text-overflow': 'ellipsis'
-        });
-
-        importantAll('.linear-order-ticker', {
-          'min-height': '36px',
-          'height': '36px',
-          'padding': '4px 9px',
-          'gap': '7px',
-          'align-items': 'center',
-          'justify-content': 'center',
-          'border-radius': '12px',
-          'margin': '0',
-          'overflow': 'hidden'
-        });
-        importantAll('.linear-order-ticker span', {
-          'padding': '5px 11px',
-          'font-size': '12px',
-          'line-height': '1',
-          'border-radius': '999px'
-        });
-
-        importantAll('.linear-draft-tabs', {
-          'min-height': '44px',
-          'height': '44px',
-          'gap': '8px',
-          'padding': '5px 8px',
-          'border-radius': '13px',
-          'outline-width': '1px',
-          'outline-offset': '2px',
-          'margin': '0'
-        });
-        importantAll('.linear-draft-tabs button', {
-          'min-height': '34px',
-          'height': '34px',
-          'padding': '6px 12px',
-          'border-radius': '9px',
-          'font-size': '13px',
-          'line-height': '1'
-        });
-
-        importantAll('.linear-draft-view', {
-          'margin-top': '4px',
-          'padding': '12px',
-          'gap': '8px',
-          'border-radius': '15px'
-        });
-
-        importantAll('.linear-player-card, .draft-list-player-card, .player-card, .my-team-card, .linear-info-player-card', {
-          'outline-width': '1px',
-          'outline-offset': '2px',
-          'border-width': '1px',
-          'border-radius': '11px'
-        });
-      };
-
-      const runDraftFixes = () => {
-        removeDraftFormationStatus();
-        applyReadableDraftHeader();
-      };
-
-      window.__removeDraftFormationStatus = removeDraftFormationStatus;
-      window.__compactDraftLayout = applyReadableDraftHeader;
-      document.addEventListener('DOMContentLoaded', runDraftFixes);
-      window.addEventListener('resize', runDraftFixes);
-      new MutationObserver(runDraftFixes).observe(document.documentElement, { childList: true, subtree: true });
+      document.addEventListener('DOMContentLoaded', removeDraftFormationStatus);
+      new MutationObserver(removeDraftFormationStatus).observe(document.documentElement, { childList: true, subtree: true });
     })();
   </script>
-  <script type="module" src="js/linear/linearApp.js?v=start-bookmaker-7"></script>
+  <script type="module" src="js/linear/linearApp.js?v=start-bookmaker-8"></script>
 </body>
 </html>
