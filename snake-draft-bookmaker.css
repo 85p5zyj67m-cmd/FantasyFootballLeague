@@ -4,6 +4,29 @@ html body .linear-page:not(.start-bookmaker-page) {
   width: min(1220px, calc(100% - 24px)) !important;
 }
 
+html body .linear-draft-card {
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+html body .linear-draft-card::before {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 0 !important;
+  pointer-events: none !important;
+  background:
+    repeating-linear-gradient(90deg, rgba(240,223,184,.055) 0 1px, transparent 1px 74px),
+    repeating-linear-gradient(90deg, rgba(138,90,50,.12) 0 2px, transparent 2px 148px),
+    linear-gradient(90deg, rgba(242,204,107,.045), transparent 24%, transparent 76%, rgba(138,90,50,.055)) !important;
+  opacity: .78 !important;
+}
+
+html body .linear-draft-card > * {
+  position: relative !important;
+  z-index: 1 !important;
+}
+
 html body .linear-page:not(.start-bookmaker-page) .linear-card,
 html body .linear-draft-view,
 html body .linear-draft-tabs,
@@ -29,8 +52,16 @@ html body .linear-mini-card {
   background:
     linear-gradient(180deg, rgba(255,255,255,.035), transparent 28%),
     radial-gradient(circle at 16% 0%, rgba(242,204,107,.09), transparent 34%),
-    linear-gradient(145deg, rgba(18,48,30,.96), rgba(5,14,9,.98) 62%, rgba(38,20,11,.88)) !important;
+    linear-gradient(145deg, rgba(18,48,30,.92), rgba(5,14,9,.94) 62%, rgba(38,20,11,.84)) !important;
   box-shadow: inset 0 1px 0 rgba(255,255,255,.06), inset 0 0 0 1px rgba(0,0,0,.32), 0 18px 44px rgba(0,0,0,.42) !important;
+}
+
+html body .linear-draft-view {
+  background:
+    repeating-linear-gradient(90deg, rgba(240,223,184,.04) 0 1px, transparent 1px 68px),
+    linear-gradient(180deg, rgba(255,255,255,.03), transparent 28%),
+    radial-gradient(circle at 16% 0%, rgba(242,204,107,.08), transparent 34%),
+    linear-gradient(145deg, rgba(18,48,30,.9), rgba(5,14,9,.95) 62%, rgba(38,20,11,.82)) !important;
 }
 
 html body .linear-page:not(.start-bookmaker-page) h1,
@@ -227,9 +258,15 @@ html body .tactic-description {
   color: #d8c79c !important;
 }
 
+html body .formation-target,
+html body .formation-target-box,
+html body .draft-formation-target,
+html body .formation-target-message {
+  display: none !important;
+}
+
 html body .active-chains-panel,
 html body .chain-status,
-html body .formation-target,
 html body .draft-warning,
 html body .draft-hint {
   color: #e8d8a9 !important;
