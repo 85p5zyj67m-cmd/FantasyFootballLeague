@@ -5,6 +5,7 @@
   border-color: rgba(209,179,110,.28) !important;
   background: #11251b !important;
   color: #f3ead7 !important;
+  box-shadow: inset 0 0 0 1px rgba(255,236,180,.08), 0 18px 44px rgba(0,0,0,.42) !important;
 }
 
 .trait-chain-header {
@@ -14,6 +15,8 @@
   padding-bottom: 2px !important;
   background: rgba(7, 17, 13, 0.94) !important;
   color: #d1b36e !important;
+  letter-spacing: .08em !important;
+  text-transform: uppercase !important;
 }
 
 .trait-chain-list {
@@ -39,6 +42,17 @@
   border-color: rgba(209,179,110,.24) !important;
   background: rgba(6,18,12,.72) !important;
   color: #f3ead7 !important;
+  box-shadow: inset 0 1px 0 rgba(255,236,180,.08) !important;
+}
+
+.season-row,.schedule-row,.division-team,.live-ticker-event {
+  border-color: rgba(209,179,110,.16) !important;
+  background: rgba(6,18,12,.72) !important;
+}
+
+.stat-pill,.team-strength {
+  background: rgba(7,18,12,.82) !important;
+  border-color: rgba(209,179,110,.24) !important;
 }
 
 @media (max-width: 760px) {
