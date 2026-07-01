@@ -1,5 +1,9 @@
 /* Draft performance pass: keep the bookmaker look, reduce expensive paint work. */
 
+html body .draft-formation-status {
+  display: none !important;
+}
+
 html body:has(.linear-draft-page)::before {
   content: "" !important;
   position: fixed !important;
