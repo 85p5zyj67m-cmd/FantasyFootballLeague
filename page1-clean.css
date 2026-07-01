@@ -1,0 +1,186 @@
+/* Clean Page 1 only: centered vertical landing page. */
+
+html body .start-bookmaker-page,
+html body .linear-page:has(> .linear-card > .eyebrow + h1 + .subtitle + .primary-btn) {
+  width: min(920px, calc(100% - 28px)) !important;
+  min-height: 100vh !important;
+  display: grid !important;
+  place-items: center !important;
+  padding: 28px 0 !important;
+}
+
+html body .start-bookmaker-hero,
+html body .linear-page:has(> .linear-card > .eyebrow + h1 + .subtitle + .primary-btn) > .linear-card {
+  position: relative !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 26px !important;
+  width: 100% !important;
+  min-height: min(680px, calc(100vh - 70px)) !important;
+  padding: clamp(34px, 6vw, 72px) !important;
+  text-align: center !important;
+  overflow: hidden !important;
+}
+
+html body .start-bookmaker-hero::after,
+html body .linear-page:has(> .linear-card > .eyebrow + h1 + .subtitle + .primary-btn) > .linear-card::after {
+  content: "" !important;
+  position: absolute !important;
+  right: -120px !important;
+  bottom: -150px !important;
+  width: 420px !important;
+  height: 420px !important;
+  border-radius: 50% !important;
+  pointer-events: none !important;
+  opacity: .35 !important;
+  background: repeating-conic-gradient(from 18deg, rgba(217,167,61,.16) 0 8deg, transparent 8deg 18deg) !important;
+}
+
+html body .start-bookmaker-topline {
+  width: auto !important;
+  display: flex !important;
+  justify-content: center !important;
+  color: #f2cc6b !important;
+  font-size: 13px !important;
+  font-weight: 900 !important;
+  letter-spacing: .22em !important;
+  text-transform: uppercase !important;
+}
+
+html body .start-bookmaker-topline span:last-child,
+html body .start-kicker,
+html body .start-bookmaker-highlights,
+html body .start-bookmaker-board,
+html body .start-bookmaker-bottom,
+html body .linear-page:has(> .linear-card > .eyebrow + h1 + .subtitle + .primary-btn) .eyebrow,
+html body .linear-page:has(> .linear-card > .eyebrow + h1 + .subtitle + .primary-btn) > .linear-card::before {
+  display: none !important;
+}
+
+html body .start-bookmaker-copy {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 24px !important;
+  width: 100% !important;
+}
+
+html body .start-bookmaker-copy h1,
+html body .linear-page:has(> .linear-card > .eyebrow + h1 + .subtitle + .primary-btn) h1 {
+  order: 1 !important;
+  max-width: 720px !important;
+  margin: 0 !important;
+  color: #fff2c2 !important;
+  font-size: clamp(34px, 5vw, 60px) !important;
+  line-height: 1.04 !important;
+  letter-spacing: -.045em !important;
+  text-align: center !important;
+  text-shadow: 0 3px 0 rgba(0,0,0,.62), 0 0 30px rgba(217,167,61,.18) !important;
+}
+
+html body .linear-page:has(> .linear-card > .eyebrow + h1 + .subtitle + .primary-btn) h1 {
+  font-size: 0 !important;
+}
+
+html body .linear-page:has(> .linear-card > .eyebrow + h1 + .subtitle + .primary-btn) h1::before {
+  content: "Your draft room is open." !important;
+  display: block !important;
+  font-size: clamp(34px, 5vw, 60px) !important;
+  line-height: 1.04 !important;
+}
+
+html body .start-bookmaker-cta {
+  order: 2 !important;
+  position: relative !important;
+  z-index: 3 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 14px !important;
+  width: min(100%, 620px) !important;
+  margin: 4px 0 !important;
+}
+
+html body .start-bookmaker-cta::before {
+  content: "" !important;
+  position: absolute !important;
+  inset: -35px -60px !important;
+  z-index: -1 !important;
+  border-radius: 999px !important;
+  background: radial-gradient(circle, rgba(242,204,107,.42), transparent 62%) !important;
+  filter: blur(14px) !important;
+  pointer-events: none !important;
+}
+
+html body .start-bookmaker-cta .primary-btn,
+html body .linear-page:has(> .linear-card > .eyebrow + h1 + .subtitle + .primary-btn) .primary-btn {
+  position: relative !important;
+  z-index: 4 !important;
+  width: min(100%, 600px) !important;
+  min-height: clamp(84px, 9vw, 112px) !important;
+  border-radius: 999px !important;
+  border: 4px solid #5a321b !important;
+  outline: none !important;
+  color: #201105 !important;
+  font-size: clamp(18px, 2.3vw, 28px) !important;
+  font-weight: 900 !important;
+  letter-spacing: .14em !important;
+  text-transform: uppercase !important;
+  background: radial-gradient(circle at 50% 18%, #fff4b7, transparent 28%), linear-gradient(180deg, #ffe79a 0%, #d9a73d 42%, #a76b2b 72%, #6f3d1b 100%) !important;
+  box-shadow: inset 0 3px 0 rgba(255,255,255,.42), inset 0 -8px 0 rgba(84,43,15,.5), 0 16px 0 rgba(47,24,9,.95), 0 28px 48px rgba(0,0,0,.58), 0 0 58px rgba(242,204,107,.34) !important;
+  transform: translateY(-4px) !important;
+}
+
+html body .start-bookmaker-cta .primary-btn:hover,
+html body .linear-page:has(> .linear-card > .eyebrow + h1 + .subtitle + .primary-btn) .primary-btn:hover {
+  transform: translateY(-7px) scale(1.012) !important;
+  filter: brightness(1.08) saturate(1.08) !important;
+}
+
+html body .start-bookmaker-cta .primary-btn:focus,
+html body .start-bookmaker-cta .primary-btn:focus-visible,
+html body .linear-page:has(> .linear-card > .eyebrow + h1 + .subtitle + .primary-btn) .primary-btn:focus,
+html body .linear-page:has(> .linear-card > .eyebrow + h1 + .subtitle + .primary-btn) .primary-btn:focus-visible {
+  outline: none !important;
+}
+
+html body .start-bookmaker-note {
+  margin: 0 !important;
+  max-width: 500px !important;
+  color: #e0c784 !important;
+  font-size: 12px !important;
+  line-height: 1.45 !important;
+  letter-spacing: .12em !important;
+  text-align: center !important;
+  text-transform: uppercase !important;
+}
+
+html body .start-bookmaker-subtitle,
+html body .linear-page:has(> .linear-card > .eyebrow + h1 + .subtitle + .primary-btn) .subtitle {
+  order: 3 !important;
+  max-width: 680px !important;
+  margin: 0 !important;
+  color: #d9c99f !important;
+  font-size: clamp(16px, 1.55vw, 20px) !important;
+  line-height: 1.55 !important;
+  text-align: center !important;
+}
+
+html body .linear-page:has(> .linear-card > .eyebrow + h1 + .subtitle + .primary-btn) .subtitle {
+  font-size: 0 !important;
+}
+
+html body .linear-page:has(> .linear-card > .eyebrow + h1 + .subtitle + .primary-btn) .subtitle::before {
+  content: "Press the button to start the draft. Pick your squad, build trait chains, set tactics and play the season live." !important;
+  font-size: clamp(16px, 1.55vw, 20px) !important;
+}
+
+@media (max-width: 620px) {
+  html body .start-bookmaker-hero,
+  html body .linear-page:has(> .linear-card > .eyebrow + h1 + .subtitle + .primary-btn) > .linear-card {
+    min-height: auto !important;
+    padding: 30px 18px !important;
+  }
+}
