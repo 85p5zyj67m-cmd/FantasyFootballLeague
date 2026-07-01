@@ -12,12 +12,7 @@ import { installStrictPositionEnforcer } from "./strictPositionEnforcer.js?v=str
 import { installSeasonStartBridge } from "./seasonStartBridge.js?v=live-balanced-engine-1";
 import { installVisualUnityLayer } from "./visualUnityLayer.js?v=unified-green-wood-1";
 
-let booted = false;
-
-export function bootLinearApp() {
-  if (booted) return;
-  booted = true;
-
+window.addEventListener("DOMContentLoaded", () => {
   installLinearStyles();
   installDraftPolishStyles();
   installDraftSpeedController();
@@ -31,10 +26,4 @@ export function bootLinearApp() {
   installSeasonStartBridge();
   installVisualUnityLayer();
   goTo("page01");
-}
-
-if (document.readyState === "loading") {
-  window.addEventListener("DOMContentLoaded", bootLinearApp, { once: true });
-} else if (document.getElementById("app") && !document.getElementById("root")) {
-  bootLinearApp();
-}
+});
