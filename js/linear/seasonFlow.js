@@ -1,4 +1,4 @@
-import { createSeason, continueAfterTactics, simulateNextMatch } from "../seasonEngineBalancedLive.js?v=live-balanced-engine-1";
+import { createSeason, continueAfterTactics, simulateNextMatch } from "../seasonEngineBalancedLive.js?v=detailed-position-engine-1";
 import { appState, userTeam } from "./linearState.js";
 import { goTo } from "./linearRouter.js";
 
