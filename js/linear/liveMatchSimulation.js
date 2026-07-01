@@ -940,7 +940,7 @@ function installLiveMatchStyles() {
     .live-momentum-svg {
       display: block;
       width: 100%;
-      height: clamp(70px, 17vh, 190px);
+      height: clamp(70px, calc(65vh - 332px), 220px);
       flex: 1 1 auto;
       overflow: visible;
     }
@@ -1076,7 +1076,7 @@ function installLiveMatchStyles() {
     .live-ticker-list {
       display: grid;
       gap: 6px;
-      max-height: clamp(48px, 9vh, 135px);
+      max-height: clamp(45px, calc(35vh - 179px), 160px);
       overflow: auto;
       padding-right: 4px;
     }
@@ -1129,7 +1129,7 @@ function installLiveMatchStyles() {
     }
 
     .live-control-status {
-      flex: 1 1 auto !important;
+      flex: 1 1 100% !important;
       min-width: 0;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -1144,7 +1144,7 @@ function installLiveMatchStyles() {
       min-height: 0 !important;
       border: 1px solid #ffffff20;
       border-radius: 999px;
-      padding: 7px 12px !important;
+      padding: 9px 14px !important;
       font-size: 11px !important;
       color: #f4f4f5;
       background: #ffffff0d;
@@ -1160,8 +1160,8 @@ function installLiveMatchStyles() {
 
     .live-controls .live-continue-btn {
       display: block !important;
-      flex: 1 1 100% !important;
-      width: 100% !important;
+      flex: 1 1 auto !important;
+      width: auto !important;
       min-height: 0 !important;
       padding: 9px 14px !important;
       font-size: 13px !important;
