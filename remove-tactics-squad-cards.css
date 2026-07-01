@@ -20,3 +20,13 @@
   color: #d1b36e !important;
   text-shadow: 0 0 12px rgba(209,179,110,.28) !important;
 }
+
+.eyebrow::before {
+  content: "◆ ";
+  color: #d1b36e;
+}
+
+.eyebrow::after {
+  content: " ◆";
+  color: #d1b36e;
+}
