@@ -1,9 +1,9 @@
-import { goTo } from "./linearRouter.js?v=instant-draft-batch-1";
+import { goTo } from "./linearRouter.js?v=draft-status-hidden-2";
 import { installLinearStyles } from "./linearStyles.js";
 import { installDraftPolishStyles } from "./draftPolishStyles.js?v=default-fast-green-draft-1";
 import { installDraftSpeedController } from "./draftSpeedController.js?v=instant-draft-batch-1";
 import { installFormationSelectorEnhancer } from "./formationSelectorEnhancer.js?v=formation-links-1";
-import { installDraftFormationConstraintEnhancer } from "./draftFormationConstraintEnhancerV6.js?v=draft-status-hidden-1";
+import { installDraftFormationConstraintEnhancer } from "./draftFormationConstraintEnhancerV6.js?v=draft-status-hidden-2";
 import { installTraitChainEnhancer } from "./traitChainEnhancerCompleteV6.js?v=show-all-control-robust-1";
 import { installMatchActionTopEnhancer } from "./matchActionTopEnhancer.js?v=page-flow-polish-1";
 import { installLiveGoalScorersEnhancer } from "./liveGoalScorersEnhancer.js?v=goal-ball-only-1";
