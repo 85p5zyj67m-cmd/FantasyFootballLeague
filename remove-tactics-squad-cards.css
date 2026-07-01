@@ -12,3 +12,11 @@
 .linear-tactics-controls-grid {
   margin-bottom: 0 !important;
 }
+
+.draft-list-rating,
+.draft-list-position,
+.live-stat-value,
+.live-clock {
+  color: #d1b36e !important;
+  text-shadow: 0 0 12px rgba(209,179,110,.28) !important;
+}
