@@ -63,6 +63,12 @@
   outline-offset: -14px !important;
 }
 
+.linear-player-card.linear-player-card,
+.draft-list-player-card.draft-list-player-card {
+  border: 7px solid #5a321b !important;
+  border-radius: 20px !important;
+}
+
 @media (max-width: 760px) {
   .trait-chain-panel {
     max-height: 190px !important;
