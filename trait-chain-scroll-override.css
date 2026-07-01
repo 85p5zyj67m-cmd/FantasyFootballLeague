@@ -55,6 +55,14 @@
   border-color: rgba(209,179,110,.24) !important;
 }
 
+.linear-card.linear-card,
+.hero-card.hero-card {
+  border: 12px solid #5a321b !important;
+  border-radius: 26px !important;
+  outline: 3px solid #d1b36e !important;
+  outline-offset: -14px !important;
+}
+
 @media (max-width: 760px) {
   .trait-chain-panel {
     max-height: 190px !important;
