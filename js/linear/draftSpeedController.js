@@ -12,8 +12,7 @@ function handleSpeedEvent(event) {
   if (!select.closest(".linear-speed-box")) return;
 
   appState.aiSpeed = select.value;
+  if (select.dataset.draftSpeedSelect === "true") return;
 
-  window.setTimeout(() => {
-    goTo("page04");
-  }, 0);
+  window.setTimeout(() => goTo("page04"), 0);
 }
