@@ -9,7 +9,7 @@ import { installMatchActionTopEnhancer } from "./matchActionTopEnhancer.js?v=pag
 import { installLiveGoalScorersEnhancer } from "./liveGoalScorersEnhancer.js?v=goal-ball-only-1";
 import { installTacticsSystemEnhancer } from "./tacticsSystemEnhancer.js?v=english-ui-1";
 import { installStrictPositionEnforcer } from "./strictPositionEnforcer.js?v=strict-cdm-1";
-import { installSeasonStartBridge } from "./seasonStartBridge.js?v=live-balanced-engine-1";
+import { installSeasonStartBridge } from "./seasonStartBridge.js?v=detailed-position-engine-1";
 import { installVisualUnityLayer } from "./visualUnityLayer.js?v=unified-green-wood-1";
 
 window.addEventListener("DOMContentLoaded", () => {
