@@ -1,0 +1,275 @@
+/* Live Snake Draft bookmaker polish: visual-only overrides. */
+
+html body .linear-page:not(.start-bookmaker-page) {
+  width: min(1220px, calc(100% - 24px)) !important;
+}
+
+html body .linear-page:not(.start-bookmaker-page) .linear-card,
+html body .linear-draft-view,
+html body .linear-draft-tabs,
+html body .linear-round-picks,
+html body .linear-order-ticker,
+html body .linear-speed-box,
+html body .team-panel,
+html body .squad-panel,
+html body .tactics-panel,
+html body .counter-tactics-card,
+html body .linear-tactics-view,
+html body .linear-tactics-controls-grid,
+html body .chain-panel,
+html body .active-chains-panel,
+html body .formation-board,
+html body .formation-pitch,
+html body .linear-mini-card {
+  color: var(--book-cream) !important;
+  border: 1px solid rgba(240, 223, 184, .19) !important;
+  outline: 3px solid rgba(90, 53, 30, .72) !important;
+  outline-offset: 4px !important;
+  border-radius: 18px !important;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.035), transparent 28%),
+    radial-gradient(circle at 16% 0%, rgba(242,204,107,.09), transparent 34%),
+    linear-gradient(145deg, rgba(18,48,30,.96), rgba(5,14,9,.98) 62%, rgba(38,20,11,.88)) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.06), inset 0 0 0 1px rgba(0,0,0,.32), 0 18px 44px rgba(0,0,0,.42) !important;
+}
+
+html body .linear-page:not(.start-bookmaker-page) h1,
+html body .linear-page:not(.start-bookmaker-page) h2,
+html body .linear-page:not(.start-bookmaker-page) h3 {
+  color: #fff0bd !important;
+  text-shadow: 0 2px 0 rgba(0,0,0,.6), 0 0 22px rgba(217,167,61,.18) !important;
+}
+
+html body .eyebrow,
+html body .linear-on-clock.user,
+html body #pickInfo,
+html body .bench-title,
+html body .live-stat-value,
+html body .live-clock {
+  color: var(--book-gold-bright) !important;
+}
+
+html body .subtitle,
+html body .hint,
+html body .player-meta,
+html body .linear-info-meta span,
+html body .draft-list-club,
+html body .draft-list-nationality,
+html body .linear-speed-box label {
+  color: #cdbb8c !important;
+}
+
+html body .linear-tab-btn,
+html body .main-tab,
+html body .chip,
+html body .position-filter-btn,
+html body .view-toggle-btn,
+html body .linear-draft-tabs button,
+html body .formation-option-btn,
+html body .formation-grid button,
+html body .chain-toggle-btn,
+html body .live-secondary-btn,
+html body .linear-counter-pill,
+html body .linear-order-ticker span {
+  color: #eadbb4 !important;
+  border: 1px solid rgba(201,173,114,.24) !important;
+  outline: none !important;
+  background: linear-gradient(180deg, rgba(255,255,255,.035), rgba(0,0,0,.12)), linear-gradient(135deg, #10281b, #06100b) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.045), 0 8px 18px rgba(0,0,0,.3) !important;
+}
+
+html body .linear-tab-btn.active,
+html body .main-tab.active,
+html body .chip.active,
+html body .position-filter-btn.active,
+html body .view-toggle-btn.active,
+html body .linear-draft-tabs button.active,
+html body .formation-option-btn.active,
+html body .formation-grid button.active,
+html body .chain-toggle-btn.active,
+html body .linear-order-ticker span.active,
+html body .selected,
+html body .is-selected,
+html body .active:not(.active-chains-panel):not(.linear-card) {
+  color: #211207 !important;
+  border: 1px solid rgba(255,239,173,.72) !important;
+  background: linear-gradient(180deg, #ffe08a 0%, #d6a13b 48%, #9f682c 100%) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.36), inset 0 -2px 0 rgba(83,45,18,.55), 0 10px 24px rgba(0,0,0,.35) !important;
+}
+
+html body .linear-draft-tabs button,
+html body .main-tab,
+html body .view-toggle-btn {
+  min-height: 48px !important;
+  border-radius: 12px !important;
+  font-weight: 900 !important;
+}
+
+html body select,
+html body input,
+html body .linear-select,
+html body .linear-speed-box select,
+html body .counter-tactic-control select,
+html body .linear-tactic-control select,
+html body .formation-select,
+html body .formation-control select {
+  color: #f4e6bd !important;
+  border: 1px solid rgba(217,167,61,.42) !important;
+  background: linear-gradient(180deg, rgba(255,255,255,.04), transparent), #07120b !important;
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,.45), 0 8px 18px rgba(0,0,0,.24) !important;
+}
+
+html body .linear-player-card,
+html body .draft-list-player-card,
+html body .player-card,
+html body .my-team-card,
+html body .linear-info-player-card {
+  color: var(--book-cream) !important;
+  border: 1px solid rgba(240,223,184,.16) !important;
+  outline: 5px solid rgba(90,53,30,.86) !important;
+  outline-offset: 0 !important;
+  border-radius: 14px !important;
+  background: linear-gradient(145deg, #092016 0%, #06110b 58%, #241309 100%) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.05), 0 12px 30px rgba(0,0,0,.38) !important;
+}
+
+html body .linear-player-card:hover,
+html body .draft-list-player-card:hover,
+html body .player-card:hover,
+html body .my-team-card:hover {
+  border-color: rgba(242,204,107,.54) !important;
+  outline-color: rgba(138,90,50,.95) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.07), 0 0 0 2px rgba(217,167,61,.1), 0 16px 38px rgba(0,0,0,.46) !important;
+}
+
+html body .draft-list-rating,
+html body .draft-list-position,
+html body .linear-info-rating,
+html body .linear-info-position,
+html body .overall-badge,
+html body .rating-badge,
+html body .player-overall,
+html body .linear-player-top strong,
+html body .linear-player-top b,
+html body .slot-number,
+html body .counter-number {
+  color: #211207 !important;
+  border: 1px solid rgba(255,239,173,.7) !important;
+  background: radial-gradient(circle at 30% 18%, #fff1ad, transparent 34%), linear-gradient(135deg, #f4d37b, #c88b31 58%, #7b4a1e) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.34), 0 8px 18px rgba(0,0,0,.34) !important;
+}
+
+html body .linear-player-name,
+html body .draft-list-name,
+html body .linear-info-name,
+html body .player-name {
+  color: #fff0c0 !important;
+}
+
+html body .linear-trait-chip,
+html body .draft-list-trait,
+html body .trait-chip,
+html body .trait,
+html body .position-badge,
+html body .position-pill,
+html body .lineup-slot-label {
+  color: #ecdcb4 !important;
+  border: 1px solid rgba(217,167,61,.28) !important;
+  background: rgba(42,22,12,.58) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.04) !important;
+}
+
+html body .linear-slot,
+html body .compact-slot,
+html body .formation-slot,
+html body .lineup-slot,
+html body .player-slot,
+html body .slot {
+  color: #f1e3bd !important;
+  border: 1px solid rgba(217,167,61,.28) !important;
+  background: radial-gradient(circle at center, rgba(242,204,107,.07), transparent 58%), rgba(7,18,11,.76) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.04), 0 10px 22px rgba(0,0,0,.28) !important;
+}
+
+html body .linear-slot.filled,
+html body .compact-slot.filled,
+html body .formation-slot.filled,
+html body .lineup-slot.filled {
+  border-color: rgba(242,204,107,.46) !important;
+  background: linear-gradient(145deg, rgba(24,59,36,.94), rgba(8,22,13,.95)) !important;
+}
+
+html body .tactics-tab,
+html body .s11-tab,
+html body .squad-tab,
+html body .tactics-toggle,
+html body .linear-subtab,
+html body .my-team-subtab {
+  color: #eadbb4 !important;
+  border: 1px solid rgba(201,173,114,.25) !important;
+  background: linear-gradient(180deg, #10281b, #07120c) !important;
+}
+
+html body .tactics-tab.active,
+html body .s11-tab.active,
+html body .squad-tab.active,
+html body .tactics-toggle.active,
+html body .linear-subtab.active,
+html body .my-team-subtab.active {
+  color: #211207 !important;
+  background: linear-gradient(180deg, #ffe08a 0%, #d6a13b 48%, #9f682c 100%) !important;
+}
+
+html body .counter-tactics-card li,
+html body .linear-mini-card li,
+html body .tactic-help,
+html body .tactic-description {
+  color: #d8c79c !important;
+}
+
+html body .active-chains-panel,
+html body .chain-status,
+html body .formation-target,
+html body .draft-warning,
+html body .draft-hint {
+  color: #e8d8a9 !important;
+  border-color: rgba(217,167,61,.25) !important;
+  background: rgba(5,16,10,.72) !important;
+}
+
+html body .primary-btn,
+html body .draft-btn,
+html body .linear-next-btn,
+html body .live-continue-btn,
+html body .show-all-chains-btn,
+html body button.primary-btn {
+  color: #211207 !important;
+  border: 1px solid rgba(255,239,173,.72) !important;
+  background: linear-gradient(180deg, #ffe08a 0%, #d6a13b 42%, #9f682c 100%) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.36), inset 0 -2px 0 rgba(83,45,18,.55), 0 12px 26px rgba(0,0,0,.38) !important;
+}
+
+html body .primary-btn:hover,
+html body .draft-btn:hover,
+html body .linear-next-btn:hover,
+html body .show-all-chains-btn:hover {
+  filter: brightness(1.08) saturate(1.06) !important;
+  transform: translateY(-1px);
+}
+
+html body .linear-page:not(.start-bookmaker-page) ::selection {
+  color: #211207 !important;
+  background: #e6bb58 !important;
+}
+
+@media (max-width: 760px) {
+  html body .linear-page:not(.start-bookmaker-page) {
+    width: min(100% - 14px, 1220px) !important;
+  }
+
+  html body .linear-draft-tabs button,
+  html body .main-tab,
+  html body .view-toggle-btn {
+    min-height: 44px !important;
+  }
+}
