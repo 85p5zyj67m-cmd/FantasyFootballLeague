@@ -28,7 +28,7 @@ export function renderPage01StartDraft() {
   copy.innerHTML = `
     <p class="eyebrow start-kicker">Old school bookmaker draft night</p>
     <h1>Build your dynasty under the lights.</h1>
-    <p class="start-bookmaker-subtitle">Step into a smoky sports bar draft room, read the board, trust your football eye and assemble a squad built for tactics, traits and playoff pressure.</p>
+    <p class="start-bookmaker-subtitle">Start with the draft, build trait chains, lock your tactics and watch every matchday play out live with momentum, xG and ticker drama.</p>
     <div class="start-bookmaker-highlights" aria-label="Game highlights">
       <span>20 Teams</span>
       <span>Snake Draft</span>
@@ -39,7 +39,7 @@ export function renderPage01StartDraft() {
 
   const ctaWrap = document.createElement("div");
   ctaWrap.className = "start-bookmaker-cta";
-  ctaWrap.appendChild(primaryButton("Enter Draft Room", async event => {
+  const enterDraftButton = primaryButton("Enter Draft Room", async event => {
     const button = event.currentTarget;
     button.disabled = true;
     button.textContent = "Loading players...";
@@ -51,40 +51,42 @@ export function renderPage01StartDraft() {
     appState.availablePlayers = selectDraftPool(appState.allPlayers);
 
     goTo("page02");
-  }));
+  });
+  enterDraftButton.classList.add("start-primary-focus");
+  ctaWrap.appendChild(enterDraftButton);
 
   const ctaNote = document.createElement("p");
   ctaNote.className = "start-bookmaker-note";
-  ctaNote.textContent = "No second chances. Every pick changes the market.";
+  ctaNote.textContent = "Your first decision starts the whole season.";
   ctaWrap.appendChild(ctaNote);
   copy.appendChild(ctaWrap);
 
-  const board = document.createElement("aside");
-  board.className = "start-bookmaker-board";
-  board.innerHTML = `
+  const briefing = document.createElement("aside");
+  briefing.className = "start-bookmaker-board start-briefing-card";
+  briefing.innerHTML = `
     <div class="start-board-header">
-      <span>Tonight's Board</span>
-      <strong>Live Odds</strong>
+      <span>Draft Room Briefing</span>
+      <strong>Flow</strong>
     </div>
-    <div class="start-odds-row featured">
-      <span>Elite ST run</span>
-      <strong>2.10</strong>
+    <div class="start-odds-row start-flow-row featured">
+      <span>1. Draft your squad</span>
+      <strong>Pick</strong>
     </div>
-    <div class="start-odds-row">
-      <span>Midfield control</span>
-      <strong>1.85</strong>
+    <div class="start-odds-row start-flow-row">
+      <span>2. Build trait chains</span>
+      <strong>Link</strong>
     </div>
-    <div class="start-odds-row">
-      <span>Trait chain value</span>
-      <strong>3.40</strong>
+    <div class="start-odds-row start-flow-row">
+      <span>3. Set your tactics</span>
+      <strong>Counter</strong>
     </div>
     <div class="start-ticket">
-      <span>Manager slip</span>
-      <strong>Pick smart. Counter harder.</strong>
+      <span>Season promise</span>
+      <strong>Every pick should shape how your team plays.</strong>
     </div>
   `;
 
-  layout.append(copy, board);
+  layout.append(copy, briefing);
 
   const bottom = document.createElement("div");
   bottom.className = "start-bookmaker-bottom";
@@ -106,4 +108,6 @@ export function renderPage01StartDraft() {
   hero.append(topLine, layout, bottom);
   section.appendChild(hero);
   app.appendChild(section);
+
+  requestAnimationFrame(() => enterDraftButton.focus({ preventScroll: true }));
 }
