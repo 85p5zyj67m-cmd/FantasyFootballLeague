@@ -77,7 +77,7 @@
   padding: 0 !important;
   border-radius: 0 !important;
   background: transparent !important;
-  color: #75ff9e !important;
+  color: #d1b36e !important;
   font-size: 0.67rem !important;
   line-height: 1 !important;
   font-weight: 900 !important;
@@ -87,7 +87,7 @@
 
 .linear-info-card-view .linear-info-rating::after {
   content: " -";
-  color: rgba(255, 255, 255, 0.72);
+  color: rgba(243, 234, 215, 0.72);
   font-weight: 800;
 }
 
@@ -99,7 +99,7 @@
   overflow: hidden !important;
   text-overflow: ellipsis !important;
   white-space: nowrap !important;
-  color: #75ff9e !important;
+  color: #d1b36e !important;
   font-size: 0.59rem !important;
   line-height: 1 !important;
   font-weight: 900 !important;
@@ -163,7 +163,7 @@
   margin: 0 !important;
   max-width: none !important;
   background: transparent !important;
-  color: rgba(255, 255, 255, 0.88) !important;
+  color: rgba(243, 234, 215, 0.88) !important;
   font-size: 0.53rem !important;
   line-height: 1.22 !important;
   font-weight: 800 !important;
@@ -172,7 +172,7 @@
 
 .linear-info-card-view .linear-info-traits small:not(:last-child)::after {
   content: " - ";
-  color: rgba(117, 255, 158, 0.82);
+  color: rgba(209, 179, 110, 0.82);
 }
 
 .linear-info-card-view .compact-player-pitch {
