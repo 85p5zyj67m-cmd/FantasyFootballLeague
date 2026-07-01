@@ -6,10 +6,11 @@ import { installFormationSelectorEnhancer } from "./formationSelectorEnhancer.js
 import { installDraftFormationConstraintEnhancer } from "./draftFormationConstraintEnhancerV6.js?v=draft-constraint-perf-1";
 import { installTraitChainEnhancer } from "./traitChainEnhancerCompleteV6.js?v=show-all-control-robust-1";
 import { installMatchActionTopEnhancer } from "./matchActionTopEnhancer.js?v=page-flow-polish-1";
-import { installLiveGoalScorersEnhancer } from "./liveGoalScorersEnhancer.js?v=goal-scorers-subtle-1";
+import { installLiveGoalScorersEnhancer } from "./liveGoalScorersEnhancer.js?v=goal-ball-only-1";
 import { installTacticsSystemEnhancer } from "./tacticsSystemEnhancer.js?v=english-ui-1";
 import { installStrictPositionEnforcer } from "./strictPositionEnforcer.js?v=strict-cdm-1";
 import { installSeasonStartBridge } from "./seasonStartBridge.js?v=live-balanced-engine-1";
+import { installVisualUnityLayer } from "./visualUnityLayer.js?v=unified-green-wood-1";
 
 window.addEventListener("DOMContentLoaded", () => {
   installLinearStyles();
@@ -23,5 +24,6 @@ window.addEventListener("DOMContentLoaded", () => {
   installTacticsSystemEnhancer();
   installStrictPositionEnforcer();
   installSeasonStartBridge();
+  installVisualUnityLayer();
   goTo("page01");
 });
