@@ -1,5 +1,25 @@
 /* Draft performance pass: keep the bookmaker look, reduce expensive paint work. */
 
+html body:has(.linear-draft-page)::before {
+  content: "" !important;
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 0 !important;
+  pointer-events: none !important;
+  background:
+    repeating-linear-gradient(90deg, rgba(240,223,184,.075) 0 1px, transparent 1px 78px),
+    repeating-linear-gradient(90deg, rgba(138,90,50,.13) 0 2px, transparent 2px 156px),
+    radial-gradient(circle at 16% 8%, rgba(242,204,107,.10), transparent 27%),
+    linear-gradient(90deg, rgba(242,204,107,.035), transparent 24%, transparent 76%, rgba(138,90,50,.045)) !important;
+  opacity: .72 !important;
+  mix-blend-mode: screen !important;
+}
+
+html body:has(.linear-draft-page) #app {
+  position: relative !important;
+  z-index: 1 !important;
+}
+
 html body .linear-draft-page,
 html body .linear-draft-card,
 html body .linear-draft-view,
