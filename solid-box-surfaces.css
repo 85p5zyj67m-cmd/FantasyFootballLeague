@@ -1,0 +1,95 @@
+/* Keep the vertical bookmaker stripes on the page background only.
+   Content surfaces stay opaque so cards, draft panels and live match boxes remain clean. */
+
+html body .linear-card,
+html body .hero-card,
+html body .panel,
+html body .linear-draft-view,
+html body .linear-draft-tabs,
+html body .linear-round-picks,
+html body .linear-order-ticker,
+html body .linear-speed-box,
+html body .team-panel,
+html body .squad-panel,
+html body .tactics-panel,
+html body .counter-tactics-card,
+html body .linear-tactics-view,
+html body .linear-tactics-controls-grid,
+html body .chain-panel,
+html body .active-chains-panel,
+html body .formation-board,
+html body .formation-pitch,
+html body .linear-mini-card,
+html body .division-overview-card,
+html body .user-division-card,
+html body .live-scoreboard,
+html body .live-momentum-card,
+html body .live-stats-panel,
+html body .live-ticker-card,
+html body .live-controls {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, .04), rgba(255, 255, 255, .01) 24%, transparent 42%),
+    radial-gradient(circle at 16% 0%, rgba(242, 204, 107, .10), transparent 34%),
+    linear-gradient(145deg, #12301e 0%, #06120b 62%, #241309 100%) !important;
+  background-color: #07120b !important;
+}
+
+html body .linear-draft-card::before {
+  inset: 8px !important;
+  z-index: 0 !important;
+  border: 1px solid rgba(217, 167, 61, .18) !important;
+  border-radius: 16px !important;
+  background: transparent !important;
+  box-shadow: inset 0 0 36px rgba(0, 0, 0, .34) !important;
+}
+
+html body .linear-player-card,
+html body .draft-list-player-card,
+html body .player-card,
+html body .my-team-card,
+html body .linear-info-player-card,
+html body .linear-ai-card,
+html body .linear-slot,
+html body .compact-slot,
+html body .formation-slot,
+html body .lineup-slot,
+html body .player-slot,
+html body .slot,
+html body .linear-bench,
+html body .linear-bench-player,
+html body .live-ticker-event,
+html body .trait-chain-panel,
+html body .trait-chain-detail {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, .035), rgba(0, 0, 0, .10)),
+    linear-gradient(145deg, #092016 0%, #06110b 58%, #241309 100%) !important;
+  background-color: #06110b !important;
+}
+
+html body .linear-trait-chip,
+html body .draft-list-trait,
+html body .trait-chip,
+html body .trait,
+html body .position-badge,
+html body .position-pill,
+html body .lineup-slot-label,
+html body .live-stat-value,
+html body .live-secondary-btn,
+html body select,
+html body input {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, .04), rgba(0, 0, 0, .16)),
+    #07120b !important;
+}
+
+html body .live-scoreboard,
+html body .live-momentum-card,
+html body .live-stats-panel,
+html body .live-ticker-card,
+html body .live-controls {
+  border-color: rgba(240, 223, 184, .19) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .06),
+    inset 0 0 0 1px rgba(0, 0, 0, .32),
+    0 18px 44px rgba(0, 0, 0, .42) !important;
+}
