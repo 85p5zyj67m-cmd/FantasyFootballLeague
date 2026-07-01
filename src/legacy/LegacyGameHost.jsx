@@ -1,9 +1,14 @@
 import { useEffect, useRef, useState } from "react";
+import { getRouteMeta } from "../routes/routeCatalog.js";
 import { loadLegacyGame } from "./loadLegacyGame.js";
+import { useLegacyRoute } from "./useLegacyRoute.js";
 
 export default function LegacyGameHost() {
   const bootedRef = useRef(false);
   const [startupError, setStartupError] = useState(null);
+  const routeName = useLegacyRoute("page01");
+  const routeMeta = getRouteMeta(routeName);
+  const phase = routeMeta ? routeMeta.phase : "unknown";
 
   useEffect(() => {
     if (bootedRef.current) return;
@@ -42,5 +47,5 @@ export default function LegacyGameHost() {
     );
   }
 
-  return <main id="app" aria-label="Fantasy Football League game" />;
+  return <main id="app" aria-label="Fantasy Football League game" data-route={routeName} data-phase={phase} />;
 }
