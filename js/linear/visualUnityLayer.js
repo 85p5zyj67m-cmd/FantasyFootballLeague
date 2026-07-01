@@ -17,7 +17,34 @@ export function installVisualUnityLayer() {
 
     body {
       color: var(--ui-cream) !important;
-      background: linear-gradient(180deg, #06130d, #0b1f15 45%, #050b08) !important;
+      background:
+        radial-gradient(circle at 18% 0%, rgba(242, 204, 107, .16), transparent 31%),
+        radial-gradient(circle at 88% 9%, rgba(138, 90, 50, .22), transparent 34%),
+        repeating-linear-gradient(90deg, rgba(240, 223, 184, .075) 0 1px, transparent 1px 78px),
+        repeating-linear-gradient(90deg, rgba(138, 90, 50, .13) 0 2px, transparent 2px 156px),
+        linear-gradient(90deg, rgba(242, 204, 107, .045), transparent 22%, transparent 78%, rgba(138, 90, 50, .055)),
+        linear-gradient(180deg, #06130d, #0b1f15 45%, #050b08) !important;
+      background-attachment: fixed !important;
+    }
+
+    body::before {
+      content: "" !important;
+      position: fixed !important;
+      inset: 0 !important;
+      z-index: 0 !important;
+      pointer-events: none !important;
+      background:
+        linear-gradient(90deg, rgba(242, 204, 107, .10), transparent 18%, transparent 82%, rgba(138, 90, 50, .11)),
+        repeating-linear-gradient(90deg, rgba(240, 223, 184, .065) 0 1px, transparent 1px 78px),
+        repeating-linear-gradient(90deg, rgba(90, 53, 30, .18) 0 2px, transparent 2px 156px),
+        radial-gradient(circle at center, transparent 0 44%, rgba(0, 0, 0, .42) 100%) !important;
+      mix-blend-mode: screen !important;
+      opacity: .62 !important;
+    }
+
+    #app {
+      position: relative !important;
+      z-index: 1 !important;
     }
 
     .linear-card.linear-card,
@@ -37,7 +64,10 @@ export function installVisualUnityLayer() {
       border-radius: 22px !important;
       outline: 1px solid rgba(209,179,110,.55) !important;
       outline-offset: -8px !important;
-      background: linear-gradient(180deg, rgba(244,234,214,.035), rgba(0,0,0,.08)), linear-gradient(145deg, #0f281b, #07120c 64%, #201208) !important;
+      background:
+        linear-gradient(180deg, rgba(244,234,214,.035), rgba(0,0,0,.08)),
+        repeating-linear-gradient(90deg, rgba(240,223,184,.04) 0 1px, transparent 1px 78px),
+        linear-gradient(145deg, rgba(15,40,27,.92), rgba(7,18,12,.95) 64%, rgba(32,18,8,.88)) !important;
       box-shadow: inset 0 0 0 1px rgba(244,234,214,.08), inset 0 0 34px rgba(0,0,0,.38), 0 20px 54px rgba(0,0,0,.52) !important;
     }
 
