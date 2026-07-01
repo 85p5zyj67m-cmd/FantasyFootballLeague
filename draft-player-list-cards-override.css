@@ -19,9 +19,9 @@
   overflow: hidden !important;
   text-align: left !important;
   border-radius: 14px !important;
-  border: 1px solid rgba(101, 229, 141, 0.25) !important;
+  border: 1px solid rgba(209, 179, 110, 0.28) !important;
   background:
-    radial-gradient(circle at top right, rgba(101, 229, 141, 0.13), transparent 42%),
+    radial-gradient(circle at top right, rgba(209, 179, 110, 0.13), transparent 42%),
     linear-gradient(180deg, #13251a, #07110d) !important;
 }
 
@@ -46,7 +46,7 @@
 .draft-list-card-top .draft-list-rating,
 .linear-player-top .draft-list-rating {
   order: 1 !important;
-  color: #75ff9e !important;
+  color: #d1b36e !important;
   background: transparent !important;
   border-radius: 0 !important;
   padding: 0 !important;
@@ -59,13 +59,13 @@
 
 .linear-player-card .linear-player-top strong::after {
   content: " -";
-  color: rgba(255, 255, 255, 0.74);
+  color: rgba(243, 234, 215, 0.74);
   font-weight: 900;
 }
 
 .draft-list-separator {
   order: 2 !important;
-  color: rgba(255, 255, 255, 0.74) !important;
+  color: rgba(243, 234, 215, 0.74) !important;
   font-size: 0.78rem !important;
   line-height: 1 !important;
   font-weight: 900 !important;
@@ -81,7 +81,7 @@
   overflow: hidden !important;
   text-overflow: ellipsis !important;
   white-space: nowrap !important;
-  color: #75ff9e !important;
+  color: #d1b36e !important;
   background: transparent !important;
   border-radius: 0 !important;
   padding: 0 !important;
@@ -98,7 +98,7 @@
   overflow: hidden !important;
   text-overflow: ellipsis !important;
   white-space: nowrap !important;
-  color: #ffffff !important;
+  color: #f3ead7 !important;
   font-size: clamp(0.86rem, 1.7vw, 1.05rem) !important;
   line-height: 1.08 !important;
   font-weight: 950 !important;
@@ -114,7 +114,7 @@
   overflow: hidden !important;
   text-overflow: ellipsis !important;
   white-space: nowrap !important;
-  color: rgba(255, 255, 255, 0.88) !important;
+  color: rgba(243, 234, 215, 0.86) !important;
   font-size: 0.78rem !important;
   line-height: 1.15 !important;
   font-weight: 800 !important;
@@ -122,7 +122,7 @@
 
 .linear-player-card > small:not(.linear-trait-chip),
 .draft-list-nationality {
-  color: rgba(219, 231, 223, 0.78) !important;
+  color: rgba(184, 173, 152, 0.84) !important;
   font-size: 0.74rem !important;
 }
 
@@ -137,7 +137,7 @@
   max-height: 58px !important;
   overflow: hidden !important;
   padding-top: 2px !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-top: 1px solid rgba(209, 179, 110, 0.16) !important;
 }
 
 .linear-player-card .linear-trait-chip,
@@ -148,9 +148,9 @@
   min-width: 0 !important;
   padding: 3px 6px !important;
   border-radius: 999px !important;
-  border: 1px solid rgba(117, 255, 158, 0.24) !important;
-  background: rgba(117, 255, 158, 0.08) !important;
-  color: rgba(255, 255, 255, 0.9) !important;
+  border: 1px solid rgba(209, 179, 110, 0.24) !important;
+  background: rgba(209, 179, 110, 0.08) !important;
+  color: rgba(243, 234, 215, 0.9) !important;
   font-size: 0.62rem !important;
   line-height: 1.05 !important;
   font-weight: 850 !important;
@@ -162,8 +162,8 @@
 .linear-player-card .linear-trait-chip.empty,
 .draft-list-trait.empty {
   opacity: 0.72 !important;
-  border-color: rgba(255, 255, 255, 0.14) !important;
-  background: rgba(255, 255, 255, 0.05) !important;
+  border-color: rgba(243, 234, 215, 0.14) !important;
+  background: rgba(243, 234, 215, 0.05) !important;
 }
 
 @media (max-width: 760px) {
