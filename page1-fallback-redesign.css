@@ -15,10 +15,10 @@ html body .linear-page:has(> .linear-card > .eyebrow + h1 + .subtitle + .primary
   display: grid !important;
   grid-template-columns: minmax(0, 1.18fr) minmax(290px, .78fr) !important;
   grid-template-areas:
-    "kicker odds"
-    "title odds"
-    "subtitle odds"
-    "button odds"
+    "kicker briefing"
+    "title briefing"
+    "subtitle briefing"
+    "button briefing"
     "features features" !important;
   column-gap: clamp(22px, 4vw, 52px) !important;
   row-gap: clamp(16px, 2.4vw, 24px) !important;
@@ -41,9 +41,9 @@ html body .linear-page:has(> .linear-card > .eyebrow + h1 + .subtitle + .primary
 }
 
 html body .linear-page:has(> .linear-card > .eyebrow + h1 + .subtitle + .primary-btn) > .linear-card::before {
-  content: "TONIGHT'S BOARD\A\AELITE ST RUN                 2.10\AMIDFIELD CONTROL             1.85\ATRAIT CHAIN VALUE            3.40\A\A MANAGER SLIP\A Pick smart. Counter harder." !important;
+  content: "DRAFT ROOM BRIEFING\A\A1. DRAFT YOUR SQUAD        PICK\A2. BUILD TRAIT CHAINS       LINK\A3. SET YOUR TACTICS       COUNTER\A\A SEASON PROMISE\A Every pick should shape how your team plays." !important;
   white-space: pre-wrap;
-  grid-area: odds;
+  grid-area: briefing;
   align-self: center;
   position: relative !important;
   inset: auto !important;
@@ -135,7 +135,7 @@ html body .linear-page:has(> .linear-card > .eyebrow + h1 + .subtitle + .primary
 }
 
 html body .linear-page:has(> .linear-card > .eyebrow + h1 + .subtitle + .primary-btn) .subtitle::before {
-  content: "Step into a smoky sports bar draft room, read the board, trust your football eye and assemble a squad built for tactics, traits and playoff pressure.";
+  content: "Start with the draft, build trait chains, lock your tactics and watch every matchday play out live with momentum, xG and ticker drama.";
   color: #d9c99f;
   font-size: clamp(17px, 2.1vw, 22px);
 }
@@ -154,6 +154,18 @@ html body .linear-page:has(> .linear-card > .eyebrow + h1 + .subtitle + .primary
   font-size: clamp(16px, 2vw, 20px) !important;
 }
 
+html body .linear-page:has(> .linear-card > .eyebrow + h1 + .subtitle + .primary-btn) .primary-btn:focus-visible,
+html body .linear-page:has(> .linear-card > .eyebrow + h1 + .subtitle + .primary-btn) .primary-btn:focus {
+  outline: 3px solid rgba(255, 232, 150, .95) !important;
+  outline-offset: 5px !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .36),
+    inset 0 -2px 0 rgba(83, 45, 18, .55),
+    0 16px 36px rgba(0, 0, 0, .5),
+    0 0 0 8px rgba(217, 167, 61, .14),
+    0 0 34px rgba(242, 204, 107, .32) !important;
+}
+
 @media (max-width: 900px) {
   html body .linear-page:has(> .linear-card > .eyebrow + h1 + .subtitle + .primary-btn) > .linear-card {
     grid-template-columns: 1fr !important;
@@ -162,7 +174,7 @@ html body .linear-page:has(> .linear-card > .eyebrow + h1 + .subtitle + .primary
       "title"
       "subtitle"
       "button"
-      "odds"
+      "briefing"
       "features" !important;
   }
 
