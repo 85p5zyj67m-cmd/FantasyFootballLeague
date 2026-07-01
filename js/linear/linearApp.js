@@ -1,16 +1,16 @@
 import { goTo } from "./linearRouter.js?v=draft-status-hidden-2";
 import { installLinearStyles } from "./linearStyles.js";
-import { installDraftPolishStyles } from "./draftPolishStyles.js?v=default-fast-green-draft-1";
-import { installDraftSpeedController } from "./draftSpeedController.js?v=instant-draft-batch-1";
-import { installFormationSelectorEnhancer } from "./formationSelectorEnhancer.js?v=formation-links-1";
-import { installDraftFormationConstraintEnhancer } from "./draftFormationConstraintEnhancer.js?v=draft-status-hidden-2";
-import { installTraitChainEnhancer } from "./traitChainShowAllToggle.js?v=show-all-control-robust-1";
-import { installMatchActionTopEnhancer } from "./matchActionTopEnhancer.js?v=page-flow-polish-1";
-import { installLiveGoalScorersEnhancer } from "./liveGoalScorersEnhancer.js?v=goal-ball-only-1";
-import { installTacticsSystemEnhancer } from "./tacticsSystemEnhancer.js?v=english-ui-1";
-import { installStrictPositionEnforcer } from "./strictPositionEnforcer.js?v=strict-cdm-1";
-import { installSeasonStartBridge } from "./seasonStartBridge.js?v=detailed-position-engine-1";
-import { installVisualUnityLayer } from "./visualUnityLayer.js?v=draft-desktop-final-1";
+import { installDraftPolishStyles } from "./enhancers/draftPolishStyles.js?v=default-fast-green-draft-1";
+import { installDraftSpeedController } from "./enhancers/draftSpeedController.js?v=instant-draft-batch-1";
+import { installFormationSelectorEnhancer } from "./enhancers/formationSelectorEnhancer.js?v=formation-links-1";
+import { installDraftFormationConstraintEnhancer } from "./enhancers/draftFormationConstraintEnhancer.js?v=draft-status-hidden-2";
+import { installTraitChainEnhancer } from "./enhancers/traitChainShowAllToggle.js?v=show-all-control-robust-1";
+import { installMatchActionTopEnhancer } from "./enhancers/matchActionTopEnhancer.js?v=page-flow-polish-1";
+import { installLiveGoalScorersEnhancer } from "./enhancers/liveGoalScorersEnhancer.js?v=goal-ball-only-1";
+import { installTacticsSystemEnhancer } from "./enhancers/tacticsSystemEnhancer.js?v=english-ui-1";
+import { installStrictPositionEnforcer } from "./enhancers/strictPositionEnforcer.js?v=strict-cdm-1";
+import { installSeasonStartBridge } from "./enhancers/seasonStartBridge.js?v=detailed-position-engine-1";
+import { installVisualUnityLayer } from "./enhancers/visualUnityLayer.js?v=draft-desktop-final-1";
 
 window.addEventListener("DOMContentLoaded", () => {
   installLinearStyles();

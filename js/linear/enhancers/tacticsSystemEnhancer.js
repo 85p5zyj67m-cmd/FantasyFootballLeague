@@ -1,4 +1,4 @@
-import { userTeam } from "./linearState.js";
+import { userTeam } from "../linearState.js";
 
 const TACTIC_FIELDS = [
   {

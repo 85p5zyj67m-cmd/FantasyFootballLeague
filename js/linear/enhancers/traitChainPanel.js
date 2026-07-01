@@ -1,5 +1,5 @@
-import { getActiveTraitChains } from "../traitChainEngine.js?v=balanced-trait-recipes-1";
-import { userTeam } from "./linearState.js";
+import { getActiveTraitChains } from "../../traitChainEngine.js?v=balanced-trait-recipes-1";
+import { userTeam } from "../linearState.js";
 
 let observer = null;
 let queued = false;

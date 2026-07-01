@@ -1,19 +1,19 @@
-import { FORMATIONS } from "../formations.js?v=detailed-formations-3";
+import { FORMATIONS } from "../../formations.js?v=detailed-formations-3";
 import {
   draftPlayer,
   getPickInRound,
   getRound,
   getTeamOnClock,
   getVisiblePlayers
-} from "../draftRules.js";
-import { autoPlacePlayer } from "../lineup.js?v=strict-cdm-1";
-import { getDisplayPosition } from "../playerUtils.js?v=strict-cdm-1";
+} from "../../draftRules.js";
+import { autoPlacePlayer } from "../../lineup.js?v=strict-cdm-1";
+import { getDisplayPosition } from "../../playerUtils.js?v=strict-cdm-1";
 import {
   canPlayerBeDraftedForFormation,
   canSelectFormationDuringDraft
-} from "../draftFormationConstraints.js?v=draft-constraint-perf-1";
-import { appState, userTeam } from "./linearState.js";
-import { goTo } from "./linearRouter.js?v=page-flow-polish-1";
+} from "../../draftFormationConstraints.js?v=draft-constraint-perf-1";
+import { appState, userTeam } from "../linearState.js";
+import { goTo } from "../linearRouter.js?v=page-flow-polish-1";
 
 let observer = null;
 let queued = false;

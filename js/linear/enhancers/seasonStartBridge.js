@@ -19,7 +19,7 @@ export function installSeasonStartBridge() {
     button.textContent = "Starting Season...";
 
     try {
-      const seasonFlow = await import("./seasonFlow.js?v=detailed-position-engine-1");
+      const seasonFlow = await import("../seasonFlow.js?v=detailed-position-engine-1");
       seasonFlow.startLinearSeason();
     } catch (error) {
       console.error("Start Season failed", error);

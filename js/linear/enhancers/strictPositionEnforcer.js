@@ -1,8 +1,8 @@
-import { getFormationById } from "../formations.js?v=detailed-formations-3";
-import { getSlotsFromFormation } from "../lineup.js?v=strict-cdm-1";
-import { canPlayPosition } from "../playerUtils.js?v=strict-cdm-1";
-import { userTeam } from "./linearState.js";
-import { goTo } from "./linearRouter.js?v=detailed-formations-1";
+import { getFormationById } from "../../formations.js?v=detailed-formations-3";
+import { getSlotsFromFormation } from "../../lineup.js?v=strict-cdm-1";
+import { canPlayPosition } from "../../playerUtils.js?v=strict-cdm-1";
+import { userTeam } from "../linearState.js";
+import { goTo } from "../linearRouter.js?v=detailed-formations-1";
 
 let queued = false;
 let installed = false;

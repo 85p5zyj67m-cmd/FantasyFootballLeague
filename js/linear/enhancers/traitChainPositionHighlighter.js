@@ -1,8 +1,8 @@
 import { installTraitChainEnhancer as installCompleteChainEnhancer } from "./traitChainPanel.js?v=complete-chain-ui-1";
-import { getFormationById } from "../formations.js?v=detailed-formations-3";
-import { getSlotsFromFormation } from "../lineup.js?v=strict-cdm-1";
-import { getFormationChainLinkScore, hasFormationSpecificChainLinks } from "../formationChainLinks.js?v=formation-links-1";
-import { userTeam } from "./linearState.js";
+import { getFormationById } from "../../formations.js?v=detailed-formations-3";
+import { getSlotsFromFormation } from "../../lineup.js?v=strict-cdm-1";
+import { getFormationChainLinkScore, hasFormationSpecificChainLinks } from "../../formationChainLinks.js?v=formation-links-1";
+import { userTeam } from "../linearState.js";
 
 const X_BY_LINE_LENGTH = {
   1: [0],
