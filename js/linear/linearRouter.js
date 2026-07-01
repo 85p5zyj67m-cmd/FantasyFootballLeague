@@ -1,4 +1,4 @@
-import { renderPage01StartDraft } from "./pages/page01StartDraft.js?v=player-traits-2";
+import { renderPage01StartDraft } from "./pages/page01StartDraft.js?v=start-bookmaker-1";
 import { renderPage02DraftPosition } from "./pages/page02DraftPosition.js?v=casino-reel-1";
 import { renderPage03YourSystem } from "./pages/page03YourSystem.js?v=page-flow-polish-1";
 import { renderPage04Draft } from "./pages/page04Draft.js?v=formation-draft-constraints-1";
