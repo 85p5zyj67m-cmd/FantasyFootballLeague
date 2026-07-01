@@ -11,6 +11,7 @@ export function renderPage20Final() {
     title: "Final",
     subtitle: match ? `Live simulation: ${match.round}` : "No final available."
   });
+  shell.card.classList.add("linear-match-card");
 
   shell.card.appendChild(renderLiveMatchSimulation(match, {
     nextButtonText: "Season Statistics",

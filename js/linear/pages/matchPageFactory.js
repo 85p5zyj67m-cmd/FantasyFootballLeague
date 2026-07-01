@@ -12,6 +12,7 @@ export function renderLinearMatchPage(pageNumber, title) {
     title,
     subtitle: match ? `Live simulation: ${match.round}` : "No match available."
   });
+  shell.card.classList.add("linear-match-card");
 
   shell.card.appendChild(renderLiveMatchSimulation(match, {
     nextButtonText: nextMatchButtonText(),

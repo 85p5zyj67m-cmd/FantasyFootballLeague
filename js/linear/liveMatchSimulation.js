@@ -32,7 +32,7 @@ export function renderLiveMatchSimulation(match, options = {}) {
     controls
   };
 
-  wrapper.append(scoreboard.wrapper, momentum.wrapper, stats.wrapper, ticker.wrapper, controls.wrapper);
+  wrapper.append(scoreboard.wrapper, momentum.wrapper, ticker.wrapper, stats.wrapper, controls.wrapper);
   renderFrame(state);
   runSimulation(wrapper, state);
 
@@ -325,6 +325,7 @@ function createMomentumCard(state) {
 
   const svg = document.createElementNS(SVG_NS, "svg");
   svg.setAttribute("viewBox", "0 0 560 190");
+  svg.setAttribute("preserveAspectRatio", "none");
   svg.classList.add("live-momentum-svg");
 
   const grid = svgGroup("live-momentum-grid");
@@ -782,8 +783,33 @@ function installLiveMatchStyles() {
   style.textContent = `
     .linear-live-sim {
       display: grid;
-      gap: 16px;
-      margin-top: 18px;
+      gap: 7px;
+      margin-top: 2px;
+    }
+
+    .linear-page:has(> .linear-match-card) {
+      padding: 12px 0 !important;
+    }
+
+    .linear-match-card {
+      gap: 6px !important;
+      padding: 10px 14px !important;
+    }
+
+    .linear-match-card .eyebrow {
+      display: none !important;
+    }
+
+    .linear-match-card h1 {
+      font-size: clamp(18px, 3.6vw, 24px) !important;
+      line-height: 1.1 !important;
+      letter-spacing: -0.5px !important;
+    }
+
+    .linear-match-card .subtitle {
+      margin: 0 !important;
+      font-size: 11px !important;
+      line-height: 1.3 !important;
     }
 
     .live-scoreboard,
@@ -797,23 +823,23 @@ function installLiveMatchStyles() {
     }
 
     .live-scoreboard {
-      display: grid;
-      grid-template-columns: auto 1fr auto 1fr auto;
+      display: grid !important;
+      grid-template-columns: auto 1fr auto 1fr auto !important;
       align-items: center;
-      gap: 12px;
-      padding: 16px;
-      border-radius: 22px;
+      gap: 10px !important;
+      padding: 10px 14px !important;
+      border-radius: 18px;
     }
 
     .live-badge {
       display: inline-grid;
       place-items: center;
-      min-width: 48px;
-      padding: 7px 10px;
+      min-width: 38px !important;
+      padding: 4px 8px !important;
       border-radius: 999px;
       color: #07110d;
       background: #65e58d;
-      font-size: 12px;
+      font-size: 10px !important;
       font-weight: 950;
       letter-spacing: .08em;
     }
@@ -825,7 +851,7 @@ function installLiveMatchStyles() {
     .live-team {
       min-width: 0;
       color: #f4f4f5;
-      font-size: clamp(15px, 2.3vw, 20px);
+      font-size: clamp(11px, 2vw, 15px) !important;
       font-weight: 900;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -837,7 +863,7 @@ function installLiveMatchStyles() {
 
     .live-score {
       color: white;
-      font-size: clamp(28px, 5vw, 52px);
+      font-size: clamp(18px, 4vw, 28px) !important;
       font-weight: 950;
       letter-spacing: .02em;
       text-align: center;
@@ -846,13 +872,14 @@ function installLiveMatchStyles() {
     .live-clock {
       color: #f7c95f;
       font-weight: 950;
-      min-width: 44px;
+      font-size: 12px !important;
+      min-width: 34px;
       text-align: right;
     }
 
     .live-progress-track {
       grid-column: 1 / -1;
-      height: 8px;
+      height: 4px !important;
       border-radius: 999px;
       background: #ffffff12;
       overflow: hidden;
@@ -867,50 +894,54 @@ function installLiveMatchStyles() {
     }
 
     .live-momentum-card {
-      padding: 18px;
-      border-radius: 24px;
+      display: flex;
+      flex-direction: column;
+      padding: 10px 12px;
+      border-radius: 18px;
     }
 
     .live-card-header {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
-      margin-bottom: 10px;
+      gap: 6px;
+      margin-bottom: 4px;
       text-align: center;
     }
 
     .live-card-header h2 {
       margin: 0;
       color: #f4f4f5;
-      font-size: clamp(26px, 4vw, 42px);
-      font-weight: 500;
+      font-size: clamp(14px, 2.2vw, 18px);
+      font-weight: 700;
       letter-spacing: .02em;
     }
 
     .live-info-dot {
       display: inline-grid;
       place-items: center;
-      width: 28px;
-      height: 28px;
-      border: 2px solid #f4f4f5;
+      width: 17px;
+      height: 17px;
+      border: 1.5px solid #f4f4f5;
       border-radius: 50%;
       color: #f4f4f5;
       font-weight: 900;
-      font-size: 16px;
+      font-size: 11px;
     }
 
     .live-momentum-subline {
-      margin: -2px 0 8px;
+      margin: 0 0 4px;
       color: #a1a1aa;
       text-align: center;
-      font-size: 13px;
+      font-size: 10.5px;
+      line-height: 1.25;
     }
 
     .live-momentum-svg {
       display: block;
       width: 100%;
-      min-height: 210px;
+      height: clamp(70px, 17vh, 190px);
+      flex: 1 1 auto;
       overflow: visible;
     }
 
@@ -1018,32 +1049,34 @@ function installLiveMatchStyles() {
 
     .live-ticker-card {
       display: grid;
-      gap: 12px;
-      padding: 18px;
-      border-radius: 24px;
+      gap: 6px;
+      padding: 10px 12px;
+      border-radius: 18px;
     }
 
     .live-ticker-note {
       color: #a1a1aa;
-      font-size: 12px;
+      font-size: 10px;
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: .08em;
     }
 
     .live-result-banner {
-      padding: 14px 16px;
-      border-radius: 18px;
+      padding: 7px 12px;
+      border-radius: 14px;
       color: #07110d;
       background: linear-gradient(90deg, #65e58d, #f7c95f);
       font-weight: 950;
+      font-size: 11.5px;
+      line-height: 1.3;
       text-align: center;
     }
 
     .live-ticker-list {
       display: grid;
-      gap: 10px;
-      max-height: 360px;
+      gap: 6px;
+      max-height: clamp(48px, 9vh, 135px);
       overflow: auto;
       padding-right: 4px;
     }
@@ -1056,15 +1089,16 @@ function installLiveMatchStyles() {
 
     .live-ticker-event {
       display: grid;
-      grid-template-columns: 54px 1fr;
-      gap: 12px;
+      grid-template-columns: 40px 1fr;
+      gap: 8px;
       align-items: start;
-      padding: 12px 14px;
+      padding: 7px 10px;
       border: 1px solid #ffffff12;
       border-left: 4px solid #71717a;
-      border-radius: 16px;
+      border-radius: 12px;
       color: #e5e7eb;
       background: #050807aa;
+      font-size: 12px;
       animation: tickerEnter .22s ease-out;
     }
 
@@ -1080,28 +1114,38 @@ function installLiveMatchStyles() {
     }
 
     .live-event-text {
-      line-height: 1.45;
+      line-height: 1.3;
     }
 
     .live-controls {
-      display: flex;
-      flex-wrap: wrap;
+      display: flex !important;
+      flex-wrap: wrap !important;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
-      padding: 16px;
-      border-radius: 22px;
+      gap: 8px !important;
+      padding: 8px 10px !important;
+      border-radius: 16px;
+      grid-template-columns: none !important;
     }
 
     .live-control-status {
+      flex: 1 1 auto !important;
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
       color: #a1a1aa;
       font-weight: 900;
+      font-size: 11px !important;
     }
 
-    .live-secondary-btn {
+    .live-controls .live-secondary-btn {
+      flex: 0 0 auto !important;
+      min-height: 0 !important;
       border: 1px solid #ffffff20;
       border-radius: 999px;
-      padding: 12px 16px;
+      padding: 7px 12px !important;
+      font-size: 11px !important;
       color: #f4f4f5;
       background: #ffffff0d;
       font-weight: 900;
@@ -1112,6 +1156,15 @@ function installLiveMatchStyles() {
     .live-continue-btn:disabled {
       opacity: .45;
       cursor: not-allowed;
+    }
+
+    .live-controls .live-continue-btn {
+      display: block !important;
+      flex: 1 1 100% !important;
+      width: 100% !important;
+      min-height: 0 !important;
+      padding: 9px 14px !important;
+      font-size: 13px !important;
     }
 
     .live-continue-btn.ready {
@@ -1128,17 +1181,13 @@ function installLiveMatchStyles() {
       to { opacity: 1; transform: translateY(0); }
     }
 
+    @media (max-width: 360px) {
+      .live-badge { min-width: 30px; padding: 3px 6px; font-size: 9px; }
+      .live-clock { min-width: 26px; font-size: 11px; }
+      .live-team { font-size: 10px; }
+    }
+
     @media (max-width: 720px) {
-      .live-scoreboard {
-        grid-template-columns: 1fr auto 1fr;
-      }
-
-      .live-scoreboard .live-badge,
-      .live-scoreboard .live-clock {
-        grid-column: span 3;
-        justify-self: center;
-      }
-
       .live-stat-row {
         grid-template-columns: 70px 1fr 70px;
         gap: 8px;
