@@ -1,4 +1,3 @@
-import { GAME_CONFIG } from "../config.js";
 import { FORMATIONS } from "../formations.js?v=detailed-formations-3";
 import {
   draftPlayer,
@@ -11,9 +10,7 @@ import { autoPlacePlayer } from "../lineup.js?v=strict-cdm-1";
 import { getDisplayPosition } from "../playerUtils.js?v=strict-cdm-1";
 import {
   canPlayerBeDraftedForFormation,
-  canSelectFormationDuringDraft,
-  getDraftFormationStatus,
-  getMissingPositionSummary
+  canSelectFormationDuringDraft
 } from "../draftFormationConstraints.js?v=draft-constraint-perf-1";
 import { appState, userTeam } from "./linearState.js";
 import { goTo } from "./linearRouter.js?v=page-flow-polish-1";
@@ -60,43 +57,21 @@ function applyDraftFormationConstraints() {
 
   const isUserTurn = getCurrentTeam() === userTeam();
 
+  removeDraftStatusPanel();
+
   if (!isUserTurn) {
     clearDraftPlayerLocks();
     return;
   }
 
-  updateDraftStatusPanel();
   updateDraftPlayerCards();
   maybeAutoPickRequiredPlayer();
   updateFormationSelects();
   updateFormationButtons();
 }
 
-function updateDraftStatusPanel() {
-  const listView = document.querySelector(".linear-player-list-view");
-  if (!listView) return;
-
-  const old = listView.querySelector(".draft-formation-status");
-  if (old) old.remove();
-
-  const team = userTeam();
-  const status = getDraftFormationStatus(team, team.formationId);
-  const panel = document.createElement("div");
-  panel.className = status.locked ? "draft-formation-status locked" : "draft-formation-status";
-
-  const title = document.createElement("strong");
-  title.textContent = `Formation target: ${getFormationName(team.formationId)} (${status.drafted}/${GAME_CONFIG.totalRounds})`;
-
-  const body = document.createElement("span");
-  body.textContent = status.complete
-    ? "Your selected formation can already be filled. Extra picks are bench depth."
-    : `Missing XI slots: ${getMissingPositionSummary(team, team.formationId)}. Picks left: ${status.remaining}.`;
-
-  panel.append(title, body);
-
-  const filters = listView.querySelector(".linear-tabs");
-  if (filters) filters.insertAdjacentElement("afterend", panel);
-  else listView.prepend(panel);
+function removeDraftStatusPanel() {
+  document.querySelectorAll(".draft-formation-status").forEach(panel => panel.remove());
 }
 
 function updateDraftPlayerCards() {
@@ -218,6 +193,7 @@ function clearDraftPlayerLocks() {
     card.classList.remove("formation-draft-locked");
     card.title = "";
   });
+  removeDraftStatusPanel();
 }
 
 function resolveCardPlayer(card, index, visiblePlayers) {
@@ -272,19 +248,7 @@ function installConstraintStyles() {
   style.id = "draft-formation-constraint-styles";
   style.textContent = `
     .draft-formation-status {
-      display: grid;
-      gap: 4px;
-      margin: 10px 0 14px;
-      padding: 10px 12px;
-      border-radius: 14px;
-      border: 1px solid rgba(110, 255, 160, 0.22);
-      background: rgba(6, 18, 13, 0.62);
-      color: #d9ffe4;
-      font-size: 12px;
-    }
-    .draft-formation-status.locked {
-      border-color: rgba(255, 216, 112, 0.42);
-      box-shadow: 0 0 18px rgba(255, 216, 112, 0.08);
+      display: none !important;
     }
     .draft-list-player-card.formation-draft-locked,
     .formation-option-btn.formation-draft-locked {
