@@ -81,6 +81,9 @@ function enhanceGoalMarkers(sim, scorers) {
     marker.appendChild(title);
 
     marker.classList.add("live-goal-ball-bg");
+    marker.setAttribute("r", "0");
+    marker.style.display = "none";
+    marker.style.opacity = "0";
 
     const cx = Number(marker.getAttribute("cx") || 0);
     const cy = Number(marker.getAttribute("cy") || 0);
@@ -180,10 +183,12 @@ function installGoalScorerStyles() {
       font-weight: 700;
     }
     .live-goal-ball-bg {
-      fill: rgba(17, 24, 39, 0.88);
-      stroke: #f4f4f5;
-      stroke-width: 2.2;
-      filter: drop-shadow(0 0 8px rgba(0, 0, 0, 0.7));
+      display: none !important;
+      opacity: 0 !important;
+      fill: transparent !important;
+      stroke: transparent !important;
+      stroke-width: 0 !important;
+      filter: none !important;
     }
     .live-goal-ball-icon {
       font-family: inherit;
@@ -191,6 +196,7 @@ function installGoalScorerStyles() {
       text-anchor: middle;
       dominant-baseline: middle;
       pointer-events: none;
+      filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.75));
     }
     @media (max-width: 720px) {
       .live-goal-scorers-line {
