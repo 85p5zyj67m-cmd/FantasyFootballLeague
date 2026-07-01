@@ -4,6 +4,22 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Fantasy Football League</title>
+  <style>
+    .draft-formation-status,
+    .linear-player-list-view > .draft-formation-status {
+      display: none !important;
+      visibility: hidden !important;
+      height: 0 !important;
+      min-height: 0 !important;
+      max-height: 0 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      border: 0 !important;
+      overflow: hidden !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
+    }
+  </style>
   <link rel="stylesheet" href="style.css?v=default-fast-green-draft-1" />
   <link rel="stylesheet" href="player-cards.css?v=default-fast-green-draft-1" />
   <link rel="stylesheet" href="my-team-cards.css?v=centered-compact-cards-1" />
@@ -23,11 +39,30 @@
   <link rel="stylesheet" href="momentum-casino-colors.css?v=casino-momentum-2" />
   <link rel="stylesheet" href="page1-clean.css?v=page1-clean-1" />
   <link rel="stylesheet" href="snake-draft-bookmaker.css?v=draft-screen-2" />
-  <link rel="stylesheet" href="draft-performance.css?v=draft-perf-3" />
+  <link rel="stylesheet" href="draft-performance.css?v=draft-perf-4" />
   <link rel="stylesheet" href="solid-box-surfaces.css?v=solid-box-surfaces-2" />
 </head>
 <body>
   <main id="app"></main>
-  <script type="module" src="js/linear/linearApp.js?v=start-bookmaker-2"></script>
+  <script>
+    (() => {
+      const removeDraftFormationStatus = () => {
+        document.querySelectorAll('.draft-formation-status').forEach(node => node.remove());
+        document.querySelectorAll('.linear-player-list-view > div').forEach(node => {
+          const text = node.textContent || '';
+          if (text.includes('Formation target:') || text.includes('Missing XI slots:')) {
+            node.remove();
+          }
+        });
+      };
+      window.__removeDraftFormationStatus = removeDraftFormationStatus;
+      document.addEventListener('DOMContentLoaded', removeDraftFormationStatus);
+      new MutationObserver(removeDraftFormationStatus).observe(document.documentElement, {
+        childList: true,
+        subtree: true
+      });
+    })();
+  </script>
+  <script type="module" src="js/linear/linearApp.js?v=start-bookmaker-3"></script>
 </body>
 </html>
