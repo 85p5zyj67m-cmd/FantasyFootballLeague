@@ -226,7 +226,7 @@
 
   .linear-info-card-view .compact-player-line {
     display: flex !important;
-    flex-wrap: nowrap !important;
+    flex-wrap: wrap !important;
     gap: 5px !important;
     justify-content: center !important;
   }

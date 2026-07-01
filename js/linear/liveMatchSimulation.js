@@ -940,7 +940,7 @@ function installLiveMatchStyles() {
     .live-momentum-svg {
       display: block;
       width: 100%;
-      height: clamp(70px, calc(65vh - 332px), 220px);
+      height: clamp(60px, calc(100vh - 750px), 150px);
       flex: 1 1 auto;
       overflow: visible;
     }
@@ -1004,33 +1004,34 @@ function installLiveMatchStyles() {
 
     .live-stats-panel {
       display: grid;
-      gap: 14px;
-      padding: 22px clamp(14px, 3vw, 28px);
-      border-radius: 24px;
+      gap: 12px;
+      padding: 16px clamp(12px, 2.5vw, 22px);
+      border-radius: 20px;
     }
 
     .live-stat-row {
       display: grid;
-      grid-template-columns: minmax(72px, 120px) 1fr minmax(72px, 120px);
+      grid-template-columns: minmax(56px, 90px) 1fr minmax(56px, 90px);
       align-items: center;
-      gap: 14px;
+      gap: 12px;
     }
 
     .live-stat-label {
       color: #f4f4f5;
       text-align: center;
-      font-size: clamp(22px, 3.4vw, 38px);
+      font-size: 13px;
+      font-weight: 700;
       letter-spacing: .02em;
     }
 
     .live-stat-value {
       justify-self: center;
-      min-width: 64px;
-      padding: 9px 15px;
+      min-width: 48px;
+      padding: 6px 12px;
       border-radius: 999px;
       color: #f4f4f5;
       background: #ffffff10;
-      font-size: clamp(18px, 2.8vw, 28px);
+      font-size: 13px;
       font-weight: 950;
       text-align: center;
     }
@@ -1076,7 +1077,7 @@ function installLiveMatchStyles() {
     .live-ticker-list {
       display: grid;
       gap: 6px;
-      max-height: clamp(45px, calc(35vh - 179px), 160px);
+      max-height: clamp(185px, calc(100vh - 582px), 260px);
       overflow: auto;
       padding-right: 4px;
     }

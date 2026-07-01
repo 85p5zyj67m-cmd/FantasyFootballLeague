@@ -816,6 +816,8 @@ select {
   color: #edf7ef;
   border: 1px solid #ffffff14;
   overflow-wrap: anywhere;
+  font-size: 13px;
+  line-height: 1.3;
 }
 
 .own-team,

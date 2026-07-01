@@ -43,6 +43,27 @@ export function installVisualUnityLayer() {
       z-index: 1 !important;
     }
 
+    /* Prevent grid containers with no explicit column track from growing
+       to fit uncompressible content (e.g. a fixed-width pitch/formation
+       row) wider than the viewport - forces them to shrink instead. */
+    .linear-card,
+    .linear-draft-view,
+    .linear-my-team-view,
+    .linear-s11-view,
+    .linear-tactics-view,
+    .linear-player-list-view,
+    .linear-ai-teams-view {
+      grid-template-columns: minmax(0, 1fr) !important;
+      min-width: 0 !important;
+    }
+
+    @media (max-width: 480px) {
+      .linear-info-card-view.linear-info-card-view .compact-player-line,
+      .linear-info-card-view.linear-info-card-view .linear-pitch-line {
+        flex-wrap: wrap !important;
+      }
+    }
+
     .linear-card.linear-card,
     .hero-card.hero-card,
     .live-scoreboard.live-scoreboard,

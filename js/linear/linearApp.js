@@ -10,7 +10,7 @@ import { installLiveGoalScorersEnhancer } from "./enhancers/liveGoalScorersEnhan
 import { installTacticsSystemEnhancer } from "./enhancers/tacticsSystemEnhancer.js?v=english-ui-1";
 import { installStrictPositionEnforcer } from "./enhancers/strictPositionEnforcer.js?v=strict-cdm-1";
 import { installSeasonStartBridge } from "./enhancers/seasonStartBridge.js?v=detailed-position-engine-1";
-import { installVisualUnityLayer } from "./enhancers/visualUnityLayer.js?v=draft-desktop-final-1";
+import { installVisualUnityLayer } from "./enhancers/visualUnityLayer.js?v=draft-desktop-final-3";
 
 window.addEventListener("DOMContentLoaded", () => {
   installLinearStyles();
@@ -76,6 +76,17 @@ function installForcedDraftLayout() {
 
     if (!desktop) {
       page.classList.add("draft-mobile-final-forced");
+
+      setAll(".linear-draft-page .linear-draft-card", {
+        gridTemplateColumns: "minmax(0, 1fr)"
+      });
+
+      setAll(".linear-draft-page .linear-draft-topbar", {
+        width: "auto",
+        maxWidth: "100%",
+        minWidth: "0",
+        boxSizing: "border-box"
+      });
 
       setAll(".linear-draft-page .linear-player-grid", {
         display: "grid",
