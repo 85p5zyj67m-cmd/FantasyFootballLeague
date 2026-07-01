@@ -1,0 +1,148 @@
+/* Page 1 final composition: make Enter Draft Room the visual hero. */
+
+html body .start-bookmaker-hero,
+html body .linear-page:has(> .linear-card > .eyebrow + h1 + .subtitle + .primary-btn) > .linear-card {
+  grid-template-columns: minmax(0, .92fr) minmax(300px, .7fr) !important;
+  grid-template-areas:
+    "top top"
+    "title briefing"
+    "subtitle briefing"
+    "chips briefing"
+    "cta cta"
+    "bottom bottom" !important;
+  align-items: center !important;
+  row-gap: clamp(12px, 2vw, 22px) !important;
+}
+
+html body .start-bookmaker-copy {
+  display: contents !important;
+}
+
+html body .start-bookmaker-topline {
+  grid-area: top !important;
+}
+
+html body .start-bookmaker-copy h1,
+html body .linear-page:has(> .linear-card > .eyebrow + h1 + .subtitle + .primary-btn) h1::before {
+  font-size: clamp(42px, 6vw, 72px) !important;
+  line-height: .94 !important;
+  max-width: 620px !important;
+}
+
+html body .start-bookmaker-subtitle,
+html body .linear-page:has(> .linear-card > .eyebrow + h1 + .subtitle + .primary-btn) .subtitle {
+  grid-area: subtitle !important;
+  max-width: 610px !important;
+}
+
+html body .start-bookmaker-highlights {
+  grid-area: chips !important;
+}
+
+html body .start-bookmaker-board,
+html body .linear-page:has(> .linear-card > .eyebrow + h1 + .subtitle + .primary-btn) > .linear-card::before {
+  grid-area: briefing !important;
+  transform: scale(.94) !important;
+  transform-origin: center right !important;
+}
+
+html body .start-bookmaker-cta {
+  grid-area: cta !important;
+  justify-self: center !important;
+  position: relative !important;
+  z-index: 5 !important;
+  width: min(100%, 720px) !important;
+  margin: clamp(10px, 2vw, 20px) auto !important;
+  padding: clamp(16px, 2vw, 24px) !important;
+  border-radius: 999px !important;
+  background: radial-gradient(circle, rgba(242,204,107,.24), transparent 68%) !important;
+}
+
+html body .start-bookmaker-cta::before {
+  content: "";
+  position: absolute;
+  inset: -28px -48px;
+  z-index: -1;
+  border-radius: 999px;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(242,204,107,.38), transparent 58%);
+  filter: blur(12px);
+  animation: startCtaGlow 2.4s ease-in-out infinite;
+}
+
+html body .start-bookmaker-cta::after {
+  content: "START THE SEASON";
+  position: absolute;
+  left: 50%;
+  top: -8px;
+  transform: translate(-50%, -100%);
+  color: #f2cc6b;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .22em;
+  white-space: nowrap;
+}
+
+@keyframes startCtaGlow {
+  0%, 100% { opacity: .55; transform: scale(.98); }
+  50% { opacity: 1; transform: scale(1.035); }
+}
+
+html body .start-bookmaker-cta .primary-btn,
+html body .linear-page:has(> .linear-card > .eyebrow + h1 + .subtitle + .primary-btn) .primary-btn {
+  width: min(100%, 680px) !important;
+  min-height: clamp(82px, 8vw, 104px) !important;
+  border-radius: 999px !important;
+  border: 4px solid #5a321b !important;
+  outline: none !important;
+  color: #201105 !important;
+  font-size: clamp(18px, 2.2vw, 26px) !important;
+  letter-spacing: .14em !important;
+  background: radial-gradient(circle at 50% 18%, #fff4b7, transparent 28%), linear-gradient(180deg, #ffe79a 0%, #d9a73d 42%, #a76b2b 72%, #6f3d1b 100%) !important;
+  box-shadow: inset 0 3px 0 rgba(255,255,255,.42), inset 0 -8px 0 rgba(84,43,15,.5), 0 18px 0 rgba(47,24,9,.95), 0 30px 52px rgba(0,0,0,.58), 0 0 64px rgba(242,204,107,.34) !important;
+  transform: translateY(-4px);
+}
+
+html body .start-bookmaker-cta .primary-btn:hover,
+html body .linear-page:has(> .linear-card > .eyebrow + h1 + .subtitle + .primary-btn) .primary-btn:hover {
+  transform: translateY(-8px) scale(1.015) !important;
+  filter: brightness(1.08) saturate(1.08) !important;
+}
+
+html body .start-bookmaker-cta .primary-btn:active,
+html body .linear-page:has(> .linear-card > .eyebrow + h1 + .subtitle + .primary-btn) .primary-btn:active {
+  transform: translateY(5px) scale(.992) !important;
+  box-shadow: inset 0 2px 0 rgba(255,255,255,.28), inset 0 -3px 0 rgba(84,43,15,.52), 0 8px 0 rgba(47,24,9,.95), 0 16px 34px rgba(0,0,0,.58) !important;
+}
+
+html body .start-bookmaker-cta .primary-btn:focus,
+html body .start-bookmaker-cta .primary-btn:focus-visible,
+html body .linear-page:has(> .linear-card > .eyebrow + h1 + .subtitle + .primary-btn) .primary-btn:focus,
+html body .linear-page:has(> .linear-card > .eyebrow + h1 + .subtitle + .primary-btn) .primary-btn:focus-visible {
+  outline: none !important;
+}
+
+html body .start-bookmaker-note {
+  text-align: center !important;
+  color: #e0c784 !important;
+  font-size: 12px !important;
+  letter-spacing: .14em !important;
+}
+
+html body .start-bookmaker-bottom,
+html body .linear-page:has(> .linear-card > .eyebrow + h1 + .subtitle + .primary-btn) > .linear-card::after {
+  grid-area: bottom !important;
+}
+
+@media (max-width: 900px) {
+  html body .start-bookmaker-hero,
+  html body .linear-page:has(> .linear-card > .eyebrow + h1 + .subtitle + .primary-btn) > .linear-card {
+    grid-template-columns: 1fr !important;
+    grid-template-areas: "top" "title" "subtitle" "chips" "cta" "briefing" "bottom" !important;
+  }
+
+  html body .start-bookmaker-board,
+  html body .linear-page:has(> .linear-card > .eyebrow + h1 + .subtitle + .primary-btn) > .linear-card::before {
+    transform: none !important;
+  }
+}
