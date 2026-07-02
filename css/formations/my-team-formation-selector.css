@@ -1,26 +1,19 @@
-.my-team-formation-selector {
-  display: grid;
-  grid-template-columns: auto minmax(160px, 260px);
-  gap: 10px;
+.my-team-top-row {
+  display: flex;
   align-items: center;
-  justify-content: start;
-  padding: 10px 12px;
-  border: 1px solid rgba(101, 229, 141, 0.26);
-  border-radius: 14px;
-  background: rgba(7, 17, 13, 0.72);
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 10px 0;
 }
 
-.my-team-formation-selector span {
-  color: #75ff9e;
-  font-size: 0.78rem;
-  font-weight: 900;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+.my-team-formation-selector {
+  display: block;
 }
 
 .my-team-formation-selector select {
   min-height: 36px;
-  padding: 7px 10px;
+  padding: 7px 14px;
   border-radius: 999px;
   border: 1px solid rgba(117, 255, 158, 0.35);
   background: #07110d;
@@ -29,19 +22,14 @@
 }
 
 @media (max-width: 760px) {
-  .my-team-formation-selector {
-    grid-template-columns: auto minmax(0, 1fr);
+  .my-team-top-row {
     gap: 7px;
-    padding: 8px 9px;
-  }
-
-  .my-team-formation-selector span {
-    font-size: 0.62rem;
+    margin: 7px 0;
   }
 
   .my-team-formation-selector select {
     min-height: 32px;
-    padding: 5px 8px;
+    padding: 5px 10px;
     font-size: 0.72rem;
   }
 }

@@ -20,8 +20,8 @@ import {
 } from "../../lineup.js";
 import { formatTraits, getDisplayPosition, getTraitList } from "../../playerUtils.js";
 import { appState, userTeam } from "../linearState.js";
-import { goTo } from "../linearRouter.js";
-import { clearApp, playerCard } from "../pageUtils.js";
+import { goTo } from "../linearRouter.js?v=cache-fix-1";
+import { clearApp, playerCard } from "../pageUtils.js?v=pos-icons-3";
 
 let aiTimer = null;
 let aiTimerToken = 0;
@@ -245,9 +245,6 @@ function renderPlayerListView(isUserTurn) {
 function renderMyTeamView() {
   const wrapper = document.createElement("div");
   wrapper.className = "linear-my-team-view";
-  const heading = document.createElement("h2");
-  heading.textContent = "My Team";
-  wrapper.appendChild(heading);
   wrapper.appendChild(createMyTeamTabs());
   wrapper.appendChild(appState.activeMyTeamView === "Tactics" ? renderTacticsView() : renderStartingElevenView());
   return wrapper;
@@ -273,12 +270,14 @@ function createMyTeamTabs() {
 function renderStartingElevenView() {
   const wrapper = document.createElement("div");
   wrapper.className = "linear-s11-view linear-info-card-view";
-  const hint = document.createElement("p");
-  hint.className = "subtitle compact-hint";
-  hint.textContent = "Your XI at a glance. Drag cards between matching slots or tap a card and then a position.";
-  wrapper.appendChild(hint);
   wrapper.appendChild(createPitch(userTeam()));
   wrapper.appendChild(createBench(userTeam()));
+  wrapper.addEventListener("click", event => {
+    if (!selectedPlayerId) return;
+    if (event.target.closest(".linear-slot, .linear-bench-player")) return;
+    selectedPlayerId = null;
+    renderPage04Draft();
+  });
   return wrapper;
 }
 
@@ -366,7 +365,7 @@ function createSlot(team, slot, player) {
         moveSelectedPlayer(team, slot.key);
         return;
       }
-      selectedPlayerId = player.id;
+      selectedPlayerId = selectedPlayerId === player.id ? null : player.id;
       renderPage04Draft();
     });
   } else {
@@ -405,7 +404,11 @@ function createBench(team) {
     item.dataset.playerId = player.id;
     item.addEventListener("dragstart", event => event.dataTransfer.setData("text/plain", player.id));
     item.addEventListener("click", () => {
-      selectedPlayerId = player.id;
+      if (selectedPlayerId && selectedPlayerId !== player.id) {
+        moveSelectedPlayer(team, "BENCH");
+        return;
+      }
+      selectedPlayerId = selectedPlayerId === player.id ? null : player.id;
       renderPage04Draft();
     });
     if (selectedPlayerId === player.id) item.classList.add("selected");
@@ -533,7 +536,7 @@ function renderAiTeamsView() {
     const card = document.createElement("div");
     card.className = "linear-ai-card";
     const title = document.createElement("h3");
-    title.textContent = `${team.name} - ${team.players.length} players`;
+    title.textContent = `${team.name} - ${team.players.length}/${GAME_CONFIG.totalRounds} players`;
     card.appendChild(title);
     const list = document.createElement("div");
     list.className = "linear-ai-list";
@@ -542,6 +545,12 @@ function renderAiTeamsView() {
       row.textContent = `${player.overall} - ${player.name} - ${getDisplayPosition(player)}`;
       list.appendChild(row);
     });
+    for (let i = team.players.length; i < GAME_CONFIG.totalRounds; i++) {
+      const row = document.createElement("p");
+      row.className = "linear-ai-list-placeholder";
+      row.textContent = "- on the clock -";
+      list.appendChild(row);
+    }
     card.appendChild(list);
     grid.appendChild(card);
   });
@@ -651,7 +660,9 @@ function installMyTeamCardStyles() {
     .linear-info-position { font-size: .66rem; opacity: .9; }
     .linear-info-meta { display: grid; gap: 2px; margin-top: 7px; font-size: .66rem; opacity: .78; }
     .linear-info-meta span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    .linear-info-traits { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 7px; max-height: 42px; overflow: hidden; }
+    .linear-info-traits { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 7px; max-height: none; overflow: visible; }
+    .linear-bench-card,
+    .linear-my-team-view .linear-info-player-card { height: auto !important; min-height: 0 !important; }
     .linear-info-traits small { border-radius: 999px; border: 1px solid rgba(255,255,255,.12); padding: 2px 6px; font-size: .58rem; background: rgba(255,255,255,.05); white-space: nowrap; }
     .linear-bench-card { padding: 0; min-width: 150px; }
     .linear-tactics-squad { margin-top: 12px; }

@@ -1,4 +1,5 @@
 import { userTeam } from "../linearState.js";
+import { getActiveTraitChains } from "../../traitChainEngine.js?v=balanced-trait-recipes-1";
 
 const TACTIC_FIELDS = [
   {
@@ -47,14 +48,6 @@ const DEFAULT_TACTICS = {
   chanceFocus: "Best Chance",
   riskLevel: "Balanced"
 };
-
-const COUNTER_TEXT = [
-  "Direct Runs punish a High Line, but Deep Compact can slow them down.",
-  "High Press is strong against Short Build Up, but risky against Direct Build Up and Fast Transitions.",
-  "Wing Play and Set Pieces help against Deep Compact, while Man Oriented can disrupt Wing Play.",
-  "Cutbacks are strong against Man Oriented; Through Balls are strong against a High Line.",
-  "All In can break a Low Block, but High Press or Counter Press can punish it hard."
-];
 
 let observer = null;
 let queued = false;
@@ -142,29 +135,141 @@ function createTacticControl(team, field) {
   return label;
 }
 
+const TACTIC_SUMMARY = {
+  attackingPlan: {
+    "Balanced Attack": "a balanced attack that doesn't overcommit to one plan",
+    "Wing Play": "wide overloads down the flanks",
+    "Central Overload": "central combinations through the middle",
+    "Direct Runs": "quick direct runs in behind",
+    "Patient Build Up": "patient, possession-first buildup",
+    "Long Shot Pressure": "shooting from distance to stretch defenses"
+  },
+  pressingPlan: {
+    "Low Block": "a low block that sits back and conserves energy",
+    "Mid Block": "a mid block that balances risk and control",
+    "High Press": "an aggressive high press to win the ball early",
+    "Counter Press": "an immediate counter-press the moment you lose it"
+  },
+  defensiveShape: {
+    "Deep Compact": "a deep, compact defensive shape",
+    "Balanced Line": "a balanced defensive line",
+    "High Line": "a high line that squeezes space",
+    "Man Oriented": "man-oriented marking"
+  },
+  buildUpPlan: {
+    "Short Build Up": "short passing out from the back",
+    "Mixed Build Up": "a mixed buildup that adapts as it goes",
+    "Direct Build Up": "long, direct buildup",
+    "Fast Transitions": "fast transitions the moment you win the ball"
+  },
+  chanceFocus: {
+    "Best Chance": "whatever chance is on, without forcing it",
+    "Crosses": "crosses into the box",
+    "Through Balls": "through balls in behind the line",
+    "Cutbacks": "cutbacks from the byline",
+    "Set Pieces": "set-piece routines",
+    "Box Crashes": "bodies crashing the box for second balls"
+  },
+  riskLevel: {
+    "Safe": "a safe, low-risk approach",
+    "Balanced": "a balanced risk appetite",
+    "Brave": "a brave, front-footed approach",
+    "All In": "an all-in, high-risk gamble"
+  }
+};
+
+const CHAIN_KEYWORDS = {
+  "Wing Play": ["wing", "wide", "cross"],
+  "Crosses": ["cross"],
+  "Through Balls": ["through ball", "behind the defense", "runs behind"],
+  "Cutbacks": ["cutback", "low cross", "box"],
+  "Set Pieces": ["set piece", "set-piece"],
+  "Box Crashes": ["box", "header", "aerial"],
+  "High Press": ["press", "high recover"],
+  "Counter Press": ["press", "recover"],
+  "Direct Runs": ["direct", "transition", "behind"],
+  "Fast Transitions": ["transition", "direct"],
+  "Central Overload": ["central", "half-space", "combinat"],
+  "Patient Build Up": ["build-up", "buildup", "possession"],
+  "Short Build Up": ["build-up", "buildup", "possession"]
+};
+
 function createGuideCard(team) {
   const card = document.createElement("div");
   card.className = "linear-mini-card counter-tactics-card";
 
   const title = document.createElement("strong");
-  title.textContent = "Tactical Counter Rules";
+  title.textContent = "Your Tactical Analysis";
+  card.appendChild(title);
 
-  const current = document.createElement("p");
-  current.textContent = `Current plan: ${team.tactics.attackingPlan}, ${team.tactics.pressingPlan}, ${team.tactics.defensiveShape}, ${team.tactics.chanceFocus}.`;
+  const summary = document.createElement("p");
+  summary.textContent = buildTacticSummary(team.tactics);
+  card.appendChild(summary);
 
-  const list = document.createElement("ul");
-  COUNTER_TEXT.forEach(text => {
-    const item = document.createElement("li");
-    item.textContent = text;
-    list.appendChild(item);
+  const synergies = findChainSynergies(team);
+  if (synergies.length) {
+    const synergyBox = document.createElement("div");
+    synergyBox.className = "counter-tactics-synergy";
+
+    const synergyTitle = document.createElement("strong");
+    synergyTitle.textContent = "⚡ Working with your trait chains";
+    synergyBox.appendChild(synergyTitle);
+
+    const list = document.createElement("ul");
+    synergies.forEach(text => {
+      const item = document.createElement("li");
+      item.textContent = text;
+      list.appendChild(item);
+    });
+    synergyBox.appendChild(list);
+    card.appendChild(synergyBox);
+  } else {
+    const note = document.createElement("p");
+    note.className = "counter-tactics-note";
+    note.textContent = "No tactic is currently reinforcing one of your active trait chains. Match a setting above to a chain's effect (e.g. Crosses with a crossing chain) to add a synergy bonus.";
+    card.appendChild(note);
+  }
+
+  return card;
+}
+
+function buildTacticSummary(tactics) {
+  const attacking = TACTIC_SUMMARY.attackingPlan[tactics.attackingPlan] || tactics.attackingPlan;
+  const buildUp = TACTIC_SUMMARY.buildUpPlan[tactics.buildUpPlan] || tactics.buildUpPlan;
+  const focus = TACTIC_SUMMARY.chanceFocus[tactics.chanceFocus] || tactics.chanceFocus;
+  const pressing = TACTIC_SUMMARY.pressingPlan[tactics.pressingPlan] || tactics.pressingPlan;
+  const shape = TACTIC_SUMMARY.defensiveShape[tactics.defensiveShape] || tactics.defensiveShape;
+  const risk = TACTIC_SUMMARY.riskLevel[tactics.riskLevel] || tactics.riskLevel;
+
+  return `Your team plays ${attacking}, building through ${buildUp} to create ${focus}. Out of possession you rely on ${pressing} in front of ${shape}, with ${risk}.`;
+}
+
+function findChainSynergies(team) {
+  let chains = [];
+  try {
+    chains = getActiveTraitChains(team) || [];
+  } catch (error) {
+    chains = [];
+  }
+  if (!chains.length) return [];
+
+  const results = [];
+  TACTIC_FIELDS.forEach(field => {
+    const value = team.tactics[field.key];
+    const keywords = CHAIN_KEYWORDS[value];
+    if (!keywords) return;
+
+    const match = chains.find(chain => {
+      const haystack = `${chain.name} ${chain.effect}`.toLowerCase();
+      return keywords.some(keyword => haystack.includes(keyword));
+    });
+
+    if (match) {
+      results.push(`${field.label} "${value}" reinforces your ${match.name} (Lv.${match.level}) — ${match.effect}.`);
+    }
   });
 
-  const note = document.createElement("p");
-  note.className = "counter-tactics-note";
-  note.textContent = "Each chain strengthens a specific engine variable. Your tactics decide how often that variable actually matters during the match.";
-
-  card.append(title, current, list, note);
-  return card;
+  return results;
 }
 
 function ensureTactics(team) {
@@ -209,14 +314,67 @@ function installTacticsStyles() {
   const style = document.createElement("style");
   style.id = "counter-tactics-styles";
   style.textContent = `
-    .counter-tactics-grid { gap: 12px; }
-    .counter-tactic-control small { display: block; margin-top: 5px; opacity: .72; font-size: .74rem; line-height: 1.25; }
-    .counter-tactics-card { margin: 12px 0; padding: 14px; }
-    .counter-tactics-card strong { display: block; margin-bottom: 8px; }
-    .counter-tactics-card p { margin: 0 0 8px; opacity: .86; }
-    .counter-tactics-card ul { margin: 8px 0; padding-left: 18px; display: grid; gap: 5px; }
-    .counter-tactics-card li { opacity: .82; line-height: 1.25; }
-    .counter-tactics-note { margin-top: 10px !important; color: #baf7ce; }
+    .counter-tactics-grid {
+      gap: 12px;
+      align-items: stretch;
+    }
+    .counter-tactic-control {
+      display: flex;
+      flex-direction: column;
+    }
+    .counter-tactic-control small {
+      display: block;
+      margin-top: 5px;
+      opacity: .72;
+      font-size: .74rem;
+      line-height: 1.3;
+      min-height: 3.9em;
+    }
+    .counter-tactics-card {
+      margin: 12px 0;
+      padding: 14px;
+    }
+    .counter-tactics-card strong {
+      display: block;
+      margin-bottom: 8px;
+      color: #d1b36e !important;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+    .counter-tactics-card > p {
+      margin: 0 0 8px;
+      opacity: .9;
+      line-height: 1.45;
+    }
+    .counter-tactics-synergy {
+      margin-top: 10px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(209, 179, 110, 0.35) !important;
+      background: rgba(209, 179, 110, 0.08) !important;
+    }
+    .counter-tactics-synergy strong {
+      margin-bottom: 6px;
+      color: #f2d68a !important;
+    }
+    .counter-tactics-synergy ul {
+      margin: 0;
+      padding-left: 18px;
+      display: grid;
+      gap: 5px;
+    }
+    .counter-tactics-synergy li {
+      opacity: .92;
+      line-height: 1.35;
+      font-size: 12.5px;
+    }
+    .counter-tactics-note {
+      margin-top: 10px !important;
+      opacity: .7;
+      font-size: 12.5px;
+      line-height: 1.4;
+    }
   `;
   document.head.appendChild(style);
 }

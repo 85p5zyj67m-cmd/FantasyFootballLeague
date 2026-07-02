@@ -10,6 +10,8 @@ let lastOverlaySignature = "";
 export function installTraitChainEnhancer() {
   if (observer) return;
 
+  installTraitChainPanelStyles();
+
   const app = document.getElementById("app");
   if (!app) return;
 
@@ -125,44 +127,63 @@ function createChainDetail(chain) {
   const detail = document.createElement("article");
   detail.className = "trait-chain-detail";
 
+  const isMaxed = chain.level >= chain.maxLevel;
+
   const top = document.createElement("div");
   top.className = "trait-chain-detail-top";
 
   const title = document.createElement("strong");
-  title.textContent = `${chain.name} - Level ${chain.level}/${chain.maxLevel}`;
+  title.textContent = `${chain.name} — Level ${chain.level}/${chain.maxLevel}`;
 
   const bonus = document.createElement("span");
-  bonus.textContent = chain.winChance;
+  bonus.className = "trait-chain-bonus-pill";
+  bonus.textContent = `Win chance ${chain.winChance}`;
 
   top.append(title, bonus);
+  detail.appendChild(top);
+
+  if (isMaxed) {
+    const maxedBadge = document.createElement("div");
+    maxedBadge.className = "trait-chain-maxed-badge";
+    maxedBadge.textContent = "★ Maxed out — full chain built";
+    detail.appendChild(maxedBadge);
+  }
 
   const effect = document.createElement("p");
   effect.className = "trait-chain-effect";
-  effect.textContent = chain.effect;
+  effect.textContent = `Effect: ${chain.effect}.`;
+  detail.appendChild(effect);
 
-  const note = document.createElement("p");
-  note.className = "trait-chain-build-note";
-  note.textContent = "Complete the max-level recipe with connected players. Missing traits can be added in any order.";
+  if (isMaxed) {
+    detail.appendChild(createCurrentOrder(chain, "Your completed chain"));
+  } else {
+    detail.appendChild(createCurrentOrder(chain, "Already connected"));
+    detail.appendChild(createCompleteChain(chain));
+  }
 
-  detail.append(top, effect, note, createCurrentOrder(chain), createCompleteChain(chain));
   return detail;
 }
 
-function createCurrentOrder(chain) {
+function createCurrentOrder(chain, headlineText) {
   const guide = document.createElement("div");
   guide.className = "trait-chain-build-guide";
 
   const headline = document.createElement("strong");
-  headline.textContent = "Current active order";
+  headline.textContent = headlineText;
 
   const steps = document.createElement("ol");
   steps.className = "trait-chain-steps";
 
   chain.path.forEach((item, index) => {
     const step = document.createElement("li");
-    step.className = "chain-step active";
+    step.className = "chain-step filled";
     const trait = chain.traits[index] || "Trait";
-    step.textContent = `${index + 1}. ${trait} - ${item.player.name} (${item.slot.position})`;
+    const order = document.createElement("span");
+    order.className = "chain-step-check";
+    order.textContent = "✓";
+    const label = document.createElement("span");
+    label.textContent = `${trait} — ${item.player.name} (${item.slot.position})`;
+    step.append(order, label);
     steps.appendChild(step);
   });
 
@@ -174,10 +195,6 @@ function createCompleteChain(chain) {
   const wrapper = document.createElement("div");
   wrapper.className = "trait-chain-roadmap";
 
-  const headline = document.createElement("strong");
-  headline.textContent = "Complete Chain";
-  wrapper.appendChild(headline);
-
   const segment = getCompleteSegment(chain);
   if (!segment) {
     const empty = document.createElement("p");
@@ -187,19 +204,14 @@ function createCompleteChain(chain) {
     return wrapper;
   }
 
-  const plan = document.createElement("div");
-  plan.className = "trait-chain-level-plan";
+  const headline = document.createElement("strong");
+  headline.textContent = `Add these to reach Level ${segment.size}`;
+  wrapper.appendChild(headline);
 
-  const title = document.createElement("div");
-  title.className = "trait-chain-level-title";
-
-  const label = document.createElement("strong");
-  label.textContent = `Max Level ${segment.size}`;
-
-  const reward = document.createElement("span");
-  reward.textContent = `${segment.effect} (${segment.winChance})`;
-
-  title.append(label, reward);
+  const reward = document.createElement("p");
+  reward.className = "trait-chain-roadmap-reward";
+  reward.textContent = `${segment.effect} · win chance ${segment.winChance}`;
+  wrapper.appendChild(reward);
 
   const steps = document.createElement("ol");
   steps.className = "trait-chain-steps roadmap";
@@ -213,19 +225,26 @@ function createCompleteChain(chain) {
     const item = activeItems.shift();
     const step = document.createElement("li");
 
+    const marker = document.createElement("span");
+    const label = document.createElement("span");
+
     if (item) {
-      step.className = "chain-step active";
-      step.textContent = `${index + 1}. ${trait} - ${item.player.name} (${item.slot.position})`;
+      step.className = "chain-step filled";
+      marker.className = "chain-step-check";
+      marker.textContent = "✓";
+      label.textContent = `${trait} — ${item.player.name} (${item.slot.position})`;
     } else {
       step.className = "chain-step missing";
-      step.textContent = `${index + 1}. ${trait} - missing`;
+      marker.className = "chain-step-missing-marker";
+      marker.textContent = "+";
+      label.textContent = `${trait} — still needed`;
     }
 
+    step.append(marker, label);
     steps.appendChild(step);
   });
 
-  plan.append(title, steps);
-  wrapper.appendChild(plan);
+  wrapper.appendChild(steps);
   return wrapper;
 }
 
@@ -394,4 +413,214 @@ function safeGetActiveTraitChains(team) {
     console.error("Trait chain calculation failed", error);
     return [];
   }
+}
+
+function installTraitChainPanelStyles() {
+  if (document.getElementById("traitChainPanelStyles")) return;
+
+  const style = document.createElement("style");
+  style.id = "traitChainPanelStyles";
+  style.textContent = `
+    .trait-chain-panel {
+      display: grid;
+      gap: 10px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      border: 1px solid rgba(209, 179, 110, 0.28) !important;
+      background: linear-gradient(180deg, #16241a, #0a1510) !important;
+      color: #f3ead7 !important;
+    }
+
+    .trait-chain-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #f3ead7 !important;
+    }
+
+    .trait-chain-header strong {
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+
+    .trait-chain-header span {
+      font-size: 11px;
+      font-weight: 800;
+      color: #d1b36e !important;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .trait-chain-empty {
+      margin: 0;
+      font-size: 12px;
+      color: rgba(243, 234, 215, 0.72) !important;
+      line-height: 1.4;
+    }
+
+    .trait-chain-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .trait-chain-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 11px;
+      border-radius: 999px;
+      border: 1px solid rgba(209, 179, 110, 0.32) !important;
+      background: rgba(209, 179, 110, 0.08) !important;
+      color: #f3ead7 !important;
+      font-size: 11px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .trait-chain-chip strong {
+      color: #d1b36e !important;
+      font-size: 10px;
+    }
+
+    .trait-chain-chip.active {
+      background: linear-gradient(135deg, #e0bd74, #c9a24d) !important;
+      border-color: rgba(209, 179, 110, 0.7) !important;
+      color: #2a1c06 !important;
+    }
+
+    .trait-chain-chip.active strong {
+      color: #2a1c06 !important;
+    }
+
+    .trait-chain-detail {
+      display: grid;
+      gap: 8px;
+      padding: 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(209, 179, 110, 0.2) !important;
+      background: rgba(0, 0, 0, 0.18) !important;
+    }
+
+    .trait-chain-detail-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .trait-chain-detail-top strong {
+      font-size: 13px;
+      color: #f3ead7 !important;
+      font-weight: 800;
+    }
+
+    .trait-chain-bonus-pill {
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(209, 179, 110, 0.14) !important;
+      color: #d1b36e !important;
+      font-size: 11px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .trait-chain-maxed-badge {
+      padding: 7px 12px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #f2d68a, #d1b36e) !important;
+      color: #2a1c06 !important;
+      font-size: 12px;
+      font-weight: 900;
+      text-align: center;
+      letter-spacing: 0.02em;
+    }
+
+    .trait-chain-effect {
+      margin: 0;
+      font-size: 12px;
+      color: rgba(243, 234, 215, 0.86) !important;
+      line-height: 1.4;
+    }
+
+    .trait-chain-build-guide,
+    .trait-chain-roadmap {
+      display: grid;
+      gap: 6px;
+    }
+
+    .trait-chain-build-guide strong,
+    .trait-chain-roadmap strong {
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #d1b36e !important;
+    }
+
+    .trait-chain-roadmap-reward {
+      margin: 0;
+      font-size: 11px;
+      color: rgba(243, 234, 215, 0.72) !important;
+    }
+
+    .trait-chain-steps {
+      list-style: none;
+      display: grid;
+      gap: 5px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .chain-step {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 10px;
+      border-radius: 9px;
+      font-size: 11.5px;
+      line-height: 1.3;
+    }
+
+    .chain-step.filled {
+      background: rgba(209, 179, 110, 0.1) !important;
+      border: 1px solid rgba(209, 179, 110, 0.3) !important;
+      color: #f3ead7 !important;
+    }
+
+    .chain-step.missing {
+      background: rgba(255, 255, 255, 0.02) !important;
+      border: 1px dashed rgba(243, 234, 215, 0.28) !important;
+      color: rgba(243, 234, 215, 0.56) !important;
+    }
+
+    .chain-step-check {
+      flex: 0 0 auto;
+      display: inline-grid;
+      place-items: center;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #65e58d !important;
+      color: #06110b !important;
+      font-size: 10px;
+      font-weight: 900;
+    }
+
+    .chain-step-missing-marker {
+      flex: 0 0 auto;
+      display: inline-grid;
+      place-items: center;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 1px dashed rgba(243, 234, 215, 0.4) !important;
+      color: rgba(243, 234, 215, 0.5) !important;
+      font-size: 10px;
+      font-weight: 900;
+    }
+  `;
+  document.head.appendChild(style);
 }

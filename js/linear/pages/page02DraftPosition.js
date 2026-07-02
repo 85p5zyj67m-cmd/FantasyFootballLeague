@@ -1,7 +1,7 @@
 import { getUserDraftPosition } from "../../draftRules.js";
 import { appState } from "../linearState.js";
-import { goTo } from "../linearRouter.js";
-import { clearApp, pageShell, primaryButton } from "../pageUtils.js";
+import { goTo } from "../linearRouter.js?v=cache-fix-1";
+import { clearApp, pageShell, primaryButton } from "../pageUtils.js?v=pos-icons-3";
 
 const SPIN_DURATION_MS = 5000;
 const TOTAL_DRAFT_POSITIONS = 20;

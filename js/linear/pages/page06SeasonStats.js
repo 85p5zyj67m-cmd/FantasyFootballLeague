@@ -1,7 +1,6 @@
 import { appState, userTeam } from "../linearState.js";
 import { playNextLinearMatch } from "../seasonFlow.js?v=real-overall-system-balance-3";
-import { clearApp, pageShell, primaryButton, playerCard, twoColumnRow } from "../pageUtils.js";
-import { renderHistoryBlock } from "../seasonRenderUtils.js";
+import { clearApp, pageShell, primaryButton, renderReadOnlyPitch, generateScoutingReport } from "../pageUtils.js?v=pos-icons-3";
 
 let divisionDrawComplete = false;
 let drawTimer = null;
@@ -84,7 +83,6 @@ function renderDivisionOverview() {
   shell.card.appendChild(primaryButton("Continue to Game 1", playNextLinearMatch));
   shell.card.appendChild(createUserDivisionCard());
   shell.card.appendChild(createDivisionGrid());
-  shell.card.appendChild(renderHistoryBlock());
   app.appendChild(shell.section);
 }
 
@@ -139,9 +137,9 @@ function createDivisionGrid() {
 function renderTeamDetail(team) {
   const app = clearApp();
   const shell = pageShell({
-    eyebrow: "Team View",
+    eyebrow: "Scouting Report",
     title: team.name,
-    subtitle: `${team.players.length} drafted players - ${team.playStyle || "Balanced"}`
+    subtitle: `${team.formationId || "4-3-3"} - ${team.players.length} drafted players`
   });
 
   shell.card.appendChild(primaryButton("Back to Divisions", () => {
@@ -149,28 +147,21 @@ function renderTeamDetail(team) {
     renderPage06SeasonStats();
   }));
 
-  const summary = document.createElement("div");
-  summary.className = "linear-mini-card";
-  summary.appendChild(twoColumnRow("Formation", team.formationId || "4-3-3"));
-  summary.appendChild(twoColumnRow("Play Style", team.playStyle || "Balanced"));
-  summary.appendChild(twoColumnRow("Average Overall", getAverageOverall(team)));
-  shell.card.appendChild(summary);
+  const report = document.createElement("div");
+  report.className = "linear-mini-card division-scout-report";
+  const reportTitle = document.createElement("h3");
+  reportTitle.textContent = "Scout's Notes";
+  const reportText = document.createElement("p");
+  reportText.textContent = generateScoutingReport(team);
+  report.append(reportTitle, reportText);
+  shell.card.appendChild(report);
 
-  const grid = document.createElement("div");
-  grid.className = "linear-player-grid";
-  team.players
-    .slice()
-    .sort((a, b) => b.overall - a.overall)
-    .forEach(player => grid.appendChild(playerCard(player)));
-  shell.card.appendChild(grid);
+  const pitchWrapper = document.createElement("div");
+  pitchWrapper.className = "linear-info-card-view division-team-pitch";
+  pitchWrapper.appendChild(renderReadOnlyPitch(team));
+  shell.card.appendChild(pitchWrapper);
 
   app.appendChild(shell.section);
-}
-
-function getAverageOverall(team) {
-  if (!team.players.length) return "-";
-  const total = team.players.reduce((sum, player) => sum + Number(player.overall || 0), 0);
-  return (total / team.players.length).toFixed(1);
 }
 
 function installPageSixStyles() {
@@ -263,6 +254,31 @@ function installPageSixStyles() {
 
     .user-division-card {
       border-color: #65e58d55;
+    }
+
+    .division-scout-report {
+      border: 1px solid rgba(209, 179, 110, 0.35);
+      background: rgba(209, 179, 110, 0.06);
+    }
+
+    .division-scout-report h3 {
+      margin: 0 0 6px;
+      color: #f2d68a;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+
+    .division-scout-report p {
+      margin: 0;
+      opacity: .92;
+      line-height: 1.45;
+    }
+
+    .division-team-pitch {
+      display: grid;
+      gap: 14px;
+      margin-top: 12px;
     }
   `;
 

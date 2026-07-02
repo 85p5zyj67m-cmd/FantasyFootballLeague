@@ -45,7 +45,7 @@
   box-shadow: inset 0 1px 0 rgba(255,236,180,.08) !important;
 }
 
-.season-row,.schedule-row,.division-team,.live-ticker-event {
+.season-row,.schedule-row,.division-team {
   border-color: rgba(209,179,110,.16) !important;
   background: rgba(6,18,12,.72) !important;
 }

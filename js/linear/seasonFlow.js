@@ -1,6 +1,6 @@
 import { createSeason, continueAfterTactics, simulateNextMatch } from "../seasonEngineBalancedLive.js?v=detailed-position-engine-1";
 import { appState, userTeam } from "./linearState.js";
-import { goTo } from "./linearRouter.js";
+import { goTo } from "./linearRouter.js?v=cache-fix-1";
 
 const DIVISION_NAMES = ["North", "West", "East", "South"];
 

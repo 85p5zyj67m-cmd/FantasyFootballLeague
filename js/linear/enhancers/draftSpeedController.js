@@ -1,5 +1,5 @@
 import { appState } from "../linearState.js";
-import { goTo } from "../linearRouter.js?v=draft-speed-live-2";
+import { goTo } from "../linearRouter.js?v=draft-speed-live-3";
 
 export function installDraftSpeedController() {
   document.addEventListener("input", handleSpeedEvent, true);

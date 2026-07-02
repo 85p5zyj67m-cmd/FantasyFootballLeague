@@ -1,5 +1,5 @@
 import { playNextLinearMatch } from "../seasonFlow.js?v=second-half-route-1";
-import { clearApp, pageShell, primaryButton } from "../pageUtils.js";
+import { clearApp, pageShell, primaryButton, attachHeaderAction } from "../pageUtils.js?v=pos-icons-3";
 import { renderHistoryBlock, renderStandingsBlock } from "../seasonRenderUtils.js";
 
 export function renderPage11FirstHalfOverview() {
@@ -10,8 +10,8 @@ export function renderPage11FirstHalfOverview() {
     subtitle: "First-half summary, standings and your match history."
   });
 
+  attachHeaderAction(shell, primaryButton("Play Second Half", playNextLinearMatch));
   shell.card.appendChild(renderStandingsBlock());
   shell.card.appendChild(renderHistoryBlock());
-  shell.card.appendChild(primaryButton("Play Second Half", playNextLinearMatch));
   app.appendChild(shell.section);
 }

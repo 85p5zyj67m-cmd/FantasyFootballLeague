@@ -1,4 +1,5 @@
 import { GAME_CONFIG } from "./config.js";
+import { FORMATIONS } from "./formations.js";
 
 const POSITIONS = ["ATT", "MID", "DEF", "GK"];
 
@@ -39,7 +40,7 @@ export function createTeams() {
   return Array.from({ length: GAME_CONFIG.totalTeams }, (_, i) => ({
     name: i === GAME_CONFIG.userTeamIndex ? "Your Team" : "AI Team " + i,
     players: [],
-    formationId: "4-3-3",
+    formationId: i === GAME_CONFIG.userTeamIndex ? "4-3-3" : FORMATIONS[i % FORMATIONS.length].id,
     lineup: {},
     playStyle:
       i === GAME_CONFIG.userTeamIndex

@@ -280,11 +280,11 @@ html body .linear-player-name {
 
 html body .draft-list-club,
 html body .draft-list-nationality {
-  font-size: 13px !important;
+  font-size: 12px !important;
   line-height: 1.2 !important;
-  white-space: normal !important;
-  overflow: visible !important;
-  text-overflow: clip !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
 }
 
 html body .draft-list-traits,

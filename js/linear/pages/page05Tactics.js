@@ -8,7 +8,7 @@ import {
 import { formatTraits, getDisplayPosition, getTraitList } from "../../playerUtils.js";
 import { appState, userTeam } from "../linearState.js";
 import { startLinearSeason } from "../seasonFlow.js?v=real-overall-system-balance-3";
-import { clearApp, pageShell, primaryButton } from "../pageUtils.js";
+import { clearApp, pageShell, primaryButton } from "../pageUtils.js?v=pos-icons-3";
 
 let selectedPlayerId = null;
 
@@ -60,13 +60,14 @@ function renderStartingElevenView() {
   const wrapper = document.createElement("div");
   wrapper.className = "linear-s11-view linear-info-card-view";
 
-  const hint = document.createElement("p");
-  hint.className = "subtitle compact-hint";
-  hint.textContent = "Your XI at a glance. Drag cards between matching slots or tap a card and then a position.";
-  wrapper.appendChild(hint);
-
   wrapper.appendChild(createPitch(userTeam()));
   wrapper.appendChild(createBench(userTeam()));
+  wrapper.addEventListener("click", event => {
+    if (!selectedPlayerId) return;
+    if (event.target.closest(".linear-slot, .linear-bench-player")) return;
+    selectedPlayerId = null;
+    renderPage05Tactics();
+  });
   return wrapper;
 }
 
@@ -182,7 +183,7 @@ function createSlot(team, slot, player) {
         moveSelectedPlayer(team, slot.key);
         return;
       }
-      selectedPlayerId = player.id;
+      selectedPlayerId = selectedPlayerId === player.id ? null : player.id;
       renderPage05Tactics();
     });
   } else {
@@ -229,7 +230,11 @@ function createBench(team) {
     item.dataset.playerId = player.id;
     item.addEventListener("dragstart", event => event.dataTransfer.setData("text/plain", player.id));
     item.addEventListener("click", () => {
-      selectedPlayerId = player.id;
+      if (selectedPlayerId && selectedPlayerId !== player.id) {
+        moveSelectedPlayer(team, "BENCH");
+        return;
+      }
+      selectedPlayerId = selectedPlayerId === player.id ? null : player.id;
       renderPage05Tactics();
     });
     if (selectedPlayerId === player.id) {

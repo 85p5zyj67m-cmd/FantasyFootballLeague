@@ -1,16 +1,15 @@
-import { goTo } from "./linearRouter.js?v=draft-status-hidden-2";
+import { goTo } from "./linearRouter.js?v=draft-status-hidden-6";
 import { installLinearStyles } from "./linearStyles.js";
 import { installDraftPolishStyles } from "./enhancers/draftPolishStyles.js?v=default-fast-green-draft-1";
 import { installDraftSpeedController } from "./enhancers/draftSpeedController.js?v=instant-draft-batch-1";
-import { installFormationSelectorEnhancer } from "./enhancers/formationSelectorEnhancer.js?v=formation-links-1";
+import { installFormationSelectorEnhancer } from "./enhancers/formationSelectorEnhancer.js?v=formation-links-2";
 import { installDraftFormationConstraintEnhancer } from "./enhancers/draftFormationConstraintEnhancer.js?v=draft-status-hidden-2";
-import { installTraitChainEnhancer } from "./enhancers/traitChainShowAllToggle.js?v=show-all-control-robust-1";
-import { installMatchActionTopEnhancer } from "./enhancers/matchActionTopEnhancer.js?v=page-flow-polish-1";
-import { installLiveGoalScorersEnhancer } from "./enhancers/liveGoalScorersEnhancer.js?v=goal-ball-only-1";
-import { installTacticsSystemEnhancer } from "./enhancers/tacticsSystemEnhancer.js?v=english-ui-1";
+import { installTraitChainEnhancer } from "./enhancers/traitChainShowAllToggle.js?v=show-all-control-robust-4";
+import { installMatchActionTopEnhancer } from "./enhancers/matchActionTopEnhancer.js?v=page-flow-polish-2";
+import { installTacticsSystemEnhancer } from "./enhancers/tacticsSystemEnhancer.js?v=english-ui-2";
 import { installStrictPositionEnforcer } from "./enhancers/strictPositionEnforcer.js?v=strict-cdm-1";
 import { installSeasonStartBridge } from "./enhancers/seasonStartBridge.js?v=detailed-position-engine-1";
-import { installVisualUnityLayer } from "./enhancers/visualUnityLayer.js?v=draft-desktop-final-3";
+import { installVisualUnityLayer } from "./enhancers/visualUnityLayer.js?v=draft-desktop-final-6";
 
 window.addEventListener("DOMContentLoaded", () => {
   installLinearStyles();
@@ -20,7 +19,6 @@ window.addEventListener("DOMContentLoaded", () => {
   installDraftFormationConstraintEnhancer();
   installTraitChainEnhancer();
   installMatchActionTopEnhancer();
-  installLiveGoalScorersEnhancer();
   installTacticsSystemEnhancer();
   installStrictPositionEnforcer();
   installSeasonStartBridge();

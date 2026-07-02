@@ -1,8 +1,8 @@
 import { loadPlayersFromCSV } from "../../csvLoader.js";
 import { createTeams, createDraftOrder, selectDraftPool } from "../../draftRules.js";
 import { appState, resetLinearState } from "../linearState.js";
-import { goTo } from "../linearRouter.js";
-import { clearApp, primaryButton } from "../pageUtils.js";
+import { goTo } from "../linearRouter.js?v=cache-fix-1";
+import { clearApp, primaryButton } from "../pageUtils.js?v=pos-icons-3";
 
 export function renderPage01StartDraft() {
   const app = clearApp();

@@ -1,4 +1,8 @@
+let formationLineQueued = false;
+
 export function installVisualUnityLayer() {
+  installClassicFormationLines();
+
   if (document.getElementById("visualUnityLayer")) return;
 
   const style = document.createElement("style");
@@ -22,6 +26,18 @@ export function installVisualUnityLayer() {
         radial-gradient(circle at 88% 9%, rgba(138, 90, 50, .18), transparent 31%),
         linear-gradient(180deg, #06130d, #0b1f15 45%, #050b08) !important;
       background-attachment: fixed !important;
+    }
+
+    @media (max-width: 760px) {
+      body {
+        background:
+          repeating-linear-gradient(90deg, rgba(240, 223, 184, .1) 0 1px, transparent 1px 24px),
+          repeating-linear-gradient(90deg, rgba(138, 90, 50, .17) 0 2px, transparent 2px 48px),
+          radial-gradient(circle at 16% 0%, rgba(242, 204, 107, .13), transparent 27%),
+          radial-gradient(circle at 88% 9%, rgba(138, 90, 50, .18), transparent 31%),
+          linear-gradient(180deg, #06130d, #0b1f15 45%, #050b08) !important;
+        background-attachment: fixed !important;
+      }
     }
 
     body::before {
@@ -60,7 +76,7 @@ export function installVisualUnityLayer() {
     @media (max-width: 480px) {
       .linear-info-card-view.linear-info-card-view .compact-player-line,
       .linear-info-card-view.linear-info-card-view .linear-pitch-line {
-        flex-wrap: wrap !important;
+        flex-wrap: nowrap !important;
       }
     }
 
@@ -92,11 +108,15 @@ export function installVisualUnityLayer() {
     .compact-slot.compact-slot,
     .season-row.season-row,
     .schedule-row.schedule-row,
-    .division-team.division-team,
-    .live-ticker-event.live-ticker-event {
+    .division-team.division-team {
       color: var(--ui-cream) !important;
       border-color: rgba(90,50,27,.95) !important;
       background: linear-gradient(145deg, #0e2519, #07120c 68%, #1c1008) !important;
+      box-shadow: inset 0 0 0 1px rgba(244,234,214,.06), 0 12px 30px rgba(0,0,0,.34) !important;
+    }
+
+    .live-ticker-event.live-ticker-event {
+      color: var(--ui-cream) !important;
       box-shadow: inset 0 0 0 1px rgba(244,234,214,.06), 0 12px 30px rgba(0,0,0,.34) !important;
     }
 
@@ -347,4 +367,72 @@ export function installVisualUnityLayer() {
     }
   `;
   document.head.appendChild(style);
+}
+
+function installClassicFormationLines() {
+  const app = document.getElementById("app");
+  if (!app) return;
+
+  const observer = new MutationObserver(queueFormationLineEnforcement);
+  observer.observe(app, { childList: true, subtree: true });
+  window.addEventListener("resize", queueFormationLineEnforcement);
+  queueFormationLineEnforcement();
+}
+
+function queueFormationLineEnforcement() {
+  if (formationLineQueued) return;
+  formationLineQueued = true;
+  window.requestAnimationFrame(() => {
+    formationLineQueued = false;
+    enforceClassicFormationLines();
+  });
+}
+
+function enforceClassicFormationLines() {
+  const isMobile = window.innerWidth <= 760;
+
+  document.querySelectorAll(".compact-player-line, .linear-pitch-line").forEach(line => {
+    const slots = Array.from(line.children);
+    if (!slots.length) return;
+
+    if (!isMobile) {
+      line.style.removeProperty("flex-wrap");
+      slots.forEach(slot => {
+        slot.style.removeProperty("width");
+        slot.style.removeProperty("min-width");
+        slot.style.removeProperty("max-width");
+        slot.style.removeProperty("flex");
+        const inner = slot.querySelector(".linear-info-player-card");
+        if (inner) {
+          inner.style.removeProperty("width");
+          inner.style.removeProperty("min-width");
+          inner.style.removeProperty("max-width");
+        }
+      });
+      return;
+    }
+
+    line.style.setProperty("display", "flex", "important");
+    line.style.setProperty("flex-wrap", "nowrap", "important");
+
+    const gapPx = 5;
+    const available = line.clientWidth;
+    if (!available) return;
+
+    const perCard = Math.max(46, Math.floor((available - gapPx * (slots.length - 1)) / slots.length));
+
+    slots.forEach(slot => {
+      slot.style.setProperty("width", `${perCard}px`, "important");
+      slot.style.setProperty("min-width", `${perCard}px`, "important");
+      slot.style.setProperty("max-width", `${perCard}px`, "important");
+      slot.style.setProperty("flex", `0 0 ${perCard}px`, "important");
+
+      const inner = slot.querySelector(".linear-info-player-card");
+      if (inner) {
+        inner.style.setProperty("width", "100%", "important");
+        inner.style.setProperty("min-width", "0", "important");
+        inner.style.setProperty("max-width", "none", "important");
+      }
+    });
+  });
 }

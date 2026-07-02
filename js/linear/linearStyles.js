@@ -157,6 +157,36 @@ export function installLinearStyles() {
       margin-top: 8px;
     }
 
+    .linear-header-action-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .linear-header-action-row h1 {
+      margin: 0;
+      flex: 1 1 auto;
+      min-width: 0;
+      font-size: clamp(26px, 4.2vw, 40px);
+    }
+
+    .linear-header-action-row .primary-btn {
+      width: auto;
+      min-height: 0;
+      margin-top: 0;
+      padding: 10px 20px;
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 560px) {
+      .linear-header-action-row .primary-btn {
+        width: 100%;
+      }
+    }
+
     .linear-draft-page {
       width: min(1240px, calc(100% - 20px));
       padding-top: 16px;
@@ -367,6 +397,7 @@ export function installLinearStyles() {
     .linear-ai-card {
       display: grid;
       gap: 10px;
+      min-height: 260px;
       max-height: 260px;
       overflow-y: auto;
       padding: 14px;
@@ -385,6 +416,12 @@ export function installLinearStyles() {
       color: #b9c7be;
       padding: 6px 0;
       border-bottom: 1px solid #ffffff10;
+    }
+
+    .linear-ai-card p.linear-ai-list-placeholder {
+      color: #62726a;
+      font-style: italic;
+      border-bottom-style: dashed;
     }
 
     @media (max-width: 700px) {

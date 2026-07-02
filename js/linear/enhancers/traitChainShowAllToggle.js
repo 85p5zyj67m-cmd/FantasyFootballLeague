@@ -1,4 +1,4 @@
-import { installTraitChainEnhancer as installPositionChainEnhancer } from "./traitChainPositionHighlighter.js?v=position-chain-ui-1";
+import { installTraitChainEnhancer as installPositionChainEnhancer } from "./traitChainPositionHighlighter.js?v=position-chain-ui-3";
 import { getActiveTraitChains } from "../../traitChainEngine.js?v=balanced-trait-recipes-1";
 import { userTeam } from "../linearState.js";
 
@@ -69,10 +69,12 @@ function ensureControl() {
 
   controls.appendChild(button);
 
+  const topRow = s11View.querySelector(".my-team-top-row");
   const panel = s11View.querySelector(".trait-chain-panel");
   const hint = s11View.querySelector(".compact-hint, .subtitle");
 
-  if (panel) panel.insertAdjacentElement("beforebegin", controls);
+  if (topRow) topRow.appendChild(controls);
+  else if (panel) panel.insertAdjacentElement("beforebegin", controls);
   else if (hint) hint.insertAdjacentElement("afterend", controls);
   else s11View.prepend(controls);
 }
@@ -186,28 +188,27 @@ function installShowAllStyles() {
     .trait-chain-global-controls {
       display: flex;
       justify-content: flex-end;
-      margin: 10px 0 12px;
       position: relative;
       z-index: 30;
     }
     .trait-chain-show-all-button {
       appearance: none;
-      border: 1px solid rgba(110, 255, 160, 0.34);
+      border: 1px solid rgba(209, 179, 110, 0.4);
       border-radius: 999px;
       background: rgba(7, 20, 14, 0.82);
-      color: #d9ffe4;
+      color: #f3ead7;
       padding: 9px 14px;
       font-size: 12px;
       font-weight: 900;
       text-transform: uppercase;
       letter-spacing: 0.04em;
-      box-shadow: 0 0 16px rgba(110, 255, 160, 0.16);
+      box-shadow: 0 0 16px rgba(209, 179, 110, 0.14);
     }
     .trait-chain-show-all-button.active {
-      background: rgba(110, 255, 160, 0.16);
-      border-color: rgba(110, 255, 160, 0.86);
-      color: #ffffff;
-      box-shadow: 0 0 24px rgba(110, 255, 160, 0.28);
+      background: linear-gradient(135deg, #e0bd74, #c9a24d);
+      border-color: rgba(209, 179, 110, 0.9);
+      color: #2a1c06;
+      box-shadow: 0 0 24px rgba(209, 179, 110, 0.32);
     }
     .compact-player-pitch.chain-show-all-mode .trait-chain-link-overlay {
       display: none;

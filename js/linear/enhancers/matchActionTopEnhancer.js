@@ -45,11 +45,10 @@ function installMatchActionTopStyles() {
       position: sticky;
       top: 8px;
       z-index: 40;
-      margin-bottom: 14px;
-      border: 1px solid rgba(110, 255, 160, 0.26);
-      background: rgba(6, 18, 13, 0.92);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.22);
+      margin-bottom: 10px;
+      border: none;
+      background: none;
+      box-shadow: none;
     }
   `;
   document.head.appendChild(style);

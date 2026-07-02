@@ -13,7 +13,7 @@ import {
   canSelectFormationDuringDraft
 } from "../../draftFormationConstraints.js?v=draft-constraint-perf-1";
 import { appState, userTeam } from "../linearState.js";
-import { goTo } from "../linearRouter.js?v=page-flow-polish-1";
+import { goTo } from "../linearRouter.js?v=page-flow-polish-2";
 
 let observer = null;
 let queued = false;

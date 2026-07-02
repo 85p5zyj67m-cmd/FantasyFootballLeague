@@ -1,7 +1,7 @@
 import { FORMATIONS } from "../../formations.js?v=detailed-formations-3";
 import { resetLineup } from "../../lineup.js?v=detailed-formations-2";
 import { appState, userTeam } from "../linearState.js";
-import { goTo } from "../linearRouter.js?v=detailed-formations-1";
+import { goTo } from "../linearRouter.js?v=detailed-formations-2";
 
 let observer = null;
 let queued = false;
@@ -33,21 +33,21 @@ function enhanceMyTeamFormationViews() {
   const tabs = document.querySelector(".linear-myteam-tabs");
 
   if (!myTeamView || !s11View || !tabs) return;
-  if (document.querySelector(".my-team-formation-selector")) return;
+  if (document.querySelector(".my-team-top-row")) return;
 
   const team = userTeam();
   if (!team) return;
 
-  const selector = createFormationSelector(team);
-  tabs.insertAdjacentElement("afterend", selector);
+  const row = createFormationSelector(team);
+  tabs.insertAdjacentElement("afterend", row);
 }
 
 function createFormationSelector(team) {
+  const row = document.createElement("div");
+  row.className = "my-team-top-row";
+
   const wrapper = document.createElement("label");
   wrapper.className = "my-team-formation-selector";
-
-  const text = document.createElement("span");
-  text.textContent = "Formation";
 
   const select = document.createElement("select");
   FORMATIONS.forEach(formation => {
@@ -72,6 +72,7 @@ function createFormationSelector(team) {
     goTo("page05");
   });
 
-  wrapper.append(text, select);
-  return wrapper;
+  wrapper.append(select);
+  row.append(wrapper);
+  return row;
 }

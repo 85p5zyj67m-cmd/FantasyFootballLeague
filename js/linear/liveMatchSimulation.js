@@ -65,6 +65,7 @@ function createSimulationState(match) {
       awayShotsOnTarget: 0
     },
     finalStats,
+    goalLog: [],
     nodes: null
   };
 }
@@ -114,7 +115,6 @@ function finishSimulation(state) {
 
   state.nodes.scoreboard.badge.textContent = "FT";
   state.nodes.scoreboard.badge.classList.remove("is-live");
-  state.nodes.controls.status.textContent = "Simulation complete";
   state.nodes.controls.continueButton.disabled = false;
   state.nodes.controls.continueButton.classList.add("ready");
   state.nodes.controls.skipButton.disabled = true;
@@ -124,7 +124,7 @@ function revealEventsUntil(state, minute) {
   while (state.eventIndex < state.events.length && state.events[state.eventIndex].replayMinute <= minute) {
     const event = state.events[state.eventIndex];
     applyEventToLiveStats(state, event);
-    addTickerEvent(state.nodes.ticker.list, event);
+    addTickerEvent(state, event);
     state.eventIndex += 1;
   }
 }
@@ -157,7 +157,45 @@ function applyEventToLiveStats(state, event) {
 
   if (isScoringEvent(event)) {
     state.live[goalsKey] += 1;
+    const scoringTeam = event.side === HOME_CLASS ? state.match.home : state.match.away;
+    state.goalLog.push({
+      minute: event.minute,
+      side: event.side,
+      scorer: extractScorerName(event.text, teamName(scoringTeam)),
+      score: `${state.live.homeGoals} - ${state.live.awayGoals}`
+    });
   }
+}
+
+const SCORER_PATTERNS = [
+  /through ([^.]+?)(?:\.|$)/i,
+  /and ([^.]+?) scores/i,
+  /and ([^.]+?) converts/i,
+  /([A-ZÀ-Ÿ][^.!?]+?) gets the final touch/i,
+  /([A-ZÀ-Ÿ][^.!?]+?) fires in from distance/i,
+  /and ([^.]+?) finishes/i,
+  /finished by ([^.]+?)(?:\.|$)/i,
+  /strike through ([^.]+?)(?:\.|$)/i
+];
+
+function extractScorerName(text, teamNameValue) {
+  const cleanText = String(text || "").replace(/\s+/g, " ").trim();
+
+  for (const pattern of SCORER_PATTERNS) {
+    const match = cleanText.match(pattern);
+    if (match?.[1]) return cleanupScorerName(match[1], teamNameValue);
+  }
+
+  return "Unknown scorer";
+}
+
+function cleanupScorerName(value, teamNameValue) {
+  return String(value || "")
+    .replace(teamNameValue, "")
+    .replace(/^the\s+/i, "")
+    .replace(/\s+for\s+$/i, "")
+    .replace(/[.,!]+$/g, "")
+    .trim() || "Unknown scorer";
 }
 
 function renderFrame(state) {
@@ -276,6 +314,9 @@ function createScoreboard(state) {
   const wrapper = document.createElement("div");
   wrapper.className = "live-scoreboard";
 
+  const frame = document.createElement("div");
+  frame.className = "live-scoreboard-frame";
+
   const badge = document.createElement("span");
   badge.className = "live-badge is-live";
   badge.textContent = "LIVE";
@@ -302,9 +343,24 @@ function createScoreboard(state) {
   progressFill.className = "live-progress-fill";
   progressTrack.appendChild(progressFill);
 
-  wrapper.append(badge, home, score, away, clock, progressTrack);
-  return { wrapper, badge, home, away, score, clock, progressFill };
+  frame.append(badge, home, score, away, clock, progressTrack);
+
+  const scorers = document.createElement("div");
+  scorers.className = "live-scoreboard-scorers empty";
+  scorers.textContent = "No goals yet";
+
+  wrapper.append(frame, scorers);
+  return { wrapper, badge, home, away, score, clock, progressFill, scorers };
 }
+
+const MOMENTUM_VIEW_W = 560;
+const MOMENTUM_VIEW_H = 240;
+const MOMENTUM_CENTER_Y = 120;
+const MOMENTUM_ROW_OFFSET = 46;
+const MOMENTUM_MARKER_DELTA = 90;
+const MOMENTUM_MAX_BAR_HEIGHT = 80;
+const MOMENTUM_START_X = 34;
+const MOMENTUM_PLOT_WIDTH = 508;
 
 function createMomentumCard(state) {
   const wrapper = document.createElement("div");
@@ -324,24 +380,27 @@ function createMomentumCard(state) {
   subline.textContent = `${teamName(state.match.home)} pressure above the line, ${teamName(state.match.away)} below.`;
 
   const svg = document.createElementNS(SVG_NS, "svg");
-  svg.setAttribute("viewBox", "0 0 560 190");
-  svg.setAttribute("preserveAspectRatio", "none");
+  svg.setAttribute("viewBox", `0 0 ${MOMENTUM_VIEW_W} ${MOMENTUM_VIEW_H}`);
+  svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
   svg.classList.add("live-momentum-svg");
 
-  const grid = svgGroup("live-momentum-grid");
-  [34, 70, 95, 120, 156].forEach(y => grid.appendChild(svgLine(34, y, 542, y, "live-grid-line")));
+  const endX = MOMENTUM_START_X + MOMENTUM_PLOT_WIDTH;
+  const cy = MOMENTUM_CENTER_Y;
 
-  const zero = svgLine(34, 95, 542, 95, "live-zero-line");
+  const grid = svgGroup("live-momentum-grid");
+  [cy - 61, cy - 25, cy, cy + 25, cy + 61].forEach(y => grid.appendChild(svgLine(MOMENTUM_START_X, y, endX, y, "live-grid-line")));
+
+  const zero = svgLine(MOMENTUM_START_X, cy, endX, cy, "live-zero-line");
   const bars = svgGroup("live-bars");
   const goals = svgGroup("live-goal-markers");
-  const marker = svgLine(34, 24, 34, 166, "live-minute-marker");
+  const marker = svgLine(MOMENTUM_START_X, cy - MOMENTUM_MARKER_DELTA, MOMENTUM_START_X, cy + MOMENTUM_MARKER_DELTA, "live-minute-marker");
   const labels = svgGroup("live-graph-labels");
   labels.append(
-    svgText(12, 60, shortTeamName(state.match.home), "live-home-label"),
-    svgText(12, 134, shortTeamName(state.match.away), "live-away-label"),
-    svgText(34, 181, "0'", "live-time-label"),
-    svgText(282, 181, "HT", "live-time-label middle"),
-    svgText(542, 181, state.timelineEnd > 90 ? "120'" : "FT", "live-time-label end")
+    svgText(12, cy - MOMENTUM_ROW_OFFSET, shortTeamName(state.match.home), "live-home-label"),
+    svgText(12, cy + MOMENTUM_ROW_OFFSET, shortTeamName(state.match.away), "live-away-label"),
+    svgText(MOMENTUM_START_X, MOMENTUM_VIEW_H - 9, "0'", "live-time-label"),
+    svgText((MOMENTUM_START_X + endX) / 2, MOMENTUM_VIEW_H - 9, "HT", "live-time-label middle"),
+    svgText(endX, MOMENTUM_VIEW_H - 9, state.timelineEnd > 90 ? "120'" : "FT", "live-time-label end")
   );
 
   svg.append(grid, zero, bars, goals, marker, labels);
@@ -410,10 +469,6 @@ function createControls(buttonText, onContinue) {
   const wrapper = document.createElement("div");
   wrapper.className = "live-controls";
 
-  const status = document.createElement("span");
-  status.className = "live-control-status";
-  status.textContent = "Live simulation running";
-
   const skipButton = document.createElement("button");
   skipButton.type = "button";
   skipButton.className = "live-secondary-btn";
@@ -426,8 +481,8 @@ function createControls(buttonText, onContinue) {
   continueButton.disabled = true;
   continueButton.addEventListener("click", onContinue);
 
-  wrapper.append(status, skipButton, continueButton);
-  return { wrapper, status, skipButton, continueButton };
+  wrapper.append(skipButton, continueButton);
+  return { wrapper, skipButton, continueButton };
 }
 
 function updateScoreboard(state, progress) {
@@ -435,14 +490,24 @@ function updateScoreboard(state, progress) {
   nodes.score.textContent = `${state.live.homeGoals} - ${state.live.awayGoals}`;
   nodes.clock.textContent = formatClock(state.currentMinute, state.timelineEnd);
   nodes.progressFill.style.width = `${Math.min(100, progress * 100).toFixed(2)}%`;
+
+  if (!state.goalLog.length) {
+    nodes.scorers.textContent = "No goals yet";
+    nodes.scorers.classList.add("empty");
+  } else {
+    nodes.scorers.classList.remove("empty");
+    nodes.scorers.textContent = state.goalLog
+      .map(goal => `${goal.minute}' ${goal.scorer} (${goal.score})`)
+      .join("  ·  ");
+  }
 }
 
 function renderMomentumGraph(state) {
   const graph = state.nodes.momentum;
-  const width = 508;
-  const startX = 34;
-  const centerY = 95;
-  const maxHeight = 66;
+  const width = MOMENTUM_PLOT_WIDTH;
+  const startX = MOMENTUM_START_X;
+  const centerY = MOMENTUM_CENTER_Y;
+  const maxHeight = MOMENTUM_MAX_BAR_HEIGHT;
   const timelineEnd = Math.max(1, state.timelineEnd);
   const visibleMinute = Math.min(state.currentMinute, state.timelineEnd);
 
@@ -470,9 +535,12 @@ function renderMomentumGraph(state) {
     .filter(event => event.replayMinute <= visibleMinute && isScoringEvent(event))
     .forEach(event => {
       const x = startX + (event.replayMinute / timelineEnd) * width;
-      const y = event.side === AWAY_CLASS ? 134 : 56;
-      graph.goals.appendChild(svgCircle(x, y, 12, "live-goal-dot"));
-      graph.goals.appendChild(svgText(x, y + 4, "G", "live-goal-text"));
+      const y = event.side === AWAY_CLASS ? centerY + MOMENTUM_ROW_OFFSET : centerY - MOMENTUM_ROW_OFFSET;
+      const ball = svgText(x, y + 5, "⚽", `live-goal-ball-icon ${event.side || ""}`);
+      const title = document.createElementNS(SVG_NS, "title");
+      title.textContent = `${event.minute}' ${event.text}`;
+      ball.appendChild(title);
+      graph.goals.appendChild(ball);
     });
 
   const markerX = startX + (visibleMinute / timelineEnd) * width;
@@ -500,7 +568,8 @@ function setStat(stat, homeText, awayText, homeValue, awayValue) {
   stat.away.classList.toggle("is-leading", awayValue > homeValue);
 }
 
-function addTickerEvent(list, event) {
+function addTickerEvent(state, event) {
+  const list = state.nodes.ticker.list;
   const empty = list.querySelector(".live-ticker-empty");
   if (empty) empty.remove();
 
@@ -514,10 +583,43 @@ function addTickerEvent(list, event) {
 
   const text = document.createElement("span");
   text.className = "live-event-text";
-  text.textContent = event.text;
+
+  const scorerName = isScoringEvent(event) ? state.goalLog[state.goalLog.length - 1]?.scorer : null;
+  renderTickerText(text, event.text, scorerName);
 
   row.append(minute, text);
   list.prepend(row);
+}
+
+function renderTickerText(container, fullText, scorerName) {
+  const goalIndex = fullText.indexOf("GOAL!");
+  if (goalIndex === -1) {
+    container.textContent = fullText;
+    return;
+  }
+
+  container.append(fullText.slice(0, goalIndex));
+
+  const goalSpan = document.createElement("span");
+  goalSpan.className = "live-ticker-goal-word";
+  goalSpan.textContent = "GOAL!";
+  container.appendChild(goalSpan);
+
+  let rest = fullText.slice(goalIndex + "GOAL!".length);
+  const scorerIndex = scorerName && scorerName !== "Unknown scorer" ? rest.indexOf(scorerName) : -1;
+
+  if (scorerIndex !== -1) {
+    container.append(rest.slice(0, scorerIndex));
+
+    const scorerSpan = document.createElement("span");
+    scorerSpan.className = "live-ticker-scorer-name";
+    scorerSpan.textContent = scorerName;
+    container.appendChild(scorerSpan);
+
+    rest = rest.slice(scorerIndex + scorerName.length);
+  }
+
+  container.append(rest);
 }
 
 function renderResultBanner(state) {
@@ -766,14 +868,6 @@ function svgText(x, y, text, className) {
   return node;
 }
 
-function svgCircle(cx, cy, r, className) {
-  const circle = document.createElementNS(SVG_NS, "circle");
-  circle.setAttribute("cx", cx.toFixed(2));
-  circle.setAttribute("cy", cy.toFixed(2));
-  circle.setAttribute("r", String(r));
-  circle.setAttribute("class", className);
-  return circle;
-}
 
 function installLiveMatchStyles() {
   if (document.getElementById("linearLiveMatchStyles")) return;
@@ -782,6 +876,7 @@ function installLiveMatchStyles() {
   style.id = "linearLiveMatchStyles";
   style.textContent = `
     .linear-live-sim {
+      --live-panel-height: clamp(230px, 34vh, 320px);
       display: grid;
       gap: 7px;
       margin-top: 2px;
@@ -801,9 +896,9 @@ function installLiveMatchStyles() {
     }
 
     .linear-match-card h1 {
-      font-size: clamp(18px, 3.6vw, 24px) !important;
-      line-height: 1.1 !important;
-      letter-spacing: -0.5px !important;
+      font-size: clamp(15px, 3.1vw, 21px) !important;
+      line-height: 1.2 !important;
+      letter-spacing: -0.3px !important;
     }
 
     .linear-match-card .subtitle {
@@ -812,23 +907,52 @@ function installLiveMatchStyles() {
       line-height: 1.3 !important;
     }
 
-    .live-scoreboard,
     .live-momentum-card,
     .live-stats-panel,
-    .live-ticker-card,
-    .live-controls {
+    .live-ticker-card {
       border: 1px solid #ffffff16;
       background: linear-gradient(180deg, #191919, #101311);
       box-shadow: inset 0 1px 0 #ffffff0c, 0 20px 60px #00000040;
     }
 
     .live-scoreboard {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .live-scoreboard-frame {
       display: grid !important;
       grid-template-columns: auto 1fr auto 1fr auto !important;
       align-items: center;
       gap: 10px !important;
-      padding: 10px 14px !important;
+      width: min(100%, 420px);
+      padding: 10px 16px !important;
       border-radius: 18px;
+      border: 1px solid rgba(217, 167, 61, .32);
+      background: linear-gradient(180deg, #1c1408, #100b04);
+      box-shadow: inset 0 1px 0 #ffffff0c, 0 16px 40px #00000055;
+    }
+
+    .live-scoreboard-scorers {
+      margin-top: 6px;
+      padding: 5px 12px;
+      width: min(100%, 420px);
+      border-radius: 12px;
+      background: #00000030;
+      color: #f2d68a;
+      font-size: 10.5px;
+      font-weight: 800;
+      text-align: center;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .live-scoreboard-scorers.empty {
+      color: #a1a1aa;
+      opacity: .6;
+      font-weight: 700;
     }
 
     .live-badge {
@@ -896,6 +1020,7 @@ function installLiveMatchStyles() {
     .live-momentum-card {
       display: flex;
       flex-direction: column;
+      min-height: calc(var(--live-panel-height) + 46px);
       padding: 10px 12px;
       border-radius: 18px;
     }
@@ -940,8 +1065,8 @@ function installLiveMatchStyles() {
     .live-momentum-svg {
       display: block;
       width: 100%;
-      height: clamp(60px, calc(100vh - 750px), 150px);
       flex: 1 1 auto;
+      min-height: 0;
       overflow: visible;
     }
 
@@ -987,19 +1112,11 @@ function installLiveMatchStyles() {
     .live-time-label.middle { text-anchor: middle; }
     .live-time-label.end { text-anchor: end; }
 
-    .live-goal-dot {
-      fill: #111827;
-      stroke: #f4f4f5;
-      stroke-width: 2.5;
-      filter: drop-shadow(0 0 8px #000000aa);
-    }
-
-    .live-goal-text {
-      fill: #f4f4f5;
-      font-family: inherit;
-      font-size: 11px;
-      font-weight: 950;
+    .live-goal-ball-icon {
+      font-size: 17px;
       text-anchor: middle;
+      dominant-baseline: middle;
+      filter: drop-shadow(0 2px 3px rgba(0, 0, 0, .8));
     }
 
     .live-stats-panel {
@@ -1049,7 +1166,9 @@ function installLiveMatchStyles() {
     }
 
     .live-ticker-card {
-      display: grid;
+      display: flex;
+      flex-direction: column;
+      min-height: calc(var(--live-panel-height) + 46px);
       gap: 6px;
       padding: 10px 12px;
       border-radius: 18px;
@@ -1076,8 +1195,10 @@ function installLiveMatchStyles() {
 
     .live-ticker-list {
       display: grid;
+      align-content: start;
       gap: 6px;
-      max-height: clamp(185px, calc(100vh - 582px), 260px);
+      flex: 1 1 auto;
+      min-height: 0;
       overflow: auto;
       padding-right: 4px;
     }
@@ -1103,11 +1224,9 @@ function installLiveMatchStyles() {
       animation: tickerEnter .22s ease-out;
     }
 
-    .live-ticker-event.goal { border-left-color: #f7c95f; background: #2b2109cc; }
-    .live-ticker-event.chance { border-left-color: #65e58d; }
-    .live-ticker-event.save { border-left-color: #38bdf8; }
-    .live-ticker-event.away.goal,
-    .live-ticker-event.away.chance { border-left-color: #ef4444; }
+    .live-ticker-event.home { border-left-color: #22c55e; }
+    .live-ticker-event.away { border-left-color: #ef4444; }
+    .live-ticker-event.goal { border-left-color: #f7c95f; }
 
     .live-event-minute {
       color: #f7c95f;
@@ -1118,26 +1237,24 @@ function installLiveMatchStyles() {
       line-height: 1.3;
     }
 
+    .live-ticker-goal-word,
+    .live-ticker-scorer-name {
+      color: #f7c95f;
+      font-weight: 950;
+    }
+
     .live-controls {
       display: flex !important;
       flex-wrap: wrap !important;
       align-items: center;
-      justify-content: space-between;
+      justify-content: center;
       gap: 8px !important;
-      padding: 8px 10px !important;
-      border-radius: 16px;
+      padding: 0 !important;
+      border: none !important;
+      background: none !important;
+      box-shadow: none !important;
+      border-radius: 0;
       grid-template-columns: none !important;
-    }
-
-    .live-control-status {
-      flex: 1 1 100% !important;
-      min-width: 0;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      color: #a1a1aa;
-      font-weight: 900;
-      font-size: 11px !important;
     }
 
     .live-controls .live-secondary-btn {

@@ -15,7 +15,7 @@
 
   .linear-page,
   .linear-draft-page {
-    width: min(100% - 10px, 1240px) !important;
+    width: min(100% - 22px, 1240px) !important;
     padding: 8px 0 !important;
   }
 
@@ -226,7 +226,7 @@
 
   .linear-info-card-view .compact-player-line {
     display: flex !important;
-    flex-wrap: wrap !important;
+    flex-wrap: nowrap !important;
     gap: 5px !important;
     justify-content: center !important;
   }
@@ -404,6 +404,21 @@
     min-height: 42px !important;
     padding: 10px 12px !important;
     font-size: 0.82rem !important;
+  }
+
+  .division-overview-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 8px !important;
+  }
+
+  .division-overview-card {
+    padding: 10px !important;
+    gap: 6px !important;
+  }
+
+  .division-team-button {
+    padding: 9px !important;
+    font-size: 0.76rem !important;
   }
 }
 
