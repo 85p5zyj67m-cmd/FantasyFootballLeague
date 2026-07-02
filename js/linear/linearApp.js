@@ -1,15 +1,15 @@
-import { goTo } from "./linearRouter.js?v=draft-status-hidden-6";
+import { goTo } from "./linearRouter.js?v=draft-status-hidden-10";
 import { installLinearStyles } from "./linearStyles.js";
 import { installDraftPolishStyles } from "./enhancers/draftPolishStyles.js?v=default-fast-green-draft-1";
 import { installDraftSpeedController } from "./enhancers/draftSpeedController.js?v=instant-draft-batch-1";
-import { installFormationSelectorEnhancer } from "./enhancers/formationSelectorEnhancer.js?v=formation-links-2";
+import { installFormationSelectorEnhancer } from "./enhancers/formationSelectorEnhancer.js?v=settimeout-fix-1";
 import { installDraftFormationConstraintEnhancer } from "./enhancers/draftFormationConstraintEnhancer.js?v=draft-status-hidden-2";
-import { installTraitChainEnhancer } from "./enhancers/traitChainShowAllToggle.js?v=show-all-control-robust-4";
+import { installTraitChainEnhancer } from "./enhancers/traitChainShowAllToggle.js?v=settimeout-fix-2";
 import { installMatchActionTopEnhancer } from "./enhancers/matchActionTopEnhancer.js?v=page-flow-polish-2";
 import { installTacticsSystemEnhancer } from "./enhancers/tacticsSystemEnhancer.js?v=english-ui-2";
 import { installStrictPositionEnforcer } from "./enhancers/strictPositionEnforcer.js?v=strict-cdm-1";
 import { installSeasonStartBridge } from "./enhancers/seasonStartBridge.js?v=detailed-position-engine-1";
-import { installVisualUnityLayer } from "./enhancers/visualUnityLayer.js?v=draft-desktop-final-6";
+import { installVisualUnityLayer } from "./enhancers/visualUnityLayer.js?v=draft-desktop-final-8";
 
 window.addEventListener("DOMContentLoaded", () => {
   installLinearStyles();
@@ -34,6 +34,32 @@ function installForcedDraftLayout() {
   const setAll = (selector, styles) => {
     document.querySelectorAll(selector).forEach(node => {
       Object.entries(styles).forEach(([prop, value]) => set(node, prop, value));
+    });
+  };
+  const fitTextToOneLine = (selector, baseSizePx, minRatio = 0.6) => {
+    document.querySelectorAll(selector).forEach(node => {
+      let size = baseSizePx;
+      node.style.setProperty("font-size", `${size}px`, "important");
+      let guard = 30;
+      while (node.scrollWidth > node.clientWidth + 0.5 && size > baseSizePx * minRatio && guard-- > 0) {
+        size -= 0.5;
+        node.style.setProperty("font-size", `${size}px`, "important");
+      }
+    });
+  };
+  const fitToComputedSize = (selector, minRatio = 0.62) => {
+    document.querySelectorAll(selector).forEach(node => {
+      if (!node.dataset.baseFont) {
+        node.dataset.baseFont = String(parseFloat(getComputedStyle(node).fontSize) || 10);
+      }
+      const base = parseFloat(node.dataset.baseFont);
+      let size = base;
+      node.style.setProperty("font-size", `${size}px`, "important");
+      let guard = 30;
+      while (node.scrollWidth > node.clientWidth + 0.5 && size > base * minRatio && guard-- > 0) {
+        size -= 0.5;
+        node.style.setProperty("font-size", `${size}px`, "important");
+      }
     });
   };
 
@@ -72,6 +98,10 @@ function installForcedDraftLayout() {
       boxShadow: "inset 0 1px 0 rgba(255,255,255,.07), 0 10px 24px rgba(0,0,0,.36)"
     });
 
+    setAll(".linear-draft-page .linear-my-team-view", {
+      marginTop: "-10px"
+    });
+
     if (!desktop) {
       page.classList.add("draft-mobile-final-forced");
 
@@ -98,15 +128,24 @@ function installForcedDraftLayout() {
       });
 
       setAll(".linear-draft-page .draft-list-name, .linear-draft-page .linear-player-name", {
-        display: "-webkit-box",
+        display: "block",
         fontSize: "15px",
-        lineHeight: "1.1",
-        whiteSpace: "normal",
+        lineHeight: "1.05",
+        whiteSpace: "nowrap",
         overflow: "hidden",
-        textOverflow: "ellipsis",
-        WebkitLineClamp: "2",
-        WebkitBoxOrient: "vertical"
+        textOverflow: "clip"
       });
+      fitTextToOneLine(".linear-draft-page .draft-list-name, .linear-draft-page .linear-player-name", 15);
+
+      setAll(".linear-draft-page .draft-list-club, .linear-draft-page .draft-list-nationality", {
+        fontSize: "11px",
+        lineHeight: "1.15",
+        whiteSpace: "nowrap",
+        overflow: "hidden",
+        textOverflow: "clip"
+      });
+      fitTextToOneLine(".linear-draft-page .draft-list-club, .linear-draft-page .draft-list-nationality", 11);
+      fitToComputedSize(".linear-draft-page .linear-trait-chip, .linear-draft-page .draft-list-trait");
 
       return;
     }
@@ -192,7 +231,8 @@ function installForcedDraftLayout() {
       minHeight: "34px",
       width: "34px",
       height: "34px",
-      fontSize: "19px"
+      fontSize: "19px",
+      textAlign: "center"
     });
 
     setAll(".linear-draft-page .linear-round-picks, .linear-draft-page .linear-order-ticker", {
@@ -237,23 +277,24 @@ function installForcedDraftLayout() {
     });
 
     setAll(".linear-draft-page .draft-list-name, .linear-draft-page .linear-player-name", {
-      display: "-webkit-box",
+      display: "block",
       fontSize: "18px",
-      lineHeight: "1.12",
-      whiteSpace: "normal",
+      lineHeight: "1.08",
+      whiteSpace: "nowrap",
       overflow: "hidden",
-      textOverflow: "ellipsis",
-      WebkitLineClamp: "2",
-      WebkitBoxOrient: "vertical"
+      textOverflow: "clip"
     });
+    fitTextToOneLine(".linear-draft-page .draft-list-name, .linear-draft-page .linear-player-name", 18);
 
     setAll(".linear-draft-page .draft-list-club, .linear-draft-page .draft-list-nationality", {
       fontSize: "13px",
-      lineHeight: "1.2",
-      whiteSpace: "normal",
-      overflow: "visible",
+      lineHeight: "1.15",
+      whiteSpace: "nowrap",
+      overflow: "hidden",
       textOverflow: "clip"
     });
+    fitTextToOneLine(".linear-draft-page .draft-list-club, .linear-draft-page .draft-list-nationality", 13);
+    fitToComputedSize(".linear-draft-page .linear-trait-chip, .linear-draft-page .draft-list-trait");
   };
 
   apply();

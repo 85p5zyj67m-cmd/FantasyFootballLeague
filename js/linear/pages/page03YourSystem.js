@@ -1,7 +1,7 @@
 import { FORMATIONS } from "../../formations.js?v=detailed-formations-2";
 import { appState, userTeam } from "../linearState.js";
 import { goTo } from "../linearRouter.js?v=cache-fix-1";
-import { clearApp, pageShell } from "../pageUtils.js?v=pos-icons-3";
+import { clearApp, pageShell } from "../pageUtils.js?v=pos-icons-5";
 
 export function renderPage03YourSystem() {
   const app = clearApp();

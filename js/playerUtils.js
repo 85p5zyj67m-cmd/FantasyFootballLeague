@@ -21,6 +21,14 @@ export function getPositionGroup(player) {
   return player?.positionGroup || getPositionGroupFromPosition(player?.position || player?.detailedPosition || "");
 }
 
+export function getRatingTier(overall) {
+  const rating = Number(overall) || 0;
+  if (rating >= 95) return "diamond";
+  if (rating >= 90) return "gold";
+  if (rating >= 80) return "silver";
+  return "bronze";
+}
+
 export function getPlayerPositions(player) {
   if (!player) return [];
 

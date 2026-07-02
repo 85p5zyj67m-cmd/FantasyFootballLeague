@@ -81,20 +81,24 @@ function createTraitChainPanel(chains, selectedChain) {
   header.append(title, count);
   panel.appendChild(header);
 
+  const scrollArea = document.createElement("div");
+  scrollArea.className = "trait-chain-scroll-area";
+  panel.appendChild(scrollArea);
+
   if (!chains.length) {
     const empty = document.createElement("p");
     empty.className = "trait-chain-empty";
     empty.textContent = "No active chains yet. Place matching traits next to each other in your XI.";
-    panel.appendChild(empty);
+    scrollArea.appendChild(empty);
     return panel;
   }
 
   const list = document.createElement("div");
   list.className = "trait-chain-list";
   chains.forEach(chain => list.appendChild(createChainButton(chain, selectedChain?.id === chain.id)));
-  panel.appendChild(list);
+  scrollArea.appendChild(list);
 
-  if (selectedChain) panel.appendChild(createChainDetail(selectedChain));
+  if (selectedChain) scrollArea.appendChild(createChainDetail(selectedChain));
   return panel;
 }
 
@@ -123,6 +127,36 @@ function createChainButton(chain, isActive) {
   return button;
 }
 
+const CHAIN_STAT_LABELS = {
+  "crossing-chain": "Crossing",
+  "overlap-crossing-chain": "Crossing",
+  "low-cross-chain": "Cutback Chances",
+  "cut-inside-chain": "Half-Space Shots",
+  "false-9-chain": "Combination Play",
+  "genius-attack-chain": "Creative Chances",
+  "through-ball-chain": "Through Balls",
+  "direct-play-chain": "Counter-Attacks",
+  "build-up-chain": "Build-Up Play",
+  "possession-chain": "Possession",
+  "connector-chain": "Midfield Link-Up",
+  "pressing-attack-chain": "Pressing",
+  "destroyer-chain": "Duels Won",
+  "engine-chain": "Pressing Intensity",
+  "long-shot-chain": "Shots Outside the Box",
+  "defensive-wall": "Defensive Solidity",
+  "low-block-chain": "Defensive Compactness",
+  "high-line-chain": "High Line Cover",
+  "aerial-control-chain": "Aerial Defense",
+  "set-piece-chain": "Set Pieces",
+  "penalty-knockout-chain": "Clutch Finishing",
+  "inverted-side-chain": "Central Overloads"
+};
+
+function describeChainBonus(chain, winChance) {
+  const label = CHAIN_STAT_LABELS[chain.id] || chain.name;
+  return `${winChance} ${label}`;
+}
+
 function createChainDetail(chain) {
   const detail = document.createElement("article");
   detail.className = "trait-chain-detail";
@@ -137,7 +171,7 @@ function createChainDetail(chain) {
 
   const bonus = document.createElement("span");
   bonus.className = "trait-chain-bonus-pill";
-  bonus.textContent = `Win chance ${chain.winChance}`;
+  bonus.textContent = describeChainBonus(chain, chain.winChance);
 
   top.append(title, bonus);
   detail.appendChild(top);
@@ -154,44 +188,12 @@ function createChainDetail(chain) {
   effect.textContent = `Effect: ${chain.effect}.`;
   detail.appendChild(effect);
 
-  if (isMaxed) {
-    detail.appendChild(createCurrentOrder(chain, "Your completed chain"));
-  } else {
-    detail.appendChild(createCurrentOrder(chain, "Already connected"));
-    detail.appendChild(createCompleteChain(chain));
-  }
+  detail.appendChild(createChainRoadmap(chain, isMaxed));
 
   return detail;
 }
 
-function createCurrentOrder(chain, headlineText) {
-  const guide = document.createElement("div");
-  guide.className = "trait-chain-build-guide";
-
-  const headline = document.createElement("strong");
-  headline.textContent = headlineText;
-
-  const steps = document.createElement("ol");
-  steps.className = "trait-chain-steps";
-
-  chain.path.forEach((item, index) => {
-    const step = document.createElement("li");
-    step.className = "chain-step filled";
-    const trait = chain.traits[index] || "Trait";
-    const order = document.createElement("span");
-    order.className = "chain-step-check";
-    order.textContent = "✓";
-    const label = document.createElement("span");
-    label.textContent = `${trait} — ${item.player.name} (${item.slot.position})`;
-    step.append(order, label);
-    steps.appendChild(step);
-  });
-
-  guide.append(headline, steps);
-  return guide;
-}
-
-function createCompleteChain(chain) {
+function createChainRoadmap(chain, isMaxed) {
   const wrapper = document.createElement("div");
   wrapper.className = "trait-chain-roadmap";
 
@@ -205,13 +207,15 @@ function createCompleteChain(chain) {
   }
 
   const headline = document.createElement("strong");
-  headline.textContent = `Add these to reach Level ${segment.size}`;
+  headline.textContent = isMaxed ? "Your completed chain" : `Add these to reach Level ${segment.size}`;
   wrapper.appendChild(headline);
 
-  const reward = document.createElement("p");
-  reward.className = "trait-chain-roadmap-reward";
-  reward.textContent = `${segment.effect} · win chance ${segment.winChance}`;
-  wrapper.appendChild(reward);
+  if (!isMaxed) {
+    const reward = document.createElement("p");
+    reward.className = "trait-chain-roadmap-reward";
+    reward.textContent = `${segment.effect} · ${describeChainBonus(chain, segment.winChance)}`;
+    wrapper.appendChild(reward);
+  }
 
   const steps = document.createElement("ol");
   steps.className = "trait-chain-steps roadmap";
@@ -219,7 +223,7 @@ function createCompleteChain(chain) {
   const activeByTrait = getActiveItemsByTrait(chain);
   const traits = getDisplayTraitsForSegment(chain, segment);
 
-  traits.forEach((trait, index) => {
+  traits.forEach(trait => {
     const normalized = normalizeTrait(trait);
     const activeItems = activeByTrait.get(normalized) || [];
     const item = activeItems.shift();
@@ -422,34 +426,50 @@ function installTraitChainPanelStyles() {
   style.id = "traitChainPanelStyles";
   style.textContent = `
     .trait-chain-panel {
-      display: grid;
-      gap: 10px;
+      display: flex;
+      flex-direction: column;
+      max-height: 260px;
       padding: 14px 16px;
       border-radius: 16px;
       border: 1px solid rgba(209, 179, 110, 0.28) !important;
       background: linear-gradient(180deg, #16241a, #0a1510) !important;
       color: #f3ead7 !important;
+      overflow: hidden;
     }
 
     .trait-chain-header {
+      flex: 0 0 auto;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      padding-bottom: 8px;
+      margin-bottom: 8px;
+      border-bottom: 1px solid rgba(209, 179, 110, 0.18);
       color: #f3ead7 !important;
     }
 
     .trait-chain-header strong {
       font-size: 14px;
-      font-weight: 800;
-      letter-spacing: 0.02em;
+      font-weight: 700;
+      letter-spacing: 0;
     }
 
     .trait-chain-header span {
       font-size: 11px;
-      font-weight: 800;
+      font-weight: 700;
       color: #d1b36e !important;
       text-transform: uppercase;
       letter-spacing: 0.06em;
+    }
+
+    .trait-chain-scroll-area {
+      flex: 1 1 auto;
+      min-height: 0;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      display: grid;
+      gap: 10px;
+      align-content: start;
     }
 
     .trait-chain-empty {
@@ -545,13 +565,11 @@ function installTraitChainPanelStyles() {
       line-height: 1.4;
     }
 
-    .trait-chain-build-guide,
     .trait-chain-roadmap {
       display: grid;
       gap: 6px;
     }
 
-    .trait-chain-build-guide strong,
     .trait-chain-roadmap strong {
       font-size: 11px;
       font-weight: 800;

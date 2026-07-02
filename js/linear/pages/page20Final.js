@@ -1,7 +1,7 @@
 import { appState } from "../linearState.js";
-import { clearApp, pageShell } from "../pageUtils.js?v=pos-icons-3";
+import { clearApp, pageShell } from "../pageUtils.js?v=pos-icons-5";
 import { goTo } from "../linearRouter.js?v=cache-fix-1";
-import { renderLiveMatchSimulation } from "../liveMatchSimulation.js?v=live-simulation-5";
+import { renderLiveMatchSimulation } from "../liveMatchSimulation.js?v=live-simulation-7";
 
 export function renderPage20Final() {
   const app = clearApp();

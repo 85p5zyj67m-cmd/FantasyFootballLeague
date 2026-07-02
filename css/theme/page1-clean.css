@@ -103,7 +103,7 @@ html body .start-bookmaker-cta .primary-btn {
   width: min(100%, 600px) !important;
   min-height: clamp(84px, 9vw, 112px) !important;
   border-radius: 999px !important;
-  border: 4px solid #5a321b !important;
+  border: 2px solid #8a5a32 !important;
   outline: none !important;
   color: #201105 !important;
   font-size: clamp(18px, 2.3vw, 28px) !important;

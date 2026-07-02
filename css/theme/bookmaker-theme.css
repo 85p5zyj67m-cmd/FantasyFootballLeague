@@ -41,7 +41,7 @@ body {
 
 body {
   color: var(--book-cream) !important;
-  font-family: Georgia, "Times New Roman", Arial, sans-serif !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
   background:
     radial-gradient(circle at 18% 0%, rgba(242, 204, 107, .16), transparent 31%),
     radial-gradient(circle at 88% 9%, rgba(138, 90, 50, .22), transparent 34%),

@@ -62,7 +62,9 @@ function createSimulationState(match) {
       homeShots: 0,
       awayShots: 0,
       homeShotsOnTarget: 0,
-      awayShotsOnTarget: 0
+      awayShotsOnTarget: 0,
+      homeSaves: 0,
+      awaySaves: 0
     },
     finalStats,
     goalLog: [],
@@ -147,6 +149,11 @@ function applyEventToLiveStats(state, event) {
 
   if (isScoringEvent(event) || event.type === "SAVE") {
     state.live[sotKey] = Math.min(finalSot, state.live[sotKey] + 1);
+  }
+
+  if (event.type === "SAVE") {
+    const savesKey = sidePrefix === "home" ? "awaySaves" : "homeSaves";
+    state.live[savesKey] += 1;
   }
 
   if (event.xg > 0) {
@@ -314,28 +321,45 @@ function createScoreboard(state) {
   const wrapper = document.createElement("div");
   wrapper.className = "live-scoreboard";
 
-  const frame = document.createElement("div");
-  frame.className = "live-scoreboard-frame";
+  const badgeRow = document.createElement("div");
+  badgeRow.className = "live-scoreboard-badge-row";
 
   const badge = document.createElement("span");
   badge.className = "live-badge is-live";
   badge.textContent = "LIVE";
 
+  const clock = document.createElement("div");
+  clock.className = "live-clock";
+  clock.textContent = "0'";
+
+  badgeRow.append(badge, clock);
+
+  const board = document.createElement("div");
+  board.className = "live-scoreboard-board";
+
+  const homeCol = document.createElement("div");
+  homeCol.className = "live-scoreboard-col home";
   const home = document.createElement("div");
   home.className = "live-team home-team";
   home.textContent = teamName(state.match.home);
+  const homeScorers = document.createElement("div");
+  homeScorers.className = "live-scoreboard-scorers";
+  homeCol.append(home, homeScorers);
 
   const score = document.createElement("div");
   score.className = "live-score";
   score.textContent = "0 - 0";
 
+  const awayCol = document.createElement("div");
+  awayCol.className = "live-scoreboard-col away";
   const away = document.createElement("div");
   away.className = "live-team away-team";
   away.textContent = teamName(state.match.away);
+  const awayScorers = document.createElement("div");
+  awayScorers.className = "live-scoreboard-scorers";
+  awayCol.append(away, awayScorers);
 
-  const clock = document.createElement("div");
-  clock.className = "live-clock";
-  clock.textContent = "0'";
+  board.append(homeCol, score, awayCol);
 
   const progressTrack = document.createElement("div");
   progressTrack.className = "live-progress-track";
@@ -343,22 +367,16 @@ function createScoreboard(state) {
   progressFill.className = "live-progress-fill";
   progressTrack.appendChild(progressFill);
 
-  frame.append(badge, home, score, away, clock, progressTrack);
-
-  const scorers = document.createElement("div");
-  scorers.className = "live-scoreboard-scorers empty";
-  scorers.textContent = "No goals yet";
-
-  wrapper.append(frame, scorers);
-  return { wrapper, badge, home, away, score, clock, progressFill, scorers };
+  wrapper.append(badgeRow, board, progressTrack);
+  return { wrapper, badge, home, away, score, clock, progressFill, homeScorers, awayScorers };
 }
 
 const MOMENTUM_VIEW_W = 560;
-const MOMENTUM_VIEW_H = 240;
-const MOMENTUM_CENTER_Y = 120;
-const MOMENTUM_ROW_OFFSET = 46;
-const MOMENTUM_MARKER_DELTA = 90;
-const MOMENTUM_MAX_BAR_HEIGHT = 80;
+const MOMENTUM_VIEW_H = 260;
+const MOMENTUM_CENTER_Y = 130;
+const MOMENTUM_ROW_OFFSET = 104;
+const MOMENTUM_MARKER_DELTA = 112;
+const MOMENTUM_MAX_BAR_HEIGHT = 96;
 const MOMENTUM_START_X = 34;
 const MOMENTUM_PLOT_WIDTH = 508;
 
@@ -388,7 +406,7 @@ function createMomentumCard(state) {
   const cy = MOMENTUM_CENTER_Y;
 
   const grid = svgGroup("live-momentum-grid");
-  [cy - 61, cy - 25, cy, cy + 25, cy + 61].forEach(y => grid.appendChild(svgLine(MOMENTUM_START_X, y, endX, y, "live-grid-line")));
+  [cy - 73, cy - 30, cy, cy + 30, cy + 73].forEach(y => grid.appendChild(svgLine(MOMENTUM_START_X, y, endX, y, "live-grid-line")));
 
   const zero = svgLine(MOMENTUM_START_X, cy, endX, cy, "live-zero-line");
   const bars = svgGroup("live-bars");
@@ -415,11 +433,13 @@ function createStatsPanel() {
 
   const possession = createStatRow("Ball Possession");
   const xg = createStatRow("Expected Goals (xG)");
+  const shots = createStatRow("Total Shots");
   const shotsOnTarget = createStatRow("Shots on Target");
+  const saves = createStatRow("Goalkeeper Saves");
   const duels = createStatRow("Duels Won");
 
-  wrapper.append(possession.row, xg.row, shotsOnTarget.row, duels.row);
-  return { wrapper, possession, xg, shotsOnTarget, duels };
+  wrapper.append(possession.row, xg.row, shots.row, shotsOnTarget.row, saves.row, duels.row);
+  return { wrapper, possession, xg, shots, shotsOnTarget, saves, duels };
 }
 
 function createStatRow(labelText) {
@@ -491,15 +511,17 @@ function updateScoreboard(state, progress) {
   nodes.clock.textContent = formatClock(state.currentMinute, state.timelineEnd);
   nodes.progressFill.style.width = `${Math.min(100, progress * 100).toFixed(2)}%`;
 
-  if (!state.goalLog.length) {
-    nodes.scorers.textContent = "No goals yet";
-    nodes.scorers.classList.add("empty");
-  } else {
-    nodes.scorers.classList.remove("empty");
-    nodes.scorers.textContent = state.goalLog
-      .map(goal => `${goal.minute}' ${goal.scorer} (${goal.score})`)
-      .join("  ·  ");
-  }
+  fillScorerColumn(nodes.homeScorers, state.goalLog.filter(goal => goal.side === HOME_CLASS));
+  fillScorerColumn(nodes.awayScorers, state.goalLog.filter(goal => goal.side === AWAY_CLASS));
+}
+
+function fillScorerColumn(node, goals) {
+  node.replaceChildren();
+  goals.forEach(goal => {
+    const line = document.createElement("span");
+    line.textContent = `⚽ ${goal.minute}' ${goal.scorer}`;
+    node.appendChild(line);
+  });
 }
 
 function renderMomentumGraph(state) {
@@ -557,7 +579,9 @@ function updateStatsPanel(state, progress) {
 
   setStat(stats.possession, `${homePossession}%`, `${100 - homePossession}%`, homePossession, 100 - homePossession);
   setStat(stats.xg, state.live.homeXg.toFixed(2), state.live.awayXg.toFixed(2), state.live.homeXg, state.live.awayXg);
+  setStat(stats.shots, String(state.live.homeShots), String(state.live.awayShots), state.live.homeShots, state.live.awayShots);
   setStat(stats.shotsOnTarget, String(state.live.homeShotsOnTarget), String(state.live.awayShotsOnTarget), state.live.homeShotsOnTarget, state.live.awayShotsOnTarget);
+  setStat(stats.saves, String(state.live.homeSaves), String(state.live.awaySaves), state.live.homeSaves, state.live.awaySaves);
   setStat(stats.duels, `${homeDuels}%`, `${100 - homeDuels}%`, homeDuels, 100 - homeDuels);
 }
 
@@ -919,40 +943,55 @@ function installLiveMatchStyles() {
       display: flex;
       flex-direction: column;
       align-items: center;
+      gap: 8px;
+      width: 100%;
     }
 
-    .live-scoreboard-frame {
-      display: grid !important;
-      grid-template-columns: auto 1fr auto 1fr auto !important;
+    .live-scoreboard-badge-row {
+      display: flex;
       align-items: center;
-      gap: 10px !important;
-      width: min(100%, 420px);
-      padding: 10px 16px !important;
-      border-radius: 18px;
-      border: 1px solid rgba(217, 167, 61, .32);
-      background: linear-gradient(180deg, #1c1408, #100b04);
-      box-shadow: inset 0 1px 0 #ffffff0c, 0 16px 40px #00000055;
+      gap: 10px;
     }
+
+    .live-scoreboard-board {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: start;
+      gap: 12px;
+      width: min(100%, 460px);
+      padding: 14px 16px;
+      border-radius: 14px;
+      background: linear-gradient(180deg, #0b0f0a, #050704);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.04), inset 0 2px 12px rgba(0,0,0,.55), 0 14px 34px rgba(0,0,0,.4);
+    }
+
+    .live-scoreboard-col {
+      display: grid;
+      gap: 6px;
+      min-width: 0;
+    }
+
+    .live-scoreboard-col.home { justify-items: end; }
+    .live-scoreboard-col.away { justify-items: start; }
 
     .live-scoreboard-scorers {
-      margin-top: 6px;
-      padding: 5px 12px;
-      width: min(100%, 420px);
-      border-radius: 12px;
-      background: #00000030;
-      color: #f2d68a;
-      font-size: 10.5px;
-      font-weight: 800;
-      text-align: center;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      display: grid;
+      gap: 2px;
+      width: 100%;
     }
 
-    .live-scoreboard-scorers.empty {
-      color: #a1a1aa;
-      opacity: .6;
+    .live-scoreboard-col.home .live-scoreboard-scorers { justify-items: end; }
+    .live-scoreboard-col.away .live-scoreboard-scorers { justify-items: start; }
+
+    .live-scoreboard-scorers span {
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      color: #f2d68a;
+      font-size: 10px;
       font-weight: 700;
+      opacity: .9;
     }
 
     .live-badge {
@@ -987,10 +1026,12 @@ function installLiveMatchStyles() {
 
     .live-score {
       color: white;
-      font-size: clamp(18px, 4vw, 28px) !important;
+      font-variant-numeric: tabular-nums;
+      font-size: clamp(20px, 4vw, 30px) !important;
       font-weight: 950;
       letter-spacing: .02em;
       text-align: center;
+      text-shadow: 0 0 14px rgba(101, 229, 141, .3);
     }
 
     .live-clock {
@@ -1002,7 +1043,7 @@ function installLiveMatchStyles() {
     }
 
     .live-progress-track {
-      grid-column: 1 / -1;
+      width: min(100%, 460px);
       height: 4px !important;
       border-radius: 999px;
       background: #ffffff12;
@@ -1021,7 +1062,7 @@ function installLiveMatchStyles() {
       display: flex;
       flex-direction: column;
       min-height: calc(var(--live-panel-height) + 46px);
-      padding: 10px 12px;
+      padding: 7px 9px;
       border-radius: 18px;
     }
 
@@ -1030,14 +1071,14 @@ function installLiveMatchStyles() {
       align-items: center;
       justify-content: center;
       gap: 6px;
-      margin-bottom: 4px;
+      margin-bottom: 1px;
       text-align: center;
     }
 
     .live-card-header h2 {
       margin: 0;
       color: #f4f4f5;
-      font-size: clamp(14px, 2.2vw, 18px);
+      font-size: clamp(13px, 2.1vw, 17px);
       font-weight: 700;
       letter-spacing: .02em;
     }
@@ -1045,21 +1086,21 @@ function installLiveMatchStyles() {
     .live-info-dot {
       display: inline-grid;
       place-items: center;
-      width: 17px;
-      height: 17px;
+      width: 16px;
+      height: 16px;
       border: 1.5px solid #f4f4f5;
       border-radius: 50%;
       color: #f4f4f5;
       font-weight: 900;
-      font-size: 11px;
+      font-size: 10px;
     }
 
     .live-momentum-subline {
-      margin: 0 0 4px;
+      margin: 0 0 1px;
       color: #a1a1aa;
       text-align: center;
-      font-size: 10.5px;
-      line-height: 1.25;
+      font-size: 10px;
+      line-height: 1.2;
     }
 
     .live-momentum-svg {
@@ -1067,6 +1108,7 @@ function installLiveMatchStyles() {
       width: 100%;
       flex: 1 1 auto;
       min-height: 0;
+      max-height: var(--live-panel-height, 320px);
       overflow: visible;
     }
 
@@ -1245,8 +1287,8 @@ function installLiveMatchStyles() {
 
     .live-controls {
       display: flex !important;
-      flex-wrap: wrap !important;
-      align-items: center;
+      flex-wrap: nowrap !important;
+      align-items: stretch;
       justify-content: center;
       gap: 8px !important;
       padding: 0 !important;
@@ -1258,15 +1300,18 @@ function installLiveMatchStyles() {
     }
 
     .live-controls .live-secondary-btn {
-      flex: 0 0 auto !important;
-      min-height: 0 !important;
-      border: 1px solid #ffffff20;
+      display: flex !important;
+      align-items: center;
+      justify-content: center;
+      flex: 1.15 1 0 !important;
+      min-height: 44px !important;
+      border: 1px solid rgba(217, 167, 61, .35);
       border-radius: 999px;
-      padding: 9px 14px !important;
-      font-size: 11px !important;
+      padding: 0 12px !important;
+      font-size: 12px !important;
       color: #f4f4f5;
       background: #ffffff0d;
-      font-weight: 900;
+      font-weight: 700;
       cursor: pointer;
     }
 
@@ -1277,11 +1322,13 @@ function installLiveMatchStyles() {
     }
 
     .live-controls .live-continue-btn {
-      display: block !important;
-      flex: 1 1 auto !important;
+      display: flex !important;
+      align-items: center;
+      justify-content: center;
+      flex: 1 1 0 !important;
       width: auto !important;
-      min-height: 0 !important;
-      padding: 9px 14px !important;
+      min-height: 44px !important;
+      padding: 0 12px !important;
       font-size: 13px !important;
     }
 

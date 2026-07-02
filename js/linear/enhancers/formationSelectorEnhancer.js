@@ -21,10 +21,10 @@ export function installFormationSelectorEnhancer() {
 function queueEnhancement() {
   if (queued) return;
   queued = true;
-  window.requestAnimationFrame(() => {
+  window.setTimeout(() => {
     queued = false;
     enhanceMyTeamFormationViews();
-  });
+  }, 0);
 }
 
 function enhanceMyTeamFormationViews() {

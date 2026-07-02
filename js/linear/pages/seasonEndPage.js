@@ -1,4 +1,4 @@
-import { clearApp, pageShell, primaryButton, twoColumnRow } from "../pageUtils.js?v=pos-icons-3";
+import { clearApp, pageShell, primaryButton, twoColumnRow } from "../pageUtils.js?v=pos-icons-5";
 import {
   renderHistoryBlock,
   renderStandingsBlock,
@@ -58,7 +58,7 @@ function createSquadTable() {
 
   const thead = document.createElement("thead");
   const headRow = document.createElement("tr");
-  ["Player", "Pos", "OVR", "Goals", "Clean Sheets"].forEach(label => {
+  ["Player", "Pos", "OVR", "Goals", "Assists", "Cards", "Clean Sheets"].forEach(label => {
     const th = document.createElement("th");
     th.textContent = label;
     headRow.appendChild(th);
@@ -70,9 +70,11 @@ function createSquadTable() {
   rows.forEach(row => {
     const tr = document.createElement("tr");
     appendCell(tr, row.player.name);
-    appendCell(tr, getDisplayPosition(row.player));
+    appendCell(tr, row.positionPlayed || getDisplayPosition(row.player));
     appendCell(tr, String(row.player.overall));
     appendCell(tr, row.goals ? String(row.goals) : "-");
+    appendCell(tr, row.assists ? String(row.assists) : "-");
+    appendCell(tr, formatCards(row.yellowCards, row.redCards));
     appendCell(tr, row.cleanSheets !== null ? String(row.cleanSheets) : "-");
     tbody.appendChild(tr);
   });
@@ -80,6 +82,14 @@ function createSquadTable() {
 
   card.appendChild(table);
   return card;
+}
+
+function formatCards(yellow, red) {
+  if (!yellow && !red) return "-";
+  const parts = [];
+  if (yellow) parts.push(`🟨${yellow}`);
+  if (red) parts.push(`🟥${red}`);
+  return parts.join(" ");
 }
 
 function appendCell(row, text) {
@@ -101,21 +111,24 @@ function createAwardsSection() {
   grid.className = "season-awards-grid";
 
   [
-    ["Best Player", awards.bestPlayer],
-    ["Top Scorer", awards.topScorer],
-    ["Golden Glove", awards.goldenGlove],
-    ["Playmaker of the Season", awards.playmaker]
-  ].forEach(([label, award]) => grid.appendChild(createAwardBox(label, award?.player?.name, award?.note)));
+    ["⭐ Best Player", awards.bestPlayer],
+    ["⚽ Top Scorer", awards.topScorer],
+    ["🎯 Top Assist Maker", awards.topAssist],
+    ["🧤 Golden Glove", awards.goldenGlove],
+    ["🔥 Best Attacker", awards.bestAttacker],
+    ["🎼 Best Midfielder", awards.bestMidfielder],
+    ["🛡️ Best Defender", awards.bestDefender]
+  ].forEach(([label, award]) => grid.appendChild(createAwardBox(label, award?.player?.name, award?.team?.name, award?.note)));
 
-  grid.appendChild(createAwardBox("Manager of the Season", userTeam().name, awards.manager.note, true));
+  grid.appendChild(createAwardBox("👔 Manager of the Season", awards.manager?.team?.name, null, awards.manager?.note));
 
   card.appendChild(grid);
   return card;
 }
 
-function createAwardBox(label, name, note, wide = false) {
+function createAwardBox(label, name, teamName, note) {
   const box = document.createElement("div");
-  box.className = wide ? "season-award-box wide" : "season-award-box";
+  box.className = "season-award-box";
 
   const title = document.createElement("strong");
   title.textContent = label;
@@ -124,10 +137,19 @@ function createAwardBox(label, name, note, wide = false) {
   value.className = "season-award-name";
   value.textContent = name || "Not awarded";
 
+  box.append(title, value);
+
+  if (teamName) {
+    const teamLine = document.createElement("p");
+    teamLine.className = "season-award-team";
+    teamLine.textContent = teamName;
+    box.appendChild(teamLine);
+  }
+
   const small = document.createElement("small");
   small.textContent = note || "";
+  box.appendChild(small);
 
-  box.append(title, value, small);
   return box;
 }
 
@@ -293,30 +315,27 @@ function installSeasonEndStyles() {
       letter-spacing: .04em;
     }
 
-    .season-squad-table td:nth-child(3),
-    .season-squad-table td:nth-child(4),
-    .season-squad-table td:nth-child(5),
-    .season-squad-table th:nth-child(3),
-    .season-squad-table th:nth-child(4),
-    .season-squad-table th:nth-child(5) {
+    .season-squad-table td:nth-child(n+3),
+    .season-squad-table th:nth-child(n+3) {
       text-align: center;
+      white-space: nowrap;
     }
 
     .season-awards-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
       gap: 10px;
+      align-items: stretch;
     }
 
     .season-award-box {
+      display: flex;
+      flex-direction: column;
+      min-height: 108px;
       padding: 12px;
       border-radius: 12px;
       border: 1px solid rgba(209, 179, 110, 0.28);
       background: rgba(209, 179, 110, 0.06);
-    }
-
-    .season-award-box.wide {
-      grid-column: 1 / -1;
     }
 
     .season-award-box strong {
@@ -329,14 +348,23 @@ function installSeasonEndStyles() {
     }
 
     .season-award-name {
-      margin: 0 0 4px;
+      margin: 0 0 2px;
       color: #fff2c2;
       font-weight: 900;
-      font-size: 14px;
+      font-size: 13.5px;
+      line-height: 1.25;
+    }
+
+    .season-award-team {
+      margin: 0 0 4px;
+      color: #d1b36e;
+      font-weight: 700;
+      font-size: 11px;
     }
 
     .season-award-box small {
       display: block;
+      margin-top: auto;
       color: #d9c99f;
       opacity: .85;
       font-size: 11px;

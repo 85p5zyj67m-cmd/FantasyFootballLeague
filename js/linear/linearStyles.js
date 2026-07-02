@@ -274,6 +274,8 @@ export function installLinearStyles() {
       color: #06110b;
       background: linear-gradient(135deg, #65e58d, #18c7f3);
       font-size: 22px;
+      text-align: center;
+      line-height: 1;
     }
 
     .linear-round-picks,

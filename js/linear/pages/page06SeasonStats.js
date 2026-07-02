@@ -1,6 +1,6 @@
 import { appState, userTeam } from "../linearState.js";
 import { playNextLinearMatch } from "../seasonFlow.js?v=real-overall-system-balance-3";
-import { clearApp, pageShell, primaryButton, renderReadOnlyPitch, generateScoutingReport } from "../pageUtils.js?v=pos-icons-3";
+import { clearApp, pageShell, primaryButton, renderReadOnlyPitch, generateScoutingReport } from "../pageUtils.js?v=pos-icons-5";
 
 let divisionDrawComplete = false;
 let drawTimer = null;
@@ -179,35 +179,35 @@ function installPageSixStyles() {
 
     .compass-ring {
       position: relative;
-      width: min(70vw, 300px);
-      height: min(70vw, 300px);
+      width: min(60vw, 240px);
+      height: min(60vw, 240px);
       border-radius: 50%;
-      border: 3px solid #65e58d66;
-      background: radial-gradient(circle, #102017, #07110d 68%);
-      box-shadow: inset 0 0 40px #00000099, 0 0 40px #65e58d33;
+      border: 2px solid rgba(209, 179, 110, 0.45);
+      background: radial-gradient(circle, #16281b, #0a1510 68%);
+      box-shadow: inset 0 0 34px rgba(0, 0, 0, 0.6), 0 0 30px rgba(209, 179, 110, 0.16);
     }
 
     .compass-ring span {
       position: absolute;
-      color: #f7c95f;
-      font-size: 24px;
-      font-weight: 900;
+      color: #f2d68a;
+      font-size: 20px;
+      font-weight: 700;
     }
 
-    .compass-ring .north { top: 14px; left: 50%; transform: translateX(-50%); }
-    .compass-ring .east { right: 18px; top: 50%; transform: translateY(-50%); }
-    .compass-ring .south { bottom: 14px; left: 50%; transform: translateX(-50%); }
-    .compass-ring .west { left: 18px; top: 50%; transform: translateY(-50%); }
+    .compass-ring .north { top: 12px; left: 50%; transform: translateX(-50%); }
+    .compass-ring .east { right: 16px; top: 50%; transform: translateY(-50%); }
+    .compass-ring .south { bottom: 12px; left: 50%; transform: translateX(-50%); }
+    .compass-ring .west { left: 16px; top: 50%; transform: translateY(-50%); }
 
     .compass-needle {
       position: absolute;
       inset: 50% auto auto 50%;
-      width: 12px;
-      height: 128px;
+      width: 10px;
+      height: 100px;
       transform-origin: 50% 0;
       transform: rotate(0deg) translate(-50%, -4px);
       border-radius: 999px;
-      background: linear-gradient(180deg, #f7c95f 0 50%, #65e58d 50% 100%);
+      background: linear-gradient(180deg, #f2d68a 0 50%, #8a5a32 50% 100%);
       animation: spinCompass 5s cubic-bezier(.15,.85,.25,1) forwards;
     }
 
@@ -224,36 +224,52 @@ function installPageSixStyles() {
 
     .division-overview-card {
       display: grid;
-      gap: 10px;
-      padding: 16px;
-      border-radius: 16px;
-      border: 1px solid #ffffff20;
-      background: #07110d;
+      gap: 8px;
+      padding: 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(209, 179, 110, 0.28);
+      background: linear-gradient(180deg, #13251a, #07110d);
     }
 
     .division-overview-card h3 {
       margin: 0;
-      color: white;
+      color: #f2d68a;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: .04em;
     }
 
     .division-team-button {
       width: 100%;
-      padding: 12px;
-      border-radius: 12px;
-      border: 1px solid #ffffff22;
-      color: white;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(209, 179, 110, 0.32);
+      color: #f3ead7;
       text-align: left;
-      font-weight: 900;
-      background: #111827;
+      font-weight: 700;
+      font-size: 13px;
+      background: rgba(209, 179, 110, 0.08);
     }
 
     .division-team-button.own-team {
-      color: #06110b;
-      background: linear-gradient(90deg, #65e58d, #f7c95f);
+      color: #1b1008;
+      border-color: rgba(217, 167, 61, .7);
+      background: linear-gradient(180deg, #f0d48a, #bd9147 62%, #70441f);
     }
 
     .user-division-card {
-      border-color: #65e58d55;
+      padding: 10px 14px;
+      gap: 4px;
+      border-color: rgba(209, 179, 110, 0.35);
+    }
+
+    .user-division-card h3 {
+      font-size: 15px;
+    }
+
+    .user-division-card p {
+      margin: 0;
+      font-size: 12px;
     }
 
     .division-scout-report {

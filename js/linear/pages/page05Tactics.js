@@ -8,7 +8,7 @@ import {
 import { formatTraits, getDisplayPosition, getTraitList } from "../../playerUtils.js";
 import { appState, userTeam } from "../linearState.js";
 import { startLinearSeason } from "../seasonFlow.js?v=real-overall-system-balance-3";
-import { clearApp, pageShell, primaryButton } from "../pageUtils.js?v=pos-icons-3";
+import { clearApp, pageShell, primaryButton } from "../pageUtils.js?v=pos-icons-5";
 
 let selectedPlayerId = null;
 
@@ -57,18 +57,40 @@ function createMyTeamTabs() {
 }
 
 function renderStartingElevenView() {
+  const team = userTeam();
   const wrapper = document.createElement("div");
   wrapper.className = "linear-s11-view linear-info-card-view";
 
-  wrapper.appendChild(createPitch(userTeam()));
-  wrapper.appendChild(createBench(userTeam()));
+  wrapper.appendChild(createPitch(team));
+
+  if (selectedPlayerId && team.lineup?.[selectedPlayerId] && team.lineup[selectedPlayerId] !== "BENCH") {
+    wrapper.appendChild(createMoveToBenchAction(team));
+  }
+
+  wrapper.appendChild(createBench(team));
   wrapper.addEventListener("click", event => {
     if (!selectedPlayerId) return;
-    if (event.target.closest(".linear-slot, .linear-bench-player")) return;
+    if (event.target.closest(".linear-slot, .linear-bench-player, .linear-move-to-bench")) return;
     selectedPlayerId = null;
     renderPage05Tactics();
   });
   return wrapper;
+}
+
+function createMoveToBenchAction(team) {
+  const bar = document.createElement("div");
+  bar.className = "linear-move-to-bench";
+
+  const button = document.createElement("button");
+  button.type = "button";
+  button.textContent = "Move Selected Player to Bench";
+  button.addEventListener("click", event => {
+    event.stopPropagation();
+    moveSelectedPlayer(team, "BENCH");
+  });
+
+  bar.appendChild(button);
+  return bar;
 }
 
 function renderTacticsView() {

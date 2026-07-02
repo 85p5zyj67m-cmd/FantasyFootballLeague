@@ -1,4 +1,4 @@
-import { formatTraits, getDisplayPosition, getPositionGroup, getTraitList } from "../playerUtils.js";
+import { formatTraits, getDisplayPosition, getPositionGroup, getRatingTier, getTraitList } from "../playerUtils.js";
 import { getFormationById } from "../formations.js";
 import { getSlotsFromFormation, getPlayersBySlot } from "../lineup.js";
 
@@ -8,19 +8,12 @@ export function clearApp() {
   return app;
 }
 
-export function pageShell({ eyebrow, title, subtitle = "" }) {
+export function pageShell({ title, subtitle = "" }) {
   const section = document.createElement("section");
   section.className = "linear-page";
 
   const card = document.createElement("div");
   card.className = "linear-card";
-
-  if (eyebrow) {
-    const small = document.createElement("p");
-    small.className = "eyebrow";
-    small.textContent = eyebrow;
-    card.appendChild(small);
-  }
 
   const heading = document.createElement("h1");
   heading.textContent = title;
@@ -97,6 +90,7 @@ export function playerCard(player, onClick = null) {
 
   const overall = document.createElement("strong");
   overall.className = "draft-list-rating";
+  overall.dataset.tier = getRatingTier(player.overall);
   overall.textContent = String(player.overall);
 
   const separator = document.createElement("span");

@@ -3,7 +3,7 @@
   grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)) !important;
 }
 
-.formation-option-btn.formation-option-btn {
+html body .formation-option-btn.formation-option-btn {
   width: 100% !important;
   min-height: 86px !important;
   display: grid !important;
@@ -12,28 +12,28 @@
   justify-items: center !important;
   padding: 14px 12px !important;
   text-align: center !important;
-  border: 12px solid #5a321b !important;
-  border-radius: 22px !important;
-  background: #d1b36e !important;
-  box-shadow: inset 0 0 0 3px rgba(255,236,180,.35), 0 18px 44px rgba(0,0,0,.52) !important;
+  border: 2px solid #8a5a32 !important;
+  border-radius: 18px !important;
+  background: linear-gradient(145deg, #17301f, #0b1c12 68%, #201207) !important;
+  box-shadow: inset 0 1px 0 rgba(255,236,180,.1), 0 14px 34px rgba(0,0,0,.45) !important;
 }
 
 .formation-option-btn.formation-option-btn strong {
   display: block !important;
-  color: #160d08 !important;
+  color: #fff2c2 !important;
   font-size: 1.15rem !important;
   line-height: 1 !important;
   letter-spacing: .02em !important;
-  text-shadow: 0 1px 0 rgba(255,255,255,.22) !important;
+  text-shadow: none !important;
 }
 
 .formation-option-btn.formation-option-btn span {
   display: block !important;
   max-width: 100% !important;
-  color: rgba(22, 13, 8, 0.78) !important;
+  color: #d1b36e !important;
   font-size: 0.68rem !important;
   line-height: 1.25 !important;
-  font-weight: 900 !important;
+  font-weight: 700 !important;
   overflow: hidden !important;
   text-overflow: ellipsis !important;
 }
@@ -46,7 +46,7 @@
   .formation-option-btn.formation-option-btn {
     min-height: 70px !important;
     padding: 9px 7px !important;
-    border-width: 8px !important;
+    border-width: 1.5px !important;
   }
 
   .formation-option-btn.formation-option-btn strong {

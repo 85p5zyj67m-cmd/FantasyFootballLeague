@@ -1,24 +1,24 @@
 import { renderPage01StartDraft } from "./pages/page01StartDraft.js?v=start-bookmaker-1";
 import { renderPage02DraftPosition } from "./pages/page02DraftPosition.js?v=casino-reel-1";
 import { renderPage03YourSystem } from "./pages/page03YourSystem.js?v=page-flow-polish-1";
-import { renderPage04Draft } from "./pages/page04Draft.js?v=instant-draft-batch-4";
-import { renderPage05Tactics } from "./pages/page05Tactics.js?v=real-overall-system-balance-5";
-import { renderPage06SeasonStats } from "./pages/page06SeasonStats.js?v=real-overall-system-balance-4";
+import { renderPage04Draft } from "./pages/page04Draft.js?v=instant-draft-batch-6";
+import { renderPage05Tactics } from "./pages/page05Tactics.js?v=real-overall-system-balance-6";
+import { renderPage06SeasonStats } from "./pages/page06SeasonStats.js?v=real-overall-system-balance-5";
 import { renderPage07Match1 } from "./pages/page07Match1.js?v=second-half-route-2";
 import { renderPage08Match2 } from "./pages/page08Match2.js?v=second-half-route-2";
 import { renderPage09Match3 } from "./pages/page09Match3.js?v=second-half-route-2";
 import { renderPage10Match4 } from "./pages/page10Match4.js?v=second-half-route-2";
-import { renderPage11FirstHalfOverview } from "./pages/page11FirstHalfOverview.js?v=english-ui-1";
+import { renderPage11FirstHalfOverview } from "./pages/page11FirstHalfOverview.js?v=english-ui-2";
 import { renderPage12Match5 } from "./pages/page12Match5.js?v=second-half-route-2";
 import { renderPage13Match6 } from "./pages/page13Match6.js?v=second-half-route-2";
 import { renderPage14Match7 } from "./pages/page14Match7.js?v=second-half-route-2";
 import { renderPage15Match8 } from "./pages/page15Match8.js?v=second-half-route-2";
-import { renderPage16SecondHalfOverview } from "./pages/page16SecondHalfOverview.js?v=english-ui-1";
+import { renderPage16SecondHalfOverview } from "./pages/page16SecondHalfOverview.js?v=english-ui-2";
 import { renderPage17RoundOf16 } from "./pages/page17RoundOf16.js?v=second-half-route-2";
 import { renderPage18QuarterFinal } from "./pages/page18QuarterFinal.js?v=second-half-route-2";
 import { renderPage19SemiFinal } from "./pages/page19SemiFinal.js?v=second-half-route-2";
 import { renderPage20Final } from "./pages/page20Final.js?v=second-half-route-2";
-import { renderSeasonEndPage } from "./pages/seasonEndPage.js?v=second-half-route-2";
+import { renderSeasonEndPage } from "./pages/seasonEndPage.js?v=second-half-route-3";
 
 const routes = {
   page01: renderPage01StartDraft,

@@ -12,7 +12,7 @@ export function installVisualUnityLayer() {
       --ui-green-dark: #06130d;
       --ui-green-panel: #0b1f15;
       --ui-green-card: #10281c;
-      --ui-wood: #5a321b;
+      --ui-wood: #8a5a32;
       --ui-wood-dark: #2b180d;
       --ui-cream: #f4ead6;
       --ui-muted: #c8bda8;
@@ -82,23 +82,29 @@ export function installVisualUnityLayer() {
 
     .linear-card.linear-card,
     .hero-card.hero-card,
-    .live-scoreboard.live-scoreboard,
     .live-momentum-card.live-momentum-card,
     .live-stats-panel.live-stats-panel,
     .live-ticker-card.live-ticker-card,
-    .live-controls.live-controls,
     .linear-draft-view.linear-draft-view,
     .linear-draft-tabs.linear-draft-tabs,
     .linear-round-picks.linear-round-picks,
     .linear-order-ticker.linear-order-ticker,
     .linear-speed-box.linear-speed-box {
       color: var(--ui-cream) !important;
-      border: 4px solid var(--ui-wood) !important;
+      border: 1.5px solid var(--ui-wood) !important;
       border-radius: 22px !important;
-      outline: 1px solid rgba(209,179,110,.55) !important;
-      outline-offset: -8px !important;
+      outline: 1px solid rgba(209,179,110,.5) !important;
+      outline-offset: -4px !important;
       background: linear-gradient(180deg, rgba(244,234,214,.035), rgba(0,0,0,.08)), linear-gradient(145deg, rgba(15,40,27,.96), rgba(7,18,12,.98) 64%, rgba(32,18,8,.94)) !important;
       box-shadow: inset 0 0 0 1px rgba(244,234,214,.08), inset 0 0 34px rgba(0,0,0,.38), 0 20px 54px rgba(0,0,0,.52) !important;
+    }
+
+    .live-scoreboard.live-scoreboard,
+    .live-controls.live-controls {
+      border: none !important;
+      outline: none !important;
+      background: none !important;
+      box-shadow: none !important;
     }
 
     .linear-player-card.linear-player-card,
@@ -186,7 +192,7 @@ export function installVisualUnityLayer() {
     .formation-option-btn.formation-option-btn,
     .formation-grid button {
       color: #1b1008 !important;
-      border: 3px solid var(--ui-wood) !important;
+      border: 2px solid var(--ui-wood) !important;
       background: linear-gradient(180deg, #f0d48a, #bd9147 62%, #70441f) !important;
       box-shadow: inset 0 1px 0 rgba(255,255,255,.35), 0 12px 28px rgba(0,0,0,.38) !important;
     }
@@ -407,6 +413,12 @@ function enforceClassicFormationLines() {
           inner.style.removeProperty("width");
           inner.style.removeProperty("min-width");
           inner.style.removeProperty("max-width");
+          inner.querySelectorAll(".linear-info-name, .linear-info-meta span, .linear-info-traits small").forEach(node => {
+            node.style.removeProperty("font-size");
+            node.style.removeProperty("white-space");
+            node.style.removeProperty("overflow");
+            node.style.removeProperty("text-overflow");
+          });
         }
       });
       return;
@@ -432,7 +444,29 @@ function enforceClassicFormationLines() {
         inner.style.setProperty("width", "100%", "important");
         inner.style.setProperty("min-width", "0", "important");
         inner.style.setProperty("max-width", "none", "important");
+        fitPitchCardText(inner);
       }
     });
   });
+}
+
+function fitPitchCardText(card) {
+  const name = card.querySelector(".linear-info-name");
+  if (name) shrinkToFit(name, 10, 6.5);
+
+  card.querySelectorAll(".linear-info-meta span").forEach(node => shrinkToFit(node, 9, 6));
+  card.querySelectorAll(".linear-info-traits small").forEach(node => shrinkToFit(node, 8, 6));
+}
+
+function shrinkToFit(node, baseSizePx, minSizePx) {
+  let size = baseSizePx;
+  node.style.setProperty("font-size", `${size}px`, "important");
+  node.style.setProperty("white-space", "nowrap", "important");
+  node.style.setProperty("overflow", "hidden", "important");
+  node.style.setProperty("text-overflow", "clip", "important");
+  let guard = 20;
+  while (node.scrollWidth > node.clientWidth + 0.5 && size > minSizePx && guard-- > 0) {
+    size -= 0.5;
+    node.style.setProperty("font-size", `${size}px`, "important");
+  }
 }

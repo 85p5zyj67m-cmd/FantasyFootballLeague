@@ -3,22 +3,59 @@
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   margin: 10px 0;
 }
 
 .my-team-formation-selector {
   display: block;
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
 .my-team-formation-selector select {
-  min-height: 36px;
-  padding: 7px 14px;
+  width: 100%;
+  min-height: 38px;
+  padding: 9px 14px;
   border-radius: 999px;
-  border: 1px solid rgba(117, 255, 158, 0.35);
-  background: #07110d;
-  color: #ffffff;
+  border: 1px solid rgba(209, 179, 110, 0.4);
+  background: rgba(7, 20, 14, 0.82);
+  color: #f3ead7;
+  font-size: 12px;
   font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  box-shadow: 0 0 16px rgba(209, 179, 110, 0.14);
+}
+
+.my-team-top-row .trait-chain-global-controls {
+  flex: 0 0 auto;
+}
+
+.linear-move-to-bench {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0;
+}
+
+.linear-move-to-bench button {
+  width: 100%;
+  max-width: 360px;
+  min-height: 44px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(217, 167, 61, .45);
+  background: linear-gradient(180deg, #1c1408, #100b04);
+  color: #f2d68a;
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+}
+
+.linear-move-to-bench button:active {
+  background: linear-gradient(180deg, #100b04, #1c1408);
 }
 
 @media (max-width: 760px) {
@@ -28,8 +65,13 @@
   }
 
   .my-team-formation-selector select {
-    min-height: 32px;
-    padding: 5px 10px;
-    font-size: 0.72rem;
+    min-height: 34px;
+    padding: 7px 10px;
+    font-size: 0.66rem;
+  }
+
+  .trait-chain-show-all-button {
+    padding: 8px 10px !important;
+    font-size: 0.62rem !important;
   }
 }

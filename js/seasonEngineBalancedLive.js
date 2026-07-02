@@ -3,7 +3,7 @@ import {
   continueAfterTactics as continueTacticalAfterTactics,
   simulateNextMatch as simulateTacticalNextMatch,
   getTeamStrength as getTacticalTeamStrength
-} from "./seasonEngineTacticalLite.js?v=tactical-chain-engine-3";
+} from "./seasonEngineTacticalLite.js?v=tactical-chain-engine-4";
 import { getActiveTraitChains } from "./traitChainEngine.js?v=balanced-trait-recipes-1";
 import { getFormationById } from "./formations.js";
 import { getDetailedPositionSystemBoost } from "./detailPositionEngine.js?v=detailed-position-engine-1";

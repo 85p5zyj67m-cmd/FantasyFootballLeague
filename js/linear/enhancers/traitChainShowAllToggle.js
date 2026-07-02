@@ -1,4 +1,4 @@
-import { installTraitChainEnhancer as installPositionChainEnhancer } from "./traitChainPositionHighlighter.js?v=position-chain-ui-3";
+import { installTraitChainEnhancer as installPositionChainEnhancer } from "./traitChainPositionHighlighter.js?v=position-chain-ui-4";
 import { getActiveTraitChains } from "../../traitChainEngine.js?v=balanced-trait-recipes-1";
 import { userTeam } from "../linearState.js";
 
@@ -33,11 +33,11 @@ function installShowAllControl() {
 function queueRender() {
   if (queued) return;
   queued = true;
-  window.requestAnimationFrame(() => {
+  window.setTimeout(() => {
     queued = false;
     ensureControl();
     renderAllChainsOverlay();
-  });
+  }, 0);
 }
 
 function ensureControl() {
@@ -48,7 +48,14 @@ function ensureControl() {
     return;
   }
 
-  if (s11View.querySelector(".trait-chain-global-controls")) return;
+  const topRow = document.querySelector(".my-team-top-row");
+  const existingControls = document.querySelector(".trait-chain-global-controls");
+  if (existingControls) {
+    if (topRow && existingControls.parentElement !== topRow) {
+      topRow.appendChild(existingControls);
+    }
+    return;
+  }
 
   const controls = document.createElement("div");
   controls.className = "trait-chain-global-controls";
@@ -69,7 +76,6 @@ function ensureControl() {
 
   controls.appendChild(button);
 
-  const topRow = s11View.querySelector(".my-team-top-row");
   const panel = s11View.querySelector(".trait-chain-panel");
   const hint = s11View.querySelector(".compact-hint, .subtitle");
 
